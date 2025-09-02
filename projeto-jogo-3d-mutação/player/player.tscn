@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://dtkt1dciakqbg"]
+
+[ext_resource type="Script" uid="uid://ciuax0oqnamcq" path="res://player/player.gd" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://2oc2ernkbept" path="res://player/state_machine.gd" id="2_g6k8r"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_qjkh3"]
+[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="3_g6k8r"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="4_boad6"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="5_rgyib"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_boad6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g6k8r"]
+radius = 0.587638
+
+[sub_resource type="BoxMesh" id="BoxMesh_8t03j"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_oul6g")
+max_speed = 7.0
+acc = 0.5
+deceleration = 0.5
+max_fall_speed = -18.0
+_jump_height = 3.0
+
+[node name="MainCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 18, 25, 18)
+projection = 1
+size = 25.0
+near = 0.001
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.998858, 0)
+shape = SubResource("CapsuleShape3D_g6k8r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.998924, 0)
+mesh = SubResource("BoxMesh_8t03j")
+
+[node name="StateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_g6k8r")
+
+[node name="StateChart" type="Node" parent="StateMachine"]
+script = ExtResource("2_qjkh3")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="ParallelState" type="Node" parent="StateMachine/StateChart"]
+script = ExtResource("3_g6k8r")
+
+[node name="Movement" type="Node" parent="StateMachine/StateChart/ParallelState"]
+script = ExtResource("4_boad6")
+initial_state = NodePath("Ground")
+
+[node name="Ground" type="Node" parent="StateMachine/StateChart/ParallelState/Movement"]
+script = ExtResource("4_boad6")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="Idle" type="Node" parent="StateMachine/StateChart/ParallelState/Movement/Ground"]
+script = ExtResource("5_rgyib")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Move" type="Node" parent="StateMachine/StateChart/ParallelState/Movement/Ground"]
+script = ExtResource("5_rgyib")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="ToJump" type="Node" parent="StateMachine/StateChart/ParallelState/Movement/Ground"]
+script = ExtResource("7_boad6")
+to = NodePath("../../Air/Jump")
+event = &"jump_pressed"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToFall" type="Node" parent="StateMachine/StateChart/ParallelState/Movement/Ground"]
+script = ExtResource("7_boad6")
+to = NodePath("../../Air/Fall")
+event = &"started_falling"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Air" type="Node" parent="StateMachine/StateChart/ParallelState/Movement"]
+script = ExtResource("4_boad6")
+initial_state = NodePath("Fall")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="Fall" type="Node" parent="StateMachine/StateChart/ParallelState/Movement/Air"]
+script = ExtResource("5_rgyib")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="ToGround" type="Node" parent="StateMachine/StateChart/ParallelState/Movement/Air/Fall"]
+script = ExtResource("7_boad6")
+to = NodePath("../../../Ground")
+event = &"touched_ground"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Jump" type="Node" parent="StateMachine/StateChart/ParallelState/Movement/Air"]
+script = ExtResource("5_rgyib")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="ToFall" type="Node" parent="StateMachine/StateChart/ParallelState/Movement/Air/Jump"]
+script = ExtResource("7_boad6")
+to = NodePath("../../Fall")
+event = &"started_falling"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Actions" type="Node" parent="StateMachine/StateChart/ParallelState"]
+script = ExtResource("4_boad6")
+initial_state = NodePath("None")
+
+[node name="None" type="Node" parent="StateMachine/StateChart/ParallelState/Actions"]
+script = ExtResource("5_rgyib")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Dash" type="Node" parent="StateMachine/StateChart/ParallelState/Actions"]
+script = ExtResource("5_rgyib")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[connection signal="state_physics_processing" from="StateMachine/StateChart/ParallelState/Movement/Ground" to="StateMachine" method="_on_ground_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateMachine/StateChart/ParallelState/Movement/Air/Fall" to="StateMachine" method="_on_fall_state_physics_processing"]
+[connection signal="state_entered" from="StateMachine/StateChart/ParallelState/Movement/Air/Jump" to="StateMachine" method="_on_jump_state_entered"]
+[connection signal="state_physics_processing" from="StateMachine/StateChart/ParallelState/Movement/Air/Jump" to="StateMachine" method="_on_jump_state_physics_processing"]
