@@ -17,7 +17,7 @@ func _on_pistol_timer_timeout() -> void:
 	get_tree().current_scene.add_child(bullet)
 
 	# Spawna na posição e rotação da pistola
-	bullet.global_transform = global_transform
+	bullet.global_position = global_position
 
 	# Calcula direção para frente do cano
 	var forward := -global_transform.basis.x.normalized()

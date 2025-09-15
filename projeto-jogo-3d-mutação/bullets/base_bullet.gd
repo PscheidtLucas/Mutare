@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if body is Enemy:
+	if body is Enemy or Player:
 		body.take_damage(damage)
 		call_deferred("queue_free")
 

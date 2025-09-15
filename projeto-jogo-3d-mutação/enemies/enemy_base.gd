@@ -15,7 +15,7 @@ var cube_material: StandardMaterial3D
 func _ready() -> void:
 	player = PlayerManager.player
 	cube_material = cube_mesh.get_surface_override_material(0)
-	cube_material.emission_energy_multiplier = 7.0
+
 	
 func _physics_process(delta: float) -> void:
 	if player == null:
@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 func take_damage(damage: int) -> void:
 	health -= damage
 	# Lógica para o cubo perder brilho conforme toma dano
-	cube_material.emission_energy_multiplier = max(0.0, cube_material.emission_energy_multiplier - 0.5)
+	#cube_material.emission_energy_multiplier = max(0.0, cube_material.emission_energy_multiplier - 0.5)
 	
 	if health <= 0:
 		die()

@@ -1,13 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://dysbpdxth2utg"]
 
-[ext_resource type="PackedScene" uid="uid://bgyurxjp7jsnc" path="res://armas/pistola/pistola.fbx" id="1_qbsh1"]
-[ext_resource type="Script" uid="uid://cu15f22leogg6" path="res://armas/pistola/pistola_scene.gd" id="2_thp7p"]
+[ext_resource type="PackedScene" uid="uid://bgyurxjp7jsnc" path="res://weapons/pistola/pistola.fbx" id="1_qbsh1"]
+[ext_resource type="Script" uid="uid://cu15f22leogg6" path="res://weapons/pistola/pistola_scene.gd" id="2_thp7p"]
 [ext_resource type="PackedScene" uid="uid://bg83f03nii3ub" path="res://bullets/base_bullet.tscn" id="3_2v3vk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_id2lu"]
 albedo_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
 
 [node name="pistola" instance=ExtResource("1_qbsh1")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 script = ExtResource("2_thp7p")
 bullet_scene = ExtResource("3_2v3vk")
 

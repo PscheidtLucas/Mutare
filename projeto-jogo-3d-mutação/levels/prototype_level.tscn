@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=14 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://player/player.tscn" id="1_1ykrc"]
-[ext_resource type="PackedScene" uid="uid://34re6cmm8c1w" path="res://enemies/enemy_base.tscn" id="2_ycx7s"]
 [ext_resource type="Script" uid="uid://cm80rdk4fg0dm" path="res://spawner/spawn_area.gd" id="3_6lfjr"]
 [ext_resource type="Script" uid="uid://wvedouoyhons" path="res://UI/ui.gd" id="3_htrvu"]
+[ext_resource type="PackedScene" uid="uid://cgodq53bkn7od" path="res://weapon_box/weapon_box.tscn" id="4_6lfjr"]
+[ext_resource type="Script" uid="uid://bthwivcdoldgd" path="res://levels/cheat_code_manager.gd" id="5_qd0o6"]
+[ext_resource type="Script" uid="uid://bwxxutjdjee1w" path="res://levels/fall_area.gd" id="6_i5e4g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1ykrc"]
 size = Vector3(50, 1, 50)
@@ -32,6 +34,8 @@ size = Vector3(48.2883, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qd0o6"]
 size = Vector3(1, 1, 48)
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qd0o6"]
+
 [node name="PrototypeLevel" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -53,9 +57,6 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_1ykrc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.133096, 0, 0)
 max_speed = 8.0
-
-[node name="Enemy" parent="." instance=ExtResource("2_ycx7s")]
-transform = Transform3D(-0.639774, 0, -0.768563, 0, 1, 0, 0.768563, 0, -0.639774, -19.3602, 0, 19.7436)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ycx7s")
@@ -85,28 +86,37 @@ unique_name_in_owner = true
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("nodes_to_hide_in_start")]
 process_mode = 3
 script = ExtResource("3_htrvu")
-nodes_to_hide_in_start = [NodePath("CenterContainer2/WinLabel"), NodePath("CenterContainer3/RestartButton")]
+nodes_to_hide_in_start = [NodePath("WeaponsOptions"), NodePath("CenterContainer3/RestartButton"), NodePath("WinLoseContainer/LoseLabel")]
 
-[node name="CenterContainer" type="CenterContainer" parent="UI"]
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+
+[node name="HealthUI" type="Label" parent="UI/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TimerContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+offset_left = -9.5
+offset_right = 9.5
+offset_bottom = 23.0
 grow_horizontal = 2
 
-[node name="TimeLeftLabel" type="Label" parent="UI/CenterContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="UI/TimerContainer"]
+layout_mode = 2
+
+[node name="TimeLeftLabel" type="Label" parent="UI/TimerContainer/CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "60"
 
-[node name="LevelTimer" type="Timer" parent="UI/CenterContainer/TimeLeftLabel"]
+[node name="LevelTimer" type="Timer" parent="UI/TimerContainer/CenterContainer/TimeLeftLabel"]
 unique_name_in_owner = true
 wait_time = 50.0
 autostart = true
 
-[node name="CenterContainer2" type="CenterContainer" parent="UI"]
+[node name="WinLoseContainer" type="CenterContainer" parent="UI"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -119,11 +129,58 @@ offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WinLabel" type="Label" parent="UI/CenterContainer2"]
+[node name="LoseLabel" type="Label" parent="UI/WinLoseContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 85
+text = "Game Over!"
+
+[node name="WeaponsOptions" type="CenterContainer" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -311.5
+offset_top = -95.0
+offset_right = 311.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/WeaponsOptions"]
+layout_mode = 2
+
+[node name="WinLabel" type="Label" parent="UI/WeaponsOptions/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 85
 text = "Wave Survived!"
+
+[node name="ChooseLabel" type="Label" parent="UI/WeaponsOptions/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Choose an upgrade:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/WeaponsOptions/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WeaponBox" parent="UI/WeaponsOptions/VBoxContainer/HBoxContainer" instance=ExtResource("4_6lfjr")]
+layout_mode = 2
+
+[node name="WeaponBox2" parent="UI/WeaponsOptions/VBoxContainer/HBoxContainer" instance=ExtResource("4_6lfjr")]
+layout_mode = 2
+
+[node name="Button" parent="UI/WeaponsOptions/VBoxContainer/HBoxContainer/WeaponBox2" index="1"]
+text = "Option 2"
+
+[node name="WeaponBox3" parent="UI/WeaponsOptions/VBoxContainer/HBoxContainer" instance=ExtResource("4_6lfjr")]
+layout_mode = 2
+
+[node name="Button" parent="UI/WeaponsOptions/VBoxContainer/HBoxContainer/WeaponBox3" index="1"]
+text = "Option 3"
 
 [node name="CenterContainer3" type="CenterContainer" parent="UI"]
 anchors_preset = 8
@@ -143,5 +200,23 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Restart"
 
-[connection signal="timeout" from="UI/CenterContainer/TimeLeftLabel/LevelTimer" to="UI" method="_on_level_timer_timeout"]
+[node name="HealthContainer" type="CenterContainer" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CheatCodeManager" type="Node" parent="."]
+script = ExtResource("5_qd0o6")
+
+[node name="FallArea" type="Area3D" parent="."]
+script = ExtResource("6_i5e4g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FallArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.132, 0)
+shape = SubResource("WorldBoundaryShape3D_qd0o6")
+
+[connection signal="timeout" from="UI/TimerContainer/CenterContainer/TimeLeftLabel/LevelTimer" to="UI" method="_on_level_timer_timeout"]
 [connection signal="pressed" from="UI/CenterContainer3/RestartButton" to="UI" method="_on_restart_button_pressed"]
+[connection signal="body_entered" from="FallArea" to="FallArea" method="_on_body_entered"]
+
+[editable path="UI/WeaponsOptions/VBoxContainer/HBoxContainer/WeaponBox2"]
+[editable path="UI/WeaponsOptions/VBoxContainer/HBoxContainer/WeaponBox3"]

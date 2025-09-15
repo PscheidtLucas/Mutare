@@ -58,3 +58,5 @@ func _on_fall_state_physics_processing(delta: float) -> void:
 
 func _on_player_died() -> void:
 	state_chart.set_expression_property("player_alive", false)
+	set_physics_process(false)
+	set_process(false)

@@ -4,9 +4,9 @@ const ENEMY_BASE = preload("res://enemies/enemy_base.tscn")
 @onready var spawn_timer: Timer = %SpawnTimer
 
 # Parâmetros ajustáveis do spawn
-@export var base_spawn_time: float = 11.0		# Tempo base entre spawns
-@export var time_reduction_rate: float = 0.8	# Redução do tempo a cada wave (0.8 = 20% mais rápido)
-@export var enemies_per_wave_growth: float = 0.3	# Crescimento de inimigos por wave
+@export var base_spawn_time: float = 7.0		# Tempo base entre spawns
+@export var time_reduction_rate: float = 0.98	# Redução do tempo a cada wave (0.8 = 20% mais rápido)
+@export var enemies_per_wave_growth: float = 0.4	# Crescimento de inimigos por wave
 @export var min_spawn_time: float = 2.0		# Tempo mínimo entre spawns
 
 var game_time: float = 0.0
@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 
 func _on_spawn_timer_timeout() -> void:
 	current_wave += 1
-	
+
 	# Calcula quantos inimigos spawnar nesta wave
 	var enemies_to_spawn = calculate_enemies_for_wave(current_wave)
 	spawn_enemies(enemies_to_spawn)
@@ -51,12 +51,7 @@ func _on_spawn_timer_timeout() -> void:
 
 func calculate_enemies_for_wave(wave: int) -> int:
 	# Fórmula: 1 + (wave * crescimento)
-	# Wave 1: 1 + (1 * 0.3) = 1.3 → 1 inimigo
-	# Wave 2: 1 + (2 * 0.3) = 1.6 → 1 inimigo  
-	# Wave 3: 1 + (3 * 0.3) = 1.9 → 1 inimigo
-	# Wave 4: 1 + (4 * 0.3) = 2.2 → 2 inimigos
-	# Wave 5: 1 + (5 * 0.3) = 2.5 → 2 inimigos
-	return max(2, int(1.0 + (wave * enemies_per_wave_growth)))
+	return max(1, int(1.0 + (wave * enemies_per_wave_growth)))
 
 func calculate_next_spawn_time(wave: int) -> float:
 	# Fórmula: tempo_base * (taxa_redução ^ wave)

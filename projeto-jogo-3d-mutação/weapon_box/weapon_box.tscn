@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgodq53bkn7od"]
+
+[ext_resource type="Script" uid="uid://c2ol1eufnlyiu" path="res://levels/weapon_box.gd" id="1_lkbvd"]
+
+[node name="WeaponBox" type="VBoxContainer"]
+script = ExtResource("1_lkbvd")
+
+[node name="WeaponName" type="Label" parent="."]
+layout_mode = 2
+text = "Pistol"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "Option 1"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

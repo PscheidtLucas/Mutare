@@ -1,5 +1,8 @@
 class_name Player extends CharacterBody3D
 
+var dead:= false
+var is_cheating: bool = false
+
 @export var max_health := 5
 var health := max_health
 @onready var cube_mesh: MeshInstance3D = $CubeMesh
@@ -32,6 +35,8 @@ var health := max_health
 @onready var double_jump_gravity : float = _calculate_jump_gravity(_double_jump_height, _double_jump_time_to_peak)
 @onready var double_jump_fall_gravity := _calculate_fall_gravity(_double_jump_height, _double_jump_time_to_descent)
 
+@export var positions_for_weapons : Array[Marker3D]
+
 func _calculate_jump_speed(height: float, time_to_peak: float) -> float:
 	return(2.0 * height) / time_to_peak
 	
@@ -48,16 +53,49 @@ func _calculate_jump_horiz_speed(dist: float, time_to_peak: float,
 func _ready() -> void:
 	PlayerManager.player = self
 	
+	equip_weapons()
+	GlobalSignals.weapon_selected.connect(equip)
+	dead = false
+	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("rotation_left"):
 		cube_mesh.rotate_y(deg_to_rad(rotation_speed * delta))
 	elif Input.is_action_pressed("rotation_right"):
 		cube_mesh.rotate_y(deg_to_rad(-rotation_speed * delta))
 
+func equip(weapon_scene: PackedScene) -> void:
+	for node in positions_for_weapons:
+		if node.get_child_count() != 0:
+			continue
+		var instance := weapon_scene.instantiate()
+		node.add_child(instance)
+		break
+
+func equip_weapons() -> void:
+	print(PlayerManager.equipped_weapons)
+	for weapon in PlayerManager.equipped_weapons:
+		equip(weapon)
+
 func take_damage(damage: int) -> void:
+	if is_alive() == false:
+		return
+	if is_cheating == true:
+		return
 	health -= damage
+	GlobalSignals.player_took_damage.emit()
 	if health <= 0:
 		die()
 		
 func die() -> void:
+	dead = true
 	GlobalSignals.player_died.emit()
+	set_physics_process(false)
+	set_process(false)
+	#hide() #TODO 
+
+
+func is_alive() -> bool:
+	if dead:
+		return false
+	else:
+		return true

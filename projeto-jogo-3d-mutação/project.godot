@@ -73,4 +73,6 @@ rotation_right={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.0095166, 0.0459549, 0.0599247, 1)
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.00140114, 0.00682338, 0.00931424, 1)
