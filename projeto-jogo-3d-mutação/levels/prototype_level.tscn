@@ -1,42 +1,147 @@
-[gd_scene load_steps=5 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=11 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://player/player.tscn" id="1_1ykrc"]
+[ext_resource type="PackedScene" uid="uid://34re6cmm8c1w" path="res://enemies/enemy_base.tscn" id="2_ycx7s"]
+[ext_resource type="Script" uid="uid://cm80rdk4fg0dm" path="res://spawner/spawn_area.gd" id="3_6lfjr"]
+[ext_resource type="Script" uid="uid://wvedouoyhons" path="res://UI/ui.gd" id="3_htrvu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1ykrc"]
 size = Vector3(50, 1, 50)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgtqi"]
-albedo_color = Color(0.513404, 0.700006, 0.353693, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ykrc"]
+resource_local_to_scene = true
+albedo_color = Color(0.297079, 0.717281, 0.753584, 1)
+emission = Color(2.5028e-06, 0.510828, 0.529107, 1)
+emission_energy_multiplier = 0.1
 
 [sub_resource type="BoxMesh" id="BoxMesh_1ykrc"]
-material = SubResource("StandardMaterial3D_qgtqi")
+material = SubResource("StandardMaterial3D_1ykrc")
 size = Vector3(50, 1, 50)
+
+[sub_resource type="Environment" id="Environment_ycx7s"]
+glow_enabled = true
+glow_levels/2 = 2.0
+glow_levels/3 = 1.5
+glow_levels/4 = 0.5
+glow_levels/6 = 1.0
+glow_blend_mode = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6lfjr"]
+size = Vector3(48.2883, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qd0o6"]
+size = Vector3(1, 1, 48)
 
 [node name="PrototypeLevel" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_1ykrc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_1ykrc")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5174, 1.23572, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
-shape = SubResource("BoxShape3D_1ykrc")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0210724, 0.0540752, -0.0255699)
 mesh = SubResource("BoxMesh_1ykrc")
 skeleton = NodePath("../..")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.465522, 0.885036, 0, -0.885036, 0.465522, 0, 18.633, 0)
+light_energy = 0.1
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_1ykrc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.133096, 0, 0)
 max_speed = 8.0
+
+[node name="Enemy" parent="." instance=ExtResource("2_ycx7s")]
+transform = Transform3D(-0.639774, 0, -0.768563, 0, 1, 0, 0.768563, 0, -0.639774, -19.3602, 0, 19.7436)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ycx7s")
+
+[node name="SpawnArea" type="Area3D" parent="."]
+script = ExtResource("3_6lfjr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19812, 1.19972, -23.7382)
+shape = SubResource("BoxShape3D_6lfjr")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="SpawnArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19812, 1.19972, 24.2331)
+shape = SubResource("BoxShape3D_6lfjr")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SpawnArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0184, 1.83563, 0)
+shape = SubResource("BoxShape3D_qd0o6")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="SpawnArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9912, 1.83563, 0)
+shape = SubResource("BoxShape3D_qd0o6")
+
+[node name="SpawnTimer" type="Timer" parent="SpawnArea"]
+unique_name_in_owner = true
+
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("nodes_to_hide_in_start")]
+process_mode = 3
+script = ExtResource("3_htrvu")
+nodes_to_hide_in_start = [NodePath("CenterContainer2/WinLabel"), NodePath("CenterContainer3/RestartButton")]
+
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="TimeLeftLabel" type="Label" parent="UI/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "60"
+
+[node name="LevelTimer" type="Timer" parent="UI/CenterContainer/TimeLeftLabel"]
+unique_name_in_owner = true
+wait_time = 50.0
+autostart = true
+
+[node name="CenterContainer2" type="CenterContainer" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -311.5
+offset_top = -95.0
+offset_right = 311.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WinLabel" type="Label" parent="UI/CenterContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 85
+text = "Wave Survived!"
+
+[node name="CenterContainer3" type="CenterContainer" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 72.0
+offset_right = 20.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartButton" type="Button" parent="UI/CenterContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restart"
+
+[connection signal="timeout" from="UI/CenterContainer/TimeLeftLabel/LevelTimer" to="UI" method="_on_level_timer_timeout"]
+[connection signal="pressed" from="UI/CenterContainer3/RestartButton" to="UI" method="_on_restart_button_pressed"]

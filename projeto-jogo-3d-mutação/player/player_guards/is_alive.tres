@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ExpressionGuard" load_steps=2 format=3 uid="uid://7bdmtwpy7kf5"]
+
+[ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="1_5petg"]
+
+[resource]
+script = ExtResource("1_5petg")
+expression = "player_alive == true"
+metadata/_custom_type_script = "uid://le5w1cm0ul8p"

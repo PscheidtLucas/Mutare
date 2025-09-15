@@ -6,6 +6,10 @@ extends Node
 var input_dir: Vector2
 var move_dir: Vector3
 
+func _ready() -> void:
+	state_chart.set_expression_property("player_alive", true)
+	GlobalSignals.player_died.connect(_on_player_died)
+
 func _physics_process(delta: float) -> void:
 	# Input WASD (em espaço 2D lógico)daw
 	var dir_hor := Input.get_axis("move_left", "move_right")
@@ -51,3 +55,6 @@ func _on_fall_state_physics_processing(delta: float) -> void:
 		p.velocity.y = p.max_fall_speed
 	if p.is_on_floor():
 		state_chart.send_event("touched_ground")
+
+func _on_player_died() -> void:
+	state_chart.set_expression_property("player_alive", false)

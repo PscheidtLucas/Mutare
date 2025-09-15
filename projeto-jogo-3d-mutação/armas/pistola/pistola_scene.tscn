@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dysbpdxth2utg"]
+
+[ext_resource type="PackedScene" uid="uid://bgyurxjp7jsnc" path="res://armas/pistola/pistola.fbx" id="1_qbsh1"]
+[ext_resource type="Script" uid="uid://cu15f22leogg6" path="res://armas/pistola/pistola_scene.gd" id="2_thp7p"]
+[ext_resource type="PackedScene" uid="uid://bg83f03nii3ub" path="res://bullets/base_bullet.tscn" id="3_2v3vk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_id2lu"]
+albedo_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
+
+[node name="pistola" instance=ExtResource("1_qbsh1")]
+script = ExtResource("2_thp7p")
+bullet_scene = ExtResource("3_2v3vk")
+
+[node name="pistola" parent="." index="0"]
+transform = Transform3D(4.85048, 0, 0, 0, -5.18941e-07, 5.87129, 0, -4.35319, -6.99912e-07, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_id2lu")
+
+[node name="PistolTimer" type="Timer" parent="." index="1"]
+unique_name_in_owner = true
+autostart = true
