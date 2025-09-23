@@ -12,8 +12,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Enemy or Player:
-		body.take_damage(damage)
-		call_deferred("queue_free")
+		if body.has_method("take_damage"):
+			body.take_damage(damage)
+			call_deferred("queue_free")
 
 
 func set_lifetime(new_lifetime) -> void:

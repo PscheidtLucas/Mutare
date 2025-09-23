@@ -1,5 +1,5 @@
 class_name Pistol
-extends Node3D
+extends Weapon
 
 @onready var pistol_timer: Timer = %PistolTimer
 

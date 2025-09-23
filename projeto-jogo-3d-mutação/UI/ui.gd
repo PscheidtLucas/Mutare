@@ -46,7 +46,8 @@ func on_wave_survived() -> void:
 # Manages what happens with UI elements when player dies
 func on_player_lost() -> void:
 	get_tree().paused = true
-
+	
+	level_timer.stop()
 	time_left_label.hide()
 	lose_label.show()
 	restart_button.show()
