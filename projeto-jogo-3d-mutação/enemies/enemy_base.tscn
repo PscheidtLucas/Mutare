@@ -33,3 +33,9 @@ mesh = SubResource("BoxMesh_6dmn1")
 surface_material_override/0 = SubResource("StandardMaterial3D_xiu3r")
 
 [node name="ShotTimer" type="Timer" parent="."]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+radius = 1.08
+
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

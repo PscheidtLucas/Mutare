@@ -1,15 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=18 format=3 uid="uid://4qldqg5yaw6t"]
 
+[ext_resource type="PackedScene" uid="uid://cf5ev6tweu71h" path="res://low_poly_map_assets/pedra_low_poly.tscn" id="1_0bul0"]
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://player/player.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://cm80rdk4fg0dm" path="res://spawner/spawn_area.gd" id="3_6lfjr"]
 [ext_resource type="Script" uid="uid://wvedouoyhons" path="res://UI/ui.gd" id="3_htrvu"]
 [ext_resource type="PackedScene" uid="uid://cgodq53bkn7od" path="res://weapon_box/weapon_box.tscn" id="4_6lfjr"]
 [ext_resource type="Script" uid="uid://bthwivcdoldgd" path="res://levels/cheat_code_manager.gd" id="5_qd0o6"]
 [ext_resource type="Script" uid="uid://bwxxutjdjee1w" path="res://levels/fall_area.gd" id="6_i5e4g"]
+[ext_resource type="PackedScene" uid="uid://bnvdkitdn2cw" path="res://low_poly_map_assets/espinho_low_poly.tscn" id="7_pvbb1"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_i5e4g"]
-vertices = PackedVector3Array(-24.5211, 1, -24.5256, -24.5211, 1, 10.2244, 24.4789, 1, 10.2244, 24.4789, 1, -24.5256, -24.5211, 1.75, 11.2244, -24.5211, 1.75, 60.2244, 24.4789, 1.75, 60.2244, 24.4789, 1.75, 11.2244)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5)]
+vertices = PackedVector3Array(-24.5211, 1, -13.7756, -19.0211, 1, -13.7756, -18.5211, 1, -16.0256, -17.0211, 1, -17.2756, -15.5211, 1, -17.5256, -15.5211, 1, -24.5256, -24.5211, 1, -24.5256, -18.7711, 1, -12.7756, -14.2711, 1, -17.2756, -16.5211, 1, -11.7756, -24.5211, 1, 24.7244, -13.0211, 1, -16.0256, -12.5211, 1, -15.0256, 24.4789, 1, -24.5256, -13.0211, 1, -13.2756, -14.7711, 1, -11.7756, 24.4789, 1, 24.7244, -17.2711, 6.5, -15.5256, -17.7711, 6.5, -14.5256, -17.7711, 6.5, -14.0256, -13.7711, 6.5, -14.5256, -14.7711, 6.5, -16.0256, -15.2711, 6.5, -16.0256, -16.0211, 6.5, -13.0256, -24.5211, 1, 28.9744, -24.5211, 1, 78.2244, 24.4789, 1, 78.2244, 24.4789, 1, 28.9744)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 6), PackedInt32Array(3, 6, 5), PackedInt32Array(0, 1, 7), PackedInt32Array(4, 5, 8), PackedInt32Array(7, 9, 0), PackedInt32Array(0, 9, 10), PackedInt32Array(11, 8, 5), PackedInt32Array(11, 5, 12), PackedInt32Array(12, 5, 13), PackedInt32Array(14, 12, 13), PackedInt32Array(10, 9, 15), PackedInt32Array(15, 14, 10), PackedInt32Array(10, 14, 16), PackedInt32Array(16, 14, 13), PackedInt32Array(19, 18, 17), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 17), PackedInt32Array(17, 20, 23), PackedInt32Array(17, 23, 19), PackedInt32Array(27, 26, 24), PackedInt32Array(24, 26, 25)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1ykrc"]
 size = Vector3(50, 1, 50)
@@ -36,10 +38,10 @@ glow_blend_mode = 1
 size = Vector3(48.2883, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qd0o6"]
-size = Vector3(1, 1, 33.9738)
+size = Vector3(1, 1, 44)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pvbb1"]
-size = Vector3(1, 1, 47.7422)
+size = Vector3(1, 1, 41)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qd0o6"]
 
@@ -48,41 +50,46 @@ size = Vector3(1, 1, 47.7422)
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_i5e4g")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+[node name="Ilha1" type="StaticBody3D" parent="NavigationRegion3D"]
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+[node name="pedraLowPoly" parent="NavigationRegion3D/Ilha1" instance=ExtResource("1_0bul0")]
+transform = Transform3D(1.295, 0, 0, 0, 1.295, 0, 0, 0, 1.295, -16, 1, -14)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ilha1"]
 shape = SubResource("BoxShape3D_1ykrc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Ilha1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0210724, 0.0540752, -0.0255699)
 mesh = SubResource("BoxMesh_1ykrc")
 skeleton = NodePath("../../..")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.840858, 35.7909)
+[node name="lha2" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11168, 53.6972)
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/lha2"]
 shape = SubResource("BoxShape3D_1ykrc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/lha2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0210724, 0.0540752, -0.0255699)
 mesh = SubResource("BoxMesh_1ykrc")
 skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1ykrc")
 
 [node name="NavigationLink3D" type="NavigationLink3D" parent="NavigationRegion3D"]
-start_position = Vector3(-3.63167, 0.617522, 8.80403)
-end_position = Vector3(-3.72207, 1.4353, 11.7474)
+start_position = Vector3(-8, 1, 23)
+end_position = Vector3(-8, 1, 31)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.465522, 0.885036, 0, -0.885036, 0.465522, 0, 18.633, 0)
-light_energy = 0.1
+light_color = Color(1, 0.132404, 0.220673, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_1ykrc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.133096, 0, 0)
 max_speed = 8.0
+_jump_height = 4.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ycx7s")
@@ -95,23 +102,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19812, 1.19972, -23.7382)
 shape = SubResource("BoxShape3D_6lfjr")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="SpawnArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19812, 1.97838, 60.1093)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19812, 1.97838, 77.1093)
 shape = SubResource("BoxShape3D_6lfjr")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SpawnArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0184, 1.83563, -7.37819)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0184, 1.83563, -0.378191)
 shape = SubResource("BoxShape3D_qd0o6")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="SpawnArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9912, 1.83563, -7.01312)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9912, 1.83563, -2)
 shape = SubResource("BoxShape3D_qd0o6")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="SpawnArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0184, 1.83563, 35.1247)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0184, 1.83563, 55.4958)
 shape = SubResource("BoxShape3D_pvbb1")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="SpawnArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6803, 1.83563, 35.1247)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6803, 1.83563, 52.1247)
 shape = SubResource("BoxShape3D_pvbb1")
 
 [node name="SpawnTimer" type="Timer" parent="SpawnArea"]
@@ -247,6 +254,20 @@ script = ExtResource("6_i5e4g")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FallArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.132, 0)
 shape = SubResource("WorldBoundaryShape3D_qd0o6")
+
+[node name="BunchOfSpikes" type="Node3D" parent="."]
+
+[node name="Espinho low-poly" parent="BunchOfSpikes" instance=ExtResource("7_pvbb1")]
+transform = Transform3D(1.7, 0, 0, 0, 1, 0, 0, 0, 1.7, -10, -1, 27)
+
+[node name="Espinho low-poly2" parent="BunchOfSpikes" instance=ExtResource("7_pvbb1")]
+transform = Transform3D(1.7, 0, 0, 0, 1, 0, 0, 0, 1.7, -6, -1, 27)
+
+[node name="Espinho low-poly3" parent="BunchOfSpikes" instance=ExtResource("7_pvbb1")]
+transform = Transform3D(1.7, 0, 0, 0, 1, 0, 0, 0, 1.7, -2, -1, 27)
+
+[node name="Espinho low-poly4" parent="BunchOfSpikes" instance=ExtResource("7_pvbb1")]
+transform = Transform3D(1.7, 0, 0, 0, 1, 0, 0, 0, 1.7, -14, -1, 27)
 
 [connection signal="timeout" from="UI/TimerContainer/LevelTimerContainer/TimeLeftLabel/LevelTimer" to="UI" method="_on_level_timer_timeout"]
 [connection signal="pressed" from="UI/CenterContainer3/RestartButton" to="UI" method="_on_restart_button_pressed"]

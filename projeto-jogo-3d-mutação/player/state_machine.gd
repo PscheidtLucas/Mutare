@@ -81,6 +81,7 @@ func _on_dash_state_physics_processing(delta: float) -> void:
 	p.move_and_slide()
 
 func _on_dash_state_entered() -> void:
+	p.position.y += 0.01
 	state_chart.set_expression_property("dash_cd_reseted", false)
 	dash_cooldown_timer.start()
 	should_fall = false

@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=4 uid="uid://cf5ev6tweu71h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67lk4"]
+resource_name = "Material"
+cull_mode = 2
+albedo_color = Color(0.354422, 0.347327, 0.338244, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_gk1qi"]
+_surfaces = [{
+"aabb": AABB(-1.89811, -0.00179508, -2.14636, 4.15483, 2.49044, 3.57533),
+"format": 34896613377,
+"index_count": 54,
+"index_data": PackedByteArray("AQAHAAgACAAFAAEACAAGAAUABwAGAAgAAQAFAAMABwABAAkAAQADAAkABwAJAAoABQAEAAMABgAEAAUACQADAAIACQACAAoAAwAEAAIACgAAAAcABwAAAAYACgACAAAAAAAEAAYAAgAEAAAA"),
+"lods": [1.35025, PackedByteArray("AAABAAIAAQADAAIAAgAEAAAAAwAEAAIAAQAFAAMABQAEAAMAAAAFAAEABgAEAAUAAAAEAAYAAAAGAAUA")],
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 11,
+"vertex_data": PackedByteArray("AAAjYm2yAAB60QAA2j0AAFokn0nwLAAAg7PUqgAAAACbif//pX8AAP//tZ9PcAAAe4+9kP//AAArVgAAueAAAA24AACgwwAAPXIAAKMaAAB8IgAAUHYAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_smew3"]
+resource_name = "pedraLowPoly_Icosphere"
+_surfaces = [{
+"aabb": AABB(-1.89811, -0.00179508, -2.14636, 4.15483, 2.49044, 3.57533),
+"attribute_data": PackedByteArray("uehgr1x0r9ctumCvootgr+iiEYcWXWCvXHQRh4suYK/RRRGHXHSv16KLYK8WXWCvAABgr0UXEYcWXWCvXHSv14suYK8tumCvc9ERh7noYK///6/X0UWv1+iir9dz0a/X0UWv1xZdYK9FF6/X0UWv13PRr9f//6/X6KKv1y26YK9z0a/X6KKv19FFr9eLLmCvRRev1wAAYK+LLmCvc9Gv1y26YK+56GCv6KKv16KLYK9cdK/XootgrxZdYK+LLmCvootgry26YK8="),
+"format": 34896613399,
+"index_count": 54,
+"index_data": PackedByteArray("AQAUABUAFAABABYAFAAWABcAGAAZAA8AGgAQABsAHAAAAB0AHgAfACAACQAKACEAIgAjAA4AJAAlACYAJwAoACkAKgArAAIALAALAC0ABwAIAC4ADAANAC8AEQASABMAMAAEADEABQAGAAMA"),
+"lods": [1.35025, PackedByteArray("AAABAAIAAwAEAAIABQAGAAMABwAIAAUACQAKAAIACQALAAoADAANAAcADAAOAA8ADAAQAA4AEQASABMA")],
+"material": SubResource("StandardMaterial3D_67lk4"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 50,
+"vertex_data": PackedByteArray("AAAjYm2yFLR60QAA2j3/v1okn0nwLP71g7PUqgAAsd+bif//pX/J7///tZ9PcLHfm4n//6V/sd97j72Q//+CsJuJ//+lf4KwetEAANo9rfODs9SqAACt8///tZ9PcHDbAAAjYm2yC6ubif//pX8Lq///tZ9PcB2ietEAANo9drp7j72Q//9llFokn0nwLK/Tm4n//6V/r9MAACNibbKv0ytWAAC54P+/DbgAAKDD/789cgAAoxr/v3wiAABQdv+/DbgAAKDDdrr//7WfT3B2uitWAAC54GWUDbgAAKDDZZR8IgAAUHYUtCtWAAC54BS0PXIAAKMatuJaJJ9J8Cy24nwiAABQdrbiPXIAAKMarfMNuAAAoMMdonuPvZD//x2iK1YAALngFZMAACNibbIVk3uPvZD//xWTfCIAAFB2lcxaJJ9J8CyVzAAAI2JtspXMPXIAAKMa/vWDs9SqAAD+9XrRAADaPXDbg7PUqgAAcNv//7WfT3CCsHuPvZD//wurg7PUqgAAye9aJJ9J8CzJ7589FtYAAP9/MWpj6+67ABJFdobN7rsAEu67ABLZz+A02c/gNNR8lhfUfJYXEnoLCi/SVKov0lSqFnIhCnZl2C+GNPhUjZvJx42byceNm8nHAAD/fwAA/38AAP9/AAD/f3Zl2C92ZdgvhjT4VIY0+FSfPRbWnz0W1g1RUvINUVLyDVFS8tR8lhcWciEKFnIhCmupAflqqQH5aqkB+cRk9PnEZPT5xGT0+TFqY+sxamPrEnoLChJ6CwrZz+A0L9JUqkV2hs1FdobN")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_gk1qi")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s6iqa"]
+size = Vector3(2.65063, 4.36212, 2.01833)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rdinx"]
+size = Vector3(1.46664, 4.36212, 2.45999)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_24ypl"]
+size = Vector3(1.90674, 4.36212, 2.46053)
+
+[node name="pedraLowPoly" type="StaticBody3D"]
+
+[node name="pedra" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_smew3")
+skeleton = NodePath("")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273904, 0.688923, -0.472345)
+radius = 1.8
+height = 5.0
+affect_navigation_mesh = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.741964, 0, 0.67044, 0, 1, 0, -0.67044, 0, 0.741964, 0.484531, 1.68106, -0.373641)
+shape = SubResource("BoxShape3D_s6iqa")
+debug_color = Color(0, 0.6, 0.7, 0.221)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.424674, 0, 0.905347, 0, 1, 0, -0.905347, 0, 0.424674, -0.413067, 1.68106, -0.0985533)
+shape = SubResource("BoxShape3D_rdinx")
+debug_color = Color(0, 0.6, 0.7, 0.083)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.262846, 0, 0.964838, 0, 1, 0, -0.964838, 0, -0.262846, 0.164173, 1.68106, -0.706975)
+shape = SubResource("BoxShape3D_24ypl")
+debug_color = Color(0, 0.6, 0.7, 0.204)
