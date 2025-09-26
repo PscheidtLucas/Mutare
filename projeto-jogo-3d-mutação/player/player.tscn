@@ -29,11 +29,11 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("positions_for_weapons")]
 script = ExtResource("1_oul6g")
 rotation_speed = 140.0
-max_speed = 7.0
+max_speed = 8.0
 acc = 0.5
 deceleration = 0.5
 max_fall_speed = -18.0
-_jump_height = 3.0
+_jump_height = 8.0
 dash_duration = 0.15
 positions_for_weapons = [NodePath("CubeMesh/WeaponsManager/Position1"), NodePath("CubeMesh/WeaponsManager/Position2"), NodePath("CubeMesh/WeaponsManager/Position3"), NodePath("CubeMesh/WeaponsManager/Position4")]
 

@@ -29,6 +29,10 @@ window/vsync/vsync_mode=0
 
 enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
 
+[global_group]
+
+phaton_region=""
+
 [input]
 
 move_left={

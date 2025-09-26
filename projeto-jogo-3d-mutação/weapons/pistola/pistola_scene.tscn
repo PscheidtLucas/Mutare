@@ -10,12 +10,9 @@ albedo_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
 [node name="pistola" instance=ExtResource("1_qbsh1")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 script = ExtResource("2_thp7p")
-bullet_scene = ExtResource("3_2v3vk")
+ammunition_scene = ExtResource("3_2v3vk")
+shots_per_second = 1.0
 
 [node name="pistola" parent="." index="0"]
 transform = Transform3D(4.85048, 0, 0, 0, -5.18941e-07, 5.87129, 0, -4.35319, -6.99912e-07, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_id2lu")
-
-[node name="PistolTimer" type="Timer" parent="." index="1"]
-unique_name_in_owner = true
-autostart = true

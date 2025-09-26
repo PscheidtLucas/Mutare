@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://xy5xbxhkkgeh"]
+
+[ext_resource type="Script" uid="uid://ctw67c4vm5rbd" path="res://enemies/phantom_enemy.gd" id="1_lc4ou"]
+[ext_resource type="PackedScene" uid="uid://dysbpdxth2utg" path="res://weapons/pistola/pistola_scene.tscn" id="2_b46nk"]
+[ext_resource type="PackedScene" uid="uid://dmu6kouqfkb2n" path="res://bullets/enemy_bullet.tscn" id="3_xe12y"]
+[ext_resource type="PackedScene" uid="uid://b555afwqrv3fs" path="res://enemies/phantom_model.tscn" id="4_b46nk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b46nk"]
+radius = 0.340653
+height = 1.16774
+
+[node name="GhostEnemy" type="CharacterBody3D"]
+collision_mask = 0
+script = ExtResource("1_lc4ou")
+bob_frequency = 3.0
+bob_amplitude = 0.5
+health = 1
+move_speed = 3.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.980168, 0)
+shape = SubResource("CapsuleShape3D_b46nk")
+
+[node name="Pistol" parent="." instance=ExtResource("2_b46nk")]
+transform = Transform3D(-1.5299e-07, 0, -3.5, 0, 3.5, 0, 3.5, 0, -1.5299e-07, -0.236933, 0.905368, -0.991992)
+ammunition_scene = ExtResource("3_xe12y")
+shots_per_second = 0.75
+projectile_speed = 15.0
+projectile_lifetime = 1.8
+
+[node name="RayCast3D" type="RayCast3D" parent="Pistol"]
+unique_name_in_owner = true
+transform = Transform3D(-1.2489e-08, 0, 0.285714, 0, 0.285714, 0, -0.285714, 0, -1.2489e-08, 0.411577, -0.0150584, -0.00587902)
+target_position = Vector3(0, 0, -14)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+unique_name_in_owner = true
+navigation_layers = 2
+avoidance_enabled = true
+radius = 1.08
+max_speed = 3.5
+avoidance_layers = 2
+avoidance_mask = 2
+debug_enabled = true
+
+[node name="fantasmaLowPoly" parent="." instance=ExtResource("4_b46nk")]
+transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, -0.0373735, 1.52997, -0.00238752)
+
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

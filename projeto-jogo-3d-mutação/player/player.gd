@@ -18,7 +18,7 @@ var health := max_health
 @export var max_fall_speed: float = 300.0
 
 @export_category("Jump")
-@export_range(0.5, 4.0) var _jump_height := 1.5
+@export_range(0.5, 20.0) var _jump_height := 1.5
 @export_range(0.1, 1.5) var _jump_time_to_peak := 0.32
 @export_range(0.1, 1.5) var _jump_time_to_descent := 0.24
 @export_range(0.5, 4.0) var _horiz_dist_jump := 2.0
@@ -89,6 +89,7 @@ func equip(weapon_scene: PackedScene) -> void:
 		if node.get_child_count() != 0:
 			continue
 		var instance := weapon_scene.instantiate()
+		instance.is_player_weapon = true
 		node.add_child(instance)
 		break
 

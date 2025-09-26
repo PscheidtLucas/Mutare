@@ -1,6 +1,10 @@
 extends Area3D
 
 const ENEMY_BASE = preload("res://enemies/enemy_base.tscn")
+const PHANTOM_ENEMY = preload("res://enemies/phantom_enemy.tscn")
+
+var array_of_enemy_types := [ENEMY_BASE, PHANTOM_ENEMY]
+
 @onready var spawn_timer: Timer = %SpawnTimer
 
 # Parâmetros ajustáveis do spawn
@@ -62,7 +66,7 @@ func spawn_enemies(count: int) -> void:
 	for i in count:
 		var spawn_position = get_random_spawn_position()
 		if spawn_position != Vector3.ZERO:
-			var enemy = ENEMY_BASE.instantiate()
+			var enemy = array_of_enemy_types.pick_random().instantiate()
 			get_tree().current_scene.add_child(enemy)
 			enemy.global_position = spawn_position
 			
