@@ -7,6 +7,12 @@ var origin = null
 
 var was_shot_from_player: bool = false
 
+func _init(parameter:= 5.0) -> void:
+	print("being init", parameter)
+
+func _ready() -> void:
+	print("ready")
+
 func _physics_process(delta: float) -> void:
 	global_translate(velocity * delta)
 

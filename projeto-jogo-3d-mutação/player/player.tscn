@@ -12,7 +12,8 @@
 [ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="10_8t03j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g6k8r"]
-radius = 0.587638
+radius = 0.001
+height = 3.0642
 
 [sub_resource type="BoxMesh" id="BoxMesh_8t03j"]
 
@@ -28,6 +29,7 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("positions_for_weapons")]
 script = ExtResource("1_oul6g")
+max_health = 5000
 rotation_speed = 140.0
 max_speed = 8.0
 acc = 0.5
@@ -58,6 +60,7 @@ near = 0.001
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.998858, 0)
 shape = SubResource("CapsuleShape3D_g6k8r")
+debug_color = Color(0, 0.615, 0.606, 0.795)
 
 [node name="CubeMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.998924, 0)

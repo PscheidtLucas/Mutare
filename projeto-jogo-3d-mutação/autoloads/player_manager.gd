@@ -3,4 +3,6 @@ extends Node
 #player manager
 
 var player : Player
-var equipped_weapons: Array[PackedScene]= [preload("res://weapons/pistola/pistola_scene.tscn"), preload("res://weapons/cannon_bomb_gun/cannon_bomb_gun.tscn")]
+## Usado na funcao equip_weapons do player:
+#var equipped_weapons: Array[PackedScene]= [preload("res://weapons/pistola/pistola_scene.tscn"), preload("res://weapons/cannon_bomb_gun/cannon_bomb_gun.tscn")]
+var equipped_weapons: Array[PackedScene]= [preload("res://test_scene/pistol_test.tscn")]

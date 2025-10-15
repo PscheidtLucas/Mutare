@@ -4,7 +4,7 @@ extends CharacterBody3D
 enum State { IDLE, CHASE, JUMPING }
 var current_state: State = State.CHASE
 
-@export var health := 3
+@export var health := 3.0
 var player: Player = null
 var chase_cooldown_timer: Timer # O Timer será criado e atribuído no _ready
 
@@ -104,7 +104,8 @@ func _look_at_player():
 	if to_player.length_squared() > 0.01:
 		look_at(global_position + to_player, Vector3.UP)
 
-func take_damage(damage: int) -> void:
+func take_damage(damage: float) -> void:
+	print ("enemy taking ", damage, " damage!")
 	health -= damage
 	if health <= 0:
 		die()

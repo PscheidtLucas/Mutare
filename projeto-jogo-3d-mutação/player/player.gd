@@ -8,7 +8,7 @@ var target_camera_y_angle := 0
 var camera_rotation_speed := 10.0
 
 @export var max_health := 5
-var health := max_health
+@onready var health := max_health
 @onready var cube_mesh: MeshInstance3D = $CubeMesh
 @export var rotation_speed := 180.0 # graus por segundo
 
@@ -63,6 +63,7 @@ func _calculate_jump_horiz_speed(dist: float, time_to_peak: float,
 
 
 func _ready() -> void:
+
 	PlayerManager.player = self
 	
 	equip_weapons()
@@ -91,14 +92,14 @@ func equip(weapon_scene: PackedScene) -> void:
 		var instance := weapon_scene.instantiate()
 		instance.is_player_weapon = true
 		node.add_child(instance)
+		instance.roll_stats()
 		break
 
 func equip_weapons() -> void:
-	print(PlayerManager.equipped_weapons)
 	for weapon in PlayerManager.equipped_weapons:
 		equip(weapon)
 
-func take_damage(damage: int) -> void:
+func take_damage(damage: float) -> void:
 	if is_alive() == false:
 		return
 	if is_cheating == true:
