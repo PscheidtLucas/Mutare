@@ -1,13 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://xy5xbxhkkgeh"]
+[gd_scene load_steps=9 format=3 uid="uid://xy5xbxhkkgeh"]
 
-[ext_resource type="Script" uid="uid://ctw67c4vm5rbd" path="res://enemies/phantom_enemy.gd" id="1_lc4ou"]
-[ext_resource type="PackedScene" uid="uid://dysbpdxth2utg" path="res://weapons/pistola/pistola_scene.tscn" id="2_b46nk"]
+[ext_resource type="Script" uid="uid://ctw67c4vm5rbd" path="res://entities/enemies/phantom_enemy.gd" id="1_lc4ou"]
+[ext_resource type="PackedScene" uid="uid://b7jx3gi1kdegw" path="res://weapons/pistola/pistol.tscn" id="2_b46nk"]
 [ext_resource type="PackedScene" uid="uid://dmu6kouqfkb2n" path="res://bullets/enemy_bullet.tscn" id="3_xe12y"]
-[ext_resource type="PackedScene" uid="uid://b555afwqrv3fs" path="res://enemies/phantom_model.tscn" id="4_b46nk"]
+[ext_resource type="PackedScene" uid="uid://b555afwqrv3fs" path="res://entities/enemies/phantom_model.tscn" id="4_b46nk"]
+[ext_resource type="PackedScene" uid="uid://dnlfg05jn7jjj" path="res://weapons/pistola/pistola_model.tscn" id="4_kxh71"]
+[ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="5_8qdup"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b46nk"]
 radius = 0.340653
 height = 1.16774
+
+[sub_resource type="Resource" id="Resource_c1ihj"]
+script = ExtResource("5_8qdup")
+name = "Phantom Pistol"
+damage_min = 1.0
+damage_max = 1.0
+fire_rate_min = 0.7
+fire_rate_max = 0.8
+accuracy_min = 0.8
+accuracy_max = 0.8
+number_of_projectiles = 1
+range = 14.0
+projectile_speed = 16.0
+model = ExtResource("4_kxh71")
+bullet_scene = ExtResource("3_xe12y")
+type = 0
+perma_buff_type = 0
+perma_buff_percent_min = 0.0
+perma_buff_percent_max = 0.0
+metadata/_custom_type_script = "uid://ccx1jk5ymt3pe"
 
 [node name="GhostEnemy" type="CharacterBody3D"]
 collision_mask = 0
@@ -23,11 +45,8 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.980168, 0)
 shape = SubResource("CapsuleShape3D_b46nk")
 
 [node name="Pistol" parent="." instance=ExtResource("2_b46nk")]
-transform = Transform3D(-1.5299e-07, 0, -3.5, 0, 3.5, 0, 3.5, 0, -1.5299e-07, -0.236933, 0.905368, -0.991992)
-ammunition_scene = ExtResource("3_xe12y")
-shots_per_second = 0.75
-projectile_speed = 15.0
-projectile_lifetime = 1.8
+transform = Transform3D(-1.5299e-07, 0, -3.5, 0, 3.5, 0, 3.5, 0, -1.5299e-07, -0.236933, 0.7015, -0.991992)
+config = SubResource("Resource_c1ihj")
 
 [node name="RayCast3D" type="RayCast3D" parent="Pistol"]
 unique_name_in_owner = true

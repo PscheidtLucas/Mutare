@@ -1,9 +1,6 @@
 extends Area3D
 
-const ENEMY_BASE = preload("res://enemies/enemy_base.tscn")
-const PHANTOM_ENEMY = preload("res://enemies/phantom_enemy.tscn")
-
-var array_of_enemy_types := [ENEMY_BASE, PHANTOM_ENEMY]
+@export var array_of_enemy_types : Array[PackedScene]
 
 @onready var spawn_timer: Timer = %SpawnTimer
 

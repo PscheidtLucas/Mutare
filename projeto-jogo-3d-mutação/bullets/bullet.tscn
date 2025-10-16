@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://8ukwdbx7rwvo"]
 
-[ext_resource type="Script" uid="uid://b4xkwcbtmsa3n" path="res://test_scene/test_bullet.gd" id="1_ockt7"]
+[ext_resource type="Script" uid="uid://b4xkwcbtmsa3n" path="res://bullets/bullet.gd" id="1_37f7c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qrgb1"]
 radius = 0.154288
@@ -13,9 +13,9 @@ emission_energy_multiplier = 4.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_sxnja"]
 
-[node name="BulletTest" type="Area3D"]
+[node name="Bullet" type="Area3D"]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
-script = ExtResource("1_ockt7")
+script = ExtResource("1_37f7c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

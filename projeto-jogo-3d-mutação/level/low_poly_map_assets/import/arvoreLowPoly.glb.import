@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://br550jwuwwoxq"
-path="res://.godot/imported/caixaLowPoly.glb-c079190d40bb933b09836a69b385f588.scn"
+uid="uid://yo8oat8osb22"
+path="res://.godot/imported/arvoreLowPoly.glb-bef1760629041da106c0fc57f446ed6f.scn"
 
 [deps]
 
-source_file="res://low_poly_map_assets/import/caixaLowPoly.glb"
-dest_files=["res://.godot/imported/caixaLowPoly.glb-c079190d40bb933b09836a69b385f588.scn"]
+source_file="res://level/low_poly_map_assets/import/arvoreLowPoly.glb"
+dest_files=["res://.godot/imported/arvoreLowPoly.glb-bef1760629041da106c0fc57f446ed6f.scn"]
 
 [params]
 

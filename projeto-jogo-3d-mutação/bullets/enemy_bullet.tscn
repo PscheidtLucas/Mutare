@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dmu6kouqfkb2n"]
 
-[ext_resource type="Script" uid="uid://dm6dqnw1cvxm3" path="res://bullets/base_bullet.gd" id="1_42d76"]
+[ext_resource type="Script" uid="uid://b4xkwcbtmsa3n" path="res://bullets/bullet.gd" id="1_42d76"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qrgb1"]
 radius = 0.154288
@@ -13,7 +13,7 @@ emission_energy_multiplier = 4.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_sxnja"]
 
-[node name="Bullet" type="Area3D"]
+[node name="EnemyBullet" type="Area3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 script = ExtResource("1_42d76")
 

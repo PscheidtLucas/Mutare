@@ -1,5 +1,5 @@
 class_name CannonBombGun
-extends LongRangeWeapon
+extends BaseWeapon
 
 @onready var tip_of_cannon: Marker3D = %TipOfCannon
 

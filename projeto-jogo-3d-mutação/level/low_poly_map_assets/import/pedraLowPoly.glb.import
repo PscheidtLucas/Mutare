@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bgyurxjp7jsnc"
-path="res://.godot/imported/pistola.fbx-6bb1b5cec8c0f04efd9830c07114abc0.scn"
+uid="uid://cam17d7bvlvfd"
+path="res://.godot/imported/pedraLowPoly.glb-f597b677e6139f97bd580565106ca572.scn"
 
 [deps]
 
-source_file="res://weapons/pistola/pistola.fbx"
-dest_files=["res://.godot/imported/pistola.fbx-6bb1b5cec8c0f04efd9830c07114abc0.scn"]
+source_file="res://level/low_poly_map_assets/import/pedraLowPoly.glb"
+dest_files=["res://.godot/imported/pedraLowPoly.glb-f597b677e6139f97bd580565106ca572.scn"]
 
 [params]
 
@@ -28,11 +28,10 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
+gltf/naming_version=1
+gltf/embedded_image_handling=1

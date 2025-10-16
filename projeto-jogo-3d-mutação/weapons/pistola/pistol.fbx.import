@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://yo8oat8osb22"
-path="res://.godot/imported/arvoreLowPoly.glb-1e0d0847af09f9a97e4031191fa43b75.scn"
+uid="uid://bgyurxjp7jsnc"
+path="res://.godot/imported/pistol.fbx-11344a88e64572c2bb7abbb084de564e.scn"
 
 [deps]
 
-source_file="res://low_poly_map_assets/import/arvoreLowPoly.glb"
-dest_files=["res://.godot/imported/arvoreLowPoly.glb-1e0d0847af09f9a97e4031191fa43b75.scn"]
+source_file="res://weapons/pistola/pistol.fbx"
+dest_files=["res://.godot/imported/pistol.fbx-11344a88e64572c2bb7abbb084de564e.scn"]
 
 [params]
 
@@ -28,10 +28,11 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-gltf/naming_version=1
-gltf/embedded_image_handling=1
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1

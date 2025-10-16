@@ -1,5 +1,4 @@
-# Bullet.gd (versão atualizada com suas preferências)
-class_name BulletTest extends Area3D
+class_name Bullet extends Area3D
 
 var velocity: Vector3 = Vector3.ZERO
 var was_shot_from_player: bool = false

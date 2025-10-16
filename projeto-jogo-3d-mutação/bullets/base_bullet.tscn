@@ -1,6 +1,42 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg83f03nii3ub"]
+[gd_scene load_steps=5 format=3 uid="uid://bgvy1nxb0606a"]
 
-[ext_resource type="Script" uid="uid://dm6dqnw1cvxm3" path="res://bullets/base_bullet.gd" id="1_ovbbc"]
+[sub_resource type="GDScript" id="GDScript_qrgb1"]
+script/source = "class_name Bullet extends Area3D
+
+var damage := 1
+var velocity: Vector3 = Vector3.ZERO
+var lifetime: float = 2.0
+var origin = null
+
+var was_shot_from_player: bool = false
+
+func _init(parameter:= 5.0) -> void:
+	print(\"being init\", parameter)
+
+func _ready() -> void:
+	print(\"ready\")
+
+func _physics_process(delta: float) -> void:
+	global_translate(velocity * delta)
+
+
+func _on_body_entered(body: Node3D) -> void:
+	if body is Enemy or body is Player:
+		if body is Player and was_shot_from_player:
+			return
+		if body.has_method(\"take_damage\"):
+			body.take_damage(damage)
+			call_deferred(\"queue_free\")
+	else:
+		print(\"body entered\")
+		call_deferred(\"queue_free\")
+
+
+func set_lifetime(new_lifetime) -> void:
+	lifetime = new_lifetime
+	await get_tree().create_timer(lifetime).timeout
+	call_deferred(\"queue_free\")
+"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qrgb1"]
 radius = 0.154288
@@ -15,7 +51,7 @@ emission_energy_multiplier = 4.0
 
 [node name="Bullet" type="Area3D"]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
-script = ExtResource("1_ovbbc")
+script = SubResource("GDScript_qrgb1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

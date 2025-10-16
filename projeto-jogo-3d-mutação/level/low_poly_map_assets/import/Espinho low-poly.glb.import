@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://x8frcmya3sf1"
-path="res://.godot/imported/Espinho low-poly.glb-7ffb5b89adb8631532b16ae2c11168c2.scn"
+path="res://.godot/imported/Espinho low-poly.glb-15928b9ee43687c269841f97c85133e5.scn"
 
 [deps]
 
-source_file="res://low_poly_map_assets/import/Espinho low-poly.glb"
-dest_files=["res://.godot/imported/Espinho low-poly.glb-7ffb5b89adb8631532b16ae2c11168c2.scn"]
+source_file="res://level/low_poly_map_assets/import/Espinho low-poly.glb"
+dest_files=["res://.godot/imported/Espinho low-poly.glb-15928b9ee43687c269841f97c85133e5.scn"]
 
 [params]
 

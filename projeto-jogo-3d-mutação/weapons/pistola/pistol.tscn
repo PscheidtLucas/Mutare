@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7jx3gi1kdegw"]
 
-[ext_resource type="Script" uid="uid://brhviuov1v8u0" path="res://test_scene/weapon_test.gd" id="2_jxqhn"]
-[ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://test_scene/test_pistol.tres" id="3_udnhk"]
+[ext_resource type="Script" uid="uid://brhviuov1v8u0" path="res://weapons/base_weapon.gd" id="1_gxhwc"]
+[ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://weapons/pistola/pistol_stats.tres" id="2_l32t6"]
 
 [node name="pistola" type="Node3D"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
-script = ExtResource("2_jxqhn")
-config = ExtResource("3_udnhk")
+script = ExtResource("1_gxhwc")
+config = ExtResource("2_l32t6")
 
 [node name="Muzzle" type="Node3D" parent="."]
 unique_name_in_owner = true

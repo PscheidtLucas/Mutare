@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://34re6cmm8c1w"]
 
-[ext_resource type="Script" uid="uid://bin4xiiguar2p" path="res://enemies/enemy_base.gd" id="1_6dmn1"]
-[ext_resource type="PackedScene" uid="uid://dysbpdxth2utg" path="res://weapons/pistola/pistola_scene.tscn" id="1_tllp7"]
-[ext_resource type="PackedScene" uid="uid://dmu6kouqfkb2n" path="res://bullets/enemy_bullet.tscn" id="3_xiu3r"]
+[ext_resource type="Script" uid="uid://bin4xiiguar2p" path="res://entities/enemies/enemy_base.gd" id="1_6dmn1"]
+[ext_resource type="PackedScene" uid="uid://b7jx3gi1kdegw" path="res://weapons/pistola/pistol.tscn" id="1_tllp7"]
+[ext_resource type="Resource" uid="uid://bxjpxdgbplrgt" path="res://weapons/pistola/enemy_pistol_stats.tres" id="3_prjjb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6dmn1"]
 
@@ -24,7 +24,7 @@ shape = SubResource("BoxShape3D_6dmn1")
 
 [node name="Pistol" parent="." instance=ExtResource("1_tllp7")]
 transform = Transform3D(-1.5299e-07, 0, -3.5, 0, 3.5, 0, 3.5, 0, -1.5299e-07, -0.0205765, 1.1151, -1.44052)
-ammunition_scene = ExtResource("3_xiu3r")
+config = ExtResource("3_prjjb")
 
 [node name="RayCast3D" type="RayCast3D" parent="Pistol"]
 unique_name_in_owner = true

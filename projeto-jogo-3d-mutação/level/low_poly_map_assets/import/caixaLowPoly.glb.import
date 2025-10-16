@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cam17d7bvlvfd"
-path="res://.godot/imported/pedraLowPoly.glb-78b415768d706174b5b831c16b9f9635.scn"
+uid="uid://br550jwuwwoxq"
+path="res://.godot/imported/caixaLowPoly.glb-c2515b7ab5575445adaa0070f15cdcd0.scn"
 
 [deps]
 
-source_file="res://low_poly_map_assets/import/pedraLowPoly.glb"
-dest_files=["res://.godot/imported/pedraLowPoly.glb-78b415768d706174b5b831c16b9f9635.scn"]
+source_file="res://level/low_poly_map_assets/import/caixaLowPoly.glb"
+dest_files=["res://.godot/imported/caixaLowPoly.glb-c2515b7ab5575445adaa0070f15cdcd0.scn"]
 
 [params]
 

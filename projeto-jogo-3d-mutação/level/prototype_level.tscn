@@ -1,15 +1,16 @@
-[gd_scene load_steps=25 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=26 format=3 uid="uid://4qldqg5yaw6t"]
 
-[ext_resource type="PackedScene" uid="uid://cf5ev6tweu71h" path="res://low_poly_map_assets/pedra_low_poly.tscn" id="1_0bul0"]
-[ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://player/player.tscn" id="1_1ykrc"]
-[ext_resource type="PackedScene" uid="uid://00e2ay33hmnw" path="res://low_poly_map_assets/arvore_low_poly.tscn" id="2_1wlit"]
-[ext_resource type="Script" uid="uid://cm80rdk4fg0dm" path="res://spawner/spawn_area.gd" id="3_6lfjr"]
-[ext_resource type="Script" uid="uid://wvedouoyhons" path="res://UI/ui.gd" id="3_htrvu"]
+[ext_resource type="PackedScene" uid="uid://cf5ev6tweu71h" path="res://level/low_poly_map_assets/pedra_low_poly.tscn" id="1_0bul0"]
+[ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
+[ext_resource type="PackedScene" uid="uid://00e2ay33hmnw" path="res://level/low_poly_map_assets/arvore_low_poly.tscn" id="2_1wlit"]
+[ext_resource type="Script" uid="uid://cm80rdk4fg0dm" path="res://level/spawner/spawn_area.gd" id="3_6lfjr"]
+[ext_resource type="Script" uid="uid://wvedouoyhons" path="res://ui/ui.gd" id="3_htrvu"]
 [ext_resource type="PackedScene" uid="uid://cgodq53bkn7od" path="res://weapon_box/weapon_box.tscn" id="4_6lfjr"]
-[ext_resource type="Script" uid="uid://bthwivcdoldgd" path="res://levels/cheat_code_manager.gd" id="5_qd0o6"]
-[ext_resource type="Script" uid="uid://bwxxutjdjee1w" path="res://levels/fall_area.gd" id="6_i5e4g"]
-[ext_resource type="PackedScene" uid="uid://bnvdkitdn2cw" path="res://low_poly_map_assets/espinho_low_poly.tscn" id="7_pvbb1"]
-[ext_resource type="PackedScene" uid="uid://xy5xbxhkkgeh" path="res://enemies/phantom_enemy.tscn" id="10_3sjje"]
+[ext_resource type="PackedScene" uid="uid://34re6cmm8c1w" path="res://entities/enemies/enemy_base.tscn" id="5_36fav"]
+[ext_resource type="Script" uid="uid://bthwivcdoldgd" path="res://level/cheat_code_manager.gd" id="5_qd0o6"]
+[ext_resource type="Script" uid="uid://bwxxutjdjee1w" path="res://level/fall_area.gd" id="6_i5e4g"]
+[ext_resource type="PackedScene" uid="uid://bnvdkitdn2cw" path="res://level/low_poly_map_assets/espinho_low_poly.tscn" id="7_pvbb1"]
+[ext_resource type="PackedScene" uid="uid://xy5xbxhkkgeh" path="res://entities/enemies/phantom_enemy.tscn" id="10_3sjje"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="11_1wlit"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rl8gb"]
@@ -184,6 +185,7 @@ environment = SubResource("Environment_ycx7s")
 
 [node name="SpawnArea" type="Area3D" parent="."]
 script = ExtResource("3_6lfjr")
+array_of_enemy_types = Array[PackedScene]([ExtResource("5_36fav"), ExtResource("10_3sjje")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19812, 1.19972, -23.7382)
@@ -356,14 +358,6 @@ transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -2, -1, 27)
 
 [node name="Espinho low-poly4" parent="BunchOfSpikes" instance=ExtResource("7_pvbb1")]
 transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -14, -1, 27)
-
-[node name="GhostEnemy" parent="." instance=ExtResource("10_3sjje")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.40606, 0, 33.29)
-health = 3.0
-
-[node name="GhostEnemy2" parent="." instance=ExtResource("10_3sjje")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7154, 0, -9.79635)
-health = 3.0
 
 [node name="RewardManager" type="Node" parent="."]
 script = ExtResource("11_1wlit")

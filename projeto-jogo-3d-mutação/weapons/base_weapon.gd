@@ -1,5 +1,5 @@
 # LongRangeWeapon.gd (versão atualizada com suas preferências)
-class_name TestWeapon
+class_name BaseWeapon
 extends Node3D
 
 # A única propriedade que precisamos. Todo o resto virá daqui.
@@ -13,6 +13,8 @@ extends Node3D
 var cooldown_timer: Timer = null
 
 func _ready() -> void:
+	if not is_player_weapon:
+		config_timer()
 	if not config:
 		push_error("Arma '%s' não tem um RangedWeaponConfig definido!" % name)
 		set_process(false)
@@ -32,9 +34,9 @@ func _fire() -> void:
 	var spread_angles := _calculate_spread_angles(num, config.accuracy)
 
 	for angle_deg in spread_angles:
-		var projectile := config.bullet_scene.instantiate() as BulletTest
+		var projectile := config.bullet_scene.instantiate() as Bullet
 		get_tree().current_scene.add_child(projectile)
-
+		
 		var final_dir := base_forward.rotated(Vector3.UP, deg_to_rad(angle_deg))
 		projectile.initialize(muzzle.global_position, final_dir, config, is_player_weapon)
 

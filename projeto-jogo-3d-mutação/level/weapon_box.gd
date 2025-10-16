@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 var weapon = null
-const PISTOLA_SCENE = preload("res://test_scene/pistol_test.tscn")
+const PISTOLA_SCENE = preload("uid://b7jx3gi1kdegw")
 
 func _on_button_pressed() -> void:
 	#TODO arrumar tudo isso aqui

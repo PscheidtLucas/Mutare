@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cgodq53bkn7od"]
 
-[ext_resource type="Script" uid="uid://c2ol1eufnlyiu" path="res://levels/weapon_box.gd" id="1_lkbvd"]
+[ext_resource type="Script" uid="uid://c2ol1eufnlyiu" path="res://level/weapon_box.gd" id="1_lkbvd"]
 
 [node name="WeaponBox" type="VBoxContainer"]
 script = ExtResource("1_lkbvd")

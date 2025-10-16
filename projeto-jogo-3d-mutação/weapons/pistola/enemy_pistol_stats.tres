@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="RangedWeaponConfig" load_steps=4 format=3 uid="uid://bxjpxdgbplrgt"]
+
+[ext_resource type="PackedScene" uid="uid://dmu6kouqfkb2n" path="res://bullets/enemy_bullet.tscn" id="1_j2wyd"]
+[ext_resource type="PackedScene" uid="uid://dnlfg05jn7jjj" path="res://weapons/pistola/pistola_model.tscn" id="2_me44b"]
+[ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="3_151hv"]
+
+[resource]
+script = ExtResource("3_151hv")
+name = "Enemy Pistol"
+damage_min = 1.0
+damage_max = 1.0
+fire_rate_min = 0.7
+fire_rate_max = 0.8
+accuracy_min = 0.8
+accuracy_max = 0.8
+number_of_projectiles = 1
+range = 14.0
+projectile_speed = 16.0
+model = ExtResource("2_me44b")
+bullet_scene = ExtResource("1_j2wyd")
+type = 0
+perma_buff_type = 0
+perma_buff_percent_min = 0.0
+perma_buff_percent_max = 0.0
+metadata/_custom_type_script = "uid://ccx1jk5ymt3pe"

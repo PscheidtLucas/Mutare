@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cfbpjem2t5e01"
-path.s3tc="res://.godot/imported/linha.png-325fd48e6c2af2479e820cf6edfc5e4f.s3tc.ctex"
+path.s3tc="res://.godot/imported/linha.png-47dd56e982ceb844cdf0335a929d5f83.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://player/linha.png"
-dest_files=["res://.godot/imported/linha.png-325fd48e6c2af2479e820cf6edfc5e4f.s3tc.ctex"]
+source_file="res://entities/player/linha.png"
+dest_files=["res://.godot/imported/linha.png-47dd56e982ceb844cdf0335a929d5f83.s3tc.ctex"]
 
 [params]
 
