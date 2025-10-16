@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerManager="*res://autoloads/player_manager.gd"
-GlobalSignals="*res://autoloads/global_signals.gd"
+GameEvents="*res://autoloads/game_events.gd"
 
 [display]
 

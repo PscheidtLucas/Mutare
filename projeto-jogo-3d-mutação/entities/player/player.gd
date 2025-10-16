@@ -67,7 +67,7 @@ func _ready() -> void:
 	PlayerManager.player = self
 	
 	equip_weapons()
-	GlobalSignals.weapon_selected.connect(equip)
+	GameEvents.weapon_selected.connect(equip)
 	dead = false
 	
 func _physics_process(delta: float) -> void:
@@ -105,13 +105,13 @@ func take_damage(damage: float) -> void:
 	if is_cheating == true:
 		return
 	health -= damage
-	GlobalSignals.player_took_damage.emit()
+	GameEvents.player_took_damage.emit()
 	if health <= 0:
 		die()
 		
 func die() -> void:
 	dead = true
-	GlobalSignals.player_died.emit()
+	GameEvents.player_died.emit()
 	set_physics_process(false)
 	set_process(false)
 	#hide() #TODO 

@@ -1,0 +1,232 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgodq53bkn7od"]
+
+[ext_resource type="Script" uid="uid://c2ol1eufnlyiu" path="res://level/reward_box.gd" id="1_lkbvd"]
+[ext_resource type="Texture2D" uid="uid://dwlp6pk2swojk" path="res://weapons/prototype_image_gun.png" id="2_p3niv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42g51"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.2349, 0.81, 0.397845, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_p3niv"]
+font_size = 24
+
+[sub_resource type="Theme" id="Theme_p3niv"]
+Label/font_sizes/font_size = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k47en"]
+bg_color = Color(0.125666, 0.126421, 0.122977, 1)
+
+[node name="RewardBox" type="MarginContainer"]
+offset_right = 569.0
+offset_bottom = 215.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_lkbvd")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_42g51")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(165, 165)
+layout_mode = 2
+texture = ExtResource("2_p3niv")
+expand_mode = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="NAME" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pistol"
+label_settings = SubResource("LabelSettings_p3niv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxStats" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_p3niv")
+theme_override_constants/separation = -1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
+layout_mode = 2
+
+[node name="Panel" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_k47en")
+
+[node name="Stat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer/Panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Damage Per Bullet"
+
+[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer/Panel"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "105.1"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Stat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer2/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Projectile / Shot"
+
+[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer2/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "3"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_k47en")
+
+[node name="Stat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer3/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fire Rate"
+
+[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer3/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "1.26 /s"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Stat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer4/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Accuracy"
+
+[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer4/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "66.3%"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_k47en")
+
+[node name="Stat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer5/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Projectile Speed"
+
+[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer5/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "5 m/s"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Stat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer6/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Range"
+
+[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer6/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "10 m"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_k47en")
+
+[node name="Stat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer7/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Transcendency Bonus"
+
+[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer7/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Damage + 0.5%"
+
+[node name="Button" type="Button" parent="."]
+visible = false
+layout_mode = 2
+text = "Option 1"
+
+[node name="SymbolAnchor" type="Control" parent="."]
+layout_mode = 2
+
+[node name="TextureRectSymbol" type="TextureRect" parent="SymbolAnchor"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+offset_left = 533.0
+offset_top = -5.0
+offset_right = 576.0
+offset_bottom = 40.0
+size_flags_horizontal = 8
+texture = ExtResource("2_p3niv")
+expand_mode = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

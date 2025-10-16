@@ -2,7 +2,8 @@ class_name UI extends CanvasLayer
 
 @onready var level_timer: Timer = %LevelTimer
 @onready var time_left_label: Label = %TimeLeftLabel
-@onready var weapons_options: CenterContainer = %WeaponsOptions
+
+@onready var reward_manager: Control = %RewardManager
 
 @onready var lose_label: Label = %LoseLabel
 @onready var restart_button: Button = %RestartButton
@@ -16,9 +17,9 @@ func _ready() -> void:
 	for node in nodes_to_hide_in_start:
 		node.hide()
 	
-	GlobalSignals.wave_survived.connect(on_wave_survived)
-	GlobalSignals.player_died.connect(on_player_lost)
-	GlobalSignals.player_took_damage.connect(_on_player_took_damage)
+	GameEvents.wave_survived.connect(on_wave_survived)
+	GameEvents.player_died.connect(on_player_lost)
+	GameEvents.player_took_damage.connect(_on_player_took_damage)
 	
 	level_timer.timeout.connect(on_level_timer_timeout)
 	
@@ -39,7 +40,7 @@ func on_wave_survived() -> void:
 	# Pausa toda a árvore de cenas
 	get_tree().paused = true
 	
-	weapons_options.show()
+	reward_manager.show()
 	# Mostra UI de vitória
 	time_left_label.hide()
 
@@ -56,7 +57,7 @@ func _on_player_took_damage() -> void:
 	health_ui.text = "HP: " + str(PlayerManager.player.health)
 
 func on_level_timer_timeout() -> void:
-	GlobalSignals.wave_survived.emit()
+	GameEvents.wave_survived.emit()
 
 func _on_restart_button_pressed() -> void:
 	get_tree().paused = false

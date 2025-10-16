@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 	state_chart.set_expression_property("player_alive", true) # usado em ToFall, ToGround, ToJump
 	state_chart.set_expression_property("dash_cd_reseted", true) # usado em ToDash
-	GlobalSignals.player_died.connect(_on_player_died)
+	GameEvents.player_died.connect(_on_player_died)
 	
 #endregion
 

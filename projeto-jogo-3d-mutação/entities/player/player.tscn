@@ -34,7 +34,17 @@ acc = 0.5
 deceleration = 0.5
 max_fall_speed = -18.0
 _jump_height = 8.0
+_jump_time_to_peak = null
+_jump_time_to_descent = null
+_horiz_dist_jump = null
+_jump_cut_divider = null
+max_jumps = null
+_double_jump_height = null
+_double_jump_time_to_peak = null
+_double_jump_time_to_descent = null
+dash_speed = null
 dash_duration = 0.15
+dash_cooldown = null
 positions_for_weapons = [NodePath("CubeMesh/WeaponsManager/Position1"), NodePath("CubeMesh/WeaponsManager/Position2"), NodePath("CubeMesh/WeaponsManager/Position3"), NodePath("CubeMesh/WeaponsManager/Position4")]
 
 [node name="CameraAnchor" type="Node3D" parent="."]

@@ -1,4 +1,4 @@
-extends Node
+class_name RewardManager extends Control
 
 @export var weapon_templates: Array[RangedWeaponConfig]
 @export var meelee_templates: Array
