@@ -4,6 +4,7 @@ extends Node
 @onready var state_chart: StateChart = $StateChart
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 @onready var camera_anchor: Node3D = %CameraAnchor
+@onready var collision_shape_3d: CollisionShape3D = %CollisionShape3D
 
 var should_fall := true # usado para impedir que o personagem caia enquanto está no dash
 var input_dir: Vector2
@@ -81,7 +82,7 @@ func _on_dash_state_physics_processing(delta: float) -> void:
 	p.move_and_slide()
 
 func _on_dash_state_entered() -> void:
-	p.position.y += 0.01
+	collision_shape_3d.position.y += 0.1
 	state_chart.set_expression_property("dash_cd_reseted", false)
 	dash_cooldown_timer.start()
 	should_fall = false
@@ -95,6 +96,9 @@ func _on_dash_state_entered() -> void:
 	## O timer agora deve enviar um evento para voltar ao estado "None"
 	var dash_timer = get_tree().create_timer(p.dash_duration)
 	dash_timer.timeout.connect(state_chart.send_event.bind("dash_finished"))
+
+func _on_dash_state_exited() -> void:
+	collision_shape_3d.position.y -= 0.1
 
 func _on_none_state_entered() -> void:
 	should_fall = true

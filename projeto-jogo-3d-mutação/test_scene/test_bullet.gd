@@ -9,7 +9,7 @@ func _physics_process(delta: float) -> void:
 	global_translate(velocity * delta)
 
 # Função de setup, chamada pela arma após a bala ser instanciada na cena.
-func initialize(start_position: Vector3, direction: Vector3, config: Ranged_Weapon_Config, shot_from_player: bool):
+func initialize(start_position: Vector3, direction: Vector3, config: RangedWeaponConfig, shot_from_player: bool):
 	self.global_position = start_position
 	self.velocity = direction * config.projectile_speed
 	self.damage = config.damage

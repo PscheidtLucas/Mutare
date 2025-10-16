@@ -3,7 +3,7 @@ class_name TestWeapon
 extends Node3D
 
 # A única propriedade que precisamos. Todo o resto virá daqui.
-@export var config: Ranged_Weapon_Config
+@export var config: RangedWeaponConfig
 
 # A flag para dizer à bala quem é o "dono" da arma.
 @export var is_player_weapon: bool = false
@@ -14,7 +14,7 @@ var cooldown_timer: Timer = null
 
 func _ready() -> void:
 	if not config:
-		push_error("Arma '%s' não tem um Ranged_Weapon_Config definido!" % name)
+		push_error("Arma '%s' não tem um RangedWeaponConfig definido!" % name)
 		set_process(false)
 		return
 	

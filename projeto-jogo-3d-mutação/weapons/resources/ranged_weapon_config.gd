@@ -1,5 +1,5 @@
-extends Resource
-class_name Ranged_Weapon_Config
+extends RewardConfig
+class_name RangedWeaponConfig
 
 @export var name: String
 
@@ -32,6 +32,9 @@ class_name Ranged_Weapon_Config
 var damage: float
 var fire_rate: float
 var accuracy: float
+
+func _init() -> void:
+	call_deferred("roll_stats")
 
 # O damage_scale serve como um multiplicador no late-game para 
 # deixar as armas com mais dano conforme o jogador vai avançando
