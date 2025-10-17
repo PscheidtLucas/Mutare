@@ -1,13 +1,15 @@
-[gd_scene load_steps=26 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=31 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://cf5ev6tweu71h" path="res://level/low_poly_map_assets/pedra_low_poly.tscn" id="1_0bul0"]
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
+[ext_resource type="Script" uid="uid://djirs4o723wla" path="res://level/level_manager.gd" id="1_7tdet"]
 [ext_resource type="PackedScene" uid="uid://00e2ay33hmnw" path="res://level/low_poly_map_assets/arvore_low_poly.tscn" id="2_1wlit"]
 [ext_resource type="Script" uid="uid://cm80rdk4fg0dm" path="res://level/spawner/spawn_area.gd" id="3_6lfjr"]
 [ext_resource type="Script" uid="uid://wvedouoyhons" path="res://ui/ui.gd" id="3_htrvu"]
 [ext_resource type="PackedScene" uid="uid://cgodq53bkn7od" path="res://ui/weapon_box/weapon_box.tscn" id="4_6lfjr"]
 [ext_resource type="PackedScene" uid="uid://34re6cmm8c1w" path="res://entities/enemies/enemy_base.tscn" id="5_36fav"]
 [ext_resource type="Script" uid="uid://bthwivcdoldgd" path="res://level/cheat_code_manager.gd" id="5_qd0o6"]
+[ext_resource type="Texture2D" uid="uid://cwbv8vbx4qew1" path="res://panorama_image.png" id="5_rmo25"]
 [ext_resource type="Script" uid="uid://bwxxutjdjee1w" path="res://level/fall_area.gd" id="6_i5e4g"]
 [ext_resource type="PackedScene" uid="uid://bnvdkitdn2cw" path="res://level/low_poly_map_assets/espinho_low_poly.tscn" id="7_pvbb1"]
 [ext_resource type="PackedScene" uid="uid://xy5xbxhkkgeh" path="res://entities/enemies/phantom_enemy.tscn" id="10_3sjje"]
@@ -36,7 +38,7 @@ size = Vector3(50, 1, 49.9657)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ykrc"]
 resource_local_to_scene = true
-albedo_color = Color(0.297079, 0.717281, 0.753584, 1)
+albedo_color = Color(0.318317, 0.401856, 0.162034, 1)
 emission = Color(2.5028e-06, 0.510828, 0.529107, 1)
 emission_energy_multiplier = 0.1
 
@@ -44,7 +46,37 @@ emission_energy_multiplier = 0.1
 material = SubResource("StandardMaterial3D_1ykrc")
 size = Vector3(50, 1, 50)
 
+[sub_resource type="Shader" id="Shader_ms54u"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.4.1.stable's PanoramaSkyMaterial.
+
+shader_type sky;
+
+uniform sampler2D source_panorama : filter_linear, source_color, hint_default_black;
+uniform float exposure : hint_range(0, 128) = 1.0;
+uniform float scroll_speed = 0.01; // <-- 1. Adicione esta linha para controlar a velocidade
+
+void sky() {
+	// 2. Modifique as coordenadas antes de usá-las
+	vec2 scrolling_coords = SKY_COORDS;
+	scrolling_coords.x += TIME * scroll_speed;
+
+	COLOR = texture(source_panorama, scrolling_coords).rgb * exposure;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rmo25"]
+shader = SubResource("Shader_ms54u")
+shader_parameter/source_panorama = ExtResource("5_rmo25")
+shader_parameter/exposure = 1.1
+shader_parameter/scroll_speed = 0.003
+
+[sub_resource type="Sky" id="Sky_7tdet"]
+resource_local_to_scene = true
+sky_material = SubResource("ShaderMaterial_rmo25")
+process_mode = 1
+
 [sub_resource type="Environment" id="Environment_ycx7s"]
+background_mode = 2
+sky = SubResource("Sky_7tdet")
 glow_enabled = true
 glow_levels/2 = 2.0
 glow_levels/3 = 1.5
@@ -64,6 +96,7 @@ size = Vector3(1, 1, 41)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qd0o6"]
 
 [node name="PrototypeLevel" type="Node3D"]
+script = ExtResource("1_7tdet")
 
 [node name="PhantomNavigationRegion" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_rl8gb")
@@ -179,16 +212,6 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_1ykrc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.133096, 0, 0)
 _jump_height = 4.0
-_jump_time_to_peak = null
-_jump_time_to_descent = null
-_horiz_dist_jump = null
-_jump_cut_divider = null
-max_jumps = null
-_double_jump_height = null
-_double_jump_time_to_peak = null
-_double_jump_time_to_descent = null
-dash_speed = null
-dash_cooldown = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ycx7s")
@@ -322,14 +345,8 @@ layout_mode = 2
 [node name="WeaponBox2" parent="UI/RewardManager/CenterContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_6lfjr")]
 layout_mode = 2
 
-[node name="Button" parent="UI/RewardManager/CenterContainer/VBoxContainer/HBoxContainer/WeaponBox2" index="1"]
-text = "Option 2"
-
 [node name="WeaponBox3" parent="UI/RewardManager/CenterContainer/VBoxContainer/HBoxContainer" instance=ExtResource("4_6lfjr")]
 layout_mode = 2
-
-[node name="Button" parent="UI/RewardManager/CenterContainer/VBoxContainer/HBoxContainer/WeaponBox3" index="1"]
-text = "Option 3"
 
 [node name="CenterContainer3" type="CenterContainer" parent="UI"]
 anchors_preset = 8

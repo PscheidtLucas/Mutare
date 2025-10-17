@@ -1,0 +1,60 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://xc43qbbxv3k3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tc4al"]
+bg_color = Color(0, 0, 0, 0.564706)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7duui"]
+bg_color = Color(0.83, 0.576988, 0.3403, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.886262, 0.886262, 0.886261, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w33g4"]
+bg_color = Color(0.896185, 0.655813, 0.437505, 0.0784314)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4uo8k"]
+bg_color = Color(0.83, 0.576988, 0.3403, 0)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4h13k"]
+bg_color = Color(0.83, 0.576988, 0.3403, 0.564706)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxFlat_tc4al")
+Button/styles/focus = SubResource("StyleBoxFlat_7duui")
+Button/styles/hover = SubResource("StyleBoxFlat_w33g4")
+Button/styles/normal = SubResource("StyleBoxFlat_4uo8k")
+Button/styles/pressed = SubResource("StyleBoxFlat_4h13k")

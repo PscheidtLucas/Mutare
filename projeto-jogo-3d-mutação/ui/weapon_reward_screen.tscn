@@ -1,0 +1,286 @@
+[gd_scene load_steps=10 format=3 uid="uid://cn4ylkriiiien"]
+
+[ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
+[ext_resource type="PackedScene" uid="uid://cgodq53bkn7od" path="res://ui/weapon_box/weapon_box.tscn" id="1_rwexk"]
+[ext_resource type="Texture2D" uid="uid://dfdy7gyvtyxem" path="res://prototipo_inv.jpeg" id="2_6ppac"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ppac"]
+font_size = 45
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwexk"]
+bg_color = Color(0.151447, 0.124627, 0.0944336, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ppac"]
+bg_color = Color(0, 0.534773, 0.742269, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lsdnj"]
+bg_color = Color(0, 0.451378, 0.629534, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xe12l"]
+bg_color = Color(0.429499, 0.797229, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Theme" id="Theme_nowss"]
+Button/styles/disabled = SubResource("StyleBoxFlat_rwexk")
+Button/styles/focus = null
+Button/styles/hover = SubResource("StyleBoxFlat_6ppac")
+Button/styles/normal = SubResource("StyleBoxFlat_lsdnj")
+Button/styles/pressed = SubResource("StyleBoxFlat_xe12l")
+
+[node name="WeaponOptions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LeftSide" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 45
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftSide"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 22
+theme_override_constants/v_separation = 22
+columns = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer/MarginContainer"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("1_lsdnj")
+expand_mode = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer/MarginContainer2"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("1_lsdnj")
+expand_mode = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer/MarginContainer3"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("1_lsdnj")
+expand_mode = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer/MarginContainer4"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("1_lsdnj")
+expand_mode = 1
+
+[node name="MarginContainer5" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer/MarginContainer5"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("1_lsdnj")
+expand_mode = 1
+
+[node name="MarginContainer6" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer/MarginContainer6"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("1_lsdnj")
+expand_mode = 1
+
+[node name="MarginContainer7" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer/MarginContainer7"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("1_lsdnj")
+expand_mode = 1
+
+[node name="Blank3" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer9" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer/MarginContainer9"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("1_lsdnj")
+expand_mode = 1
+
+[node name="MarginContainer10" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer/MarginContainer10"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("1_lsdnj")
+expand_mode = 1
+
+[node name="Blank2" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer12" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer/MarginContainer12"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("1_lsdnj")
+expand_mode = 1
+
+[node name="Blank" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer14" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/GridContainer/MarginContainer14"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("1_lsdnj")
+expand_mode = 1
+
+[node name="StatsContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 25
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="RightSide" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightSide"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Choose1" type="Label" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+text = "CHOOSE 1"
+label_settings = SubResource("LabelSettings_6ppac")
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+
+[node name="WeaponBox" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/VBoxContainer" instance=ExtResource("1_rwexk")]
+layout_mode = 2
+
+[node name="WeaponBox2" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/VBoxContainer" instance=ExtResource("1_rwexk")]
+layout_mode = 2
+
+[node name="WeaponBox3" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/VBoxContainer" instance=ExtResource("1_rwexk")]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 6
+theme_override_constants/margin_right = 15
+
+[node name="RerollButton" type="Button" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/Margin"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_nowss")
+text = "REROLL 15$"
+
+[node name="PrototipoInv" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(290, 322)
+scale = Vector2(0.869301, 0.926619)
+texture = ExtResource("2_6ppac")

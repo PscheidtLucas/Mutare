@@ -4,7 +4,7 @@ enum RewardType {LONG_RANGE, MELEE, HEAD, LEG}
 @export var type: RewardType
 
 # Buff permanente que é concedido ao jogador ao transceder para um novo mapa, cada item terá um buff permanente gerado aleatório
-enum PermaBuffType {DAMAGE, FIRE_RATE, MOVE_SPEED, RANGE, ACCURACY, HP_REGEN, MAX_HP}
+enum PermaBuffType {DAMAGE, FIRE_RATE, MOVE_SPEED, RANGE, ACCURACY, HP_REGEN, MAX_HP, CRIT_CHANCE, CRIT_DAMAGE}
 @export var perma_buff_type: PermaBuffType
 @export var perma_buff_percent_min: float
 @export var perma_buff_percent_max: float
