@@ -4,19 +4,15 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jluri"]
 resource_name = "Material"
-transparency = 1
-cull_mode = 2
-albedo_color = Color(0.74, 0.74, 0.74, 0.337)
-albedo_texture_force_srgb = true
-roughness = 0.5
-emission_enabled = true
+transparency = 4
+albedo_color = Color(0.76, 0, 0.152, 0.454902)
+roughness = 0.0
 emission = Color(0.720467, 0.720468, 0.720467, 1)
+disable_receive_shadows = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbcev"]
-resource_name = "Material.001"
-cull_mode = 2
-albedo_color = Color(0.0759431, 0.0759431, 0.0759431, 1)
-roughness = 0.5
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6s73h"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_rd8rs"]
 _surfaces = [{
@@ -66,7 +62,7 @@ _surfaces = [{
 "index_count": 192,
 "index_data": PackedByteArray("JgABACcAJgAoAAEAAAAmACcAAAAnAAIAGQAmAAAAGQApACYAKQAoACYAKQADACgAKgAFACsAKgAsAAUAKgAEACwABwAEACoALQAHACoALQAqAC4ALgAqACsALgArAAYALwAwADEALwAyADAAGgAzADQAGgA1ADMANgARABAANgA3ABEAEwA4ADkAEwASADgAOgALAAwAOgANAAsACAA7ADwACAAJADsAPQA+AAoAPQA/AD4AQAAPAA4AQABBAA8AQgAdAB4AQgBDAB0ARABCAB4ARAAeAB8AGwBCAEQAGwAcAEIAHABDAEIAHABFAEMAIABGAEcASAAgAEcASQAgAEgASgAgAEkAIAAhAEYASgBLACAASwAhACAASwAlACEATABNAE4ATABPAE0AIgBQAFEAIgBSAFAAIwBTAFQAIwAVAFMAFABVAFYAFABXAFUAWABZAFoAWAAYAFkAFwBbAFwAFwBdAFsAXgBfABYAXgBgAF8AYQBiAGMAYQAkAGIA"),
 "lods": [0.0755086, PackedByteArray("AAABAAIAGQABAAAAGQADAAEABAAFAAYABwAEAAYACAAJAAQACAAEAAoACgALAAwACgANAAsADgAPABAAEAAPABEADgASAA8AGgASAA4AEwASABoAGwAcAB0AGwAdAB4AGwAeAB8AIAAhABYAFwAYABYAFAAgABYAIgAgABQAIgAhACAAIwAWACEAIwAVABYAJAAjACEAIgAlACEAJAAhACUAIgAkACUA"), 0.136116, PackedByteArray("AAABAAIAAwABAAAABAAFAAYABwAEAAYACAAJAAQACAAEAAoACgALAAwACgANAAsADgAPABAAEAAPABEADgASAA8AEwASAA4AFAAVABYAFwAYABYA")],
-"material": SubResource("StandardMaterial3D_gbcev"),
+"material": SubResource("StandardMaterial3D_6s73h"),
 "name": "Material.001",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
