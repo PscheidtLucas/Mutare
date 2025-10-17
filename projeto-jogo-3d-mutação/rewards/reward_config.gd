@@ -11,8 +11,10 @@ enum PermaBuffType {DAMAGE, FIRE_RATE, MOVE_SPEED, RANGE, ACCURACY, HP_REGEN, MA
 
 var perma_buff_amount: float
 
-func _init() -> void:
-	call_deferred("calc_perma_buff")
+# Foi pro roll long range weapon config
 
-func calc_perma_buff() -> void:
-	perma_buff_amount = randf_range(perma_buff_percent_min, perma_buff_percent_max)
+#func calc_perma_buff() -> void: 
+	#perma_buff_amount = randf_range(perma_buff_percent_min, perma_buff_percent_max)
+	#perma_buff_type = PermaBuffType.values().pick_random()
+	#print("perma buff amount: ", perma_buff_amount)
+	#print("perma buff type: ", perma_buff_type)

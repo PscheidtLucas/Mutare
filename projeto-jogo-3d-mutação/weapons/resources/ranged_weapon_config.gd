@@ -1,6 +1,7 @@
 extends RewardConfig
 class_name RangedWeaponConfig
 
+@export var scene_uid : String
 @export var name: String
 
 # Variaveis min e max sao responsaveis por estabelecer o range que o valor principal podera ser escolhid, estilo borderlands.
@@ -33,8 +34,7 @@ var damage: float
 var fire_rate: float
 var accuracy: float
 
-func _init() -> void:
-	call_deferred("roll_stats")
+## Chamar roll stats toda vez que for gerar uma arma seja para o jogador ou para o inimigo!
 
 # O damage_scale serve como um multiplicador no late-game para 
 # deixar as armas com mais dano conforme o jogador vai avançando
@@ -42,3 +42,5 @@ func roll_stats(damage_scale: float = 1.0) -> void:
 	damage = randf_range(damage_min, damage_max) * damage_scale
 	fire_rate = randf_range(fire_rate_min, fire_rate_max)
 	accuracy = randf_range(accuracy_min, accuracy_max)
+	perma_buff_amount = randf_range(perma_buff_percent_min, perma_buff_percent_max)
+	perma_buff_type = PermaBuffType.values().pick_random()

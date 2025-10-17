@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=13 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
+[ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
 [ext_resource type="PackedScene" uid="uid://cgodq53bkn7od" path="res://ui/weapon_box/weapon_box.tscn" id="1_rwexk"]
+[ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="2_6bncb"]
 [ext_resource type="Texture2D" uid="uid://dfdy7gyvtyxem" path="res://prototipo_inv.jpeg" id="2_6ppac"]
+[ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://weapons/pistola/pistol_stats.tres" id="3_bw4i5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6ppac"]
 font_size = 45
@@ -42,13 +45,19 @@ Button/styles/hover = SubResource("StyleBoxFlat_6ppac")
 Button/styles/normal = SubResource("StyleBoxFlat_lsdnj")
 Button/styles/pressed = SubResource("StyleBoxFlat_xe12l")
 
-[node name="WeaponOptions" type="Control"]
+[node name="RewardScreen" type="Control" node_paths=PackedStringArray("options_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_lsmmt")
+weapon_templates = Array[ExtResource("2_6bncb")]([ExtResource("3_bw4i5")])
+meelee_templates = null
+heads_templates = null
+legs_templates = null
+options_container = NodePath("MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -251,18 +260,18 @@ layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2"]
+[node name="OptionsContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 25
 
-[node name="WeaponBox" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/VBoxContainer" instance=ExtResource("1_rwexk")]
+[node name="WeaponBox" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer" instance=ExtResource("1_rwexk")]
 layout_mode = 2
 
-[node name="WeaponBox2" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/VBoxContainer" instance=ExtResource("1_rwexk")]
+[node name="WeaponBox2" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer" instance=ExtResource("1_rwexk")]
 layout_mode = 2
 
-[node name="WeaponBox3" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/VBoxContainer" instance=ExtResource("1_rwexk")]
+[node name="WeaponBox3" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer" instance=ExtResource("1_rwexk")]
 layout_mode = 2
 
 [node name="Margin" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2"]

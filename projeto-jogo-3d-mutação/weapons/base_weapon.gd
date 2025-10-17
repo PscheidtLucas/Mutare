@@ -14,7 +14,7 @@ var cooldown_timer: Timer = null
 
 func _ready() -> void:
 	if not is_player_weapon:
-		config_timer()
+		call_deferred("config_timer")
 	if not config:
 		push_error("Arma '%s' não tem um RangedWeaponConfig definido!" % name)
 		set_process(false)
@@ -56,7 +56,7 @@ func _calculate_spread_angles(num: int, accuracy: float) -> Array[float]:
 
 	return angles
 
-func roll_stats()-> void: #chamado no equipe weapon do player, no inicio da partida
+func setup_player_weapon()-> void: #chamado no equipe weapon do player, no inicio da partida
 	if config:
 		config.roll_stats()
 		print("condig stats (D,F,A): ", config.damage, config.fire_rate, config.accuracy)

@@ -1,9 +1,11 @@
 class_name UI extends CanvasLayer
 
+@export var wave_number := 1
+
 @onready var level_timer: Timer = %LevelTimer
 @onready var time_left_label: Label = %TimeLeftLabel
 
-@onready var reward_manager: Control = %RewardManager
+@onready var reward_screen: Control = %RewardScreen
 
 @onready var lose_label: Label = %LoseLabel
 @onready var restart_button: Button = %RestartButton
@@ -36,11 +38,11 @@ func update_time_display() -> void:
 	time_left_label.text = str(time_remaining)
 
 # Manages what happens with UI elements when player finishes a wave (wins)
-func on_wave_survived() -> void:
+func on_wave_survived(wave_number: int) -> void:
 	# Pausa toda a árvore de cenas
 	get_tree().paused = true
 	
-	reward_manager.show()
+	reward_screen.show()
 	# Mostra UI de vitória
 	time_left_label.hide()
 
@@ -57,7 +59,7 @@ func _on_player_took_damage() -> void:
 	health_ui.text = "HP: " + str(PlayerManager.player.health)
 
 func on_level_timer_timeout() -> void:
-	GameEvents.wave_survived.emit()
+	GameEvents.wave_survived.emit(wave_number)
 
 func _on_restart_button_pressed() -> void:
 	get_tree().paused = false

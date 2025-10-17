@@ -14,8 +14,9 @@ albedo_color = Color(0.311922, 0, 0.0357132, 1)
 emission = Color(0.544041, 0, 0.0738072, 1)
 emission_energy_multiplier = 4.0
 
-[node name="Enemy" type="CharacterBody3D"]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("array_of_weapons_nodes")]
 script = ExtResource("1_6dmn1")
+array_of_weapons_nodes = [NodePath("Pistol")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.980168, 0)

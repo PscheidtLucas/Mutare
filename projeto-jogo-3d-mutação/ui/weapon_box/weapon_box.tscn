@@ -266,7 +266,7 @@ text = "Transcendency Bonus"
 [node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer7/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Damage + 0.5%"
+text = " +0.5% Damage"
 
 [node name="Anchor" type="Control" parent="."]
 layout_mode = 2

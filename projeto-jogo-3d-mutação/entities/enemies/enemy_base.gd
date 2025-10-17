@@ -4,6 +4,7 @@ extends CharacterBody3D
 enum State { IDLE, CHASE, JUMPING }
 var current_state: State = State.CHASE
 
+@export var array_of_weapons_nodes : Array[BaseWeapon]
 @export var health := 3.0
 var player: Player = null
 var chase_cooldown_timer: Timer # O Timer será criado e atribuído no _ready
@@ -24,6 +25,9 @@ var jump_target_position: Vector3
 @onready var navigation_agent_3d: NavigationAgent3D = %NavigationAgent3D
 
 func _ready() -> void:
+	if array_of_weapons_nodes.is_empty():
+		printerr("Array de armas do inimigo ", self, "está vazio!")
+	
 	player = PlayerManager.player
 	navigation_agent_3d.link_reached.connect(_on_link_reached)
 	navigation_agent_3d.max_speed = move_speed
@@ -33,6 +37,13 @@ func _ready() -> void:
 	chase_cooldown_timer.one_shot = true # Garante que o timer pare após disparar uma vez
 	add_child(chase_cooldown_timer) # Adiciona o timer à cena para que ele funcione
 	chase_cooldown_timer.timeout.connect(_on_chase_cooldown_timeout)
+
+	configure_weapon_stats()
+
+func configure_weapon_stats() -> void:
+	for weapon_node: BaseWeapon in array_of_weapons_nodes:
+		weapon_node.config.roll_stats()
+		print("dano do inimigo: ", weapon_node.config.damage)
 
 func _physics_process(delta: float) -> void:
 	if player == null:

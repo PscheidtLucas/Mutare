@@ -5,12 +5,24 @@ class_name RewardManager extends Control
 @export var heads_templates: Array
 @export var legs_templates: Array
 
+@export var options_container: VBoxContainer
+
 enum RewardType {LONG_RANGE, MELEE, HEAD, LEG}
 var type: RewardType
 
 var damage_scale := 1.0
 var num_choices := 3
 
+func _ready() -> void:
+	GameEvents.wave_survived.connect(on_wave_survived)
+
+func on_wave_survived(wave_number) -> void:
+	var index = 0
+	var generated_weapons : Array = generate_rewards(RewardType.LONG_RANGE) ## TODO: Arrumar isso aqui para gerar o tipo de recompensa certo de acordo com o número da wave que é passado, e atualizar o número da wave também
+	for weapon_box: WeaponBox in options_container:
+		weapon_box.weapon_config_generated = generated_weapons[index]
+		index += 1
+	
 # Esta função será chamada quando uma wave terminar.
 func generate_rewards(type_of_reward: RewardType) -> Array[RewardConfig]:
 	randomize()

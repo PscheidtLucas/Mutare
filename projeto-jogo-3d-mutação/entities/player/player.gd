@@ -63,7 +63,6 @@ func _calculate_jump_horiz_speed(dist: float, time_to_peak: float,
 
 
 func _ready() -> void:
-
 	PlayerManager.player = self
 	
 	equip_weapons()
@@ -92,7 +91,7 @@ func equip(weapon_scene: PackedScene) -> void:
 		var instance := weapon_scene.instantiate()
 		instance.is_player_weapon = true
 		node.add_child(instance)
-		instance.roll_stats()
+		instance.setup_player_weapon()
 		break
 
 func equip_weapons() -> void:
