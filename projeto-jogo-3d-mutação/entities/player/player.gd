@@ -65,7 +65,6 @@ func _calculate_jump_horiz_speed(dist: float, time_to_peak: float,
 func _ready() -> void:
 	PlayerManager.player = self
 	
-	equip_weapons()
 	GameEvents.weapon_selected.connect(equip)
 	dead = false
 	
@@ -84,19 +83,20 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif Input.is_action_just_pressed("rotate_camera_right"):
 		target_camera_y_angle -= 90
 
-func equip(weapon_scene: PackedScene) -> void:
+func equip(weapon_config: RangedWeaponConfig) -> void:
+	print("equiping weapons on player")
+	var weapon_sceane : PackedScene = load(weapon_config.scene_uid)
+	var instance := weapon_sceane.instantiate()
 	for node in positions_for_weapons:
 		if node.get_child_count() != 0:
 			continue
-		var instance := weapon_scene.instantiate()
 		instance.is_player_weapon = true
 		node.add_child(instance)
-		instance.setup_player_weapon()
 		break
 
-func equip_weapons() -> void:
-	for weapon in PlayerManager.equipped_weapons:
-		equip(weapon)
+#func equip_weapons() -> void:
+	#for weapon: RangedWeaponConfig in PlayerManager.equipped_weapons:
+		#equip(weapon)
 
 func take_damage(damage: float) -> void:
 	if is_alive() == false:

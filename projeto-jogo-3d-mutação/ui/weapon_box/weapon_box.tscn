@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cgodq53bkn7od"]
 
-[ext_resource type="Script" uid="uid://c2ol1eufnlyiu" path="res://level/reward_box.gd" id="1_lkbvd"]
+[ext_resource type="Script" uid="uid://c2ol1eufnlyiu" path="res://ui/weapon_box/weapon_box.gd" id="1_lkbvd"]
 [ext_resource type="Texture2D" uid="uid://dwlp6pk2swojk" path="res://weapons/prototype_image_gun.png" id="2_p3niv"]
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="3_42g51"]
 [ext_resource type="Theme" uid="uid://bb4dm22qo2rvc" path="res://ui/weapon_box/select_button.tres" id="4_k47en"]
@@ -299,4 +299,4 @@ grow_vertical = 0
 theme = ExtResource("4_k47en")
 text = "Select"
 
-[connection signal="pressed" from="Anchor/SelectButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Anchor/SelectButton" to="." method="_on_select_button_pressed"]

@@ -54,9 +54,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lsmmt")
 weapon_templates = Array[ExtResource("2_6bncb")]([ExtResource("3_bw4i5")])
-meelee_templates = null
-heads_templates = null
-legs_templates = null
 options_container = NodePath("MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -265,14 +262,17 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 25
 
-[node name="WeaponBox" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer" instance=ExtResource("1_rwexk")]
+[node name="WeaponBox" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
 layout_mode = 2
+reward_screen = NodePath("../../../../../../..")
 
-[node name="WeaponBox2" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer" instance=ExtResource("1_rwexk")]
+[node name="WeaponBox2" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
 layout_mode = 2
+reward_screen = NodePath("../../../../../../..")
 
-[node name="WeaponBox3" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer" instance=ExtResource("1_rwexk")]
+[node name="WeaponBox3" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
 layout_mode = 2
+reward_screen = NodePath("../../../../../../..")
 
 [node name="Margin" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2"]
 layout_mode = 2

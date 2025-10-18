@@ -13,6 +13,7 @@ height = 1.16774
 
 [sub_resource type="Resource" id="Resource_c1ihj"]
 script = ExtResource("5_8qdup")
+scene_uid = ""
 name = "Phantom Pistol"
 damage_min = 1.0
 damage_max = 1.0

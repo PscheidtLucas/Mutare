@@ -15,23 +15,26 @@ var current_wave: int = 0
 var collision_shapes: Array[CollisionShape3D] = []
 
 func _ready() -> void:
+	GameEvents.wave_started.connect(on_wave_started)
+	
 	# Coleta todas as CollisionShape3D filhas
 	for child in get_children():
 		if child is CollisionShape3D:
 			collision_shapes.append(child)
 	
 	if collision_shapes.is_empty():
-		print("ERRO: Nenhuma CollisionShape3D encontrada!")
+		printerr("ERRO: Nenhuma CollisionShape3D encontrada!")
 		return
 	
 	# Spawn inicial
-	await get_tree().physics_frame
-	await get_tree().process_frame
 	spawn_enemies(1)
 	
 	# Configura timer para próximos spawns
 	spawn_timer.wait_time = base_spawn_time
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
+	spawn_timer.start()
+
+func on_wave_started() -> void:
 	spawn_timer.start()
 
 func _process(delta: float) -> void:

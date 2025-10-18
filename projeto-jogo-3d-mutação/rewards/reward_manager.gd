@@ -13,18 +13,27 @@ var type: RewardType
 var damage_scale := 1.0
 var num_choices := 3
 
+signal weapons_configured # Emitido aqui para os weapon Boxes saberem quando a arma gerada já estiver settada
+
 func _ready() -> void:
 	GameEvents.wave_survived.connect(on_wave_survived)
+	GameEvents.weapon_selected.connect(on_weapon_selected)
 
-func on_wave_survived(wave_number) -> void:
+func on_wave_survived() -> void:
+	show()
 	var index = 0
 	var generated_weapons : Array = generate_rewards(RewardType.LONG_RANGE) ## TODO: Arrumar isso aqui para gerar o tipo de recompensa certo de acordo com o número da wave que é passado, e atualizar o número da wave também
-	for weapon_box: WeaponBox in options_container:
+	for weapon_box: WeaponBox in options_container.get_children():
 		weapon_box.weapon_config_generated = generated_weapons[index]
 		index += 1
+	weapons_configured.emit()
 	
-# Esta função será chamada quando uma wave terminar.
+func on_weapon_selected(weapon_config) -> void:
+	hide()
+
+## Chamada dentro de on_wave_survived, gera as recompensas de forma procedural:
 func generate_rewards(type_of_reward: RewardType) -> Array[RewardConfig]:
+	print("generating rewards")
 	randomize()
 	var choices : Array[RewardConfig] = []
 	var possible_templates: Array # possibilidades de templates para ser rolado e aparecer nas 3 choices
