@@ -30,15 +30,9 @@
 [ext_resource type="ArrayMesh" uid="uid://bfymlottdx2i" path="res://level/props/pink_plant.res" id="27_t8p3i"]
 [ext_resource type="ArrayMesh" uid="uid://c0po7o7oqytih" path="res://level/props/pink_plant_leaf.res" id="28_1gmhc"]
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_rl8gb"]
-vertices = PackedVector3Array(-34.1389, 1.3, -39.7943, 34.2611, 1.3, -39.7943, 34.2611, 1.3, -76.9943, -34.1389, 1.3, -76.9943, -34.1389, 1.3, -35.5943, -23.9389, 1.3, 27.4057, 24.0611, 1.3, 27.4057, 34.2611, 1.3, -35.5943, -34.7389, 1.3, 34.0057, -34.1389, 1.3, 39.4057, -25.7389, 1.3, 39.4057, -25.7389, 1.3, 28.0057, -34.7389, 1.3, -34.3943, -77.9389, 1.3, -34.3943, -78.5389, 1.3, -25.3943, -77.9389, 1.3, 34.0057, 25.8611, 1.3, 39.4057, 34.2611, 1.3, 39.4057, 34.8611, 1.3, 34.0057, 25.8611, 1.3, 28.0057, 34.8611, 1.3, -34.3943, 78.6611, 1.3, -25.3943, 78.0611, 1.3, -34.3943, 78.0611, 1.3, 34.0057, -24.5389, 1.9, 28.6057, -24.5389, 1.9, 77.8057, 24.6611, 1.9, 77.8057, 24.6611, 1.9, 28.6057, -34.1389, 1.3, 77.8057, -25.7389, 1.3, 77.8057, 25.8611, 1.3, 77.8057, 34.2611, 1.3, 77.8057)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 1), PackedInt32Array(1, 6, 5), PackedInt32Array(1, 5, 4), PackedInt32Array(1, 4, 0), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(12, 4, 5), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 5), PackedInt32Array(14, 5, 11), PackedInt32Array(14, 11, 15), PackedInt32Array(11, 8, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(6, 7, 20), PackedInt32Array(22, 21, 20), PackedInt32Array(20, 21, 6), PackedInt32Array(6, 21, 19), PackedInt32Array(19, 21, 23), PackedInt32Array(23, 18, 19), PackedInt32Array(27, 26, 24), PackedInt32Array(24, 26, 25), PackedInt32Array(29, 28, 10), PackedInt32Array(10, 28, 9), PackedInt32Array(31, 30, 17), PackedInt32Array(17, 30, 16)]
-geometry_source_geometry_mode = 2
-geometry_source_group_name = &"phaton_region"
-cell_size = 0.6
-cell_height = 0.6
-agent_height = 0.5
-agent_max_climb = 0.1
+[sub_resource type="NavigationMesh" id="NavigationMesh_1gmhc"]
+vertices = PackedVector3Array(-34.096, 1, -36.2789, 34.154, 1, -36.2789, 34.154, 1, -77.0289, -34.096, 1, -77.0289, -34.346, 1, -34.2789, -36.096, 1, -34.2789, -36.096, 1, 33.9711, -34.346, 1, 33.9711, 34.154, 1, 34.2211, 36.154, 1, 33.9711, 36.154, 1, -34.2789, 34.154, 1, -34.5289, -34.096, 1, 35.9711, 34.154, 1, 35.9711, -77.596, 1, -34.2789, -77.596, 1, 33.9711, 77.654, 1, 33.9711, 77.654, 1, -34.2789, -34.096, 1, 78.2211, 34.154, 1, 78.2211)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(11, 8, 7), PackedInt32Array(11, 7, 4), PackedInt32Array(13, 12, 8), PackedInt32Array(8, 12, 7), PackedInt32Array(1, 11, 0), PackedInt32Array(0, 11, 4), PackedInt32Array(15, 14, 6), PackedInt32Array(6, 14, 5), PackedInt32Array(10, 17, 9), PackedInt32Array(9, 17, 16), PackedInt32Array(19, 18, 13), PackedInt32Array(13, 18, 12)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3sjje"]
 size = Vector3(68.9619, 1, 156.192)
@@ -146,12 +140,10 @@ script = ExtResource("1_ouysc")
 game_state = ExtResource("2_fwegj")
 
 [node name="PhantomNavigationRegion" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_rl8gb")
+navigation_mesh = SubResource("NavigationMesh_1gmhc")
 navigation_layers = 2
 
 [node name="IlhaTamanhoTotal" type="StaticBody3D" parent="PhantomNavigationRegion" groups=["phaton_region"]]
-process_mode = 4
-visible = false
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PhantomNavigationRegion/IlhaTamanhoTotal"]

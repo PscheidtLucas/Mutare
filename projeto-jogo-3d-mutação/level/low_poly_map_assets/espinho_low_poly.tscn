@@ -76,7 +76,7 @@ shadow_mesh = SubResource("ArrayMesh_r6qjx")
 size = Vector3(2.27246, 0.470703, 2.30103)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i61lj"]
-size = Vector3(2.09082, 0.585938, 2.14063)
+size = Vector3(2.09082, 0.165039, 2.14063)
 
 [node name="Espinho low-poly" type="StaticBody3D"]
 
@@ -96,6 +96,6 @@ radius = 1.39
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50248, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.292031, 0)
 shape = SubResource("BoxShape3D_i61lj")
 debug_color = Color(0.972396, 0, 0.441336, 0.42)
