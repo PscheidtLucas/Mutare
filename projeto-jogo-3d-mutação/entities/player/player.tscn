@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtkt1dciakqbg"]
+[gd_scene load_steps=13 format=3 uid="uid://dtkt1dciakqbg"]
 
 [ext_resource type="Script" uid="uid://ciuax0oqnamcq" path="res://entities/player/player.gd" id="1_oul6g"]
-[ext_resource type="Script" uid="uid://bef45uk0iefy0" path="res://entities/player/weapons_manager.gd" id="2_8t03j"]
 [ext_resource type="Script" uid="uid://2oc2ernkbept" path="res://entities/player/state_machine.gd" id="2_g6k8r"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_qjkh3"]
+[ext_resource type="PackedScene" uid="uid://d20tcrwn1d2hd" path="res://entities/player/player_model.tscn" id="2_wvtmh"]
 [ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="3_g6k8r"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="4_boad6"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="5_rgyib"]
@@ -12,12 +12,6 @@
 [ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="10_8t03j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8t03j"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_8t03j"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgyib"]
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 1.7
 
 [sub_resource type="Resource" id="Resource_8t03j"]
 script = ExtResource("10_8t03j")
@@ -28,14 +22,14 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_oul6g")
 max_health = 5000
-rotation_speed = 140.0
-max_speed = 8.0
+rotation_speed = 170.0
+max_speed = 8.5
 acc = 0.5
 deceleration = 0.5
 max_fall_speed = -18.0
 _jump_height = 8.0
 dash_duration = 0.15
-positions_for_weapons = [NodePath("CubeMesh/WeaponsManager/Position1"), NodePath("CubeMesh/WeaponsManager/Position2"), NodePath("CubeMesh/WeaponsManager/Position3"), NodePath("CubeMesh/WeaponsManager/Position4")]
+positions_for_weapons = [NodePath("CuboFrame/WeaponsManager/Position1"), NodePath("CuboFrame/WeaponsManager/Position2"), NodePath("CuboFrame/WeaponsManager/Position3"), NodePath("CuboFrame/WeaponsManager/Position4")]
 
 [node name="CameraAnchor" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -60,29 +54,68 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.998858, 0)
 shape = SubResource("CapsuleShape3D_8t03j")
 debug_color = Color(0, 0.612503, 0.623547, 0.795)
 
-[node name="CubeMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.998924, 0)
-mesh = SubResource("BoxMesh_8t03j")
-surface_material_override/0 = SubResource("StandardMaterial3D_rgyib")
+[node name="CuboFrame" parent="." instance=ExtResource("2_wvtmh")]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.98512, 0)
 
-[node name="WeaponsManager" type="Node3D" parent="CubeMesh"]
-script = ExtResource("2_8t03j")
+[node name="WeaponsManager" type="Node3D" parent="CuboFrame"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.027609, 0)
 
-[node name="Position1" type="Marker3D" parent="CubeMesh/WeaponsManager"]
+[node name="Position1" type="Marker3D" parent="CuboFrame/WeaponsManager"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.887, 0, 0)
 
-[node name="Position2" type="Marker3D" parent="CubeMesh/WeaponsManager"]
+[node name="Position2" type="Marker3D" parent="CuboFrame/WeaponsManager"]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.887, 0, 0)
 
-[node name="Position3" type="Marker3D" parent="CubeMesh/WeaponsManager"]
+[node name="Position3" type="Marker3D" parent="CuboFrame/WeaponsManager"]
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0.887)
 
-[node name="Position4" type="Marker3D" parent="CubeMesh/WeaponsManager"]
+[node name="Position4" type="Marker3D" parent="CuboFrame/WeaponsManager"]
 unique_name_in_owner = true
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.887)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CuboFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.979834, 0)
+light_color = Color(0.823677, 0.54947, 3.81196e-05, 1)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4294967294
+omni_range = 0.357174
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="CuboFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.950446)
+light_color = Color(0.823677, 0.54947, 3.81196e-05, 1)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4294967294
+omni_range = 0.357174
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="CuboFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.967021, 0, 0)
+light_color = Color(0.823677, 0.54947, 3.81196e-05, 1)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4294967294
+omni_range = 0.357174
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="CuboFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.960423)
+light_color = Color(0.823677, 0.54947, 3.81196e-05, 1)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4294967294
+omni_range = 0.357174
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="CuboFrame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.955234, 0, 0)
+light_color = Color(0.823677, 0.54947, 3.81196e-05, 1)
+light_energy = 16.0
+light_bake_mode = 1
+light_cull_mask = 4294967294
+omni_range = 0.357174
 
 [node name="StateMachine" type="Node" parent="."]
 unique_name_in_owner = true

@@ -37,7 +37,7 @@ func on_wave_survived() -> void:
 	get_tree().paused = true
 	time_left_label.hide()
 
-# Manages what happens with UI elements when player dies
+# Manages what happens with UI elements when player dies # TODO Nada disso acontece acredito eu, colocar pra 5 de vida pra testar
 func on_player_lost() -> void:
 	get_tree().paused = true
 	

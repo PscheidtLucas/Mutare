@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d20tcrwn1d2hd"]
+
+[ext_resource type="PackedScene" uid="uid://2scl8cs6qn31" path="res://entities/player/CuboFrame.glb" id="1_cx4w3"]
+
+[node name="CuboFrame" instance=ExtResource("1_cx4w3")]
+
+[node name="Cube_002" parent="." index="0"]
+layers = 3

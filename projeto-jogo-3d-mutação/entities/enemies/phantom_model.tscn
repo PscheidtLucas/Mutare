@@ -75,4 +75,5 @@ shadow_mesh = SubResource("ArrayMesh_rd8rs")
 [node name="fantasmaLowPoly" instance=ExtResource("1_ktdsy")]
 
 [node name="fantasma" parent="." index="0"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_e8n48")

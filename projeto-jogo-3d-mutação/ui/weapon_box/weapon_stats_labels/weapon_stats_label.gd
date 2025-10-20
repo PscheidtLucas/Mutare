@@ -1,4 +1,5 @@
-class_name WeaponStatsLabel extends Label
+class_name WeaponStatsLabel
+extends Label
 
 enum StatType { 
 	DAMAGE, 
@@ -10,12 +11,76 @@ enum StatType {
 	TRAN_BONUS 
 }
 
-@export var weapon_box: WeaponBox # Precisamos acessar weapon box para conectar o sinal que indica quandoa atualizar as labels
-
+@export var weapon_box: WeaponBox
 @export var stat_type: StatType
 
 func _ready() -> void:
-	weapon_box.update_labels.connect(on_update_labels)
+	if weapon_box and not weapon_box.update_labels.is_connected(_on_update_labels):
+		weapon_box.update_labels.connect(_on_update_labels)
 
-func on_update_labels() -> void:
-	pass
+# Arredonda e converte pra string com 'decimals' casas decimais.
+func _format_number(value: float, decimals: int = 1) -> String:
+	var mult := pow(10.0, float(decimals))
+	# usa roundf para segurança de tipo
+	var rounded := roundf(value * mult) / mult
+	# remove trailing zeros desnecessários (ex: "2.0" -> "2")
+	var s := str(rounded)
+	if decimals > 0:
+		# Garantir sempre que tenhamos pelo menos 'decimals' casas quando desejado
+		# Ex: 2 -> "2.0" se decimals == 1
+		# Usamos formatação simples com % (C-style) que funciona no GDScript:
+		var fmt := "%"
+		if decimals > 0:
+			fmt += "." + str(decimals)
+		fmt += "f"
+		s = fmt % rounded
+	return s
+
+func _on_update_labels(weapon_config: RewardConfig) -> void:
+	if weapon_config == null:
+		text = "—"
+		return
+
+	if not (weapon_config is RangedWeaponConfig):
+		text = "N/A"
+		return
+
+	var weapon := weapon_config as RangedWeaponConfig
+
+	match stat_type:
+		StatType.DAMAGE:
+			# damage é float; mostrar 1 casa decimal por padrão
+			text = _format_number(weapon.damage, 1) 
+
+		StatType.PROJ_COUNT:
+			text = str(int(weapon.number_of_projectiles)) 
+
+		StatType.FIRE_RATE:
+			# tiros por segundo, 2 casas decimais costuma ficar melhor
+			text = _format_number(weapon.fire_rate, 2) + " /s"
+
+		StatType.ACCURACY:
+			# accuracy fica entre 0.0 e 1.0 — converte para porcentagem
+			var pct := weapon.accuracy * 100.0
+			text = _format_number(pct, 1) + "%"
+
+		StatType.PROJ_SPEED:
+			text = _format_number(weapon.projectile_speed, 1) + " m/s"
+
+		StatType.RANGE:
+			text = _format_number(weapon.range, 1) + " m"
+
+		StatType.TRAN_BONUS:
+			# perma_buff_amount guarda um multiplicador tipo 0.14 -> 14%
+			var bonus_pct := weapon.perma_buff_amount  * 100.0
+			var buff_name := _format_buff_name(weapon.perma_buff_type)
+			text = "+" + _format_number(bonus_pct, 1) + "% " + buff_name
+
+		_:
+			text = "—"
+
+func _format_buff_name(buff_type: int) -> String:
+	var name : String = RewardConfig.PermaBuffType.keys()[buff_type]
+	name = name.to_lower().capitalize()
+	name = name.replace("_", " ")
+	return name

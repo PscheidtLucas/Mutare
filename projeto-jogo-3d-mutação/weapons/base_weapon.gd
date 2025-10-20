@@ -13,8 +13,7 @@ extends Node3D
 var cooldown_timer: Timer = null
 
 func _ready() -> void:
-	if not is_player_weapon:
-		call_deferred("config_timer")
+	call_deferred("config_timer")
 	if not config:
 		push_error("Arma '%s' não tem um RangedWeaponConfig definido!" % name)
 		set_process(false)
@@ -72,3 +71,7 @@ func config_timer() -> void:
 	var time_to_fire = 1.0 / config.fire_rate
 	cooldown_timer.start(time_to_fire)
 	cooldown_timer.timeout.connect(_fire)
+	if is_player_weapon:
+		print("TIME CONFIGURED, tempo para atirar: ", time_to_fire)
+		print("Config fire rate: ", config.fire_rate)
+		print("Config dano: ", config.damage)

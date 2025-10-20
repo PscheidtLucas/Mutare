@@ -70,9 +70,8 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7wuba")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fstsy"]
-radius = 0.730024
-height = 3.47109
+[sub_resource type="BoxShape3D" id="BoxShape3D_250vu"]
+size = Vector3(1, 11, 1)
 
 [node name="arvoreLowPoly" type="StaticBody3D"]
 
@@ -82,10 +81,9 @@ mesh = SubResource("ArrayMesh_m5rf7")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37273, 0)
-shape = SubResource("CapsuleShape3D_fstsy")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.37273, 0)
+shape = SubResource("BoxShape3D_250vu")
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-radius = 1.2
-height = 2.0
+radius = 1.0
 affect_navigation_mesh = true

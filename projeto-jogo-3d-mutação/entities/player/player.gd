@@ -7,9 +7,11 @@ var is_cheating: bool = false
 var target_camera_y_angle := 0
 var camera_rotation_speed := 10.0
 
+@export var fall_off_percent_damage: float = 0.2
 @export var max_health := 5
 @onready var health := max_health
-@onready var cube_mesh: MeshInstance3D = $CubeMesh
+
+@onready var cubo_frame: Node3D = %CuboFrame
 @export var rotation_speed := 180.0 # graus por segundo
 
 @export var max_speed: float = 200.0
@@ -48,6 +50,9 @@ var camera_rotation_speed := 10.0
 
 @export var positions_for_weapons : Array[Marker3D]
 
+@onready var starting_global_pos: Vector3 
+var starting_target_camera_y : float
+
 func _calculate_jump_speed(height: float, time_to_peak: float) -> float:
 	return(2.0 * height) / time_to_peak
 	
@@ -60,19 +65,35 @@ func _calculate_fall_gravity(height: float, time_to_descent: float) -> float:
 func _calculate_jump_horiz_speed(dist: float, time_to_peak: float, 
 		time_to_descent: float) -> float:
 	return dist / (time_to_peak + time_to_descent)
-
+	
 
 func _ready() -> void:
+	set_deferred("starting_global_pos", global_position)
+	print("starting pos: ", starting_global_pos)
+	starting_target_camera_y = target_camera_y_angle
 	PlayerManager.player = self
 	
+	GameEvents.player_fell_off.connect(func() -> void:
+		print("emitiu player fell off")
+		take_damage(max_health * fall_off_percent_damage)
+		reset_player()  
+		)
+	GameEvents.wave_survived.connect(func()-> void:
+		print("emitiu wave survived")
+		reset_player() )
+		
 	GameEvents.weapon_selected.connect(equip)
-	dead = false
+
+func reset_player() -> void:
+	print("reseting player position to: ", starting_global_pos)
+	global_position = starting_global_pos
+	target_camera_y_angle = starting_target_camera_y
 	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("rotation_left"):
-		cube_mesh.rotate_y(deg_to_rad(rotation_speed * delta))
+		cubo_frame.rotate_y(deg_to_rad(rotation_speed * delta))
 	elif Input.is_action_pressed("rotation_right"):
-		cube_mesh.rotate_y(deg_to_rad(-rotation_speed * delta))
+		cubo_frame.rotate_y(deg_to_rad(-rotation_speed * delta))
 
 func _process(delta: float) -> void:
 	camera_anchor.rotation.y = lerp_angle(camera_anchor.rotation.y, deg_to_rad(target_camera_y_angle), delta * camera_rotation_speed)
@@ -86,17 +107,14 @@ func _unhandled_input(event: InputEvent) -> void:
 func equip(weapon_config: RangedWeaponConfig) -> void:
 	print("equiping weapons on player")
 	var weapon_sceane : PackedScene = load(weapon_config.scene_uid)
-	var instance := weapon_sceane.instantiate()
+	var instance := weapon_sceane.instantiate() as BaseWeapon
 	for node in positions_for_weapons:
 		if node.get_child_count() != 0:
 			continue
 		instance.is_player_weapon = true
 		node.add_child(instance)
+		instance.config = weapon_config
 		break
-
-#func equip_weapons() -> void:
-	#for weapon: RangedWeaponConfig in PlayerManager.equipped_weapons:
-		#equip(weapon)
 
 func take_damage(damage: float) -> void:
 	if is_alive() == false:

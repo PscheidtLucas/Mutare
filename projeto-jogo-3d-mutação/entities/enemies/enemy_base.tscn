@@ -28,7 +28,7 @@ config = ExtResource("3_prjjb")
 
 [node name="RayCast3D" type="RayCast3D" parent="Pistol"]
 unique_name_in_owner = true
-transform = Transform3D(-1.2489e-08, 0, 0.285714, 0, 0.285714, 0, -0.285714, 0, -1.2489e-08, 0.411577, -0.0150584, -0.00587902)
+transform = Transform3D(-1.2489e-08, 0, 0.285714, 0, 0.285714, 0, -0.285714, 0, -1.2489e-08, 0.411577, -0.125434, -0.00587902)
 target_position = Vector3(0, 0, -15)
 
 [node name="CubeMesh" type="MeshInstance3D" parent="."]

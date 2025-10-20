@@ -15,6 +15,9 @@ var current_wave: int = 0
 var collision_shapes: Array[CollisionShape3D] = []
 
 func _ready() -> void:
+	GameEvents.wave_survived.connect(func() -> void:
+		current_wave += 1
+		print("aumentando current wave para: ", current_wave))
 	GameEvents.wave_started.connect(on_wave_started)
 	
 	# Coleta todas as CollisionShape3D filhas
@@ -28,7 +31,6 @@ func _ready() -> void:
 	
 	# Spawn inicial
 	spawn_enemies(1)
-	
 	# Configura timer para próximos spawns
 	spawn_timer.wait_time = base_spawn_time
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
@@ -41,7 +43,6 @@ func _process(delta: float) -> void:
 	game_time += delta
 
 func _on_spawn_timer_timeout() -> void:
-	current_wave += 1
 
 	# Calcula quantos inimigos spawnar nesta wave
 	var enemies_to_spawn = calculate_enemies_for_wave(current_wave)
@@ -67,9 +68,9 @@ func spawn_enemies(count: int) -> void:
 		var spawn_position = get_random_spawn_position()
 		if spawn_position != Vector3.ZERO:
 			var enemy = array_of_enemy_types.pick_random().instantiate()
-			get_tree().current_scene.add_child(enemy)
-			enemy.global_position = spawn_position
 			
+			get_tree().current_scene.call_deferred("add_child", enemy)
+			enemy.set_deferred("global_position", spawn_position)
 
 func get_random_spawn_position() -> Vector3:
 	if collision_shapes.is_empty():

@@ -8,6 +8,8 @@ extends Enemy
 @export var bob_frequency: float = 1.0  # Velocidade da ondulação para cima e para baixo
 @export var bob_amplitude: float = 0.25 # Altura da ondulação
 
+@export var node_to_float: Node3D
+
 var bob_time: float = 0.0
 
 func _ready() -> void:
@@ -16,6 +18,7 @@ func _ready() -> void:
 	# --- MUDANÇA 1: Desativa a gravidade ---
 	# Este modo de movimento ignora a gravidade global do projeto.
 	motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
+	start_float_tween()
 
 func _physics_process(delta: float) -> void:
 	if player == null:
@@ -26,31 +29,7 @@ func _physics_process(delta: float) -> void:
 		State.IDLE:
 			_idle_state()
 		State.CHASE:
-			_chase_state()
-	
-	# --- MUDANÇA 2: Lógica de Flutuação ---
-	var vertical_velocity = 0.0
-	
-	# 1. Manter a altura (Hover)
-	var ray_origin = global_position
-	var ray_end = global_position - Vector3.UP * (hover_height + 2.0)
-	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end, self.collision_mask)
-	var result = space_state.intersect_ray(query)
-	
-	if result:
-		var distance_from_ground = global_position.distance_to(result.position)
-		var height_difference = distance_from_ground - hover_height
-		# Aplica uma força para corrigir a altura, de forma suave
-		vertical_velocity = -height_difference * hover_force
-	
-	# 2. Ondulação (Bobbing)
-	bob_time += delta * bob_frequency
-	vertical_velocity += sin(bob_time) * bob_amplitude
-	
-	# A velocity horizontal é calculada pelo NavigationAgent (via sinal)
-	# Nós apenas adicionamos nossa velocity vertical calculada.
-	velocity.y = vertical_velocity
+			_chase_state(delta)
 	
 	# Reutiliza as funções de olhar para o jogador e mover
 	_look_at_player()
@@ -63,3 +42,11 @@ func _on_link_reached(_details: Dictionary) -> void:
 
 func _jumping_state() -> void:
 	pass # O estado de pulo é ignorado.
+
+func start_float_tween() -> void:
+	var float_offset := 0.12
+	var tween_duration := .7
+	var start_y := node_to_float.position.y
+	var tween := create_tween().set_loops().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(node_to_float, "position:y", start_y+float_offset, tween_duration)
+	tween.tween_property(node_to_float, "position:y", start_y-float_offset, tween_duration)

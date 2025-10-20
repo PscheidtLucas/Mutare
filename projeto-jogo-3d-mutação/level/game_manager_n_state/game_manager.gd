@@ -1,8 +1,8 @@
 class_name GameManager extends Node
-# TODO: Arrumar o jogador começando sem arma, arrumar que quando o nível termina o jogador recebe a arma mas ela nao atira, arrumar que 
-# quando o jogador aperta para selecionar uma arma, os inimigos continuam todos onde estao (ou deixar assim, checar com o dimitri),
-# arrumar erro do spawn enemy, tem q adicionar call defeered na hora de add child, o spawn de inimigos fica bem absurdo a partir da segunda wave
-Lembrete
+# TODO: 
+# Arrumar o escalonamento da dificuldade
+# 
+
 @export var game_state: GameState
 
 var wave_timer : Timer
@@ -19,6 +19,8 @@ func _ready() -> void:
 	wave_timer.timeout.connect(on_level_timer_timeout)
 	add_child(wave_timer)
 	wave_timer.start()
+	
+	get_tree().set_deferred("paused", true)
 
 func _process(delta: float) -> void:
 	if wave_timer.is_stopped():

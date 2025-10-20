@@ -40,13 +40,13 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gk1qi")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s6iqa"]
-size = Vector3(2.651, 6, 2.018)
+size = Vector3(2.651, 15, 2.018)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdinx"]
-size = Vector3(1.467, 6, 2.46)
+size = Vector3(1.467, 15, 2.46)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_24ypl"]
-size = Vector3(1.907, 6, 2.461)
+size = Vector3(1.907, 15, 2.461)
 
 [node name="pedraLowPoly" type="StaticBody3D"]
 
@@ -56,21 +56,22 @@ skeleton = NodePath("")
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273904, 0.688923, -0.472345)
-radius = 1.8
-height = 5.0
+radius = 2.0
+height = 20.0
+vertices = PackedVector3Array(-1.945, -3, -1.82, 1.993, -3, -1.887, 1.993, -3, 2.05, -1.978, -3, 2.017)
 affect_navigation_mesh = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.741964, 0, 0.67044, 0, 1, 0, -0.67044, 0, 0.741964, 0.484531, 2.91447, -0.373641)
+transform = Transform3D(0.741964, 0, 0.67044, 0, 1, 0, -0.67044, 0, 0.741964, 0.484531, 5.17369, -0.373641)
 shape = SubResource("BoxShape3D_s6iqa")
 debug_color = Color(0, 0.6, 0.7, 0.221)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.424674, 0, 0.905347, 0, 1, 0, -0.905347, 0, 0.424674, -0.413067, 2.91447, -0.0985533)
+transform = Transform3D(0.424674, 0, 0.905347, 0, 1, 0, -0.905347, 0, 0.424674, -0.413067, 5.08634, -0.0985533)
 shape = SubResource("BoxShape3D_rdinx")
 debug_color = Color(0, 0.6, 0.7, 0.083)
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(-0.262846, 0, 0.964838, 0, 1, 0, -0.964838, 0, -0.262846, 0.164173, 2.91447, -0.706975)
+transform = Transform3D(-0.262846, 0, 0.964838, 0, 1, 0, -0.964838, 0, -0.262846, 0.166587, 5.15643, -0.717989)
 shape = SubResource("BoxShape3D_24ypl")
 debug_color = Color(0, 0.6, 0.7, 0.204)

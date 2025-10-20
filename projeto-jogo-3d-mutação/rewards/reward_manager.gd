@@ -18,6 +18,11 @@ signal weapons_configured # Emitido aqui para os weapon Boxes saberem quando a a
 func _ready() -> void:
 	GameEvents.wave_survived.connect(on_wave_survived)
 	GameEvents.weapon_selected.connect(on_weapon_selected)
+	
+	call_deferred("wave_0_config")
+
+func wave_0_config() -> void:
+	on_wave_survived()
 
 func on_wave_survived() -> void:
 	show()

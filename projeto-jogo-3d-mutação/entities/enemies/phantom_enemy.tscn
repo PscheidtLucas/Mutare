@@ -32,12 +32,13 @@ perma_buff_percent_min = 0.0
 perma_buff_percent_max = 0.0
 metadata/_custom_type_script = "uid://ccx1jk5ymt3pe"
 
-[node name="GhostEnemy" type="CharacterBody3D" node_paths=PackedStringArray("array_of_weapons_nodes")]
+[node name="GhostEnemy" type="CharacterBody3D" node_paths=PackedStringArray("node_to_float", "array_of_weapons_nodes")]
 collision_mask = 0
 script = ExtResource("1_lc4ou")
 hover_height = 1.5
 bob_frequency = 3.0
 bob_amplitude = 0.5
+node_to_float = NodePath("fantasmaLowPoly")
 array_of_weapons_nodes = [NodePath("Pistol")]
 health = 1.0
 move_speed = 3.5
@@ -66,6 +67,6 @@ avoidance_mask = 2
 debug_enabled = true
 
 [node name="fantasmaLowPoly" parent="." instance=ExtResource("4_b46nk")]
-transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, -0.0373735, 1.52997, -0.00238752)
+transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, -0.0373735, 1.73423, -0.00238752)
 
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
