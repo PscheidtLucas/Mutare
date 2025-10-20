@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bkqq0hise86i1"
+path.s3tc="res://.godot/imported/props_CenarioJogo (1)_Folha_12.png-80a7f95f7e5680c92b0c1bd7832d503a.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "2bddeb7349d5d9477d02189135c3d62f"
+}
+
+[deps]
+
+source_file="res://level/props/imported_files/props_CenarioJogo (1)_Folha_12.png"
+dest_files=["res://.godot/imported/props_CenarioJogo (1)_Folha_12.png-80a7f95f7e5680c92b0c1bd7832d503a.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

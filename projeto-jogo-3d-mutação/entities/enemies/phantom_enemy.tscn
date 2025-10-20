@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://xy5xbxhkkgeh"]
+[gd_scene load_steps=7 format=3 uid="uid://xy5xbxhkkgeh"]
 
 [ext_resource type="Script" uid="uid://ctw67c4vm5rbd" path="res://entities/enemies/phantom_enemy.gd" id="1_lc4ou"]
 [ext_resource type="PackedScene" uid="uid://b7jx3gi1kdegw" path="res://weapons/carnivorous_pistola/pistol.tscn" id="2_b46nk"]
 [ext_resource type="Resource" uid="uid://bxjpxdgbplrgt" path="res://weapons/carnivorous_pistola/enemy_pistol_stats.tres" id="3_fgb2s"]
 [ext_resource type="PackedScene" uid="uid://b555afwqrv3fs" path="res://entities/enemies/phantom_model.tscn" id="4_b46nk"]
+[ext_resource type="PackedScene" uid="uid://d1samahpnu2nm" path="res://level/props/inimigo_octaedro_model.tscn" id="5_b3r68"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b46nk"]
-radius = 0.340653
+radius = 0.450453
 height = 1.16774
 
 [node name="GhostEnemy" type="CharacterBody3D" node_paths=PackedStringArray("node_to_float", "array_of_weapons_nodes")]
@@ -45,5 +46,9 @@ debug_enabled = true
 
 [node name="fantasmaLowPoly" parent="." instance=ExtResource("4_b46nk")]
 transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, -0.0373735, 1.73423, -0.00238752)
+visible = false
+
+[node name="Inimigo octaedro" parent="." instance=ExtResource("5_b3r68")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.06845, 0)
 
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

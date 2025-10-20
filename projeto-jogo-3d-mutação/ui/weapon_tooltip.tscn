@@ -20,6 +20,7 @@ offset_left = 58.0
 offset_top = -109.0
 offset_right = 239.0
 offset_bottom = 27.0
+mouse_filter = 2
 theme = SubResource("Theme_vuu3q")
 theme_override_styles/panel = SubResource("StyleBoxFlat_klgxq")
 

@@ -1,0 +1,104 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://lei8jx707kvd"
+path="res://.godot/imported/props_CenarioJogo (1).glb-06c32e4b1f4aa6209f59dbb10ffc7f34.scn"
+
+[deps]
+
+source_file="res://level/props/imported_files/props_CenarioJogo (1).glb"
+dest_files=["res://.godot/imported/props_CenarioJogo (1).glb-06c32e4b1f4aa6209f59dbb10ffc7f34.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"meshes": {
+"props_CenarioJogo (1)_Cylinder_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://level/props/fun_plant.res"
+},
+"props_CenarioJogo (1)_Cylinder_004": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://level/flower.res"
+},
+"props_CenarioJogo (1)_Cylinder_011": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://level/props/mushromm.res"
+},
+"props_CenarioJogo (1)_Plane": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://level/props/pink_plant.res"
+},
+"props_CenarioJogo (1)_Plane_010": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://level/props/pink_plant_leaf.res"
+},
+"props_CenarioJogo (1)_Vert_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://level/props/yellow_tree.res"
+},
+"props_CenarioJogo (1)_Vert_003": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://level/props/purple_tree.res"
+},
+"props_CenarioJogo (1)_Vert_004": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://level/props/green_plant.res"
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

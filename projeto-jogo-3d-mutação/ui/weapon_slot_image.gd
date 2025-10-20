@@ -7,10 +7,11 @@ var weapon_config: RangedWeaponConfig
 
 # --- Referências dos Nós ---
 # O nó do Tooltip (assumindo que é um Control ou Panel)
-@onready var tooltip: Control = $Tooltip
+@onready var tooltip: PanelContainer = $WeaponTooltip
+
 # As duas labels filhas do Tooltip
-@onready var stat_name_label: Label = $Tooltip/StatNames
-@onready var stat_value_label: Label = $Tooltip/StatValues
+@onready var stat_name_label: Label = $WeaponTooltip/StatNames
+@onready var stat_value_label: Label = $WeaponTooltip/StatValues
 
 
 var fade_tween: Tween

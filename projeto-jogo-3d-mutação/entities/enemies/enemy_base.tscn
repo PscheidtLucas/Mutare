@@ -1,18 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://34re6cmm8c1w"]
+[gd_scene load_steps=6 format=3 uid="uid://34re6cmm8c1w"]
 
 [ext_resource type="Script" uid="uid://bin4xiiguar2p" path="res://entities/enemies/enemy_base.gd" id="1_6dmn1"]
 [ext_resource type="PackedScene" uid="uid://b7jx3gi1kdegw" path="res://weapons/carnivorous_pistola/pistol.tscn" id="1_tllp7"]
 [ext_resource type="Resource" uid="uid://bxjpxdgbplrgt" path="res://weapons/carnivorous_pistola/enemy_pistol_stats.tres" id="3_prjjb"]
+[ext_resource type="PackedScene" uid="uid://bkdlu431jcddu" path="res://entities/enemies/cubo_model.tscn" id="4_yc03e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6dmn1"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_6dmn1"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xiu3r"]
-resource_local_to_scene = true
-albedo_color = Color(0.311922, 0, 0.0357132, 1)
-emission = Color(0.544041, 0, 0.0738072, 1)
-emission_energy_multiplier = 4.0
 
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("array_of_weapons_nodes")]
 script = ExtResource("1_6dmn1")
@@ -33,11 +26,6 @@ unique_name_in_owner = true
 transform = Transform3D(-1.2489e-08, 0, 0.285714, 0, 0.285714, 0, -0.285714, 0, -1.2489e-08, 0.411577, -0.125434, -0.00587902)
 target_position = Vector3(0, 0, -15)
 
-[node name="CubeMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.00993228, 0.98306, 0.00481319)
-mesh = SubResource("BoxMesh_6dmn1")
-surface_material_override/0 = SubResource("StandardMaterial3D_xiu3r")
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true
 avoidance_enabled = true
@@ -46,5 +34,8 @@ max_speed = 3.0
 avoidance_layers = 4
 avoidance_mask = 5
 debug_enabled = true
+
+[node name="InimigoCubo" parent="." instance=ExtResource("4_yc03e")]
+transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0, 1.08983, 0)
 
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
