@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://dnlfg05jn7jjj"]
 
-[ext_resource type="Texture2D" uid="uid://btajdrkf60fw1" path="res://weapons/pistola/pistola_Base_Color.png" id="1_6pu8u"]
+[ext_resource type="Texture2D" uid="uid://btajdrkf60fw1" path="res://weapons/carnivorous_pistola/pistola_Base_Color.png" id="1_6pu8u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ydy33"]
 resource_name = "Material"

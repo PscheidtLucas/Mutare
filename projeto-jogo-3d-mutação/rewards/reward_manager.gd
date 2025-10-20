@@ -13,7 +13,9 @@ var type: RewardType
 var damage_scale := 1.0
 var num_choices := 3
 
-signal weapons_configured # Emitido aqui para os weapon Boxes saberem quando a arma gerada já estiver settada
+var weapon_index := 1 #Usado no sinal weapon added, vai de 1 a 4
+
+signal weapons_configured() # Emitido aqui para os weapon Boxes e saberem quando a arma gerada já estiver settada
 
 func _ready() -> void:
 	GameEvents.wave_survived.connect(on_wave_survived)

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1d1t2fwd1kxf"]
+
+[ext_resource type="PackedScene" uid="uid://bb8tqyvmrwian" path="res://weapons/cannon_bomb_gun/Arma canhão na mão correto.glb" id="1_ctq2u"]
+
+[node name="Arma canhão na mão correto" instance=ExtResource("1_ctq2u")]

@@ -21,7 +21,7 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("positions_for_weapons")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_oul6g")
-max_health = 5000
+max_health = 100
 rotation_speed = 170.0
 max_speed = 8.5
 acc = 0.5
@@ -29,7 +29,7 @@ deceleration = 0.5
 max_fall_speed = -18.0
 _jump_height = 8.0
 dash_duration = 0.15
-positions_for_weapons = [NodePath("CuboFrame/WeaponsManager/Position1"), NodePath("CuboFrame/WeaponsManager/Position2"), NodePath("CuboFrame/WeaponsManager/Position3"), NodePath("CuboFrame/WeaponsManager/Position4")]
+positions_for_weapons = [NodePath("CuboFrame/WeaponsManager/Position1"), NodePath("CuboFrame/WeaponsManager/Position4"), NodePath("CuboFrame/WeaponsManager/Position3"), NodePath("CuboFrame/WeaponsManager/Position2")]
 
 [node name="CameraAnchor" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -63,19 +63,19 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.027609, 0)
 
 [node name="Position1" type="Marker3D" parent="CuboFrame/WeaponsManager"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.887, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.504119, 0, 0)
 
 [node name="Position2" type="Marker3D" parent="CuboFrame/WeaponsManager"]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.887, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.504259)
 
 [node name="Position3" type="Marker3D" parent="CuboFrame/WeaponsManager"]
 unique_name_in_owner = true
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0.887)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0.506239)
 
 [node name="Position4" type="Marker3D" parent="CuboFrame/WeaponsManager"]
 unique_name_in_owner = true
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.887)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.483408, 0, -1.19209e-07)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="CuboFrame"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.979834, 0)

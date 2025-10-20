@@ -13,7 +13,7 @@ func initialize(start_position: Vector3, direction: Vector3, config: RangedWeapo
 	self.velocity = direction * config.projectile_speed
 	self.damage = config.damage
 	self.was_shot_from_player = shot_from_player
-	
+	look_at(global_position + direction, Vector3.UP)
 	# Calcula o tempo de vida com base no alcance e velocidade
 	var lifetime = config.range / config.projectile_speed
 	

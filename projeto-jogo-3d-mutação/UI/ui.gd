@@ -20,6 +20,7 @@ func _ready() -> void:
 	GameEvents.wave_survived.connect(on_wave_survived)
 	GameEvents.player_died.connect(on_player_lost)
 	GameEvents.player_took_damage.connect(_on_player_took_damage)
+	GameEvents.wave_started.connect(on_wave_started)
 	
 	update_time_display()
 
@@ -36,6 +37,9 @@ func on_wave_survived() -> void:
 	# Pausa toda a árvore de cenas
 	get_tree().paused = true
 	time_left_label.hide()
+
+func on_wave_started() -> void:
+	time_left_label.show()
 
 # Manages what happens with UI elements when player dies # TODO Nada disso acontece acredito eu, colocar pra 5 de vida pra testar
 func on_player_lost() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=41 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://cf5ev6tweu71h" path="res://level/low_poly_map_assets/pedra_low_poly.tscn" id="1_0bul0"]
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
@@ -14,7 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://bnvdkitdn2cw" path="res://level/low_poly_map_assets/espinho_low_poly.tscn" id="7_pvbb1"]
 [ext_resource type="PackedScene" uid="uid://xy5xbxhkkgeh" path="res://entities/enemies/phantom_enemy.tscn" id="10_3sjje"]
 [ext_resource type="PackedScene" uid="uid://cn4ylkriiiien" path="res://ui/reward_screen.tscn" id="10_ouysc"]
+[ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="14_bwhkm"]
+[ext_resource type="Resource" uid="uid://dm4mcdqnn0agf" path="res://weapons/cannon_bomb_gun/cannon_bomb.tres" id="15_8hpw0"]
+[ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://weapons/carnivorous_pistola/pistol_stats.tres" id="16_8hpw0"]
+[ext_resource type="Resource" uid="uid://bf80h3suneegk" path="res://weapons/smg_tech/smg_tech_stats.tres" id="17_2ta65"]
 [ext_resource type="PackedScene" uid="uid://bntkkgjp5chye" path="res://grass/multi_mesh_instance_3d.tscn" id="17_fwegj"]
+[ext_resource type="Resource" uid="uid://cbrwqqk5lhjg0" path="res://weapons/pulse_emitter/pulse_stats.tres" id="18_2j5qn"]
 [ext_resource type="ArrayMesh" uid="uid://b0pkut5lqom7w" path="res://grass/v4/grass_v4.res" id="18_4od7l"]
 [ext_resource type="Script" uid="uid://db1iegjtuhxld" path="res://level/fps_label.gd" id="19_bwhkm"]
 
@@ -664,6 +669,7 @@ offset_bottom = 40.0
 
 [node name="RewardScreen" parent="UI" instance=ExtResource("10_ouysc")]
 unique_name_in_owner = true
+weapon_templates = Array[ExtResource("14_bwhkm")]([ExtResource("15_8hpw0"), ExtResource("16_8hpw0"), ExtResource("17_2ta65"), ExtResource("18_2j5qn")])
 
 [node name="CheatCodeManager" type="Node" parent="."]
 script = ExtResource("5_qd0o6")

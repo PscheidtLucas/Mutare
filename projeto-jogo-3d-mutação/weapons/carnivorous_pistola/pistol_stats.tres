@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="RangedWeaponConfig" load_steps=4 format=3 uid="uid://bxx6u0q678oib"]
+
+[ext_resource type="PackedScene" uid="uid://8ukwdbx7rwvo" path="res://bullets/bullet.tscn" id="1_fppms"]
+[ext_resource type="Texture2D" uid="uid://dr40vjfyhg7t1" path="res://carnivorous_pistol.png" id="2_l20o5"]
+[ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="3_5gkr1"]
+
+[resource]
+script = ExtResource("3_5gkr1")
+scene_uid = "uid://b7jx3gi1kdegw"
+name = "Carnivorous Pistol"
+image = ExtResource("2_l20o5")
+damage_min = 35.0
+damage_max = 65.0
+fire_rate_min = 1.5
+fire_rate_max = 2.5
+accuracy_min = 0.75
+accuracy_max = 0.9
+number_of_projectiles = 1
+min_range = 12.0
+max_range = 17.0
+projectile_speed = 22.0
+bullet_scene = ExtResource("1_fppms")
+type = 0
+perma_buff_type = 0
+perma_buff_percent_min = 0.02
+perma_buff_percent_max = 0.05
+metadata/_custom_type_script = "uid://ccx1jk5ymt3pe"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cbyye2nerv7rq"]
+[gd_scene load_steps=35 format=3 uid="uid://cbyye2nerv7rq"]
 
 [ext_resource type="Script" uid="uid://cn7q1hmxe74tw" path="res://level/game_manager_n_state/game_manager.gd" id="1_4o4g2"]
 [ext_resource type="Resource" uid="uid://bpsmw37wyl1vp" path="res://level/game_manager_n_state/main_state.tres" id="2_2f0qc"]
@@ -9,7 +9,9 @@
 [ext_resource type="Script" uid="uid://wvedouoyhons" path="res://ui/ui.gd" id="7_tnwqh"]
 [ext_resource type="PackedScene" uid="uid://cn4ylkriiiien" path="res://ui/reward_screen.tscn" id="8_7wstg"]
 [ext_resource type="Script" uid="uid://bthwivcdoldgd" path="res://level/cheat_code_manager.gd" id="9_pt578"]
+[ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="9_t01la"]
 [ext_resource type="Script" uid="uid://bwxxutjdjee1w" path="res://level/fall_area.gd" id="10_e1gbg"]
+[ext_resource type="Resource" uid="uid://cbrwqqk5lhjg0" path="res://weapons/pulse_emitter/pulse_stats.tres" id="10_t01la"]
 [ext_resource type="PackedScene" uid="uid://bnvdkitdn2cw" path="res://level/low_poly_map_assets/espinho_low_poly.tscn" id="11_no56u"]
 [ext_resource type="PackedScene" uid="uid://bntkkgjp5chye" path="res://grass/multi_mesh_instance_3d.tscn" id="12_bukmy"]
 [ext_resource type="ArrayMesh" uid="uid://b0pkut5lqom7w" path="res://grass/v4/grass_v4.res" id="13_gnjby"]
@@ -335,6 +337,7 @@ offset_bottom = 40.0
 
 [node name="RewardScreen" parent="GameManager/UI" instance=ExtResource("8_7wstg")]
 unique_name_in_owner = true
+weapon_templates = Array[ExtResource("9_t01la")]([ExtResource("10_t01la")])
 
 [node name="CheatCodeManager" type="Node" parent="GameManager"]
 script = ExtResource("9_pt578")

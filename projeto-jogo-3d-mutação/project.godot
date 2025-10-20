@@ -102,6 +102,10 @@ rotate_camera_right={
 ]
 }
 
+[physics]
+
+3d/default_gravity=30.0
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

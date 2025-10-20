@@ -45,35 +45,40 @@ func _on_update_labels(weapon_config: RewardConfig) -> void:
 		text = "N/A"
 		return
 
-	var weapon := weapon_config as RangedWeaponConfig
+	weapon_config = weapon_config as RangedWeaponConfig
 
 	match stat_type:
 		StatType.DAMAGE:
 			# damage é float; mostrar 1 casa decimal por padrão
-			text = _format_number(weapon.damage, 1) 
+			text = _format_number(weapon_config.damage, 1) 
 
 		StatType.PROJ_COUNT:
-			text = str(int(weapon.number_of_projectiles)) 
+			text = str(int(weapon_config.number_of_projectiles)) 
 
 		StatType.FIRE_RATE:
 			# tiros por segundo, 2 casas decimais costuma ficar melhor
-			text = _format_number(weapon.fire_rate, 2) + " /s"
+			text = _format_number(weapon_config.fire_rate, 2) + " /s"
 
 		StatType.ACCURACY:
 			# accuracy fica entre 0.0 e 1.0 — converte para porcentagem
-			var pct := weapon.accuracy * 100.0
+			var pct = weapon_config.accuracy * 100.0
 			text = _format_number(pct, 1) + "%"
 
 		StatType.PROJ_SPEED:
-			text = _format_number(weapon.projectile_speed, 1) + " m/s"
+			#var proj_speed_stata = weapon_config.projectile_speed 
+			#if proj_speed_stata <= 0.1:
+				#get_parent().hide()
+				#return
+			
+			text = _format_number(weapon_config.projectile_speed, 1) + " m/s"
 
 		StatType.RANGE:
-			text = _format_number(weapon.range, 1) + " m"
+			text = _format_number(weapon_config.range, 1) + " m"
 
 		StatType.TRAN_BONUS:
 			# perma_buff_amount guarda um multiplicador tipo 0.14 -> 14%
-			var bonus_pct := weapon.perma_buff_amount  * 100.0
-			var buff_name := _format_buff_name(weapon.perma_buff_type)
+			var bonus_pct := weapon_config.perma_buff_amount  * 100.0
+			var buff_name := _format_buff_name(weapon_config.perma_buff_type)
 			text = "+" + _format_number(bonus_pct, 1) + "% " + buff_name
 
 		_:

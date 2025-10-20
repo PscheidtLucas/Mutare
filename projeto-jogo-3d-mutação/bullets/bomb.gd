@@ -1,40 +1,80 @@
 class_name Bomb extends RigidBody3D
 
-var bomb_damage := 1 # pode ser reescrito pela arma
-var time_to_explode := 1.8
+# Variáveis para receber os stats da arma
+var config: RangedWeaponConfig
+var is_player_weapon: bool = false
+
+# Flag para garantir que a explosão só ocorra uma vez
+var has_exploded: bool = false
+
 # Nodes for the explosion effect
 @onready var debris: GPUParticles3D = $Debris
 @onready var smoke: GPUParticles3D = $Smoke
 @onready var fire: GPUParticles3D = $Fire
 @onready var explosion_sound: AudioStreamPlayer3D = $ExplosionSound
-
 @onready var explosion_area_3d: Area3D = $ExplosionArea3D
-@onready var navigation_obstacle_3d: NavigationObstacle3D = $NavigationObstacle3D
-@onready var explosion_timer: Timer = $ExplosionTimer
 
 @export var array_of_meshes : Array[MeshInstance3D]
 
 func _ready() -> void:
-	explosion_timer.start(time_to_explode)
-	explosion_timer.one_shot = true
-	explosion_timer.timeout.connect(explode)
+	# 1. Removemos a lógica do ExplosionTimer
+	
+	# 2. Configuramos o RigidBody para detectar o primeiro contato
+	contact_monitor = true
+	max_contacts_reported = 1
+	body_entered.connect(on_contact)
+
+# Esta nova função é chamada no primeiro contato do corpo
+func on_contact(body: Node3D):
+	# Ignora a colisão se já explodiu
+	if has_exploded:
+		return
+		
+	# Ignora a colisão com o próprio jogador que atirou
+	if body is Player and is_player_weapon:
+		return
+	
+	# Trava a flag e explode
+	has_exploded = true
+	explode()
 
 func explode():
+	# (Opcional) Congela o corpo para que ele pare de se mover ao explodir
+	linear_velocity = Vector3.ZERO
+	freeze = true 
+	
 	hide_mashes()
-	cause_damage()
+	_cause_damage() # Renomeado para convenção de função "privada"
 	debris.emitting = true
 	smoke.emitting = true
 	fire.emitting = true
-	navigation_obstacle_3d.avoidance_enabled = false
+
 	explosion_sound.play()
+	
+	# Damos tempo para os efeitos sonoros e de partícula tocarem antes de liberar a cena
 	await get_tree().create_timer(2).timeout
 	queue_free()
 
-func cause_damage():
+func _cause_damage():
+	# Garante que o config foi passado antes de tentar ler o dano
+	if not config:
+		printerr("Bomba explodiu sem um RangedWeaponConfig!")
+		return
+	
+	var damage_to_deal = config.damage
+
 	await get_tree().physics_frame
 	for body in explosion_area_3d.get_overlapping_bodies():
+		
+		# --- CORREÇÃO AQUI ---
+		# Se o corpo na área de explosão é o Jogador E a bomba foi atirada pelo Jogador,
+		# pule para o próximo corpo (não cause dano).
+		if body is Player and is_player_weapon:
+			continue # Pula para o próximo 'body' no loop
+		
 		if body.has_method("take_damage"):
-			body.take_damage(bomb_damage) 
+			body.take_damage(damage_to_deal) 
+	
 	await get_tree().create_timer(0.1).timeout
 	explosion_area_3d.monitoring = false
 

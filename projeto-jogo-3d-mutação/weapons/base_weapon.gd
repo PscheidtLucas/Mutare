@@ -12,17 +12,13 @@ extends Node3D
 @onready var muzzle: Node3D = %Muzzle
 var cooldown_timer: Timer = null
 
+signal shot_emitted # Para animar armas
+
 func _ready() -> void:
 	call_deferred("config_timer")
-	if not config:
-		push_error("Arma '%s' não tem um RangedWeaponConfig definido!" % name)
-		set_process(false)
-		return
 	
-	# Instancia o modelo 3D da arma que está no config
-	if config.model:
-		var model_instance = config.model.instantiate()
-		add_child(model_instance)
+	call_deferred("check_config")
+	
 
 func _fire() -> void:
 	if not config or not config.bullet_scene:
@@ -38,7 +34,8 @@ func _fire() -> void:
 		
 		var final_dir := base_forward.rotated(Vector3.UP, deg_to_rad(angle_deg))
 		projectile.initialize(muzzle.global_position, final_dir, config, is_player_weapon)
-
+	
+	shot_emitted.emit()
 
 func _calculate_spread_angles(num: int, accuracy: float) -> Array[float]:
 	const MAX_SPREAD_ANGLE := 90.0
@@ -75,3 +72,9 @@ func config_timer() -> void:
 		print("TIME CONFIGURED, tempo para atirar: ", time_to_fire)
 		print("Config fire rate: ", config.fire_rate)
 		print("Config dano: ", config.damage)
+		print("Config de range:", config.range)
+
+func check_config() -> void:
+	if not config:
+		push_error("Arma '%s' não tem um RangedWeaponConfig definido!" % name)
+		set_process(false)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwlp6pk2swojk"
-path="res://.godot/imported/prototype_image_gun.png-817a4bf9afb96d759a9bd7073a6ac7d9.ctex"
+uid="uid://bydlgbfcat744"
+path="res://.godot/imported/pulse_emiter.png-731f204b6423b24879b5fa00d641db69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://weapons/prototype_image_gun.png"
-dest_files=["res://.godot/imported/prototype_image_gun.png-817a4bf9afb96d759a9bd7073a6ac7d9.ctex"]
+source_file="res://weapons/pulse_emitter/pulse_emiter.png"
+dest_files=["res://.godot/imported/pulse_emiter.png-731f204b6423b24879b5fa00d641db69.ctex"]
 
 [params]
 

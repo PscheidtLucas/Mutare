@@ -37,8 +37,8 @@ func _ready() -> void:
 	spawn_timer.start()
 
 func on_wave_started() -> void:
-	spawn_timer.start()
-
+	_on_spawn_timer_timeout()
+	
 func _process(delta: float) -> void:
 	game_time += delta
 
