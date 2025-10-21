@@ -93,8 +93,8 @@ void sky() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmo25"]
 shader = SubResource("Shader_ms54u")
 shader_parameter/source_panorama = ExtResource("5_rmo25")
-shader_parameter/exposure = 1.1
-shader_parameter/scroll_speed = 0.003
+shader_parameter/exposure = 1.4
+shader_parameter/scroll_speed = 0.006
 
 [sub_resource type="Sky" id="Sky_7tdet"]
 resource_local_to_scene = true
@@ -104,7 +104,7 @@ process_mode = 1
 [sub_resource type="Environment" id="Environment_ycx7s"]
 background_mode = 2
 sky = SubResource("Sky_7tdet")
-sky_custom_fov = 80.0
+sky_custom_fov = 50.0
 ambient_light_source = 2
 ambient_light_color = Color(0.605802, 0.564458, 0.823027, 1)
 tonemap_mode = 2
@@ -123,7 +123,6 @@ volumetric_fog_density = 0.3041
 volumetric_fog_emission = Color(0.205117, 0.205117, 0.205117, 1)
 adjustment_enabled = true
 adjustment_brightness = 0.95
-adjustment_saturation = 0.9
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6lfjr"]
 size = Vector3(48.2883, 1, 1)
