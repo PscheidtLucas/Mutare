@@ -182,11 +182,12 @@ stretch_mode = 5
 script = ExtResource("5_bw4i5")
 
 [node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer7/WeaponSlot1" instance=ExtResource("7_klgxq")]
+z_index = 1
 layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 181.0
-offset_bottom = 136.0
+offset_left = 71.0
+offset_top = -112.0
+offset_right = 252.0
+offset_bottom = 24.0
 
 [node name="Blank3" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
@@ -208,11 +209,12 @@ script = ExtResource("5_bw4i5")
 slot_number = 2
 
 [node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer9/WeaponSlot2" instance=ExtResource("7_klgxq")]
+z_index = 1
 layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 181.0
-offset_bottom = 136.0
+offset_left = 73.0
+offset_top = -112.0
+offset_right = 254.0
+offset_bottom = 24.0
 
 [node name="MarginContainer10" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
@@ -229,11 +231,10 @@ script = ExtResource("5_bw4i5")
 slot_number = 3
 
 [node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer10/WeaponSlot3" instance=ExtResource("7_klgxq")]
+z_index = 1
 layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 181.0
-offset_bottom = 136.0
+offset_left = 71.0
+offset_right = 252.0
 
 [node name="Blank2" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
@@ -255,11 +256,10 @@ script = ExtResource("5_bw4i5")
 slot_number = 4
 
 [node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer12/WeaponSlot4" instance=ExtResource("7_klgxq")]
+z_index = 1
 layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 181.0
-offset_bottom = 136.0
+offset_left = 73.0
+offset_right = 254.0
 
 [node name="Blank" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
