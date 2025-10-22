@@ -2,7 +2,13 @@ extends MarginContainer
 
 @export var weapon_box: WeaponBox
 
+var weapon_ui_image: Node
+
 func _ready() -> void:
+	GameEvents.weapon_selected.connect(func(weapon_config) -> void:
+		if weapon_ui_image != null:
+			weapon_ui_image.queue_free()
+		)
 	if weapon_box and not weapon_box.update_labels.is_connected(_on_update_weapon):
 		weapon_box.update_labels.connect(_on_update_weapon)
 
@@ -11,4 +17,4 @@ func _on_update_weapon(weapon_config: RangedWeaponConfig) -> void:
 	var loaded_scene := load(weapon_ui_scene_path)
 	var instance : Control = loaded_scene.instantiate()
 	add_child(instance)
-	instance.set
+	weapon_ui_image = instance
