@@ -2,6 +2,8 @@ class_name Player extends CharacterBody3D
 
 # Câmera do player
 
+@export var stats: PlayerStats
+
 var dead:= false
 var is_cheating: bool = false
 var target_camera_y_angle := 0

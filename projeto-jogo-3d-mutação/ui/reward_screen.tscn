@@ -234,7 +234,9 @@ slot_number = 3
 z_index = 1
 layout_mode = 0
 offset_left = 71.0
+offset_top = 0.0
 offset_right = 252.0
+offset_bottom = 136.0
 
 [node name="Blank2" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
@@ -259,7 +261,9 @@ slot_number = 4
 z_index = 1
 layout_mode = 0
 offset_left = 73.0
+offset_top = 0.0
 offset_right = 254.0
+offset_bottom = 136.0
 
 [node name="Blank" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2

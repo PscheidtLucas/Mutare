@@ -7,7 +7,7 @@ resource_name = "Material"
 albedo_color = Color(0.35178, 0.707117, 0.735227, 1)
 emission_enabled = true
 emission = Color(0, 0.899399, 0.935792, 1)
-emission_energy_multiplier = 2.0
+emission_energy_multiplier = 6.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_o8ive"]
 _surfaces = [{

@@ -191,7 +191,6 @@ mesh = SubResource("PlaneMesh_7tdet")
 
 [node name="Grass" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 0.0470295, 0.290969, 0.233307)
-visible = false
 multimesh = SubResource("MultiMesh_bwhkm")
 
 [node name="Flowers" type="Node3D" parent="MainNavigationRegion/Ilha1"]
@@ -260,7 +259,6 @@ mesh = SubResource("PlaneMesh_7tdet")
 
 [node name="Grass" parent="MainNavigationRegion/Ilha3" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 0.0470295, 0.290969, 0.233307)
-visible = false
 multimesh = SubResource("MultiMesh_bwhkm")
 
 [node name="Ilha5" type="StaticBody3D" parent="MainNavigationRegion" groups=["phaton_region"]]
@@ -303,7 +301,6 @@ mesh = SubResource("PlaneMesh_7tdet")
 
 [node name="Grass" parent="MainNavigationRegion/Ilha5" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 0.0470295, 0.290969, 0.233307)
-visible = false
 multimesh = SubResource("MultiMesh_bwhkm")
 
 [node name="Ilha2" type="StaticBody3D" parent="MainNavigationRegion" groups=["phaton_region"]]
@@ -340,7 +337,6 @@ mesh = SubResource("PlaneMesh_7tdet")
 
 [node name="Grass" parent="MainNavigationRegion/Ilha2" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 0.0470295, 0.290969, 0.233307)
-visible = false
 multimesh = SubResource("MultiMesh_bwhkm")
 
 [node name="Ilha4" type="StaticBody3D" parent="MainNavigationRegion" groups=["phaton_region"]]
@@ -370,7 +366,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.88832, -3.6972)
 
 [node name="Grass2" parent="MainNavigationRegion/Ilha4" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 0.0470295, 0.179582, 0.0313072)
-visible = false
 multimesh = SubResource("MultiMesh_bwhkm")
 
 [node name="Pontes" type="Node3D" parent="MainNavigationRegion"]
@@ -669,7 +664,7 @@ shape = SubResource("WorldBoundaryShape3D_qd0o6")
 [node name="BunchOfSpikes" type="Node3D" parent="."]
 
 [node name="Espinho low-poly2" parent="BunchOfSpikes" instance=ExtResource("7_pvbb1")]
-transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -6, -1, 27)
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -6, -1.05345, 26.8801)
 
 [node name="Espinho low-poly5" parent="BunchOfSpikes" instance=ExtResource("7_pvbb1")]
 transform = Transform3D(0, 0, -1.7, 0, 1.7, 0, 1.7, 0, 0, -9.92776, -1, 27)

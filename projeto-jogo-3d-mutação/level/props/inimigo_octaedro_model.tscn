@@ -5,29 +5,30 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2fpm"]
 resource_name = "Material.001"
 cull_mode = 2
-albedo_color = Color(1, 0.786827, 0.732814, 1)
+albedo_color = Color(1, 0.784, 0.73, 0.0666667)
 emission_enabled = true
 emission = Color(1, 0.229536, 0.174185, 1)
-emission_energy_multiplier = 2.0
+emission_energy_multiplier = 1.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkfs2"]
 resource_name = "Material.002"
 transparency = 4
 cull_mode = 2
-albedo_color = Color(0.22, 0.22, 0.2046, 0.435294)
+albedo_color = Color(0.22, 0.22, 0.2046, 0.380392)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m6lvl"]
 resource_name = "Material.003"
+transparency = 4
 cull_mode = 2
-albedo_color = Color(0, 0, 0, 1)
+albedo_color = Color(0, 0, 0, 0.27451)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a7wty"]
 resource_name = "Material.004"
 cull_mode = 2
-albedo_color = Color(1, 0.92382, 0, 1)
+albedo_color = Color(1, 0.916667, 0, 0.113725)
 emission_enabled = true
 emission = Color(1, 0.939896, 0.334642, 1)
-emission_energy_multiplier = 2.0
+emission_energy_multiplier = 1.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3ygv1"]
 _surfaces = [{

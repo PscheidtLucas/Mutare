@@ -7,8 +7,6 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_03tar"]
 resource_name = "Material.002"
-cull_mode = 2
-albedo_color = Color(0.936639, 0.939623, 0.935177, 1)
 metallic = 0.74
 roughness = 0.3
 emission = Color(1, 1, 1, 1)
