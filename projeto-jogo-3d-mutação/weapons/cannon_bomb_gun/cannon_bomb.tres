@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("1_i3igd")
+ui_scene_uid = "uid://b0tcmmelme3mj"
 scene_uid = "uid://c6nltib5mbsd4"
 name = "Hand Cannon"
 image = ExtResource("2_ru61r")

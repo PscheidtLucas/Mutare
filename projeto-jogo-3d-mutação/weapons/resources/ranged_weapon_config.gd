@@ -1,6 +1,7 @@
 extends RewardConfig
 class_name RangedWeaponConfig
 
+@export var ui_scene_uid: String
 @export var scene_uid : String
 @export var name: String
 @export var image: Texture2D

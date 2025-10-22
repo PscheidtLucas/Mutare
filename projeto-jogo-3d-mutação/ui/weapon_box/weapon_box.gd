@@ -6,7 +6,7 @@ var weapon_config_generated : RewardConfig # passada pelo reward screen quando o
 @export var select_button: Button
 @export var reward_screen: RewardManager
 
-signal update_labels(weapon_config: RewardConfig) ## Emitido aqui para atualizar as weapon_stats_label
+signal update_labels(weapon_config: RewardConfig) ## Emitido aqui para atualizar as weapon_stats_label e também as imagens das armas no ImageContainer
 
 func _ready() -> void:
 	if not select_button.pressed.is_connected(_on_select_button_pressed):

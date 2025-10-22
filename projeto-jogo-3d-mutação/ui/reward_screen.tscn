@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=19 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://dfdy7gyvtyxem" path="res://prototipo_inv.jpeg" id="2_6ppac"]
 [ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://weapons/carnivorous_pistola/pistol_stats.tres" id="3_bw4i5"]
 [ext_resource type="Script" uid="uid://im65pyqq2khr" path="res://ui/inventory_manager.gd" id="4_vuu3q"]
+[ext_resource type="Resource" uid="uid://dm4mcdqnn0agf" path="res://weapons/cannon_bomb_gun/cannon_bomb.tres" id="4_w26xa"]
 [ext_resource type="Script" uid="uid://ciybg4bkxitjl" path="res://ui/weapon_slot_image.gd" id="5_bw4i5"]
+[ext_resource type="Resource" uid="uid://cbrwqqk5lhjg0" path="res://weapons/pulse_emitter/pulse_stats.tres" id="5_mur5e"]
+[ext_resource type="Resource" uid="uid://bf80h3suneegk" path="res://weapons/smg_tech/smg_tech_stats.tres" id="6_02iek"]
 [ext_resource type="PackedScene" uid="uid://di0s2eg2am62i" path="res://ui/weapon_tooltip.tscn" id="7_klgxq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6ppac"]
@@ -56,7 +59,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lsmmt")
-weapon_templates = Array[ExtResource("2_6bncb")]([ExtResource("3_bw4i5")])
+weapon_templates = Array[ExtResource("2_6bncb")]([ExtResource("3_bw4i5"), ExtResource("4_w26xa"), ExtResource("5_mur5e"), ExtResource("6_02iek")])
 options_container = NodePath("MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bn25s4pn6bu8h"
-path="res://.godot/imported/props_CenarioJogo.glb-f6c1a762465ebcc27a8e559dfb3f5e03.scn"
+path="res://.godot/imported/props_CenarioJogo.glb-1a81bee658a480cee047f3c2ae2cf7c2.scn"
 
 [deps]
 
-source_file="res://weapons/smg_tech/props_CenarioJogo.glb"
-dest_files=["res://.godot/imported/props_CenarioJogo.glb-f6c1a762465ebcc27a8e559dfb3f5e03.scn"]
+source_file="res://level/props_CenarioJogo.glb"
+dest_files=["res://.godot/imported/props_CenarioJogo.glb-1a81bee658a480cee047f3c2ae2cf7c2.scn"]
 
 [params]
 

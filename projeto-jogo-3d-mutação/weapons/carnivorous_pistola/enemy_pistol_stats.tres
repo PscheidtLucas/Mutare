@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("2_ci5cp")
+ui_scene_uid = ""
 scene_uid = "uid://b7jx3gi1kdegw"
 name = "Enemy Pistol"
 damage_min = 8.0

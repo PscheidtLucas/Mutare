@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("3_5gkr1")
+ui_scene_uid = "uid://cppfoidptoola"
 scene_uid = "uid://b7jx3gi1kdegw"
 name = "Carnivorous Pistol"
 image = ExtResource("2_l20o5")

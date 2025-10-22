@@ -23,12 +23,12 @@ op_type = 3
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_auwsp"]
 parameter_name = "BaseColor"
 default_value_enabled = true
-default_value = Color(0.287847, 0.000797863, 0.468711, 1)
+default_value = Color(0.678431, 0.0980392, 0, 1)
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_1njy5"]
 parameter_name = "ColorParameter"
 default_value_enabled = true
-default_value = Color(0, 0.708992, 0.648141, 1)
+default_value = Color(1, 0.772549, 0.313726, 1)
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_auwsp"]
 default_input_values = [1, Vector2(0.1, 0.1), 2, Vector2(0, 0)]
@@ -49,7 +49,7 @@ default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
 op_type = 0
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_gfk7o"]
-default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.3, 0.3, 0.3)]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.5, 0.1, 0.5)]
 operator = 2
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_sapgw"]
@@ -81,8 +81,8 @@ code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_toon, specular_schlick_ggx;
 
 uniform sampler2D WindNoise;
-uniform vec4 BaseColor : source_color = vec4(0.287847, 0.000798, 0.468711, 1.000000);
-uniform vec4 ColorParameter : source_color = vec4(0.000000, 0.708992, 0.648141, 1.000000);
+uniform vec4 BaseColor : source_color = vec4(0.678431, 0.098039, 0.000000, 1.000000);
+uniform vec4 ColorParameter : source_color = vec4(1.000000, 0.772549, 0.313726, 1.000000);
 
 
 
@@ -142,7 +142,7 @@ void vertex() {
 
 
 // VectorOp:16
-	vec3 n_in16p1 = vec3(0.30000, 0.30000, 0.30000);
+	vec3 n_in16p1 = vec3(0.50000, 0.10000, 0.50000);
 	vec3 n_out16p0 = n_out9p0 * n_in16p1;
 
 
@@ -202,6 +202,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-120.301, 10.417)
 modes/cull = 2
 modes/diffuse = 3
 nodes/vertex/0/position = Vector2(1020, 0)

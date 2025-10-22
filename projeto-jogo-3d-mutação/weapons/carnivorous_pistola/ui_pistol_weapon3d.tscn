@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://cppfoidptoola"]
+
+[ext_resource type="World3D" uid="uid://b1vkvr04jb1j5" path="res://weapons/3d_world_weapons_ui.tres" id="1_oqapd"]
+[ext_resource type="Script" uid="uid://bgm61vl6hmwwn" path="res://rotate_child.gd" id="2_pxshv"]
+[ext_resource type="PackedScene" uid="uid://dnlfg05jn7jjj" path="res://weapons/carnivorous_pistola/pistola_model.tscn" id="3_hm7mg"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b2sw7"]
+viewport_path = NodePath("SubViewport")
+
+[node name="UI_Pistol" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("ViewportTexture_b2sw7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+world_3d = ExtResource("1_oqapd")
+transparent_bg = true
+msaa_3d = 2
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 0.981985, 0.188958, 0, -0.188958, 0.981985, 0, 10.5782, 64.7122)
+keep_aspect = 0
+projection = 1
+current = true
+fov = 38.0
+size = 46.0
+
+[node name="RotateChild" type="Node3D" parent="SubViewport/Camera3D"]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 0.981985, -0.188958, 0, 0.188958, 0.981985, 0, 0.369393, -65.8283)
+script = ExtResource("2_pxshv")
+rotation_duration = 12.0
+
+[node name="Anchor" type="Node3D" parent="SubViewport/Camera3D/RotateChild"]
+process_mode = 3
+transform = Transform3D(0.352907, 0, 0.935658, 0, 1, 0, -0.935658, 0, 0.352907, 0, 0, 0)
+
+[node name="pistola" parent="SubViewport/Camera3D/RotateChild/Anchor" instance=ExtResource("3_hm7mg")]
+transform = Transform3D(625, 0, 0, 0, -2.45201e-05, 756.573, 0, -560.954, -3.30709e-05, -2.16841, 2.37817, -0.238055)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="SubViewport"]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.5805, 0)
+light_color = Color(0.855313, 0.935068, 0.899773, 1)

@@ -81,6 +81,7 @@ func _reset_child_rotation():
 
 # Configura e inicia o tween de rotação
 func start_rotation_tween() -> void:
+	print("Iniciando rotacao")
 	# 1. Limpa qualquer tween anterior que possa estar rodando
 	if tween and tween.is_valid():
 		tween.kill()
@@ -113,11 +114,3 @@ func start_rotation_tween() -> void:
 		rotation_axis.normalized() * 2 * PI, # O valor final (360 graus no eixo)
 		rotation_duration               # A duração
 	).from(Vector3.ZERO) # Garante que cada loop comece do zero
-
-
-# Garante que o tween reinicie sozinho SE ESTIVER NO JOGO.
-func _process(delta: float) -> void:
-	# No jogo, garante que o tween esteja sempre rodando
-	if not Engine.is_editor_hint():
-		if tween == null or not tween.is_valid():
-			start_rotation_tween()

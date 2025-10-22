@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("3_jx7fr")
+ui_scene_uid = "uid://b8t7hgybqk1pn"
 scene_uid = "uid://booagc6yrqu5q"
 name = "Pulse Emitter"
 image = ExtResource("2_tk2y1")

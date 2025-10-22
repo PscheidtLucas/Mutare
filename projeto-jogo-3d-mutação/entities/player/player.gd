@@ -127,6 +127,7 @@ func take_damage(damage: float) -> void:
 	GameEvents.player_took_damage.emit()
 	if health <= 0:
 		die()
+		health = 0
 		
 func die() -> void:
 	dead = true

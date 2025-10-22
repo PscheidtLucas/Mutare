@@ -3,7 +3,7 @@ class_name UI extends CanvasLayer
 @export var game_state: GameState
 
 @onready var time_left_label: Label = %TimeLeftLabel
-@onready var reward_screen: Control = %RewardScreen
+@onready var reward_manager_screen: RewardManager = %RewardManagerScreen
 
 @onready var lose_label: Label = %LoseLabel
 @onready var restart_button: Button = %RestartButton
@@ -13,7 +13,8 @@ class_name UI extends CanvasLayer
 @export var nodes_to_hide_in_start: Array[Control]
 
 func _ready() -> void:
-	health_ui.text = "HP: " + str(PlayerManager.player.health)
+	if PlayerManager.player != null:
+		health_ui.text = "HP: " + str(PlayerManager.player.health)
 	for node in nodes_to_hide_in_start:
 		node.hide()
 	

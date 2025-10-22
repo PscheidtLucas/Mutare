@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://wj5iarmdt1mv"]
+
+[ext_resource type="Script" uid="uid://wvedouoyhons" path="res://ui/ui.gd" id="1_2wnwx"]
+[ext_resource type="Resource" uid="uid://bpsmw37wyl1vp" path="res://level/game_manager_n_state/main_state.tres" id="2_cem0l"]
+[ext_resource type="PackedScene" uid="uid://cn4ylkriiiien" path="res://ui/reward_screen.tscn" id="3_8akl3"]
+[ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="4_htj1t"]
+[ext_resource type="Resource" uid="uid://dm4mcdqnn0agf" path="res://weapons/cannon_bomb_gun/cannon_bomb.tres" id="5_td6xc"]
+[ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://weapons/carnivorous_pistola/pistol_stats.tres" id="6_66fs2"]
+[ext_resource type="Resource" uid="uid://bf80h3suneegk" path="res://weapons/smg_tech/smg_tech_stats.tres" id="7_qajsx"]
+[ext_resource type="Resource" uid="uid://cbrwqqk5lhjg0" path="res://weapons/pulse_emitter/pulse_stats.tres" id="8_fgxrt"]
+
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("nodes_to_hide_in_start")]
+process_mode = 3
+script = ExtResource("1_2wnwx")
+game_state = ExtResource("2_cem0l")
+nodes_to_hide_in_start = [NodePath("CenterContainer3/RestartButton"), NodePath("WinLoseContainer/LoseLabel"), NodePath("RewardScreen")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+
+[node name="HealthUI" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TimerContainer" type="MarginContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -9.5
+offset_right = 9.5
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="LevelTimerContainer" type="CenterContainer" parent="TimerContainer"]
+layout_mode = 2
+
+[node name="TimeLeftLabel" type="Label" parent="TimerContainer/LevelTimerContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "60"
+
+[node name="WinLoseContainer" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -311.5
+offset_top = -95.0
+offset_right = 311.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoseLabel" type="Label" parent="WinLoseContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 85
+text = "Game Over!"
+
+[node name="CenterContainer3" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 72.0
+offset_right = 20.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartButton" type="Button" parent="CenterContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restart"
+
+[node name="HealthContainer" type="CenterContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RewardScreen" parent="." instance=ExtResource("3_8akl3")]
+unique_name_in_owner = true
+weapon_templates = Array[ExtResource("4_htj1t")]([ExtResource("5_td6xc"), ExtResource("6_66fs2"), ExtResource("7_qajsx"), ExtResource("8_fgxrt")])
+
+[connection signal="pressed" from="CenterContainer3/RestartButton" to="." method="_on_restart_button_pressed"]
