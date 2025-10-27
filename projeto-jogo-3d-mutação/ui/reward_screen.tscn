@@ -188,9 +188,9 @@ script = ExtResource("5_bw4i5")
 z_index = 1
 layout_mode = 0
 offset_left = 71.0
-offset_top = -112.0
+offset_top = 14.0
 offset_right = 252.0
-offset_bottom = 24.0
+offset_bottom = 150.0
 
 [node name="Blank3" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
@@ -215,9 +215,9 @@ slot_number = 2
 z_index = 1
 layout_mode = 0
 offset_left = 73.0
-offset_top = -112.0
+offset_top = 15.0
 offset_right = 254.0
-offset_bottom = 24.0
+offset_bottom = 151.0
 
 [node name="MarginContainer10" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
