@@ -9,7 +9,9 @@ var wave_starting_duration := 50.0
 
 
 func _ready() -> void:
+	
 	GameEvents.wave_started.connect(on_wave_started)
+	GameEvents.wave_survived.connect(on_wave_survived)
 	GameEvents.player_died.connect(on_player_lost)
 	
 	wave_timer = Timer.new()
@@ -17,7 +19,6 @@ func _ready() -> void:
 	wave_timer.one_shot = true
 	wave_timer.timeout.connect(on_level_timer_timeout)
 	add_child(wave_timer)
-	wave_timer.start()
 	
 	get_tree().set_deferred("paused", true)
 
@@ -32,10 +33,17 @@ func on_level_timer_timeout() -> void:
 		GameEvents.wave_survived.emit()
 
 func on_wave_started():
+	print("start!!!!!")
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	wave_timer.start()
+
+func on_wave_survived():
+	print("survived!!!!!!!!!")
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func get_time_left() -> float:
 	return wave_timer.time_left
 
 func on_player_lost() -> void:
 	wave_timer.stop()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

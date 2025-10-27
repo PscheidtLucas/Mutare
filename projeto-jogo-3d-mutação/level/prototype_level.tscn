@@ -91,8 +91,8 @@ noise = SubResource("FastNoiseLite_4od7l")
 render_priority = 0
 shader = ExtResource("5_7jmcm")
 shader_parameter/WindNoise = SubResource("NoiseTexture2D_bwhkm")
-shader_parameter/BaseColor = Color(0.638972, 0.177212, 0.137172, 1)
-shader_parameter/ColorParameter = Color(0.975643, 0.783462, 0.352356, 1)
+shader_parameter/BaseColor = Color(0.597802, 0.232851, 0.159188, 1)
+shader_parameter/ColorParameter = Color(0.979211, 0.779695, 0.387353, 1)
 
 [sub_resource type="MultiMesh" id="MultiMesh_2j5qn"]
 transform_format = 1

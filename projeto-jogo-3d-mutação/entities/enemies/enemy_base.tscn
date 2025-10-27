@@ -10,7 +10,7 @@
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("array_of_weapons_nodes")]
 script = ExtResource("1_6dmn1")
 array_of_weapons_nodes = [NodePath("Pistol")]
-health = 60.0
+health = 70.0
 move_speed = 3.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

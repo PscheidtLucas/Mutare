@@ -91,11 +91,29 @@ func reset_player() -> void:
 	global_position = starting_global_pos
 	target_camera_y_angle = starting_target_camera_y
 	
+#func _physics_process(delta: float) -> void:
+	#if Input.is_action_pressed("rotation_left"):
+		#cubo_frame.rotate_y(deg_to_rad(rotation_speed * delta))
+	#elif Input.is_action_pressed("rotation_right"):
+		#cubo_frame.rotate_y(deg_to_rad(-rotation_speed * delta))
+		
 func _physics_process(delta: float) -> void:
+	var total_rotation := 0.0
+	
+	# Controle por teclas
 	if Input.is_action_pressed("rotation_left"):
-		cubo_frame.rotate_y(deg_to_rad(rotation_speed * delta))
+		total_rotation += rotation_speed * delta
 	elif Input.is_action_pressed("rotation_right"):
-		cubo_frame.rotate_y(deg_to_rad(-rotation_speed * delta))
+		total_rotation -= rotation_speed * delta
+	
+	# Controle por mouse
+	var mouse_delta := Input.get_last_mouse_velocity()
+	var mouse_sens := 0.1
+	total_rotation += -mouse_delta.x * mouse_sens * delta
+	
+	if total_rotation != 0.0:
+		cubo_frame.rotate_y(deg_to_rad(total_rotation))
+
 
 func _process(delta: float) -> void:
 	camera_anchor.rotation.y = lerp_angle(camera_anchor.rotation.y, deg_to_rad(target_camera_y_angle), delta * camera_rotation_speed)
