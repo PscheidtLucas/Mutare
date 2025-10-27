@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=50 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://cn7q1hmxe74tw" path="res://level/game_manager_n_state/game_manager.gd" id="1_ouysc"]
@@ -154,6 +154,16 @@ volumetric_fog_emission = Color(0.205117, 0.205117, 0.205117, 1)
 adjustment_enabled = true
 adjustment_brightness = 0.95
 
+[sub_resource type="Curve" id="Curve_7jmcm"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 7), 0.0, -8.30416, 0, 0, Vector2(0.4, 4.5), -2.96983, -2.96983, 0, 0, Vector2(1, 3.7), -3.07827, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_dyurs"]
+_limits = [0.0, 6.0, 0.0, 1.0]
+_data = [Vector2(0, 1.01124), 0.0, 4.14466, 0, 0, Vector2(0.282, 2), 7.4151, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_6lfjr"]
 size = Vector3(48.2883, 1, 1)
 
@@ -161,6 +171,9 @@ size = Vector3(48.2883, 1, 1)
 size = Vector3(1, 1, 44)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qd0o6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7jmcm"]
+size = Vector3(15.0957, 1, 3.00781)
 
 [node name="GameManager" type="Node3D"]
 script = ExtResource("1_ouysc")
@@ -198,19 +211,16 @@ metadata/_edit_group_ = true
 shape = SubResource("BoxShape3D_1ykrc")
 
 [node name="arvoreLowPoly" parent="MainNavigationRegion/Ilha1" instance=ExtResource("2_1wlit")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -9)
-
-[node name="arvoreLowPoly2" parent="MainNavigationRegion/Ilha1" instance=ExtResource("2_1wlit")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 1, -7)
+transform = Transform3D(-0.707341, 0, 0.706872, 0, 1, 0, -0.706872, 0, -0.707341, 15, 1, -9)
 
 [node name="arvoreLowPoly3" parent="MainNavigationRegion/Ilha1" instance=ExtResource("2_1wlit")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 1, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1221, 1, -3.98628)
 
 [node name="arvoreLowPoly4" parent="MainNavigationRegion/Ilha1" instance=ExtResource("2_1wlit")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 1, 14)
 
 [node name="arvoreLowPoly5" parent="MainNavigationRegion/Ilha1" instance=ExtResource("2_1wlit")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1, 12)
+transform = Transform3D(-0.232987, 0, 0.97248, 0, 1, 0, -0.97248, 0, -0.232987, -16.9845, 1, 10.2847)
 
 [node name="PlaneMesh" type="MeshInstance3D" parent="MainNavigationRegion/Ilha1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.563817, 0)
@@ -590,9 +600,8 @@ environment = SubResource("Environment_ycx7s")
 [node name="SpawnArea" type="Area3D" parent="."]
 script = ExtResource("3_6lfjr")
 array_of_enemy_types = Array[PackedScene]([ExtResource("5_36fav"), ExtResource("10_3sjje")])
-base_spawn_time = 6.0
-time_reduction_rate = 0.92
-enemies_per_wave_growth = 0.5
+spawn_time_curve = SubResource("Curve_7jmcm")
+enemies_per_wave_curve = SubResource("Curve_dyurs")
 min_spawn_time = 2.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea"]
@@ -697,6 +706,14 @@ script = ExtResource("6_i5e4g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.132, 0)
 shape = SubResource("WorldBoundaryShape3D_qd0o6")
 
+[node name="FallArea2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.3148, 0)
+script = ExtResource("6_i5e4g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FallArea2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.01338, -17.7051, 26.7144)
+shape = SubResource("BoxShape3D_7jmcm")
+
 [node name="BunchOfSpikes" type="Node3D" parent="."]
 
 [node name="Espinho low-poly2" parent="BunchOfSpikes" instance=ExtResource("7_pvbb1")]
@@ -718,70 +735,86 @@ offset_bottom = 107.0
 text = "FPS:"
 script = ExtResource("19_bwhkm")
 
-[node name="GreenPlant" type="MeshInstance3D" parent="."]
+[node name="Meshes" type="Node" parent="."]
+
+[node name="GreenPlant" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(1.73902, 0, -0.987823, 0, 2, 0, 0.987823, 0, 1.73902, 20.1271, 1.32877, 69.8387)
 mesh = ExtResource("25_0i6i1")
+skeleton = NodePath("../..")
 
-[node name="GreenPlant2" type="MeshInstance3D" parent="."]
+[node name="GreenPlant2" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(1.68457, 0, 1.07807, 0, 2, 0, -1.07807, 0, 1.68457, 16.8245, 1.32877, 40.4902)
 mesh = ExtResource("25_0i6i1")
+skeleton = NodePath("../..")
 
-[node name="Mushromm" type="MeshInstance3D" parent="."]
+[node name="Mushromm" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 69.9568, 1.46217, -2.4606)
 mesh = ExtResource("26_3mfhf")
+skeleton = NodePath("../..")
 
-[node name="Mushromm2" type="MeshInstance3D" parent="."]
+[node name="Mushromm2" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.32694, 1.46217, 16.0797)
 mesh = ExtResource("26_3mfhf")
+skeleton = NodePath("../..")
 
-[node name="Mushromm3" type="MeshInstance3D" parent="."]
+[node name="Mushromm3" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -4.78351, 1.46217, -41.9269)
 mesh = ExtResource("26_3mfhf")
+skeleton = NodePath("../..")
 
-[node name="Mushromm4" type="MeshInstance3D" parent="."]
+[node name="Mushromm4" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -69.7119, 1.46217, 19.3758)
 mesh = ExtResource("26_3mfhf")
+skeleton = NodePath("../..")
 
-[node name="PinkPlant" type="MeshInstance3D" parent="."]
+[node name="PinkPlant" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.02938, 1.03063, -5.6905)
 mesh = ExtResource("27_t8p3i")
+skeleton = NodePath("../..")
 
-[node name="PinkPlant2" type="MeshInstance3D" parent="."]
+[node name="PinkPlant2" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(0.357871, 0, -0.349183, 0, 0.5, 0, 0.349183, 0, 0.357871, -49.053, 1.03063, -7.61951)
 mesh = ExtResource("27_t8p3i")
+skeleton = NodePath("../..")
 
-[node name="PinkPlant3" type="MeshInstance3D" parent="."]
+[node name="PinkPlant3" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(0.301513, 0, 0.39886, 0, 0.5, 0, -0.39886, 0, 0.301513, 14.2153, 1.03063, 49.518)
 mesh = ExtResource("27_t8p3i")
+skeleton = NodePath("../..")
 
-[node name="PinkPlantLeaf" type="MeshInstance3D" parent="."]
+[node name="PinkPlantLeaf" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(-0.412157, 0, -0.283066, 0, 0.5, 0, 0.283066, 0, -0.412157, 35.4968, 1.22747, 2.14453)
 mesh = ExtResource("28_1gmhc")
-
-[node name="PinkPlantLeaf2" type="MeshInstance3D" parent="PinkPlantLeaf"]
-transform = Transform3D(-0.333017, 0, -0.942921, 0, 1, 0, 0.942921, 0, -0.333017, -1.4251, 0, 1.34055)
-mesh = ExtResource("28_1gmhc")
 skeleton = NodePath("../..")
 
-[node name="PinkPlantLeaf2" type="MeshInstance3D" parent="."]
+[node name="PinkPlantLeaf2" type="MeshInstance3D" parent="Meshes/PinkPlantLeaf"]
+transform = Transform3D(-0.333017, 0, -0.942921, 0, 1, 0, 0.942921, 0, -0.333017, -1.4251, 0, 1.34055)
+mesh = ExtResource("28_1gmhc")
+skeleton = NodePath("../../..")
+
+[node name="PinkPlantLeaf2" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(-0.412157, 0, -0.283066, 0, 0.5, 0, 0.283066, 0, -0.412157, 14.4257, 1.22747, -44.7094)
 mesh = ExtResource("28_1gmhc")
-
-[node name="PinkPlantLeaf2" type="MeshInstance3D" parent="PinkPlantLeaf2"]
-transform = Transform3D(-0.333017, 0, -0.942921, 0, 1, 0, 0.942921, 0, -0.333017, -1.4251, 0, 1.34055)
-mesh = ExtResource("28_1gmhc")
 skeleton = NodePath("../..")
 
-[node name="GreenPlant3" type="MeshInstance3D" parent="."]
+[node name="PinkPlantLeaf2" type="MeshInstance3D" parent="Meshes/PinkPlantLeaf2"]
+transform = Transform3D(-0.333017, 0, -0.942921, 0, 1, 0, 0.942921, 0, -0.333017, -1.4251, 0, 1.34055)
+mesh = ExtResource("28_1gmhc")
+skeleton = NodePath("../../..")
+
+[node name="GreenPlant3" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(2.23395, 0, 2.00237, 0, 3, 0, -2.00237, 0, 2.23395, 0.922866, 1.21608, -69.0253)
 mesh = ExtResource("25_0i6i1")
+skeleton = NodePath("../..")
 
-[node name="Mushromm5" type="MeshInstance3D" parent="."]
+[node name="Mushromm5" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 22.2188, 1.44595, -71.1469)
 mesh = ExtResource("26_3mfhf")
+skeleton = NodePath("../..")
 
-[node name="PonteMeioDesgasteAtt" parent="." instance=ExtResource("24_dyurs")]
+[node name="PonteMeioDesgasteAtt" parent="Meshes" instance=ExtResource("24_dyurs")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1.91267)
 
 [connection signal="pressed" from="UI/CenterContainer3/RestartButton" to="UI" method="_on_restart_button_pressed"]
 [connection signal="body_entered" from="FallArea" to="FallArea" method="_on_body_entered"]
+[connection signal="body_entered" from="FallArea2" to="FallArea2" method="_on_body_entered"]

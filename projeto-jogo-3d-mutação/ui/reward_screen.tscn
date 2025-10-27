@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=20 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -15,6 +15,9 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_6ppac"]
 font_size = 45
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w26xa"]
+load_path = "res://.godot/imported/Título Choose 1.png-7001d81e66719e8e58efd8bac217008a.ctex"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwexk"]
 bg_color = Color(0.151447, 0.124627, 0.0944336, 1)
@@ -315,6 +318,12 @@ layout_mode = 2
 text = "CHOOSE 1"
 label_settings = SubResource("LabelSettings_6ppac")
 horizontal_alignment = 1
+
+[node name="Choose1Texture" type="TextureRect" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_w26xa")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2"]
 layout_mode = 2

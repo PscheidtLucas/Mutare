@@ -1,5 +1,7 @@
 class_name Bullet extends Area3D
 
+@export var destroy_at_first: bool = true
+
 var velocity: Vector3 = Vector3.ZERO
 var was_shot_from_player: bool = false
 var damage: float = 1.0
@@ -32,7 +34,8 @@ func _on_body_entered(body: Node3D) -> void:
 			body.take_damage(damage)
 		else:
 			printerr("Inimigo acertado por bala não tem o método take_damage esperado!")
-		queue_free()
+		if destroy_at_first:
+			queue_free()
 		return
 
 	# Atingiu o jogador E foi atirada por um inimigo
