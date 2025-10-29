@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Projeto Jogo 3D Mutação"
 run/main_scene="uid://4qldqg5yaw6t"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
