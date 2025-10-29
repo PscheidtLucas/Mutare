@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=21 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://cbrwqqk5lhjg0" path="res://weapons/pulse_emitter/pulse_stats.tres" id="5_mur5e"]
 [ext_resource type="Resource" uid="uid://bf80h3suneegk" path="res://weapons/smg_tech/smg_tech_stats.tres" id="6_02iek"]
 [ext_resource type="PackedScene" uid="uid://di0s2eg2am62i" path="res://ui/weapon_tooltip.tscn" id="7_klgxq"]
+[ext_resource type="Texture2D" uid="uid://deqphs73r0lcf" path="res://Quadrado inventário - Cabeça (com símbolo).png" id="8_mur5e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6ppac"]
 font_size = 45
@@ -100,8 +101,19 @@ weapon_slots = [NodePath("MarginContainer7/WeaponSlot1"), NodePath("MarginContai
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/margin_left = -100
+theme_override_constants/margin_top = -100
+theme_override_constants/margin_right = -100
+theme_override_constants/margin_bottom = -85
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("8_mur5e")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2

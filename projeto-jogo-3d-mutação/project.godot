@@ -103,6 +103,10 @@ rotate_camera_right={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_2="phantom enemy"
+
 [physics]
 
 3d/default_gravity=30.0

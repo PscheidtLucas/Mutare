@@ -154,6 +154,13 @@ func die() -> void:
 	set_process(false)
 	#hide() #TODO 
 
+# Esta função recebe o impulso calculado pelo inimigo
+func apply_knockback(knockback_velocity: Vector3):
+	# Simplesmente definimos a velocidade do player para o impulso.
+	# O seu _physics_process normal (com gravidade, input, etc.)
+	# vai assumir o controle no próximo frame, mas o impulso
+	# inicial do knockback será aplicado.
+	velocity = knockback_velocity
 
 func is_alive() -> bool:
 	if dead:

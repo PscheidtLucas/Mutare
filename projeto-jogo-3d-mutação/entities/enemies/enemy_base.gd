@@ -10,6 +10,8 @@ var player: Player = null
 var chase_cooldown_timer: Timer # O Timer será criado e atribuído no _ready
 
 @export var move_speed: float = 3.0
+@export var knockback_force: float = 20.0
+@export var collision_damage: float = 10.0
 
 @export_group("Jump")
 @export var jump_duration: float = 0.8
@@ -68,6 +70,32 @@ func _physics_process(delta: float) -> void:
 
 	_look_at_player()
 	move_and_slide()
+	manage_knockback(delta)
+
+func manage_knockback(delta: float) -> void:
+	var collision_count = get_slide_collision_count()
+	for i in range(collision_count):
+		var collision = get_slide_collision(i)
+		if collision == null:
+			continue
+			
+		# Verificamos se o corpo que colidimos é o player
+		if collision.get_collider() == player:
+			# Verificamos se o player tem a função de tomar knockback
+			if player.has_method("apply_knockback"):
+				
+				# Calculamos a direção (do inimigo PARA o player)
+				var direction = (player.global_position - global_position)
+				direction.y = 0.5 # Damos um leve "pop" para cima
+				direction = direction.normalized()
+				
+				# Chamamos a função no player, passando o impulso
+				player.apply_knockback(direction * knockback_force)
+				player.take_damage(collision_damage)
+				
+				# Paramos o loop, só queremos um knockback por frame
+				break
+
 
 ## Estados da IA
 
