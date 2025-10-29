@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=52 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://cn7q1hmxe74tw" path="res://level/game_manager_n_state/game_manager.gd" id="1_ouysc"]
@@ -18,8 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://bntkkgjp5chye" path="res://grass/multi_mesh_instance_3d.tscn" id="17_fwegj"]
 [ext_resource type="ArrayMesh" uid="uid://b0pkut5lqom7w" path="res://grass/v4/grass_v4.res" id="18_4od7l"]
 [ext_resource type="Script" uid="uid://db1iegjtuhxld" path="res://level/fps_label.gd" id="19_bwhkm"]
+[ext_resource type="PackedScene" uid="uid://bsgosomawtovf" path="res://bullets/bomb.tscn" id="24_0i6i1"]
 [ext_resource type="PackedScene" uid="uid://bsnwfdo6oc0m1" path="res://level/props/ponte_meio_desgaste.tscn" id="24_dyurs"]
 [ext_resource type="ArrayMesh" uid="uid://ckqs34c8iwvpn" path="res://level/props/green_plant.res" id="25_0i6i1"]
+[ext_resource type="Script" uid="uid://ckf4mjlo8s2ba" path="res://bullets/bomb_explode_one_frame.gd" id="25_3mfhf"]
 [ext_resource type="ArrayMesh" uid="uid://djy5t6plu0g7q" path="res://level/props/mushromm.res" id="26_3mfhf"]
 [ext_resource type="ArrayMesh" uid="uid://bfymlottdx2i" path="res://level/props/pink_plant.res" id="27_t8p3i"]
 [ext_resource type="ArrayMesh" uid="uid://c0po7o7oqytih" path="res://level/props/pink_plant_leaf.res" id="28_1gmhc"]
@@ -59,13 +61,13 @@ cellular_distance_function = 3
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dyurs"]
 width = 2048
 height = 1024
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_7jmcm")
+color_ramp = SubResource("Gradient_2j5qn")
 invert = true
 in_3d_space = true
-generate_mipmaps = false
-bump_strength = 2.3
 normalize = false
-color_ramp = SubResource("Gradient_2j5qn")
-noise = SubResource("FastNoiseLite_7jmcm")
+bump_strength = 2.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ykrc"]
 resource_local_to_scene = true
@@ -84,8 +86,8 @@ noise_type = 3
 fractal_type = 0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bwhkm"]
-seamless = true
 noise = SubResource("FastNoiseLite_4od7l")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dyurs"]
 render_priority = 0
@@ -812,9 +814,26 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 22.2188, 1.44595, -71.1
 mesh = ExtResource("26_3mfhf")
 skeleton = NodePath("../..")
 
-[node name="PonteMeioDesgasteAtt" parent="Meshes" instance=ExtResource("24_dyurs")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1.91267)
+[node name="Bomb" parent="." node_paths=PackedStringArray("array_of_meshes") instance=ExtResource("24_0i6i1")]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3525349, 1.8363795, 3.9089947)
+script = ExtResource("25_3mfhf")
+array_of_meshes = []
+
+[node name="Debris" parent="Bomb" index="1"]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+
+[node name="Smoke" parent="Bomb" index="2"]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 1.75029, 0)
+
+[node name="Fire" parent="Bomb" index="3"]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, 0)
+
+[node name="MeshInstance3D" parent="Bomb" index="6"]
+transform = Transform3D(0.521302, 0, 0, 0, 0.521302, 0, 0, 0, 0.521302, -0.48076817, 0, 0.04634428)
 
 [connection signal="pressed" from="UI/CenterContainer3/RestartButton" to="UI" method="_on_restart_button_pressed"]
 [connection signal="body_entered" from="FallArea" to="FallArea" method="_on_body_entered"]
 [connection signal="body_entered" from="FallArea2" to="FallArea2" method="_on_body_entered"]
+
+[editable path="Bomb"]
