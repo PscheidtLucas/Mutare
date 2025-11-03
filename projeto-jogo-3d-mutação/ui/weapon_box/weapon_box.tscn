@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgodq53bkn7od"]
+[gd_scene load_steps=18 format=3 uid="uid://cgodq53bkn7od"]
 
 [ext_resource type="Script" uid="uid://c2ol1eufnlyiu" path="res://ui/weapon_box/weapon_box.gd" id="1_lkbvd"]
 [ext_resource type="Script" uid="uid://b2vdaiy1d8rx7" path="res://ui/weapon_box/image_container.gd" id="2_36fv1"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="3_42g51"]
 [ext_resource type="Script" uid="uid://dqchtya6p2r5c" path="res://ui/weapon_box/weapon_stats_labels/weapon_stats_label.gd" id="3_b334d"]
 [ext_resource type="Theme" uid="uid://bb4dm22qo2rvc" path="res://ui/weapon_box/select_button.tres" id="4_k47en"]
+[ext_resource type="Texture2D" uid="uid://bemojfxcra7mh" path="res://ui/reward screen images/Cubo de escolha (parte de trás).png" id="7_5exlp"]
+[ext_resource type="Texture2D" uid="uid://cnkv812utnc33" path="res://ui/reward screen images/Cubo de escolha (parte da frente).png" id="8_1gip4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42g51"]
 bg_color = Color(1, 1, 1, 0)
@@ -50,7 +52,37 @@ bg_color = Color(0.125666, 0.126421, 0.122977, 1)
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="Shader" id="Shader_5exlp"]
+code = "shader_type canvas_item;
+
+uniform float speed = 0.4;
+uniform float intensity = 0.02;
+uniform float scale = 6.0;
+
+void fragment() {
+	vec2 uv = UV;
+
+	// Movimento tipo plasma: distorção senoidal combinada
+	float t = TIME * speed;
+
+	float wave_x = sin((uv.y + t) * scale) * intensity;
+	float wave_y = cos((uv.x - t * 0.8) * scale * 0.7) * intensity;
+
+	vec2 offset = vec2(wave_x, wave_y);
+	vec4 color = texture(TEXTURE, uv + offset);
+
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1gip4"]
+shader = SubResource("Shader_5exlp")
+shader_parameter/speed = 0.3
+shader_parameter/intensity = 0.001
+shader_parameter/scale = 25.0
+
 [node name="WeaponBox" type="MarginContainer" node_paths=PackedStringArray("select_button")]
+z_index = -1
 custom_minimum_size = Vector2(0, 155)
 offset_right = 569.0
 offset_bottom = 155.0
@@ -58,6 +90,7 @@ script = ExtResource("1_lkbvd")
 select_button = NodePath("Anchor/SelectButton")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_42g51")
 
@@ -72,10 +105,10 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 script = ExtResource("2_36fv1")
 weapon_box = NodePath("../../../..")
 
@@ -83,9 +116,9 @@ weapon_box = NodePath("../../../..")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = -10
-theme_override_constants/margin_right = 8
+theme_override_constants/margin_left = 83
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 103
 theme_override_constants/margin_bottom = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2"]
@@ -94,6 +127,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="NAME" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("weapon_box")]
@@ -109,7 +143,7 @@ weapon_box = NodePath("../../../../../../..")
 [node name="VBoxStats" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_p3niv")
-theme_override_constants/separation = -1
+theme_override_constants/separation = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
 layout_mode = 2
@@ -272,6 +306,7 @@ size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_36fv1")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer7/PanelContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
@@ -295,7 +330,7 @@ layout_mode = 2
 [node name="RewardTypeSymbol" type="TextureRect" parent="Anchor"]
 visible = false
 custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
+layout_mode = 0
 offset_left = 107.0
 offset_top = 103.0
 offset_right = 144.0
@@ -305,6 +340,7 @@ texture = ExtResource("3_42g51")
 expand_mode = 1
 
 [node name="SelectButton" type="Button" parent="Anchor"]
+z_index = 1
 custom_minimum_size = Vector2(70, 10)
 layout_mode = 1
 anchors_preset = 7
@@ -312,13 +348,26 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -50.5
+offset_left = -85.5
 offset_top = -13.0
-offset_right = 51.5
+offset_right = 16.5
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("4_k47en")
 text = "Select"
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.69, 0.69)
+
+[node name="CuboDeEscolha(parteDeTrás)" type="Sprite2D" parent="Node2D"]
+z_index = -2
+position = Vector2(366.6667, 127.53623)
+texture = ExtResource("7_5exlp")
+
+[node name="CuboDeEscolha(parteDaFrente)" type="Sprite2D" parent="Node2D"]
+material = SubResource("ShaderMaterial_1gip4")
+position = Vector2(237.68115, 113.04348)
+texture = ExtResource("8_1gip4")
 
 [connection signal="pressed" from="Anchor/SelectButton" to="." method="_on_select_button_pressed"]

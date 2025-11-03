@@ -76,10 +76,11 @@ func _on_update_labels(weapon_config: RewardConfig) -> void:
 			text = _format_number(weapon_config.range, 1) + " m"
 
 		StatType.TRAN_BONUS:
-			# perma_buff_amount guarda um multiplicador tipo 0.14 -> 14%
-			var bonus_pct := weapon_config.perma_buff_amount  * 100.0
-			var buff_name := _format_buff_name(weapon_config.perma_buff_type)
-			text = "+" + _format_number(bonus_pct, 1) + "% " + buff_name
+			pass
+			## perma_buff_amount guarda um multiplicador tipo 0.14 -> 14%
+			#var bonus_pct := weapon_config.perma_buff_amount  * 100.0
+			#var buff_name := _format_buff_name(weapon_config.perma_buff_type)
+			#text = "+" + _format_number(bonus_pct, 1) + "% " + buff_name
 
 		_:
 			text = "—"

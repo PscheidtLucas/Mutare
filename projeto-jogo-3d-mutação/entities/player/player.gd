@@ -106,11 +106,7 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_pressed("rotation_right"):
 		total_rotation -= rotation_speed * delta
 	
-	# Controle por mouse
-	var mouse_delta := Input.get_last_mouse_velocity()
-	var mouse_sens := 0.1
-	total_rotation += -mouse_delta.x * mouse_sens * delta
-	
+
 	if total_rotation != 0.0:
 		cubo_frame.rotate_y(deg_to_rad(total_rotation))
 

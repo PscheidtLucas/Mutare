@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=22 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -13,12 +13,9 @@
 [ext_resource type="Resource" uid="uid://bf80h3suneegk" path="res://weapons/smg_tech/smg_tech_stats.tres" id="6_02iek"]
 [ext_resource type="PackedScene" uid="uid://di0s2eg2am62i" path="res://ui/weapon_tooltip.tscn" id="7_klgxq"]
 [ext_resource type="Texture2D" uid="uid://deqphs73r0lcf" path="res://Quadrado inventário - Cabeça (com símbolo).png" id="8_mur5e"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_6ppac"]
-font_size = 45
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w26xa"]
-load_path = "res://.godot/imported/Título Choose 1.png-7001d81e66719e8e58efd8bac217008a.ctex"
+[ext_resource type="Texture2D" uid="uid://cvv7g2i3ro54s" path="res://ui/reward screen images/Título Choose 1 (1).png" id="12_02iek"]
+[ext_resource type="Texture2D" uid="uid://cy6etnva02wps" path="res://ui/reward screen images/Fundo Escolhas.png" id="13_1dgt3"]
+[ext_resource type="Texture2D" uid="uid://cxj4gnibdil3g" path="res://ui/reward screen images/Botão - Reroll.png" id="16_cy6bo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwexk"]
 bg_color = Color(0.151447, 0.124627, 0.0944336, 1)
@@ -64,7 +61,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lsmmt")
 weapon_templates = Array[ExtResource("2_6bncb")]([ExtResource("3_bw4i5"), ExtResource("4_w26xa"), ExtResource("5_mur5e"), ExtResource("6_02iek")])
-options_container = NodePath("MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer")
+options_container = NodePath("MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -325,39 +322,52 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Choose1" type="Label" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer"]
-layout_mode = 2
-text = "CHOOSE 1"
-label_settings = SubResource("LabelSettings_6ppac")
-horizontal_alignment = 1
+[node name="FundoEscolhas" type="Sprite2D" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer"]
+z_index = -100
+position = Vector2(-1, 325)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("13_1dgt3")
 
-[node name="Choose1Texture" type="TextureRect" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer"]
+[node name="Anchor" type="Control" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer"]
 layout_mode = 2
-texture = SubResource("CompressedTexture2D_w26xa")
+
+[node name="TítuloChoose1(1)" type="TextureRect" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer/Anchor"]
+layout_mode = 0
+offset_left = 58.04492
+offset_top = 3.0
+offset_right = 515.9551
+offset_bottom = 74.0
+texture = ExtResource("12_02iek")
 expand_mode = 1
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_right = 15
 
-[node name="OptionsContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2"]
+[node name="Anchor" type="Control" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2"]
 layout_mode = 2
+
+[node name="OptionsContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = -252.0
+offset_right = 622.0
+offset_bottom = 272.0
+scale = Vector2(0.95, 0.95)
 size_flags_vertical = 3
 theme_override_constants/separation = 25
 
-[node name="WeaponBox" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
+[node name="WeaponBox" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
 layout_mode = 2
-reward_screen = NodePath("../../../../../../..")
+reward_screen = NodePath("../../../../../../../..")
 
-[node name="WeaponBox2" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
+[node name="WeaponBox2" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
 layout_mode = 2
-reward_screen = NodePath("../../../../../../..")
+reward_screen = NodePath("../../../../../../../..")
 
-[node name="WeaponBox3" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
+[node name="WeaponBox3" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
 layout_mode = 2
-reward_screen = NodePath("../../../../../../..")
+reward_screen = NodePath("../../../../../../../..")
 
 [node name="Margin" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2"]
 layout_mode = 2
@@ -366,6 +376,7 @@ size_flags_vertical = 6
 theme_override_constants/margin_right = 15
 
 [node name="RerollButton" type="Button" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/Margin"]
+visible = false
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -375,6 +386,11 @@ text = "REROLL 15$"
 
 [node name="PrototipoInv" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(290, 322)
-scale = Vector2(0.869301, 0.926619)
+position = Vector2(283, 323.99994)
+scale = Vector2(0.89057755, 0.93237424)
 texture = ExtResource("2_6ppac")
+
+[node name="BotãoReroll" type="Sprite2D" parent="."]
+position = Vector2(1053, 619)
+scale = Vector2(0.355, 0.355)
+texture = ExtResource("16_cy6bo")
