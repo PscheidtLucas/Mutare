@@ -325,7 +325,7 @@ size_flags_vertical = 3
 [node name="FundoEscolhas" type="Sprite2D" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer"]
 z_index = -100
 position = Vector2(-1, 325)
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.61, 0.61)
 texture = ExtResource("13_1dgt3")
 
 [node name="Anchor" type="Control" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer"]

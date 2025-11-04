@@ -5,22 +5,17 @@
 
 [resource]
 script = ExtResource("2_ci5cp")
-ui_scene_uid = ""
 scene_uid = "uid://b7jx3gi1kdegw"
 name = "Enemy Pistol"
-damage_min = 6.0
-damage_max = 8.0
+damage_min = 3.0
+damage_max = 5.0
 fire_rate_min = 0.5
 fire_rate_max = 0.4
 accuracy_min = 0.7
 accuracy_max = 0.8
 number_of_projectiles = 1
-min_range = 19.0
-max_range = 22.0
-projectile_speed = 15.0
+min_range = 40.0
+max_range = 50.0
+projectile_speed = 10.0
 bullet_scene = ExtResource("1_c2fo3")
-type = 0
-perma_buff_type = 0
-perma_buff_percent_min = 0.0
-perma_buff_percent_max = 0.0
 metadata/_custom_type_script = "uid://ccx1jk5ymt3pe"

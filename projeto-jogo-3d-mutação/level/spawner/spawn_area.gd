@@ -48,13 +48,14 @@ func _process(delta: float) -> void:
 	game_time += delta
 
 func _on_spawn_timer_timeout() -> void:
-	var enemies_to_spawn = calculate_enemies_for_wave(current_wave)
-	spawn_enemies(enemies_to_spawn)
-	
-	var next_spawn_time = calculate_next_spawn_time(current_wave)
-	spawn_timer.wait_time = max(next_spawn_time, min_spawn_time)
-	
-	print("Wave ", current_wave, ": ", enemies_to_spawn, " inimigos spawned. Próximo spawn em ", spawn_timer.wait_time, "s")
+	for n in range(3):
+		var enemies_to_spawn = calculate_enemies_for_wave(current_wave)
+		spawn_enemies(enemies_to_spawn)
+		
+		var next_spawn_time = calculate_next_spawn_time(current_wave)
+		spawn_timer.wait_time = max(next_spawn_time, min_spawn_time)
+		
+		print("Wave ", current_wave, ": ", enemies_to_spawn, " inimigos spawned. Próximo spawn em ", spawn_timer.wait_time, "s")
 
 func calculate_enemies_for_wave(wave: int) -> int:
 	if enemies_per_wave_curve:

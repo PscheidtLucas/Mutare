@@ -11,7 +11,7 @@
 script = ExtResource("1_6dmn1")
 array_of_weapons_nodes = [NodePath("Pistol")]
 health = 70.0
-move_speed = 3.5
+move_speed = 7.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.980168, 0)

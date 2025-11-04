@@ -19,7 +19,7 @@ bob_amplitude = 0.5
 node_to_float = NodePath("Inimigo octaedro")
 array_of_weapons_nodes = [NodePath("Pistol")]
 health = 45.0
-move_speed = 3.5
+move_speed = 8.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.1404, 0)
