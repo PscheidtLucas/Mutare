@@ -9,9 +9,10 @@
 
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("array_of_weapons_nodes")]
 script = ExtResource("1_6dmn1")
+speedy_distance = 40.0
 array_of_weapons_nodes = [NodePath("Pistol")]
 health = 70.0
-move_speed = 7.0
+move_speed = 8.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.980168, 0)
@@ -23,8 +24,8 @@ config = ExtResource("3_prjjb")
 
 [node name="RayCast3D" type="RayCast3D" parent="Pistol"]
 unique_name_in_owner = true
-transform = Transform3D(-1.2489e-08, 0, 0.285714, 0, 0.285714, 0, -0.285714, 0, -1.2489e-08, 0.411577, -0.125434, -0.00587902)
-target_position = Vector3(0, 0, -15)
+transform = Transform3D(-1.2489e-08, 0, 0.285714, 0, 0.285714, 0, -0.285714, 0, -1.2489e-08, 0.17360742, 0.10267386, -0.00587901)
+target_position = Vector3(0, 0, -5)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true

@@ -1,5 +1,7 @@
 class_name UI extends CanvasLayer
 
+
+@export var player_stats : PlayerStats
 @export var game_state: GameState
 
 @onready var time_left_label: Label = %TimeLeftLabel
@@ -13,8 +15,8 @@ class_name UI extends CanvasLayer
 @export var nodes_to_hide_in_start: Array[Control]
 
 func _ready() -> void:
-	if PlayerManager.player != null:
-		health_ui.text = "HP: " + str(PlayerManager.player.health)
+	if player_stats:
+		health_ui.text = "HP: " + str(round(player_stats.health))
 	for node in nodes_to_hide_in_start:
 		node.hide()
 	
@@ -51,7 +53,7 @@ func on_player_lost() -> void:
 	restart_button.show()
 
 func _on_player_took_damage() -> void:
-	health_ui.text = "HP: " + str(PlayerManager.player.health)
+	health_ui.text = "HP: " + str(round(player_stats.health))
 
 func _on_restart_button_pressed() -> void:
 	get_tree().paused = false

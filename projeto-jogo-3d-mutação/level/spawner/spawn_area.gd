@@ -1,5 +1,7 @@
 extends Area3D
 
+## TODO REFATORAR ISSO PARA BALANCEAR MAIS O COMEÇO
+
 @export var array_of_enemy_types : Array[PackedScene]
 
 @onready var spawn_timer: Timer = %SpawnTimer

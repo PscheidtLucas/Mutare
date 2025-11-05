@@ -1,13 +1,12 @@
 @tool
 extends OverlaidMenu
-
 @export var options_packed_scene : PackedScene
-## Defines the path to the main menu. Hides the Main Menu button if not set.
-## Will attempt to read from AppConfig if left empty.
 @export_file("*.tscn") var main_menu_scene_path : String
-
+@export var toggle_action : String = "ui_cancel"
 var popup_open : Node
 var _ignore_first_cancel : bool = false
+var _is_open : bool = false
+var _options_menu_instance : Node = null
 
 func get_main_menu_scene_path() -> String:
 	if main_menu_scene_path.is_empty():
@@ -35,9 +34,11 @@ func _load_scene(scene_path: String) -> void:
 
 func open_options_menu() -> void:
 	var options_scene := options_packed_scene.instantiate()
-	add_child(options_scene)
+	_options_menu_instance = options_scene
+	get_parent().add_child(options_scene)
 	_disable_focus.call_deferred()
 	await options_scene.tree_exiting
+	_options_menu_instance = null
 	_enable_focus.call_deferred()
 
 func _handle_cancel_input() -> void:
@@ -47,7 +48,7 @@ func _handle_cancel_input() -> void:
 	if popup_open != null:
 		close_popup()
 	else:
-		super._handle_cancel_input()
+		close()
 
 func _hide_exit_for_web() -> void:
 	if OS.has_feature("web"):
@@ -67,6 +68,37 @@ func _ready() -> void:
 	_hide_main_menu_if_unset()
 	if Input.is_action_pressed("ui_cancel"):
 		_ignore_first_cancel = true
+	hide()
+	set_process_unhandled_input(true)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_released(toggle_action):
+		if not _is_open:
+			_open_menu()
+		else:
+			_handle_cancel_input()
+		get_viewport().set_input_as_handled()
+
+func _open_menu() -> void:
+	show()
+	process_mode = PROCESS_MODE_ALWAYS
+	_scene_tree.paused = true
+	if makes_mouse_visible:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	_is_open = true
+
+func close() -> void:
+	_is_open = false
+	hide()
+	
+	# Fecha o menu de opções se estiver aberto
+	if _options_menu_instance != null and is_instance_valid(_options_menu_instance):
+		_options_menu_instance.queue_free()
+		_options_menu_instance = null
+	
+	process_mode = PROCESS_MODE_INHERIT
+	_scene_tree.paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_restart_button_pressed() -> void:
 	%ConfirmRestart.popup_centered()
@@ -85,7 +117,6 @@ func _on_exit_button_pressed() -> void:
 
 func _on_confirm_restart_confirmed() -> void:
 	SceneLoader.reload_current_scene()
-	close()
 
 func _on_confirm_main_menu_confirmed() -> void:
 	_load_scene(get_main_menu_scene_path())

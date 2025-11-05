@@ -2,14 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://wny2d8dvp3ok" path="res://addons/maaacks_menus_template/base/nodes/overlaid_menu/overlaid_menu.tscn" id="1_gm3uv"]
 [ext_resource type="Script" uid="uid://uidwhqh4fyhj" path="res://addons/maaacks_menus_template/examples/scenes/overlaid_menus/pause_menu.gd" id="2_0ln3r"]
-[ext_resource type="PackedScene" uid="uid://65shnbd3xtxu" path="res://addons/maaacks_menus_template/examples/scenes/overlaid_menus/pause_menu_options_overlaid_menu.tscn" id="3_kv70e"]
+[ext_resource type="PackedScene" uid="uid://bdvdf5v87mmrr" path="res://addons/maaacks_menus_template/examples/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_4djcm"]
 
 [node name="PauseMenu" instance=ExtResource("1_gm3uv")]
-process_mode = 3
 script = ExtResource("2_0ln3r")
-options_packed_scene = ExtResource("3_kv70e")
-main_menu_scene_path = ""
-pauses_game = true
+options_packed_scene = ExtResource("3_4djcm")
+main_menu_scene_path = "uid://byvydukidk6i2"
+toggle_action = null
 
 [node name="MarginContainer" parent="MenuPanelContainer" index="0"]
 theme_override_constants/margin_left = 64
@@ -31,6 +30,7 @@ text = "Restart"
 
 [node name="OptionsButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="2"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Options"
 

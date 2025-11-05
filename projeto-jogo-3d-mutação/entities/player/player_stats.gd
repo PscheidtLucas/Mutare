@@ -12,7 +12,7 @@ signal stats_changed
 @export var crit_damage_increase: float = 0.0
 @export var fire_rate_increase: float = 0.0
 @export var collect_area_increase: float = 0.0
-@export var knockback_force_increase: float = 1.0
+@export var knockback_force_increase: float = 0.0
 @export var damage_reduction := 0.0
 
 var health: float = 100.0 :
@@ -30,9 +30,10 @@ func reset_health() -> void:
 	health = max_health
 	stats_changed.emit()
 
-func take_damage(amount: float) -> void:
-	health = max(0.0, health - amount)
-	stats_changed.emit()
+## Já tem no script do player:
+#func take_damage(amount: float) -> void:
+	#health = max(0.0, health - amount)
+	#stats_changed.emit()
 
 func heal(amount: float) -> void:
 	health = min(max_health, health + amount)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtkt1dciakqbg"]
+[gd_scene load_steps=14 format=3 uid="uid://dtkt1dciakqbg"]
 
 [ext_resource type="Script" uid="uid://ciuax0oqnamcq" path="res://entities/player/player.gd" id="1_oul6g"]
+[ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="2_7thud"]
 [ext_resource type="Script" uid="uid://2oc2ernkbept" path="res://entities/player/state_machine.gd" id="2_g6k8r"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_qjkh3"]
 [ext_resource type="PackedScene" uid="uid://d20tcrwn1d2hd" path="res://entities/player/player_model.tscn" id="2_wvtmh"]
@@ -22,7 +23,7 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("positions_for_weapons")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_oul6g")
-max_health = 100
+stats = ExtResource("2_7thud")
 rotation_speed = 170.0
 max_speed = 10.0
 acc = 0.5

@@ -1,5 +1,7 @@
 class_name RewardManager extends Control
 
+@export var first_select_button: Button
+
 @export var weapon_templates: Array[RangedWeaponConfig]
 @export var meelee_templates: Array
 @export var heads_templates: Array
@@ -34,6 +36,8 @@ func on_wave_survived() -> void:
 		weapon_box.weapon_config_generated = generated_weapons[index]
 		index += 1
 	weapons_configured.emit()
+	
+	first_select_button.grab_focus()
 	
 func on_weapon_selected(weapon_config) -> void:
 	hide()

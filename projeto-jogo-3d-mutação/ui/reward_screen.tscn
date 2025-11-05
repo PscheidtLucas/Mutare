@@ -52,7 +52,7 @@ Button/styles/hover = SubResource("StyleBoxFlat_6ppac")
 Button/styles/normal = SubResource("StyleBoxFlat_lsdnj")
 Button/styles/pressed = SubResource("StyleBoxFlat_xe12l")
 
-[node name="RewardManagerScreen" type="Control" node_paths=PackedStringArray("options_container")]
+[node name="RewardManagerScreen" type="Control" node_paths=PackedStringArray("first_select_button", "options_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,6 +60,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lsmmt")
+first_select_button = NodePath("MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox/Anchor/SelectButton")
 weapon_templates = Array[ExtResource("2_6bncb")]([ExtResource("3_bw4i5"), ExtResource("4_w26xa"), ExtResource("5_mur5e"), ExtResource("6_02iek")])
 options_container = NodePath("MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer")
 
@@ -361,13 +362,22 @@ theme_override_constants/separation = 25
 layout_mode = 2
 reward_screen = NodePath("../../../../../../../..")
 
+[node name="SelectButton" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox/Anchor" index="1"]
+focus_neighbor_bottom = NodePath("../../../WeaponBox2/Anchor/SelectButton")
+
 [node name="WeaponBox2" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
 layout_mode = 2
 reward_screen = NodePath("../../../../../../../..")
 
+[node name="SelectButton" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox2/Anchor" index="1"]
+focus_neighbor_bottom = NodePath("../../../WeaponBox3/Anchor/SelectButton")
+
 [node name="WeaponBox3" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
 layout_mode = 2
 reward_screen = NodePath("../../../../../../../..")
+
+[node name="SelectButton" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox3/Anchor" index="1"]
+focus_neighbor_top = NodePath("../../../WeaponBox2/Anchor/SelectButton")
 
 [node name="Margin" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2"]
 layout_mode = 2
@@ -394,3 +404,7 @@ texture = ExtResource("2_6ppac")
 position = Vector2(1053, 619)
 scale = Vector2(0.355, 0.355)
 texture = ExtResource("16_cy6bo")
+
+[editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox"]
+[editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox2"]
+[editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox3"]

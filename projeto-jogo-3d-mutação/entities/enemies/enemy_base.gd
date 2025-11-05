@@ -4,6 +4,7 @@ extends CharacterBody3D
 enum State { IDLE, CHASE, JUMPING }
 var current_state: State = State.CHASE
 
+@export var speedy_distance : float = 15.0
 @export var array_of_weapons_nodes : Array[BaseWeapon]
 @export var health := 3.0
 var player: Player = null
@@ -27,9 +28,9 @@ var jump_target_position: Vector3
 @onready var navigation_agent_3d: NavigationAgent3D = %NavigationAgent3D
 
 const PATH_UPDATE_INTERVAL := 0.5    # tempo mínimo entre updates de path para este agente
-const TARGET_UPDATE_DIST := 0.5       # só atualiza target se o player se mover > isso
+const TARGET_UPDATE_DIST := 0.5      # só atualiza target se o player se mover > isso
 var path_update_accum: float = 0.0
-var path_update_offset: float = 0.0   # offset aleatório pra desincronizar updates
+var path_update_offset: float = 0.0    # offset aleatório pra desincronizar updates
 var last_target_position: Vector3 = Vector3.INF
 
 func _ready() -> void:
@@ -133,9 +134,20 @@ func _chase_state(delta: float):
 		navigation_agent_3d.set_velocity(Vector3.ZERO)
 		return
 
+	# --- INÍCIO DA MODIFICAÇÃO ---
+	var current_move_speed = move_speed # Velocidade base
+	var dist_to_player = global_position.distance_to(player.global_position)
+
+	if dist_to_player > speedy_distance:
+		current_move_speed = move_speed * 1.5 # Dobra a velocidade
+	
+	# Esta é a correção: atualizar a velocidade MÁXIMA do agente
+	navigation_agent_3d.max_speed = current_move_speed
+	# --- FIM DA MODIFICAÇÃO ---
+
 	var dir = next_path_position - global_position
 	dir.y = 0.0 # mantém no plano, evita subidas/descidas bruscas
-	var desired_velocity = dir.normalized() * move_speed
+	var desired_velocity = dir.normalized() * current_move_speed
 	navigation_agent_3d.set_velocity(desired_velocity)
 
 func _jumping_state():

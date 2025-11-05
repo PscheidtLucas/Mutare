@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody3D
 
 # Câmera do player
-
+## TODO NERFAR O DASH -> COLOCAR BARRA DE STAMINA SÓ PRO DASH 
 @export var stats: PlayerStats
 
 var dead:= false
@@ -10,8 +10,6 @@ var target_camera_y_angle := 0
 var camera_rotation_speed := 10.0
 
 @export var fall_off_percent_damage: float = 0.2
-@export var max_health := 5
-@onready var health := max_health
 
 @onready var cubo_frame: Node3D = %CuboFrame
 @export var rotation_speed := 180.0 # graus por segundo
@@ -77,7 +75,7 @@ func _ready() -> void:
 	
 	GameEvents.player_fell_off.connect(func() -> void:
 		print("emitiu player fell off")
-		take_damage(max_health * fall_off_percent_damage)
+		take_damage(stats.max_health * fall_off_percent_damage)
 		reset_player()  
 		)
 	GameEvents.wave_survived.connect(func()-> void:
@@ -137,11 +135,12 @@ func take_damage(damage: float) -> void:
 		return
 	if is_cheating == true:
 		return
-	health -= damage
+	stats.health -= damage
 	GameEvents.player_took_damage.emit()
-	if health <= 0:
+	if stats.health <= 0:
+		stats.health = 0
 		die()
-		health = 0
+		
 		
 func die() -> void:
 	dead = true

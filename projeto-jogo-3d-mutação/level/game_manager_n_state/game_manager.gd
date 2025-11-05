@@ -1,6 +1,6 @@
 class_name GameManager extends Node
 # TODO: 
-# Arrumar o escalonamento da dificuldade
+# Arrumar o escalonamento da dificuldade e o process
 
 @export var game_state: GameState
 

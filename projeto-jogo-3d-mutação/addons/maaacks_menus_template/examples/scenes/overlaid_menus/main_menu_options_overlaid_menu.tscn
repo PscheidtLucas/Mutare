@@ -4,7 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bdvdf5v87mmrr" path="res://addons/maaacks_menus_template/examples/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="2_vemvc"]
 
 [node name="MasterOptionsOverlaidMenu" instance=ExtResource("1_kl0kf")]
+visible = true
 menu_scene = ExtResource("2_vemvc")
+
+[node name="BackgroundColor" parent="." index="0"]
+color = Color(0, 0, 0, 1)
 
 [node name="MenuPanelContainer" parent="." index="1"]
 anchors_preset = 15
