@@ -3,17 +3,29 @@ extends Resource
 
 signal stats_changed
 
-# --- Stats base ---
-@export var max_health: float = 100.0
-@export var hp5: float = 0.0 # Health regen a cada 5s
-@export var damage_increase: float = 0.0
-@export var speed_increase: float = 0.0
-@export var crit_chance_increase: float = 0.0
-@export var crit_damage_increase: float = 0.0
-@export var fire_rate_increase: float = 0.0
-@export var collect_area_increase: float = 0.0
-@export var knockback_force_increase: float = 0.0
-@export var damage_reduction := 0.0
+## BASE STATS
+@export var b_max_health: float = 100.0
+@export var b_hp5: float = 0.0 # Health regen a cada 5s
+@export var b_damage_increase: float = 0.0
+@export var b_speed_increase: float = 0.0
+@export var b_crit_chance_increase: float = 0.0
+@export var b_crit_damage_increase: float = 0.0
+@export var b_fire_rate_increase: float = 0.0
+@export var b_collect_area_increase: float = 0.0
+@export var b_knockback_force_increase: float = 0.0
+@export var b_damage_reduction_perc := 0.0
+
+## CURRENT STATS
+var max_health: float = 100.0
+var hp5: float = 0.0 # Health regen a cada 5s
+var damage_increase: float = 0.0
+var speed_increase: float = 0.0
+var crit_chance_increase: float = 0.0
+var crit_damage_increase: float = 0.0
+var fire_rate_increase: float = 0.0
+var collect_area_increase: float = 0.0
+var knockback_force_increase: float = 0.0
+var damage_reduction_perc := 0.0
 
 var health: float = 100.0 :
 	set(value):
@@ -81,8 +93,8 @@ func change_knockback_force(delta: float) -> void:
 	knockback_force_increase = knockback_force_increase + delta
 	stats_changed.emit()
 
-func change_damage_reduction(delta: float) -> void:
-	damage_reduction = damage_reduction + delta
+func change_damage_reduction_perc(delta: float) -> void:
+	damage_reduction_perc = damage_reduction_perc + delta
 	stats_changed.emit()
 
 # Utilitário opcional (reset completo)
@@ -96,5 +108,6 @@ func reset_all() -> void:
 	fire_rate_increase = 0.0
 	collect_area_increase = 0.0
 	knockback_force_increase = 0.0
+	damage_reduction_perc = 0.0
 	reset_health()
 	stats_changed.emit()

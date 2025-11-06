@@ -96,7 +96,7 @@ config = ExtResource("2_gmggc")
 
 [node name="Muzzle" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10767, 0.00499769, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10767, 0.44810817, 0)
 
 [node name="WeaponAnim" type="AnimationPlayer" parent="." node_paths=PackedStringArray("weapon")]
 libraries = {
@@ -106,4 +106,4 @@ script = ExtResource("4_xonwo")
 weapon = NodePath("..")
 
 [node name="Arma tecnologica circulos energia2" parent="." instance=ExtResource("4_7n4tm")]
-transform = Transform3D(-2.53399e-07, 0, -0.063, 0, 0.07, 0, 0.07, 0, -2.28059e-07, -1.48417, 0, -0.0209017)
+transform = Transform3D(-2.5339932e-07, 0, -0.063, 0, 0.07, 0, 0.07, 0, -2.2805938e-07, -1.48417, 0, -0.0209017)
