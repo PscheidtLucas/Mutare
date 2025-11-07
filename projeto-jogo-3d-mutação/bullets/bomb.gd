@@ -56,13 +56,21 @@ func explode():
 	queue_free()
 
 func _cause_damage():
+	var damage_to_deal : float
 	# Garante que o config foi passado antes de tentar ler o dano
 	if not config:
 		printerr("Bomba explodiu sem um RangedWeaponConfig!")
 		return
 	
-	var damage_to_deal = config.damage
-
+	if is_player_weapon:
+		if PlayerManager.player == null:
+			return
+		var player_stats : PlayerStats = PlayerManager.player.stats
+	
+		damage_to_deal = config.damage * (1 + player_stats.damage_increase)
+	else:
+		damage_to_deal = config.damage
+	
 	await get_tree().physics_frame
 	for body in explosion_area_3d.get_overlapping_bodies():
 		

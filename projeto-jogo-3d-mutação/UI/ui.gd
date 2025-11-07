@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 	GameEvents.wave_survived.connect(on_wave_survived)
 	GameEvents.player_died.connect(on_player_lost)
-	GameEvents.player_took_damage.connect(_on_player_took_damage)
+	player_stats.health_changed.connect(_on_player_health_changed)
 	GameEvents.wave_started.connect(on_wave_started)
 	
 	update_time_display()
@@ -52,8 +52,8 @@ func on_player_lost() -> void:
 	lose_label.show()
 	restart_button.show()
 
-func _on_player_took_damage() -> void:
-	health_ui.text = "HP: " + str(round(player_stats.health))
+func _on_player_health_changed() -> void:
+	health_ui.text = "HP: " + str("%0.2f" % (player_stats.health))
 
 func _on_restart_button_pressed() -> void:
 	get_tree().paused = false

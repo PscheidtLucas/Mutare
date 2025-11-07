@@ -1,33 +1,32 @@
 class_name PlayerStats
 extends Resource
 
+# ideias de stats: dodge chance, +1 bullet chance, poison chance, burn chance...
+
 ## O nome do buff aqui tem q ser o mesmo que aparece em current stats porem upper case, para utilizar sem problemas em recalculate stats
 enum BuffableStats {
 	MAX_HEALTH,
 	HP5,
 	DAMAGE_INCREASE,
 	SPEED_INCREASE,
-	CRIT_CHANCE_INCREASE,
+	CRIT_CHANCE,
 	CRIT_DAMAGE_INCREASE,
 	FIRE_RATE_INCREASE,
 	COLLECT_AREA_INCREASE,
-	KNOCKBACK_FORCE_INCREASE,
 	DAMAGE_REDUCTION_PERC,
 	}
 
-signal stats_changed
-signal health_changed(cur_health: int, max_health: int)
+signal health_changed
 
-## BASE STATS
+## BASE STATS -> para resetar os current stats para esses, basta dar clear no array de buffs
 @export var b_max_health: float = 100.0
 @export var b_hp5: float = 0.0 # Health regen a cada 5s
 @export var b_damage_increase: float = 0.0
 @export var b_speed_increase: float = 0.0
-@export var b_crit_chance_increase: float = 0.0
-@export var b_crit_damage_increase: float = 0.0
+@export var b_crit_chance: float = 0.0
+@export var b_crit_damage: float = 1.0 # 1.0 = 100% de dano ao acertar um crítico
 @export var b_fire_rate_increase: float = 0.0
 @export var b_collect_area_increase: float = 0.0
-@export var b_knockback_force_increase: float = 0.0
 @export var b_damage_reduction_perc := 0.0
 
 ## CURRENT STATS
@@ -35,17 +34,16 @@ var max_health: float = 100.0
 var hp5: float = 0.0 # Health regen a cada 5s
 var damage_increase: float = 0.0
 var speed_increase: float = 0.0
-var crit_chance_increase: float = 0.0
-var crit_damage_increase: float = 0.0
+var crit_chance: float = 0.0
+var crit_damage: float = 0.0 
 var fire_rate_increase: float = 0.0
 var collect_area_increase: float = 0.0
-var knockback_force_increase: float = 0.0
 var damage_reduction_perc := 0.0
 
 var health: float = 100.0 :
 	set(value):
 		health = clamp(value, 0.0, max_health)
-		health_changed.emit(health, max_health)
+		health_changed.emit()
 	get:
 		return health
 
@@ -73,19 +71,18 @@ func recalculate_stats() -> void:
 	hp5 = b_hp5
 	damage_increase = b_damage_increase
 	speed_increase = b_speed_increase
-	crit_chance_increase = b_crit_chance_increase
-	crit_damage_increase = b_crit_damage_increase
+	crit_chance = b_crit_chance
+	crit_damage = b_crit_damage
 	fire_rate_increase = b_fire_rate_increase
 	collect_area_increase = b_collect_area_increase
-	knockback_force_increase = b_knockback_force_increase
 	damage_reduction_perc = b_damage_reduction_perc
 	
 	## Calculando quanto buffar baseado em quais buffs estão no stat_buffs (Array)
 	var stat_multipliers: Dictionary = {}
 	var stat_addends: Dictionary = {}
 	for buff: StatBuff in stat_buffs:
-		var stat_name : String = BuffableStats.keys()[buff]
-		match buff.BuffType:
+		var stat_name : String = BuffableStats.keys()[buff.stat]
+		match buff.buff_type:
 			StatBuff.BuffType.ADD:
 				if not stat_addends.has(stat_name):
 					stat_addends[stat_name] = 0.0
@@ -105,72 +102,3 @@ func recalculate_stats() -> void:
 	for stat_name in stat_addends:
 		var cur_property_name: String = str(stat_name).to_lower()
 		set(cur_property_name, get(cur_property_name) + stat_addends[stat_name])
-
-func reset_health_to_full() -> void:
-	health = max_health
-	stats_changed.emit()
-
-func reset_all() -> void:
-	max_health = b_max_health
-	health = max_health
-	hp5 = b_hp5
-	damage_increase = b_damage_increase
-	speed_increase = b_speed_increase
-	crit_chance_increase = b_crit_chance_increase
-	crit_damage_increase = b_crit_damage_increase
-	fire_rate_increase = b_fire_rate_increase
-	collect_area_increase = b_collect_area_increase
-	knockback_force_increase = b_knockback_force_increase
-	damage_reduction_perc = b_damage_reduction_perc
-	stats_changed.emit()
-
-
-func heal(amount: float) -> void:
-	health = min(max_health, health + amount)
-	stats_changed.emit()
-
-func change_max_health(delta: float) -> void:
-	max_health = max(1.0, max_health + delta)
-	# Ajusta o health atual proporcionalmente ao novo máximo
-	health = clamp(health, 0.0, max_health)
-	stats_changed.emit()
-
-func change_max_health_percent(percent: float) -> void:
-	var increase := max_health * percent
-	change_max_health(increase)
-
-func change_hp5(delta: float) -> void:
-	hp5 = max(0.0, hp5 + delta)
-	stats_changed.emit()
-
-func change_damage(delta: float) -> void:
-	damage_increase += delta
-	stats_changed.emit()
-
-func change_speed(delta: float) -> void:
-	speed_increase += delta
-	stats_changed.emit()
-
-func change_crit_chance(delta: float) -> void:
-	crit_chance_increase += delta
-	stats_changed.emit()
-
-func change_crit_damage(delta: float) -> void:
-	crit_damage_increase += delta
-	stats_changed.emit()
-
-func change_fire_rate(delta: float) -> void:
-	fire_rate_increase += delta
-	stats_changed.emit()
-
-func change_collect_area(delta: float) -> void:
-	collect_area_increase += delta
-	stats_changed.emit()
-
-func change_knockback_force(delta: float) -> void:
-	knockback_force_increase = knockback_force_increase + delta
-	stats_changed.emit()
-
-func change_damage_reduction_perc(delta: float) -> void:
-	damage_reduction_perc = damage_reduction_perc + delta
-	stats_changed.emit()

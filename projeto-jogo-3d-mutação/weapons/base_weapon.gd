@@ -1,4 +1,4 @@
-# LongRangeWeapon.gd (versão atualizada com suas preferências)
+# Base weapon, usada para player e inimigos, nao precisa saber de stats de dano pq as bullets ja sabem
 class_name BaseWeapon
 extends Node3D
 
@@ -16,7 +16,6 @@ signal shot_emitted # Para animar armas
 
 func _ready() -> void:
 	call_deferred("config_timer")
-	
 	call_deferred("check_config")
 	
 
@@ -52,20 +51,20 @@ func _calculate_spread_angles(num: int, accuracy: float) -> Array[float]:
 
 	return angles
 
-func setup_player_weapon()-> void: #chamado no equipe weapon do player, no inicio da partida
-	if config:
-		config.roll_stats()
-		print("condig stats (D,F,A): ", config.damage, config.fire_rate, config.accuracy)
-		config_timer()
-	else:
-		printerr("config não encontrado na hora de dar roll stats")
-
-
 func config_timer() -> void:
 	# Configura o timer com base no fire_rate do config
 	cooldown_timer = Timer.new()
 	add_child(cooldown_timer)
-	var time_to_fire = 1.0 / config.fire_rate
+	var time_to_fire: float
+	if is_player_weapon:
+		if PlayerManager.player == null:
+			return
+		var player_stats = PlayerManager.player.stats as PlayerStats
+		var updated_fire_rate = config.fire_rate * (1 + player_stats.fire_rate_increase)
+	
+		time_to_fire = 1.0 / updated_fire_rate
+	else:
+		time_to_fire = 1.0 / config.fire_rate
 	cooldown_timer.start(time_to_fire)
 	cooldown_timer.timeout.connect(_fire)
 	if is_player_weapon:

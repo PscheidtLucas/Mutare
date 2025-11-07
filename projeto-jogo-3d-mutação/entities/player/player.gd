@@ -68,6 +68,7 @@ func _calculate_jump_horiz_speed(dist: float, time_to_peak: float,
 	
 
 func _ready() -> void:
+	create_hp5_timer()
 	set_deferred("starting_global_pos", global_position)
 	print("starting pos: ", starting_global_pos)
 	starting_target_camera_y = target_camera_y_angle
@@ -84,16 +85,25 @@ func _ready() -> void:
 		
 	GameEvents.weapon_selected.connect(equip)
 
+func create_hp5_timer() -> void:
+	var hp5_timer := Timer.new()
+	hp5_timer.wait_time = 5.0
+	hp5_timer.timeout.connect(on_hp5_timer_timeout)
+	add_child(hp5_timer)
+	hp5_timer.start()
+
+func on_hp5_timer_timeout() -> void:
+	if stats.hp5 > 0.0 and stats.health < stats.max_health:
+		heal(stats.hp5)
+
+func heal(amount: float) -> void:
+	stats.health += amount
+	
 func reset_player() -> void:
 	print("reseting player position to: ", starting_global_pos)
 	global_position = starting_global_pos
 	target_camera_y_angle = starting_target_camera_y
 	
-#func _physics_process(delta: float) -> void:
-	#if Input.is_action_pressed("rotation_left"):
-		#cubo_frame.rotate_y(deg_to_rad(rotation_speed * delta))
-	#elif Input.is_action_pressed("rotation_right"):
-		#cubo_frame.rotate_y(deg_to_rad(-rotation_speed * delta))
 		
 func _physics_process(delta: float) -> void:
 	var total_rotation := 0.0
@@ -135,13 +145,11 @@ func take_damage(damage: float) -> void:
 		return
 	if is_cheating == true:
 		return
-	stats.health -= damage
-	GameEvents.player_took_damage.emit()
+	stats.health -= damage * (1.0 - stats.damage_reduction_perc)
 	if stats.health <= 0:
 		stats.health = 0
 		die()
-		
-		
+	
 func die() -> void:
 	dead = true
 	GameEvents.player_died.emit()

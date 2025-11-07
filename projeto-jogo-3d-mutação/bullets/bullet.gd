@@ -1,10 +1,13 @@
 class_name Bullet extends Area3D
 
+@export var player_stats : PlayerStats = null
+
 @export var destroy_at_first: bool = true
 
 var velocity: Vector3 = Vector3.ZERO
 var was_shot_from_player: bool = false
 var damage: float = 1.0
+var _config: RangedWeaponConfig = null
 
 func _physics_process(delta: float) -> void:
 	global_translate(velocity * delta)
@@ -14,14 +17,18 @@ func initialize(start_position: Vector3, direction: Vector3, config: RangedWeapo
 	self.global_position = start_position
 	self.velocity = direction * config.projectile_speed
 	self.damage = config.damage
+	_config = config
+	
 	self.was_shot_from_player = shot_from_player
 	look_at(global_position + direction, Vector3.UP)
 	# Calcula o tempo de vida com base no alcance e velocidade
 	var lifetime = config.range / config.projectile_speed
 	
 	# Garante que o timer seja criado e conectado de forma segura
-	var timer = get_tree().create_timer(lifetime)
+	var timer = Timer.new()
 	timer.timeout.connect(queue_free)
+	add_child(timer)
+	timer.start(lifetime)
 
 func _on_body_entered(body: Node3D) -> void:
 	# Lógica mantida exatamente como você prefere
@@ -31,6 +38,7 @@ func _on_body_entered(body: Node3D) -> void:
 	# Atingiu um inimigo E não foi atirada por um inimigo
 	elif body is Enemy and was_shot_from_player:
 		if body.has_method("take_damage"):
+			calc_crit()
 			body.take_damage(damage)
 		else:
 			printerr("Inimigo acertado por bala não tem o método take_damage esperado!")
@@ -51,3 +59,11 @@ func _on_body_entered(body: Node3D) -> void:
 	if body != self and not (body is Player and was_shot_from_player) and not (body is Enemy and not was_shot_from_player):
 		print("Bala colidiu com qualquer outra coisa e se destruiu!")
 		queue_free()
+
+# só jogador pode dar critico
+func calc_crit() -> void:
+	if player_stats:
+		damage *= (1 + player_stats.damage_increase)
+		if player_stats.crit_chance > 0.0:
+			if randf() < player_stats.crit_chance:
+				damage *= (1 + player_stats.crit_damage)

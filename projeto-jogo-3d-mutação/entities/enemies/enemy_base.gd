@@ -200,3 +200,4 @@ func die() -> void:
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	velocity = safe_velocity
+	

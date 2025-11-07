@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://8ukwdbx7rwvo"]
+[gd_scene load_steps=6 format=3 uid="uid://8ukwdbx7rwvo"]
 
 [ext_resource type="Script" uid="uid://b4xkwcbtmsa3n" path="res://bullets/bullet.gd" id="1_37f7c"]
+[ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="2_wo3kc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qrgb1"]
 radius = 0.154288
@@ -17,6 +18,7 @@ emission_energy_multiplier = 2.0
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
 collision_mask = 3
 script = ExtResource("1_37f7c")
+player_stats = ExtResource("2_wo3kc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

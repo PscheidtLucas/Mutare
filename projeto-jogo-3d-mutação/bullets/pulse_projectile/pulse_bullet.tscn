@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://p1w2tvlxuwtx"]
+[gd_scene load_steps=5 format=3 uid="uid://p1w2tvlxuwtx"]
 
 [ext_resource type="Script" uid="uid://b4xkwcbtmsa3n" path="res://bullets/bullet.gd" id="1_eq3yr"]
+[ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="2_0bf37"]
 [ext_resource type="PackedScene" uid="uid://d1d5piuj042an" path="res://bullets/pulse_projectile/proj_pulse.tscn" id="2_1ablr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1ablr"]
@@ -10,6 +11,7 @@ size = Vector3(2.0061, 2.12012, 0.089)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_mask = 3
 script = ExtResource("1_eq3yr")
+player_stats = ExtResource("2_0bf37")
 destroy_at_first = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

@@ -37,7 +37,8 @@ func _on_movement_state_physics_processing(delta: float) -> void:
 		move_dir = Vector3.ZERO
 	
 	## Aplica movimento
-	var target_velocity = move_dir * p.max_speed
+	var target_velocity = move_dir * p.max_speed * (1 + p.stats.speed_increase)
+
 	if target_velocity == Vector3.ZERO:
 		p.velocity.x = move_toward(p.velocity.x, 0, p.deceleration)
 		p.velocity.z = move_toward(p.velocity.z, 0, p.deceleration)
