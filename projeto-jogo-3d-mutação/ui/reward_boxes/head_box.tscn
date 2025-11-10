@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://oupsgwycr6a7"]
+[gd_scene load_steps=12 format=3 uid="uid://oupsgwycr6a7"]
 
 [ext_resource type="Script" uid="uid://creftg701swqm" path="res://ui/reward_boxes/head_box.gd" id="1_0lqmn"]
+[ext_resource type="Script" uid="uid://4xpdpxw1pve8" path="res://ui/reward_boxes/3dui.gd" id="2_qeakv"]
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="6_l4c1i"]
 [ext_resource type="Theme" uid="uid://bb4dm22qo2rvc" path="res://ui/reward_boxes/select_button.tres" id="7_tr0oq"]
 [ext_resource type="Texture2D" uid="uid://bemojfxcra7mh" path="res://ui/reward screen images/Cubo de escolha (parte de trás).png" id="8_1j1h4"]
@@ -169,6 +170,23 @@ text = "HP5"
 layout_mode = 2
 size_flags_horizontal = 8
 text = "+ 5 %"
+
+[node name="Anchor3DImage" type="Control" parent="."]
+layout_mode = 2
+
+[node name="3DUI_MarginContainer" type="MarginContainer" parent="Anchor3DImage" node_paths=PackedStringArray("headbox")]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 150.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+script = ExtResource("2_qeakv")
+headbox = NodePath("../..")
 
 [node name="Anchor" type="Control" parent="."]
 layout_mode = 2

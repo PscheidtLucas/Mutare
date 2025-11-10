@@ -1,4 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://bue2k0fqe3x0a"]
+[gd_scene load_steps=11 format=4 uid="uid://cn1xd5qxv3iy0"]
+
+[ext_resource type="World3D" uid="uid://b1vkvr04jb1j5" path="res://weapons/3d_world_weapons_ui.tres" id="1_w5qqo"]
+[ext_resource type="Script" uid="uid://bgm61vl6hmwwn" path="res://rotate_child.gd" id="2_4odpw"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b2sw7"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8rty"]
 resource_name = "Material.001"
@@ -151,9 +157,50 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3hb86")
 
-[node name="Cabeça Engineer" type="Node3D"]
+[node name="UI_Engineer" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.6160531, 0, 0, 0, 0.5923858, 0, 0, 0, 0.5923858, 0.0068583786, 0.83446896, 0.43340483)
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("ViewportTexture_b2sw7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+world_3d = ExtResource("1_w5qqo")
+transparent_bg = true
+msaa_3d = 2
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 0.981985, 0.188958, 0, -0.188958, 0.981985, 0, 10.5782, 64.7122)
+keep_aspect = 0
+projection = 1
+current = true
+fov = 38.0
+size = 46.0
+
+[node name="RotateChild" type="Node3D" parent="SubViewport/Camera3D"]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 0.981985, -0.188958, 0, 0.188958, 0.981985, 0, 0.369393, -65.8283)
+script = ExtResource("2_4odpw")
+rotation_duration = 12.0
+
+[node name="Anchor" type="Node3D" parent="SubViewport/Camera3D/RotateChild"]
+process_mode = 3
+transform = Transform3D(0.352907, 0, 0.935658, 0, 1, 0, -0.935658, 0, 0.352907, 0, 0, 0)
+
+[node name="Cabeça Engineer" type="Node3D" parent="SubViewport/Camera3D/RotateChild/Anchor"]
+transform = Transform3D(10, 0, 0, 0, 9.999988, 0, -4.7683716e-07, 0, 10.000001, -0.8980031, -1.237703, 1.2349235)
+
+[node name="Cube" type="MeshInstance3D" parent="SubViewport/Camera3D/RotateChild/Anchor/Cabeça Engineer"]
+transform = Transform3D(0.6160531, 0, 0, 0, 0.5923858, 0, 0, 0, 0.5923858, 0, 0, 0)
 mesh = SubResource("ArrayMesh_kmuo1")
 skeleton = NodePath("")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="SubViewport"]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.5805, 0)
+light_color = Color(0.855313, 0.935068, 0.899773, 1)

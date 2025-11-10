@@ -362,6 +362,7 @@ scale = Vector2(0.69, 0.69)
 
 [node name="CuboDeEscolha(parteDeTrás)" type="Sprite2D" parent="Node2D"]
 z_index = -2
+material = SubResource("ShaderMaterial_1gip4")
 position = Vector2(366.6667, 127.53623)
 texture = ExtResource("7_5exlp")
 

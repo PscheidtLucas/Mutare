@@ -1,5 +1,7 @@
 class_name HeadBox extends MarginContainer
 
+signal update_labels
+
 var reward = null
 var head_config_generated : HeadRewardConfig # passada pelo reward screen quando o sinal wave survived é emitido
 
@@ -84,3 +86,5 @@ func configure_stat_labels() -> void:
 			
 			name_label.text = buff_name
 			value_label.text = final_value
+			
+			update_labels.emit(head_config_generated)

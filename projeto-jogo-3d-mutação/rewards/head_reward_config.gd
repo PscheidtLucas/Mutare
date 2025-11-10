@@ -1,6 +1,7 @@
 class_name HeadRewardConfig extends RewardConfig
 
 @export var scene_uid: String
+@export var ui_scene: String
 @export var array_of_buffs: Array[StatBuff]
 
 

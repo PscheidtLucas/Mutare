@@ -1,21 +1,26 @@
-[gd_scene load_steps=8 format=4 uid="uid://8w4c6ilv2ky"]
+[gd_scene load_steps=11 format=4 uid="uid://bc4srpmmbh8e4"]
 
-[ext_resource type="Texture2D" uid="uid://wkulpl8f0ino" path="res://rewards/heads/glb files/cabecaRobo01_Cabeça Color.png" id="1_dcfrv"]
-[ext_resource type="Texture2D" uid="uid://dm6haqcc7nkm6" path="res://rewards/heads/glb files/cabecaRobo01_Cabeça Emission Color.png" id="2_wrhir"]
-[ext_resource type="Texture2D" uid="uid://bie36sjcf452b" path="res://rewards/heads/glb files/cabecaRobo01_Ucupaint orelhas Color.png" id="3_kdd0k"]
+[ext_resource type="World3D" uid="uid://b1vkvr04jb1j5" path="res://weapons/3d_world_weapons_ui.tres" id="1_7oudt"]
+[ext_resource type="Script" uid="uid://bgm61vl6hmwwn" path="res://rotate_child.gd" id="2_vvhjv"]
+[ext_resource type="Texture2D" uid="uid://wkulpl8f0ino" path="res://rewards/heads/glb files/cabecaRobo01_Cabeça Color.png" id="3_rv2vb"]
+[ext_resource type="Texture2D" uid="uid://dm6haqcc7nkm6" path="res://rewards/heads/glb files/cabecaRobo01_Cabeça Emission Color.png" id="4_lfh4m"]
+[ext_resource type="Texture2D" uid="uid://bie36sjcf452b" path="res://rewards/heads/glb files/cabecaRobo01_Ucupaint orelhas Color.png" id="5_5wepc"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b2sw7"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dcfrv"]
 resource_name = "Cabeça"
 cull_mode = 2
-albedo_texture = ExtResource("1_dcfrv")
+albedo_texture = ExtResource("3_rv2vb")
 metallic = 0.1
 emission_enabled = true
-emission_texture = ExtResource("2_wrhir")
+emission_texture = ExtResource("4_lfh4m")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrhir"]
 resource_name = "orelhas"
 cull_mode = 2
-albedo_texture = ExtResource("3_kdd0k")
+albedo_texture = ExtResource("5_5wepc")
 metallic = 0.1
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_d05v0"]
@@ -72,9 +77,50 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_d05v0")
 
-[node name="cabeça_robo" type="Node3D"]
+[node name="UI_Robot" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.6160531, 0, 0, 0, 0.5872665, 0.07771137, 0, -0.07771137, 0.5872665, -0.01583508, 0.88150775, 0.31417346)
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("ViewportTexture_b2sw7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+world_3d = ExtResource("1_7oudt")
+transparent_bg = true
+msaa_3d = 2
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 0.981985, 0.188958, 0, -0.188958, 0.981985, 0, 10.5782, 64.7122)
+keep_aspect = 0
+projection = 1
+current = true
+fov = 38.0
+size = 46.0
+
+[node name="RotateChild" type="Node3D" parent="SubViewport/Camera3D"]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 0.981985, -0.188958, 0, 0.188958, 0.981985, 0, 0.369393, -65.8283)
+script = ExtResource("2_vvhjv")
+rotation_duration = 12.0
+
+[node name="Anchor" type="Node3D" parent="SubViewport/Camera3D/RotateChild"]
+process_mode = 3
+transform = Transform3D(0.352907, 0, 0.935658, 0, 1, 0, -0.935658, 0, 0.352907, 0, 0, 0)
+
+[node name="cabeça_robo" type="Node3D" parent="SubViewport/Camera3D/RotateChild/Anchor"]
+transform = Transform3D(10, 0, 4.768372e-07, 0, 9.999988, 0, -4.7683716e-07, 0, 10.000001, -0.8980031, -1.237703, 1.2349235)
+
+[node name="Cube" type="MeshInstance3D" parent="SubViewport/Camera3D/RotateChild/Anchor/cabeça_robo"]
+transform = Transform3D(0.6160531, 0, 0, 0, 0.5923858, 0, 0, 0, 0.5923858, 0, 0, 0)
 mesh = SubResource("ArrayMesh_c3sco")
 skeleton = NodePath("")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="SubViewport"]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.5805, 0)
+light_color = Color(0.855313, 0.935068, 0.899773, 1)

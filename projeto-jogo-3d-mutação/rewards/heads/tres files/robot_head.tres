@@ -26,5 +26,6 @@ metadata/_custom_type_script = "uid://cjfuvhi515usr"
 [resource]
 script = ExtResource("2_mimky")
 scene_uid = "uid://8w4c6ilv2ky"
+ui_scene = "uid://bc4srpmmbh8e4"
 array_of_buffs = Array[ExtResource("1_fw15h")]([SubResource("Resource_fw15h"), SubResource("Resource_mimky"), SubResource("Resource_6rtub")])
 metadata/_custom_type_script = "uid://b3jjmvq4w0nl6"
