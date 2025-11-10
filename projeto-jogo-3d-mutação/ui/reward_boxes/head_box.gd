@@ -33,7 +33,8 @@ func _on_select_button_pressed() -> void:
 	GameEvents.head_selected.emit(head_config_generated)
 	get_tree().paused = false
 	
-	GameEvents.wave_started.emit() 
+	GameEvents.wave_started.emit()
+	
 
 func configure_stat_labels() -> void:
 	var buffs := head_config_generated.array_of_buffs

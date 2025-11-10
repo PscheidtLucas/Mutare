@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dtkt1dciakqbg"]
+[gd_scene load_steps=15 format=3 uid="uid://dtkt1dciakqbg"]
 
 [ext_resource type="Script" uid="uid://ciuax0oqnamcq" path="res://entities/player/player.gd" id="1_oul6g"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="2_7thud"]
@@ -8,9 +8,7 @@
 [ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="3_g6k8r"]
 [ext_resource type="Script" uid="uid://b8irtqlwjodtx" path="res://entities/player/heads_inventory.gd" id="4_a1qjk"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="4_boad6"]
-[ext_resource type="PackedScene" uid="uid://8w4c6ilv2ky" path="res://rewards/heads/cabeça_robo.tscn" id="5_afbqv"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="5_rgyib"]
-[ext_resource type="PackedScene" uid="uid://bue2k0fqe3x0a" path="res://rewards/heads/cabeça_engineer.tscn" id="6_gx6sm"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_boad6"]
 [ext_resource type="Resource" uid="uid://7bdmtwpy7kf5" path="res://entities/player/player_guards/is_alive.tres" id="9_hg6s5"]
 [ext_resource type="Script" uid="uid://le5w1cm0ul8p" path="res://addons/godot_state_charts/expression_guard.gd" id="10_8t03j"]
@@ -130,17 +128,11 @@ player_stats = ExtResource("2_7thud")
 [node name="Position1" type="Node3D" parent="CuboFrame/HeadsInventory"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="cabeça_robo" parent="CuboFrame/HeadsInventory/Position1" instance=ExtResource("5_afbqv")]
-
 [node name="Position2" type="Node3D" parent="CuboFrame/HeadsInventory"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.018963, 0)
 
-[node name="Cabeça Engineer" parent="CuboFrame/HeadsInventory/Position2" instance=ExtResource("6_gx6sm")]
-
 [node name="Position3" type="Node3D" parent="CuboFrame/HeadsInventory"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.0220146, 0)
-
-[node name="cabeça_robo" parent="CuboFrame/HeadsInventory/Position3" instance=ExtResource("5_afbqv")]
 
 [node name="Position4" type="Node3D" parent="CuboFrame/HeadsInventory"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 3.0113773, 0)

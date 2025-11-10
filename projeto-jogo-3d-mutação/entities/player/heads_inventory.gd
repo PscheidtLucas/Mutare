@@ -17,3 +17,5 @@ func equip(head_config: HeadRewardConfig) -> void:
 			player_stats.add_buff(buff)
 		print("Buffs no player stats: ", player_stats.stat_buffs)
 		break
+	
+	player_stats.setup_stats()
