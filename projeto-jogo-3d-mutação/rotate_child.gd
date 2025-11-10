@@ -49,21 +49,17 @@ func _restart_tween() -> void:
 
 func _start_editor_rotation():
 	if not Engine.is_editor_hint():
-		print("Este botão funciona apenas no editor.")
 		return
 	if not is_inside_tree():
 		push_warning("RotateChild: Nó não está na árvore da cena.")
 		return
 	
-	print("RotateChild: Iniciando rotação no editor...")
 	start_rotation_tween()
 
 func _stop_editor_rotation():
 	if not Engine.is_editor_hint():
-		print("Este botão funciona apenas no editor.")
 		return
 
-	print("RotateChild: Parando rotação no editor...")
 	if tween and tween.is_valid():
 		tween.kill()
 	
@@ -81,21 +77,20 @@ func _reset_child_rotation():
 
 # Configura e inicia o tween de rotação
 func start_rotation_tween() -> void:
-	print("Iniciando rotacao")
 	# 1. Limpa qualquer tween anterior que possa estar rodando
 	if tween and tween.is_valid():
 		tween.kill()
 
 	# 2. Verifica se há um filho para rotacionar
 	if get_child_count() == 0:
-		if Engine.is_editor_hint():
-			print("RotateChild: Aguardando um nó filho para rotacionar.")
+		#if Engine.is_editor_hint():
+			#print("RotateChild: Aguardando um nó filho para rotacionar.")
 		return
 
 	var child = get_child(0)
 	if not child is Node3D:
-		if Engine.is_editor_hint():
-			print("RotateChild: O primeiro filho não é um Node3D.")
+		#if Engine.is_editor_hint():
+			#print("RotateChild: O primeiro filho não é um Node3D.")
 		return
 		
 	# 3. Reseta a rotação do filho para um loop limpo e consistente

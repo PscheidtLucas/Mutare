@@ -76,7 +76,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.319924, 0.0927379, 0)
 
 [node name="pistola" parent="." instance=ExtResource("3_l32t6")]
-transform = Transform3D(7, 0, 0, 0, -3.25799e-05, 8, 0, -9, -2.89599e-05, -0.186135, 0.0919371, 0)
+transform = Transform3D(7, 0, 0, 0, -3.2579912e-05, 8, 0, -9, -2.8959921e-05, -0.186135, 0.0919371, 0)
 
 [node name="WeaponAnim" type="AnimationPlayer" parent="." node_paths=PackedStringArray("weapon")]
 libraries = {

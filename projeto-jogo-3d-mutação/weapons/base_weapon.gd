@@ -15,8 +15,13 @@ var cooldown_timer: Timer = null
 signal shot_emitted # Para animar armas
 
 func _ready() -> void:
-	call_deferred("config_timer")
 	call_deferred("check_config")
+	if is_player_weapon:
+		GameEvents.wave_started.connect(func():
+			config_timer.call_deferred()
+		)
+	else:
+		config_timer.call_deferred()
 	
 
 func _fire() -> void:
@@ -51,27 +56,37 @@ func _calculate_spread_angles(num: int, accuracy: float) -> Array[float]:
 
 	return angles
 
+
 func config_timer() -> void:
-	# Configura o timer com base no fire_rate do config
-	cooldown_timer = Timer.new()
-	add_child(cooldown_timer)
-	var time_to_fire: float
+	# calcula tempo entre tiros com segurança
+	var time_to_fire: float = 0.0
 	if is_player_weapon:
 		if PlayerManager.player == null:
 			return
-		var player_stats = PlayerManager.player.stats as PlayerStats
-		var updated_fire_rate = config.fire_rate * (1 + player_stats.fire_rate_increase)
-	
+		var player_stats := PlayerManager.player.stats as PlayerStats
+		var updated_fire_rate := config.fire_rate * (1 + player_stats.fire_rate_increase)
+		if updated_fire_rate <= 0.0:
+			return
 		time_to_fire = 1.0 / updated_fire_rate
+		printt("Fire rate: ", updated_fire_rate)
 	else:
+		if config.fire_rate <= 0.0:
+			return
 		time_to_fire = 1.0 / config.fire_rate
-	cooldown_timer.start(time_to_fire)
-	cooldown_timer.timeout.connect(_fire)
-	if is_player_weapon:
-		print("TIME CONFIGURED, tempo para atirar: ", time_to_fire)
-		print("Config fire rate: ", config.fire_rate)
-		print("Config dano: ", config.damage)
-		print("Config de range:", config.range)
+
+	# cria o timer apenas se ainda não existir
+	if cooldown_timer == null:
+		cooldown_timer = Timer.new()
+		cooldown_timer.one_shot = false
+		add_child(cooldown_timer)
+		# conecta apenas uma vez
+		cooldown_timer.timeout.connect(_fire)
+
+	# atualiza wait_time e (re)inicia
+	cooldown_timer.wait_time = time_to_fire
+	# restart para garantir fase correta; start() reinicia o contador
+	cooldown_timer.start()
+
 
 func check_config() -> void:
 	if not config:

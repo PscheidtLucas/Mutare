@@ -70,17 +70,14 @@ func _calculate_jump_horiz_speed(dist: float, time_to_peak: float,
 func _ready() -> void:
 	create_hp5_timer()
 	set_deferred("starting_global_pos", global_position)
-	print("starting pos: ", starting_global_pos)
 	starting_target_camera_y = target_camera_y_angle
 	PlayerManager.player = self
 	
 	GameEvents.player_fell_off.connect(func() -> void:
-		print("emitiu player fell off")
 		take_damage(stats.max_health * fall_off_percent_damage)
 		reset_player()  
 		)
 	GameEvents.wave_survived.connect(func()-> void:
-		print("emitiu wave survived")
 		reset_player() )
 		
 	GameEvents.weapon_selected.connect(equip)
@@ -129,7 +126,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		target_camera_y_angle -= 90
 
 func equip(weapon_config: RangedWeaponConfig) -> void:
-	print("equiping weapons on player")
 	var weapon_sceane : PackedScene = load(weapon_config.scene_uid)
 	var instance := weapon_sceane.instantiate() as BaseWeapon
 	for node in positions_for_weapons:

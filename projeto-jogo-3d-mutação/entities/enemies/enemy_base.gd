@@ -53,7 +53,6 @@ func _ready() -> void:
 func configure_weapon_stats() -> void:
 	for weapon_node: BaseWeapon in array_of_weapons_nodes:
 		weapon_node.config.roll_stats()
-		print("dano do inimigo: ", weapon_node.config.damage)
 
 func _physics_process(delta: float) -> void:
 	if player == null:
@@ -190,7 +189,6 @@ func _look_at_player():
 		look_at(global_position + to_player, Vector3.UP)
 
 func take_damage(damage: float) -> void:
-	print ("enemy taking ", damage, " damage!")
 	health -= damage
 	if health <= 0:
 		die()

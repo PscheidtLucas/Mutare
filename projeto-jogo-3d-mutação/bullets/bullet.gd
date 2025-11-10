@@ -38,7 +38,7 @@ func _on_body_entered(body: Node3D) -> void:
 	# Atingiu um inimigo E não foi atirada por um inimigo
 	elif body is Enemy and was_shot_from_player:
 		if body.has_method("take_damage"):
-			calc_crit()
+			calc_player_damage()
 			body.take_damage(damage)
 		else:
 			printerr("Inimigo acertado por bala não tem o método take_damage esperado!")
@@ -57,13 +57,18 @@ func _on_body_entered(body: Node3D) -> void:
 	
 	# Se colidir com qualquer outra coisa que não seja quem atirou, se destrói
 	if body != self and not (body is Player and was_shot_from_player) and not (body is Enemy and not was_shot_from_player):
-		print("Bala colidiu com qualquer outra coisa e se destruiu!")
 		queue_free()
 
 # só jogador pode dar critico
-func calc_crit() -> void:
-	if player_stats:
-		damage *= (1 + player_stats.damage_increase)
-		if player_stats.crit_chance > 0.0:
-			if randf() < player_stats.crit_chance:
-				damage *= (1 + player_stats.crit_damage)
+func calc_player_damage() -> void:
+	if not player_stats:
+		printerr("nao identificado player stats na bullet atirada pelo jogador")
+		return
+	
+	## Cálculo do dano:
+	damage *= (1 + player_stats.damage_increase)
+	
+	## Cálculo do crítico:
+	if player_stats.crit_chance > 0.0:
+		if randf() < player_stats.crit_chance:
+			damage *= (1 + player_stats.crit_damage)

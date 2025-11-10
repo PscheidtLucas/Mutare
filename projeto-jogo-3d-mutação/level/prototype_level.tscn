@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=55 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://cn7q1hmxe74tw" path="res://level/game_manager_n_state/game_manager.gd" id="1_ouysc"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bntkkgjp5chye" path="res://grass/multi_mesh_instance_3d.tscn" id="17_fwegj"]
 [ext_resource type="PackedScene" uid="uid://b5cd6sa8qq4vc" path="res://addons/maaacks_menus_template/examples/scenes/overlaid_menus/pause_menu.tscn" id="17_qwpgs"]
 [ext_resource type="ArrayMesh" uid="uid://b0pkut5lqom7w" path="res://grass/v4/grass_v4.res" id="18_4od7l"]
+[ext_resource type="Script" uid="uid://c5ononq8u65k0" path="res://ui/wave_number.gd" id="18_t8p3i"]
 [ext_resource type="Script" uid="uid://db1iegjtuhxld" path="res://level/fps_label.gd" id="19_bwhkm"]
 [ext_resource type="PackedScene" uid="uid://bsgosomawtovf" path="res://bullets/bomb.tscn" id="24_0i6i1"]
 [ext_resource type="PackedScene" uid="uid://bsnwfdo6oc0m1" path="res://level/props/ponte_meio_desgaste.tscn" id="24_dyurs"]
@@ -633,12 +634,11 @@ layer = 2
 [node name="PauseMenu" parent="Pause" instance=ExtResource("17_qwpgs")]
 toggle_action = "ui_cancel"
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("nodes_to_hide_in_start")]
+[node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
 script = ExtResource("3_htrvu")
 player_stats = ExtResource("15_3mfhf")
 game_state = ExtResource("2_fwegj")
-nodes_to_hide_in_start = [NodePath("CenterContainer3/RestartButton"), NodePath("WinLoseContainer/LoseLabel"), NodePath("RewardManagerScreen")]
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
 
@@ -678,6 +678,7 @@ grow_vertical = 2
 
 [node name="LoseLabel" type="Label" parent="UI/WinLoseContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 85
 text = "Game Over!"
@@ -697,6 +698,7 @@ grow_vertical = 2
 
 [node name="RestartButton" type="Button" parent="UI/CenterContainer3"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Restart"
 
@@ -706,6 +708,29 @@ offset_bottom = 40.0
 
 [node name="RewardManagerScreen" parent="UI" instance=ExtResource("10_ouysc")]
 unique_name_in_owner = true
+metadata/_edit_lock_ = true
+
+[node name="WaveNumberContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveNumberContainer"]
+layout_mode = 2
+
+[node name="Wave_" type="Label" parent="UI/WaveNumberContainer/HBoxContainer"]
+layout_mode = 2
+text = "Wave: "
+
+[node name="WaveNumber" type="Label" parent="UI/WaveNumberContainer/HBoxContainer"]
+layout_mode = 2
+text = "5"
+script = ExtResource("18_t8p3i")
+game_state = ExtResource("2_fwegj")
 
 [node name="CheatCodeManager" type="Node" parent="."]
 script = ExtResource("5_qd0o6")

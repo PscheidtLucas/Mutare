@@ -22,4 +22,4 @@ func _on_weapon_selected(weapon_cfg: RangedWeaponConfig):
 			# Para de procurar, pois já equipamos a arma.
 			return 
 	
-	print("Nenhum slot disponível com o número: ", weapons_equipped_counter)
+	printerr("Nenhum slot disponível com o número: ", weapons_equipped_counter)

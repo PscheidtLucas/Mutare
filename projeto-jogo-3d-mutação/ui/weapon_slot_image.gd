@@ -41,8 +41,6 @@ func equip_weapon(weapon_cfg: RangedWeaponConfig):
 	
 	# Chama a nova função para preencher os valores do tooltip
 	_update_tooltip_labels()
-	
-	print("Slot %s preenchido com %s" % [slot_number, weapon_config.name])
 
 # --- Lógica do Tooltip ---
 

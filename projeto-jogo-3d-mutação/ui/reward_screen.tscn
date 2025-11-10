@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=27 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
-[ext_resource type="PackedScene" uid="uid://cgodq53bkn7od" path="res://ui/weapon_box/weapon_box.tscn" id="1_rwexk"]
+[ext_resource type="PackedScene" uid="uid://cgodq53bkn7od" path="res://ui/reward_boxes/weapon_box.tscn" id="1_rwexk"]
 [ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="2_6bncb"]
 [ext_resource type="Texture2D" uid="uid://dfdy7gyvtyxem" path="res://prototipo_inv.jpeg" id="2_6ppac"]
+[ext_resource type="Resource" uid="uid://bpsmw37wyl1vp" path="res://level/game_manager_n_state/main_state.tres" id="2_vw3wg"]
 [ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://weapons/carnivorous_pistola/pistol_stats.tres" id="3_bw4i5"]
 [ext_resource type="Script" uid="uid://im65pyqq2khr" path="res://ui/inventory_manager.gd" id="4_vuu3q"]
 [ext_resource type="Resource" uid="uid://dm4mcdqnn0agf" path="res://weapons/cannon_bomb_gun/cannon_bomb.tres" id="4_w26xa"]
@@ -12,10 +13,14 @@
 [ext_resource type="Resource" uid="uid://cbrwqqk5lhjg0" path="res://weapons/pulse_emitter/pulse_stats.tres" id="5_mur5e"]
 [ext_resource type="Resource" uid="uid://bf80h3suneegk" path="res://weapons/smg_tech/smg_tech_stats.tres" id="6_02iek"]
 [ext_resource type="PackedScene" uid="uid://di0s2eg2am62i" path="res://ui/weapon_tooltip.tscn" id="7_klgxq"]
+[ext_resource type="Script" uid="uid://b3jjmvq4w0nl6" path="res://rewards/head_reward_config.gd" id="8_0p5y3"]
 [ext_resource type="Texture2D" uid="uid://deqphs73r0lcf" path="res://Quadrado inventário - Cabeça (com símbolo).png" id="8_mur5e"]
+[ext_resource type="Resource" uid="uid://dhufbnjo4ie50" path="res://rewards/heads/tres files/engineer_head.tres" id="8_thu7a"]
+[ext_resource type="Resource" uid="uid://cbp2bamcj5q76" path="res://rewards/heads/tres files/robot_head.tres" id="10_hal1c"]
 [ext_resource type="Texture2D" uid="uid://cvv7g2i3ro54s" path="res://ui/reward screen images/Título Choose 1 (1).png" id="12_02iek"]
 [ext_resource type="Texture2D" uid="uid://cy6etnva02wps" path="res://ui/reward screen images/Fundo Escolhas.png" id="13_1dgt3"]
 [ext_resource type="Texture2D" uid="uid://cxj4gnibdil3g" path="res://ui/reward screen images/Botão - Reroll.png" id="16_cy6bo"]
+[ext_resource type="PackedScene" uid="uid://oupsgwycr6a7" path="res://ui/reward_boxes/head_box.tscn" id="18_hal1c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwexk"]
 bg_color = Color(0.151447, 0.124627, 0.0944336, 1)
@@ -52,7 +57,7 @@ Button/styles/hover = SubResource("StyleBoxFlat_6ppac")
 Button/styles/normal = SubResource("StyleBoxFlat_lsdnj")
 Button/styles/pressed = SubResource("StyleBoxFlat_xe12l")
 
-[node name="RewardManagerScreen" type="Control" node_paths=PackedStringArray("first_select_button", "options_container")]
+[node name="RewardManagerScreen" type="Control" node_paths=PackedStringArray("first_select_button", "first_select_head_button", "options_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,8 +65,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lsmmt")
+game_state = ExtResource("2_vw3wg")
 first_select_button = NodePath("MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox/Anchor/SelectButton")
+first_select_head_button = NodePath("MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/HeadBox/Anchor/SelectButton")
 weapon_templates = Array[ExtResource("2_6bncb")]([ExtResource("3_bw4i5"), ExtResource("4_w26xa"), ExtResource("5_mur5e"), ExtResource("6_02iek")])
+heads_templates = Array[ExtResource("8_0p5y3")]([ExtResource("8_thu7a"), ExtResource("10_hal1c")])
 options_container = NodePath("MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -201,9 +209,9 @@ script = ExtResource("5_bw4i5")
 z_index = 1
 layout_mode = 0
 offset_left = 71.0
-offset_top = 14.0
+offset_top = 8.0
 offset_right = 252.0
-offset_bottom = 150.0
+offset_bottom = 144.0
 
 [node name="Blank3" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
@@ -228,9 +236,9 @@ slot_number = 2
 z_index = 1
 layout_mode = 0
 offset_left = 73.0
-offset_top = 15.0
+offset_top = 9.0
 offset_right = 254.0
-offset_bottom = 151.0
+offset_bottom = 145.0
 
 [node name="MarginContainer10" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
@@ -379,6 +387,18 @@ reward_screen = NodePath("../../../../../../../..")
 [node name="SelectButton" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox3/Anchor" index="1"]
 focus_neighbor_top = NodePath("../../../WeaponBox2/Anchor/SelectButton")
 
+[node name="HeadBox" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("18_hal1c")]
+layout_mode = 2
+reward_screen = NodePath("../../../../../../../..")
+
+[node name="HeadBox2" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("18_hal1c")]
+layout_mode = 2
+reward_screen = NodePath("../../../../../../../..")
+
+[node name="HeadBox3" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("18_hal1c")]
+layout_mode = 2
+reward_screen = NodePath("../../../../../../../..")
+
 [node name="Margin" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
@@ -408,3 +428,6 @@ texture = ExtResource("16_cy6bo")
 [editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox"]
 [editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox2"]
 [editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox3"]
+[editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/HeadBox"]
+[editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/HeadBox2"]
+[editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/HeadBox3"]

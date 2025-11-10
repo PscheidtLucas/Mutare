@@ -19,7 +19,7 @@ var collision_shapes: Array[CollisionShape3D] = []
 func _ready() -> void:
 	GameEvents.wave_survived.connect(func() -> void:
 		current_wave += 1
-		print("aumentando current wave para: ", current_wave))
+		)
 	GameEvents.wave_started.connect(on_wave_started)
 	
 	# Coleta todas as CollisionShape3D filhas
@@ -32,12 +32,11 @@ func _ready() -> void:
 		return
 	
 	# Exibe prévia das waves 1–10
-	print("===== Prévia de dificuldade (Waves 1–10) =====")
+	#print("===== Prévia de dificuldade (Waves 1–10) =====")
 	for wave in range(1, 11):
 		var enemies := calculate_enemies_for_wave(wave)
 		var spawn_time := calculate_next_spawn_time(wave)
-		print("Wave ", wave, " → Inimigos: ", enemies, " | Spawn time: ", spawn_time)
-	print("===============================================")
+		#print("Wave ", wave, " → Inimigos: ", enemies, " | Spawn time: ", spawn_time)
 
 	spawn_timer.wait_time = calculate_next_spawn_time(current_wave)
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
@@ -57,7 +56,7 @@ func _on_spawn_timer_timeout() -> void:
 		var next_spawn_time = calculate_next_spawn_time(current_wave)
 		spawn_timer.wait_time = max(next_spawn_time, min_spawn_time)
 		
-		print("Wave ", current_wave, ": ", enemies_to_spawn, " inimigos spawned. Próximo spawn em ", spawn_timer.wait_time, "s")
+		#print("Wave ", current_wave, ": ", enemies_to_spawn, " inimigos spawned. Próximo spawn em ", spawn_timer.wait_time, "s")
 
 func calculate_enemies_for_wave(wave: int) -> int:
 	if enemies_per_wave_curve:

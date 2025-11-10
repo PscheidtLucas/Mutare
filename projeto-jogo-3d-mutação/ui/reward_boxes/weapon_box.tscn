@@ -1,11 +1,11 @@
 [gd_scene load_steps=18 format=3 uid="uid://cgodq53bkn7od"]
 
-[ext_resource type="Script" uid="uid://c2ol1eufnlyiu" path="res://ui/weapon_box/weapon_box.gd" id="1_lkbvd"]
-[ext_resource type="Script" uid="uid://b2vdaiy1d8rx7" path="res://ui/weapon_box/image_container.gd" id="2_36fv1"]
-[ext_resource type="Script" uid="uid://dlchmrb4ojqh3" path="res://ui/weapon_box/name_of_weapon.gd" id="3_5kv1n"]
+[ext_resource type="Script" uid="uid://c2ol1eufnlyiu" path="res://ui/reward_boxes/weapon_box.gd" id="1_lkbvd"]
+[ext_resource type="Script" uid="uid://b2vdaiy1d8rx7" path="res://ui/reward_boxes/image_container.gd" id="2_36fv1"]
+[ext_resource type="Script" uid="uid://dlchmrb4ojqh3" path="res://ui/reward_boxes/name_of_weapon.gd" id="3_5kv1n"]
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="3_42g51"]
-[ext_resource type="Script" uid="uid://dqchtya6p2r5c" path="res://ui/weapon_box/weapon_stats_labels/weapon_stats_label.gd" id="3_b334d"]
-[ext_resource type="Theme" uid="uid://bb4dm22qo2rvc" path="res://ui/weapon_box/select_button.tres" id="4_k47en"]
+[ext_resource type="Script" uid="uid://dqchtya6p2r5c" path="res://ui/reward_boxes/weapon_stats_labels/weapon_stats_label.gd" id="3_b334d"]
+[ext_resource type="Theme" uid="uid://bb4dm22qo2rvc" path="res://ui/reward_boxes/select_button.tres" id="4_k47en"]
 [ext_resource type="Texture2D" uid="uid://bemojfxcra7mh" path="res://ui/reward screen images/Cubo de escolha (parte de trás).png" id="7_5exlp"]
 [ext_resource type="Texture2D" uid="uid://cnkv812utnc33" path="res://ui/reward screen images/Cubo de escolha (parte da frente).png" id="8_1gip4"]
 

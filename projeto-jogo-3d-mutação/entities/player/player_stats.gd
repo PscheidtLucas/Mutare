@@ -66,7 +66,9 @@ func remove_buff(buff: StatBuff) -> void:
 	stat_buffs.erase(buff)
 	recalculate_stats.call_deferred()
 
+
 func recalculate_stats() -> void:
+	# reseta current stats para os base
 	max_health = b_max_health
 	hp5 = b_hp5
 	damage_increase = b_damage_increase
@@ -76,29 +78,65 @@ func recalculate_stats() -> void:
 	fire_rate_increase = b_fire_rate_increase
 	collect_area_increase = b_collect_area_increase
 	damage_reduction_perc = b_damage_reduction_perc
-	
-	## Calculando quanto buffar baseado em quais buffs estão no stat_buffs (Array)
+
+	## Preparar acumuladores
 	var stat_multipliers: Dictionary = {}
 	var stat_addends: Dictionary = {}
+	for stat_name in BuffableStats.keys():
+		stat_multipliers[stat_name] = 1.0
+		stat_addends[stat_name] = 0.0
+
+	## Acumula buffs
 	for buff: StatBuff in stat_buffs:
 		var stat_name : String = BuffableStats.keys()[buff.stat]
 		match buff.buff_type:
 			StatBuff.BuffType.ADD:
-				if not stat_addends.has(stat_name):
-					stat_addends[stat_name] = 0.0
 				stat_addends[stat_name] += buff.buff_amount
 			StatBuff.BuffType.MULTIPLY:
-				if not stat_multipliers.has(stat_name):
-					stat_multipliers[stat_name] = 1.0
 				stat_multipliers[stat_name] += buff.buff_amount
-				
-				if stat_multipliers[stat_name] < 0.0:
-					stat_multipliers[stat_name] = 0.0
-	
-	## Aplicando buffs:
-	for stat_name in stat_multipliers:
+				# evita multiplicadores absurdos (limite opcional)
+				if stat_multipliers[stat_name] < -1.0:
+					stat_multipliers[stat_name] = -1.0
+
+	## Aplica buffs sobre os BASE stats (tratamento explícito das bases)
+	for stat_name in BuffableStats.keys():
 		var cur_property_name: String = str(stat_name).to_lower()
-		set(cur_property_name, get(cur_property_name) * stat_multipliers[stat_name])
-	for stat_name in stat_addends:
-		var cur_property_name: String = str(stat_name).to_lower()
-		set(cur_property_name, get(cur_property_name) + stat_addends[stat_name])
+
+		# pega explicitamente o base_val correspondente (evita chamadas dinâmicas que podem falhar)
+		var base_val: float = 0.0
+		match stat_name:
+			"MAX_HEALTH":
+				base_val = b_max_health
+			"HP5":
+				base_val = b_hp5
+			"DAMAGE_INCREASE":
+				base_val = b_damage_increase
+			"SPEED_INCREASE":
+				base_val = b_speed_increase
+			"CRIT_CHANCE":
+				base_val = b_crit_chance
+			"CRIT_DAMAGE_INCREASE":
+				base_val = b_crit_damage
+			"FIRE_RATE_INCREASE":
+				base_val = b_fire_rate_increase
+			"COLLECT_AREA_INCREASE":
+				base_val = b_collect_area_increase
+			"DAMAGE_REDUCTION_PERC":
+				base_val = b_damage_reduction_perc
+			_:
+				base_val = 0.0
+
+		var mult: float = stat_multipliers[stat_name]
+		var add: float = stat_addends[stat_name]
+
+		var new_value: float = 0.0
+		if base_val == 0.0:
+			# Se a base é zero, interpreta multiplicador como "delta absoluto": (mult - 1.0)
+			new_value = add
+			if mult != 1.0:
+				new_value += (mult - 1.0)
+		else:
+			# comportamento normal: base * mult + add
+			new_value = base_val * mult + add
+
+		set(cur_property_name, new_value)

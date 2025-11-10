@@ -33,12 +33,10 @@ func on_level_timer_timeout() -> void:
 		GameEvents.wave_survived.emit()
 
 func on_wave_started():
-	print("start!!!!!")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	wave_timer.start()
 
 func on_wave_survived():
-	print("survived!!!!!!!!!")
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func get_time_left() -> float:
