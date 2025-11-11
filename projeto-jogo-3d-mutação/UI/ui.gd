@@ -16,7 +16,7 @@ class_name UI extends CanvasLayer
 
 func _ready() -> void:
 	if player_stats:
-		health_ui.text = "HP: " + str(round(player_stats.health))
+		health_ui.text = str("%0.0f" % (player_stats.health))
 	for node in nodes_to_hide_in_start:
 		node.hide()
 	
@@ -54,7 +54,7 @@ func on_player_lost() -> void:
 	restart_button.show()
 
 func _on_player_health_changed() -> void:
-	health_ui.text = "HP: " + str("%0.2f" % (player_stats.health))
+	health_ui.text = str("%0.0f" % (player_stats.health)) 
 
 func _on_restart_button_pressed() -> void:
 	get_tree().paused = false

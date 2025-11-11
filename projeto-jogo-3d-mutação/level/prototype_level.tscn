@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=58 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://cn7q1hmxe74tw" path="res://level/game_manager_n_state/game_manager.gd" id="1_ouysc"]
@@ -16,9 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://xy5xbxhkkgeh" path="res://entities/enemies/phantom_enemy.tscn" id="10_3sjje"]
 [ext_resource type="PackedScene" uid="uid://cn4ylkriiiien" path="res://ui/reward_screen.tscn" id="10_ouysc"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="15_3mfhf"]
+[ext_resource type="Texture2D" uid="uid://c3u7e4k3v03fy" path="res://ui/Vida.png" id="17_1gmhc"]
 [ext_resource type="PackedScene" uid="uid://bntkkgjp5chye" path="res://grass/multi_mesh_instance_3d.tscn" id="17_fwegj"]
 [ext_resource type="PackedScene" uid="uid://b5cd6sa8qq4vc" path="res://addons/maaacks_menus_template/examples/scenes/overlaid_menus/pause_menu.tscn" id="17_qwpgs"]
 [ext_resource type="ArrayMesh" uid="uid://b0pkut5lqom7w" path="res://grass/v4/grass_v4.res" id="18_4od7l"]
+[ext_resource type="FontFile" uid="uid://ci0ch0j3lh3j3" path="res://ui/fonts/major_snafu/major.ttf" id="18_6s3sm"]
 [ext_resource type="Script" uid="uid://c5ononq8u65k0" path="res://ui/wave_number.gd" id="18_t8p3i"]
 [ext_resource type="Script" uid="uid://db1iegjtuhxld" path="res://level/fps_label.gd" id="19_bwhkm"]
 [ext_resource type="PackedScene" uid="uid://bsgosomawtovf" path="res://bullets/bomb.tscn" id="24_0i6i1"]
@@ -174,6 +176,8 @@ size = Vector3(48.2883, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qd0o6"]
 size = Vector3(1, 1, 44)
+
+[sub_resource type="Theme" id="Theme_6s3sm"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qd0o6"]
 
@@ -639,13 +643,73 @@ process_mode = 3
 script = ExtResource("3_htrvu")
 player_stats = ExtResource("15_3mfhf")
 game_state = ExtResource("2_fwegj")
-nodes_to_hide_in_start = [NodePath("TimerContainer/LevelTimerContainer/TimeLeftLabel"), NodePath("MarginContainer/HealthUI")]
+nodes_to_hide_in_start = [NodePath("TimerContainer/LevelTimerContainer/TimeLeftLabel"), NodePath("HPContainer")]
 
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
+[node name="HPContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = -10.0
+grow_vertical = 0
 
-[node name="HealthUI" type="Label" parent="UI/MarginContainer"]
+[node name="VidaAnchor" type="Control" parent="UI/HPContainer"]
+layout_mode = 2
+
+[node name="Vida" type="TextureRect" parent="UI/HPContainer/VidaAnchor"]
+layout_mode = 0
+offset_left = -85.0
+offset_top = -166.0
+offset_right = 257.2951
+offset_bottom = 8.0
+texture = ExtResource("17_1gmhc")
+expand_mode = 1
+
+[node name="HPMarginContainer" type="MarginContainer" parent="UI/HPContainer/VidaAnchor"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = -116.0
+offset_right = 152.0
+offset_bottom = -35.0
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/HPContainer/VidaAnchor/HPMarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HPContainer/VidaAnchor/HPMarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HealthUI" type="Label" parent="UI/HPContainer/VidaAnchor/HPMarginContainer/CenterContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.15, 0.15, 0.15, 1)
+theme_override_colors/font_shadow_color = Color(0.04, 0.008000001, 0, 0.3137255)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("18_6s3sm")
+theme_override_font_sizes/font_size = 42
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HPContainer/VidaAnchor/HPMarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 7
+
+[node name="HealthUI2" type="Label" parent="UI/HPContainer/VidaAnchor/HPMarginContainer/CenterContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.15, 0.15, 0.15, 1)
+theme_override_colors/font_shadow_color = Color(0.04, 0.008000001, 0, 0.3137255)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 12
+text = "%"
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="TimerContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 5
@@ -655,6 +719,7 @@ offset_left = -9.5
 offset_right = 9.5
 offset_bottom = 23.0
 grow_horizontal = 2
+theme_override_constants/margin_top = 6
 
 [node name="LevelTimerContainer" type="CenterContainer" parent="UI/TimerContainer"]
 layout_mode = 2
@@ -662,6 +727,7 @@ layout_mode = 2
 [node name="TimeLeftLabel" type="Label" parent="UI/TimerContainer/LevelTimerContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "60"
 
 [node name="WinLoseContainer" type="CenterContainer" parent="UI"]
@@ -722,6 +788,7 @@ theme_override_constants/margin_right = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveNumberContainer"]
 layout_mode = 2
+theme = SubResource("Theme_6s3sm")
 
 [node name="Wave_" type="Label" parent="UI/WaveNumberContainer/HBoxContainer"]
 layout_mode = 2
@@ -766,6 +833,7 @@ transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -2, -1, 27)
 transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -14, -1, 27)
 
 [node name="FPSLabel" type="Label" parent="."]
+visible = false
 offset_top = 30.0
 offset_right = 131.0
 offset_bottom = 107.0

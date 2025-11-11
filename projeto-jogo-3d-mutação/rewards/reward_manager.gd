@@ -1,7 +1,8 @@
-class_name RewardManager extends Control
+class_name RewardManager
+extends Control
 
 @export var game_state: GameState
-@export var first_select_button: Button  #first select weapon button
+@export var first_select_button: Button
 @export var first_select_head_button: Button
 
 @export var weapon_templates: Array[RangedWeaponConfig]
@@ -16,11 +17,9 @@ var type: RewardType
 
 var damage_scale := 1.0
 var num_choices := 3
+var weapon_index := 1
 
-var weapon_index := 1 #Usado no sinal weapon added, vai de 1 a 4
-
-signal weapons_configured() # Emitido aqui para os weapon Boxes e saberem quando a arma gerada já estiver settada
-
+signal weapons_configured
 signal heads_configured
 
 var wave_num_vs_reward_type: Dictionary = {
@@ -36,14 +35,23 @@ var wave_num_vs_reward_type: Dictionary = {
 	10: "head",
 }
 
+# --- NOVO BLOCO DE VARIÁVEIS PARA CONTROLE DE INPUT ---
+var _using_mouse := true
+var _pending_focus_request := false
+
+
 func _ready() -> void:
 	GameEvents.wave_survived.connect(on_wave_survived)
 	GameEvents.wave_started.connect(on_wave_started)
-	
 	call_deferred("wave_0_config")
+
+	set_process_input(true)
+	_update_mouse_mode()
+
 
 func wave_0_config() -> void:
 	on_wave_survived()
+
 
 func on_wave_survived() -> void:
 	show()
@@ -53,7 +61,6 @@ func on_wave_survived() -> void:
 		"weapon":
 			var generated_weapons: Array = generate_rewards(RewardType.LONG_RANGE)
 			var index := 0
-
 			for child in options_container.get_children():
 				if child is WeaponBox:
 					child.show()
@@ -61,14 +68,13 @@ func on_wave_survived() -> void:
 					index += 1
 				elif child is HeadBox:
 					child.hide()
-			
-			first_select_button.grab_focus()
+			if !_using_mouse:
+				first_select_button.grab_focus()
 			weapons_configured.emit()
 
 		"head":
 			var generated_heads: Array = generate_rewards(RewardType.HEAD)
 			var index := 0
-
 			for child in options_container.get_children():
 				if child is HeadBox:
 					child.show()
@@ -76,24 +82,25 @@ func on_wave_survived() -> void:
 					index += 1
 				elif child is WeaponBox:
 					child.hide()
-			
-			first_select_head_button.grab_focus()
+			if !_using_mouse:
+				first_select_head_button.grab_focus()
 			heads_configured.emit()
-	
 
 
 func reward_type_based_on_wave() -> String:
-	return wave_num_vs_reward_type[game_state.wave_number] 
+	if game_state.wave_number <= 10:
+		return wave_num_vs_reward_type[game_state.wave_number]
+	return "head"
 
 
 func on_wave_started() -> void:
 	hide()
 
-## Chamada dentro de on_wave_survived, gera as recompensas de forma procedural:
+
 func generate_rewards(type_of_reward: RewardType) -> Array[RewardConfig]:
 	randomize()
 	var choices : Array[RewardConfig] = []
-	var possible_templates: Array # possibilidades de templates para ser rolado e aparecer nas 3 choices
+	var possible_templates: Array
 	match type_of_reward:
 		RewardType.LONG_RANGE:
 			possible_templates = weapon_templates
@@ -104,25 +111,66 @@ func generate_rewards(type_of_reward: RewardType) -> Array[RewardConfig]:
 		RewardType.LEG:
 			possible_templates = legs_templates
 
-	# Garante que temos armas para escolher
 	if possible_templates.is_empty():
 		push_error("A lista de templates de rewards no RewardManager está vazia! Tipo que está vazio: ", type_of_reward)
 		return possible_templates
 
-	# Sorteia 3 armas (ou menos, se não houver 3 templates diferentes)
-	var available_templates = possible_templates.duplicate() # Copia para poder embaralhar
+	var available_templates = possible_templates.duplicate()
 	available_templates.shuffle()
 	
 	for i in range(num_choices):
 		var template = available_templates.pick_random()
-		
-		# 1. DUPLICAR! O passo mais importante para não modificar o arquivo original.
 		var rolled_reward = template.duplicate()
-		
-		# 2. ROLAR OS STATS! A mágica procedural acontece aqui.
-		rolled_reward.roll_stats(damage_scale) 
-		
-		# 3. Adiciona a arma com stats rolados à lista de escolhas
+		rolled_reward.roll_stats(damage_scale)
 		choices.append(rolled_reward)
 		
 	return choices
+
+
+# --- NOVA SEÇÃO DE CONTROLE DE INPUT E FOCUS ---
+
+func _input(event: InputEvent) -> void:
+	var previous_using_mouse := _using_mouse
+
+	# Detecta mouse
+	if event is InputEventMouseMotion or event is InputEventMouseButton:
+		_using_mouse = true
+
+	# Detecta controle ou setas (ativa foco se não houver)
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion or \
+		event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down"):
+		_using_mouse = false
+		if get_viewport().gui_get_focus_owner() == null and is_visible_in_tree():
+			if !_pending_focus_request:
+				_pending_focus_request = true
+				call_deferred("_deferred_focus_first")
+
+	# Se mudou o modo de input
+	if previous_using_mouse != _using_mouse:
+		_update_mouse_mode()
+		if _using_mouse:
+			_clear_focus()
+		else:
+			if get_viewport().gui_get_focus_owner() == null and is_visible_in_tree():
+				call_deferred("_deferred_focus_first")
+
+
+func _deferred_focus_first() -> void:
+	_pending_focus_request = false
+	if first_select_button and first_select_button.visible:
+		first_select_button.grab_focus()
+	elif first_select_head_button and first_select_head_button.visible:
+		first_select_head_button.grab_focus()
+
+
+func _update_mouse_mode() -> void:
+	if _using_mouse:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
+
+func _clear_focus() -> void:
+	var focused = get_viewport().gui_get_focus_owner()
+	if focused:
+		focused.release_focus()
