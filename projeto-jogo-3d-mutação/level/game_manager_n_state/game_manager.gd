@@ -9,7 +9,7 @@ var wave_starting_duration := 50.0
 
 
 func _ready() -> void:
-	
+	game_state.reset_wave_numer()
 	GameEvents.wave_started.connect(on_wave_started)
 	GameEvents.wave_survived.connect(on_wave_survived)
 	GameEvents.player_died.connect(on_player_lost)

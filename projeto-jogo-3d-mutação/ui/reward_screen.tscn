@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=28 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -56,6 +56,9 @@ Button/styles/focus = null
 Button/styles/hover = SubResource("StyleBoxFlat_6ppac")
 Button/styles/normal = SubResource("StyleBoxFlat_lsdnj")
 Button/styles/pressed = SubResource("StyleBoxFlat_xe12l")
+
+[sub_resource type="Theme" id="Theme_hal1c"]
+default_font_size = 10
 
 [node name="RewardManagerScreen" type="Control" node_paths=PackedStringArray("first_select_button", "first_select_head_button", "options_container")]
 layout_mode = 3
@@ -424,6 +427,115 @@ texture = ExtResource("2_6ppac")
 position = Vector2(1053, 619)
 scale = Vector2(0.355, 0.355)
 texture = ExtResource("16_cy6bo")
+
+[node name="Stats" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 380.0
+offset_top = 64.0
+offset_right = 540.0
+offset_bottom = 583.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_hal1c")
+
+[node name="Damage" type="HBoxContainer" parent="Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatName" type="Label" parent="Stats/VBoxContainer/Damage"]
+layout_mode = 2
+text = "Damage"
+
+[node name="Valeu" type="Label" parent="Stats/VBoxContainer/Damage"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "+ 50 %"
+horizontal_alignment = 2
+
+[node name="FireRate" type="HBoxContainer" parent="Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatName" type="Label" parent="Stats/VBoxContainer/FireRate"]
+layout_mode = 2
+text = "Fire Rate"
+
+[node name="Valeu" type="Label" parent="Stats/VBoxContainer/FireRate"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "+ 50 %"
+horizontal_alignment = 2
+
+[node name="CritChance" type="HBoxContainer" parent="Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatName" type="Label" parent="Stats/VBoxContainer/CritChance"]
+layout_mode = 2
+text = "Crit Chance"
+
+[node name="Valeu" type="Label" parent="Stats/VBoxContainer/CritChance"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "15.0 %"
+horizontal_alignment = 2
+
+[node name="CritDamage" type="HBoxContainer" parent="Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatName" type="Label" parent="Stats/VBoxContainer/CritDamage"]
+layout_mode = 2
+text = "Crit Damage"
+
+[node name="Valeu" type="Label" parent="Stats/VBoxContainer/CritDamage"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100.0 %"
+horizontal_alignment = 2
+
+[node name="Speed" type="HBoxContainer" parent="Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatName" type="Label" parent="Stats/VBoxContainer/Speed"]
+layout_mode = 2
+text = "Speed"
+
+[node name="Valeu" type="Label" parent="Stats/VBoxContainer/Speed"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "+ 5.0 %"
+horizontal_alignment = 2
+
+[node name="MaxHealth" type="HBoxContainer" parent="Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatName" type="Label" parent="Stats/VBoxContainer/MaxHealth"]
+layout_mode = 2
+text = "Max Health"
+
+[node name="Valeu" type="Label" parent="Stats/VBoxContainer/MaxHealth"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "+ 50 %"
+horizontal_alignment = 2
+
+[node name="HP5" type="HBoxContainer" parent="Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatName" type="Label" parent="Stats/VBoxContainer/HP5"]
+layout_mode = 2
+text = "Health per 5 sec (HP5)"
+
+[node name="Valeu" type="Label" parent="Stats/VBoxContainer/HP5"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "5.0"
+horizontal_alignment = 2
 
 [editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox"]
 [editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox2"]

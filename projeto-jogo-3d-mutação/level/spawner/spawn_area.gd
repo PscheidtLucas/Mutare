@@ -73,29 +73,64 @@ func calculate_next_spawn_time(wave: int) -> float:
 	else:
 		return 5.0
 
+#func spawn_enemies(count: int) -> void:
+	#for i in count:
+		#var spawn_position = get_random_spawn_position()
+		#if spawn_position != Vector3.ZERO:
+			#var enemy = array_of_enemy_types.pick_random().instantiate()
+			#get_tree().current_scene.call_deferred("add_child", enemy)
+			#enemy.set_deferred("global_position", spawn_position)
+
 func spawn_enemies(count: int) -> void:
-	for i in count:
+	for i in range(count):
 		var spawn_position = get_random_spawn_position()
 		if spawn_position != Vector3.ZERO:
 			var enemy = array_of_enemy_types.pick_random().instantiate()
+			# adiciona ao scene tree de forma diferida e posiciona também diferido
 			get_tree().current_scene.call_deferred("add_child", enemy)
 			enemy.set_deferred("global_position", spawn_position)
+
 
 func get_random_spawn_position() -> Vector3:
 	if collision_shapes.is_empty():
 		return Vector3.ZERO
-	
-	var random_shape = collision_shapes[randi() % collision_shapes.size()]
-	var shape = random_shape.shape as BoxShape3D
-	if shape == null:
-		print("ERRO: CollisionShape3D deve usar BoxShape3D!")
-		return Vector3.ZERO
-	
-	var half_extents = shape.size * 0.5
-	var random_offset = Vector3(
-		randf_range(-half_extents.x, half_extents.x),
-		0.0,
-		randf_range(-half_extents.z, half_extents.z)
-	)
-	
-	return random_shape.global_position + random_offset
+
+	var space_state = get_world_3d().direct_space_state
+
+	for attempt in range(10): # tenta várias vezes encontrar um ponto livre
+		var random_shape = collision_shapes[randi() % collision_shapes.size()]
+		var box_shape = random_shape.shape as BoxShape3D
+		if box_shape == null:
+			printerr("ERRO: CollisionShape3D deve usar BoxShape3D!")
+			return Vector3.ZERO
+
+		var half_extents = box_shape.size * 0.5
+		var random_offset = Vector3(
+			randf_range(-half_extents.x, half_extents.x),
+			0.0,
+			randf_range(-half_extents.z, half_extents.z)
+		)
+		var spawn_position = random_shape.global_position + random_offset
+
+		# --- prepara um shape de teste (ajuste o raio conforme o tamanho do seu inimigo) ---
+		var test_shape = SphereShape3D.new()
+		test_shape.radius = 0.6
+
+		# --- monta os parâmetros corretos requisitados pela API ---
+		var params = PhysicsShapeQueryParameters3D.new()
+		params.shape = test_shape
+		params.transform = Transform3D(Basis(), spawn_position)
+		# opcional: ajuste o collision_mask para checar apenas camadas relevantes
+		# params.collision_mask = 0xFFFFFFFF
+		# opcional: exclua coisas específicas (por exemplo, se quiser ignorar um controlador)
+		# params.exclude = [self]
+
+		# --- chama intersect_shape com os parâmetros ---
+		var result : Array = space_state.intersect_shape(params, 1) # max_results = 1 é suficiente aqui
+
+		# se não colidiu com nada, estamos livres para spawnar
+		if result.is_empty():
+			return spawn_position
+
+	# se não achou posição livre depois de N tentativas
+	return Vector3.ZERO

@@ -81,6 +81,9 @@ func _ready() -> void:
 		reset_player() )
 		
 	GameEvents.weapon_selected.connect(equip)
+	
+	stats.reset_stats()
+
 
 func create_hp5_timer() -> void:
 	var hp5_timer := Timer.new()

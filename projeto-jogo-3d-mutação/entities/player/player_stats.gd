@@ -140,3 +140,13 @@ func recalculate_stats() -> void:
 			new_value = base_val * mult + add
 
 		set(cur_property_name, new_value)
+
+func reset_stats() -> void:
+	# Remove todos os buffs e recalcula os stats base
+	stat_buffs.clear()
+	# Recalcula os stats (deferred para garantir que exports e inicializações tenham ocorrido)
+	recalculate_stats.call_deferred()
+	# Restaura a vida ao máximo (deferred para sincronizar com recalculate_stats)
+	health = max_health
+	# Garante emissão do sinal caso a propriedade use setter que já emite
+	health_changed.emit()
