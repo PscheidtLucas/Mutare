@@ -1,68 +1,258 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5cd6sa8qq4vc"]
+[gd_scene load_steps=12 format=3 uid="uid://b5cd6sa8qq4vc"]
 
-[ext_resource type="PackedScene" uid="uid://wny2d8dvp3ok" path="res://addons/maaacks_menus_template/base/nodes/overlaid_menu/overlaid_menu.tscn" id="1_gm3uv"]
 [ext_resource type="Script" uid="uid://uidwhqh4fyhj" path="res://addons/maaacks_menus_template/examples/scenes/overlaid_menus/pause_menu.gd" id="2_0ln3r"]
 [ext_resource type="PackedScene" uid="uid://bdvdf5v87mmrr" path="res://addons/maaacks_menus_template/examples/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_4djcm"]
+[ext_resource type="Material" uid="uid://d0dqt3gbs4i3a" path="res://ui/material_shader_main_menu.tres" id="4_a80ph"]
+[ext_resource type="Texture2D" uid="uid://7kfn80nyfit" path="res://ui/pause/Fundo Pause (amarelo).png" id="4_p7w7m"]
+[ext_resource type="Texture2D" uid="uid://c30gpjeyxmeok" path="res://ui/pause/Pause Bordas DNA.png" id="5_uoetv"]
+[ext_resource type="Texture2D" uid="uid://bbsv2dngg2cia" path="res://ui/pause/Pause título.png" id="6_a80ph"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_menus_template/base/nodes/utilities/capture_focus.gd" id="6_mslaq"]
+[ext_resource type="Texture2D" uid="uid://bu5npharhyetj" path="res://ui/pause/Pause botão (continue).png" id="8_l22qf"]
+[ext_resource type="Texture2D" uid="uid://bqxtwbeeh5oji" path="res://ui/pause/Pause botão (settings).png" id="9_ahd11"]
+[ext_resource type="Texture2D" uid="uid://5knpmvhlj6xn" path="res://ui/pause/Pause botão (exit).png" id="10_djdqm"]
 
-[node name="PauseMenu" instance=ExtResource("1_gm3uv")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a80ph"]
+bg_color = Color(0.33333334, 0.3647059, 0.36862746, 1)
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2_0ln3r")
 options_packed_scene = ExtResource("3_4djcm")
 main_menu_scene_path = "uid://byvydukidk6i2"
-toggle_action = null
 
-[node name="MarginContainer" parent="MenuPanelContainer" index="0"]
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.12549)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_p7w7m")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+material = ExtResource("4_a80ph")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_uoetv")
+expand_mode = 1
+
+[node name="PauseTítulo" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 238.0
+offset_top = 60.0
+offset_right = -343.73138
+offset_bottom = -389.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_a80ph")
+expand_mode = 1
+
+[node name="MenuPanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -101.0
+offset_right = 131.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuPanelContainer"]
+layout_mode = 2
 theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 16
 
-[node name="TitleLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/TitleMargin" index="0"]
+[node name="BoxContainer" type="BoxContainer" parent="MenuPanelContainer/MarginContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="TitleMargin" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MenuPanelContainer/MarginContainer/BoxContainer/TitleMargin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Paused"
+horizontal_alignment = 1
 
-[node name="MenuButtonsMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="2"]
+[node name="DescriptionMargin" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin"]
+layout_mode = 2
+bbcode_enabled = true
+
+[node name="MenuButtonsMargin" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="CloseButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
-text = "Resume"
-
-[node name="RestartButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
+[node name="MenuButtons" type="BoxContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-text = "Restart"
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+alignment = 1
+vertical = true
+script = ExtResource("6_mslaq")
 
-[node name="OptionsButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="2"]
+[node name="MarginContainer" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons"]
+layout_mode = 2
+theme_override_constants/margin_left = -120
+
+[node name="CloseButton" type="TextureButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture_normal = ExtResource("8_l22qf")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons"]
+layout_mode = 2
+theme_override_constants/margin_left = -40
+
+[node name="RestartButton" type="TextureButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture_normal = ExtResource("8_l22qf")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer2/RestartButton"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 12.0
+offset_right = 159.0
+offset_bottom = 35.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_a80ph")
+
+[node name="RESTARTLabel" type="Label" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer2/RestartButton/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_outline_size = 161
+text = "RESTART"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons"]
+layout_mode = 2
+theme_override_constants/margin_right = -40
+
+[node name="MainMenuButton" type="TextureButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture_normal = ExtResource("9_ahd11")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MENULabel" type="Label" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer3/MainMenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.33333334, 0.3647059, 0.36862746, 1)
+theme_override_constants/outline_size = 20
+theme_override_constants/shadow_outline_size = 161
+text = "MAIN MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons"]
+layout_mode = 2
+theme_override_constants/margin_right = -120
+
+[node name="ExitButton" type="TextureButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer4"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture_normal = ExtResource("10_djdqm")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="OptionsButton" type="TextureButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons"]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-text = "Options"
+texture_normal = ExtResource("8_l22qf")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="MainMenuButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="3"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Main Menu"
-
-[node name="ExitButton" type="Button" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="4"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Exit Game"
-
-[node name="ConfirmRestart" type="ConfirmationDialog" parent="." index="2"]
+[node name="ConfirmRestart" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true
 auto_translate_mode = 1
 dialog_text = "Restart the game?"
 
-[node name="ConfirmMainMenu" type="ConfirmationDialog" parent="." index="3"]
+[node name="ConfirmMainMenu" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true
 auto_translate_mode = 1
 dialog_text = "Go back to main menu?"
 
-[node name="ConfirmExit" type="ConfirmationDialog" parent="." index="4"]
+[node name="ConfirmExit" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true
 auto_translate_mode = 1
 dialog_text = "Quit the game?"
 
-[connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer2/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer3/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer4/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="confirmed" from="ConfirmRestart" to="." method="_on_confirm_restart_confirmed"]
 [connection signal="confirmed" from="ConfirmMainMenu" to="." method="_on_confirm_main_menu_confirmed"]
 [connection signal="confirmed" from="ConfirmExit" to="." method="_on_confirm_exit_confirmed"]
