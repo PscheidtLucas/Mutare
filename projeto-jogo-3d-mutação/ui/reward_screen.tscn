@@ -58,7 +58,7 @@ Button/styles/normal = SubResource("StyleBoxFlat_lsdnj")
 Button/styles/pressed = SubResource("StyleBoxFlat_xe12l")
 
 [sub_resource type="Theme" id="Theme_hal1c"]
-default_font_size = 10
+default_font_size = 8
 
 [node name="RewardManagerScreen" type="Control" node_paths=PackedStringArray("first_select_button", "first_select_head_button", "options_container")]
 layout_mode = 3
@@ -213,7 +213,7 @@ z_index = 1
 layout_mode = 0
 offset_left = 71.0
 offset_top = 8.0
-offset_right = 252.0
+offset_right = 275.0
 offset_bottom = 144.0
 
 [node name="Blank3" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
@@ -240,7 +240,7 @@ z_index = 1
 layout_mode = 0
 offset_left = 73.0
 offset_top = 9.0
-offset_right = 254.0
+offset_right = 271.0
 offset_bottom = 145.0
 
 [node name="MarginContainer10" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
@@ -262,7 +262,7 @@ z_index = 1
 layout_mode = 0
 offset_left = 71.0
 offset_top = 0.0
-offset_right = 252.0
+offset_right = 275.0
 offset_bottom = 136.0
 
 [node name="Blank2" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
@@ -289,7 +289,7 @@ z_index = 1
 layout_mode = 0
 offset_left = 73.0
 offset_top = 0.0
-offset_right = 254.0
+offset_right = 271.0
 offset_bottom = 136.0
 
 [node name="Blank" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
@@ -445,6 +445,33 @@ offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_hal1c")
+theme_override_constants/separation = 4
+
+[node name="MaxHealth" type="HBoxContainer" parent="Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatName" type="Label" parent="Stats/VBoxContainer/MaxHealth"]
+layout_mode = 2
+text = "Max HP"
+
+[node name="Valeu" type="Label" parent="Stats/VBoxContainer/MaxHealth"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100.0"
+horizontal_alignment = 2
+
+[node name="HP5" type="HBoxContainer" parent="Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatName" type="Label" parent="Stats/VBoxContainer/HP5"]
+layout_mode = 2
+text = "Health / 5 SEC"
+
+[node name="Valeu" type="Label" parent="Stats/VBoxContainer/HP5"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "5.0"
+horizontal_alignment = 2
 
 [node name="Damage" type="HBoxContainer" parent="Stats/VBoxContainer"]
 layout_mode = 2
@@ -456,7 +483,7 @@ text = "Damage"
 [node name="Valeu" type="Label" parent="Stats/VBoxContainer/Damage"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "+ 50 %"
+text = "+ 50.0 %"
 horizontal_alignment = 2
 
 [node name="FireRate" type="HBoxContainer" parent="Stats/VBoxContainer"]
@@ -469,7 +496,7 @@ text = "Fire Rate"
 [node name="Valeu" type="Label" parent="Stats/VBoxContainer/FireRate"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "+ 50 %"
+text = "+ 50.0 %"
 horizontal_alignment = 2
 
 [node name="CritChance" type="HBoxContainer" parent="Stats/VBoxContainer"]
@@ -509,32 +536,6 @@ text = "Speed"
 layout_mode = 2
 size_flags_horizontal = 10
 text = "+ 5.0 %"
-horizontal_alignment = 2
-
-[node name="MaxHealth" type="HBoxContainer" parent="Stats/VBoxContainer"]
-layout_mode = 2
-
-[node name="StatName" type="Label" parent="Stats/VBoxContainer/MaxHealth"]
-layout_mode = 2
-text = "Max Health"
-
-[node name="Valeu" type="Label" parent="Stats/VBoxContainer/MaxHealth"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "+ 50 %"
-horizontal_alignment = 2
-
-[node name="HP5" type="HBoxContainer" parent="Stats/VBoxContainer"]
-layout_mode = 2
-
-[node name="StatName" type="Label" parent="Stats/VBoxContainer/HP5"]
-layout_mode = 2
-text = "Health per 5 sec (HP5)"
-
-[node name="Valeu" type="Label" parent="Stats/VBoxContainer/HP5"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "5.0"
 horizontal_alignment = 2
 
 [editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox"]

@@ -42,7 +42,8 @@ func on_wave_survived() -> void:
 	time_left_label.hide()
 
 func on_wave_started() -> void:
-	time_left_label.show()
+	for node in nodes_to_hide_in_start:
+		node.show()
 
 # Manages what happens with UI elements when player dies # TODO Nada disso acontece acredito eu, colocar pra 5 de vida pra testar
 func on_player_lost() -> void:

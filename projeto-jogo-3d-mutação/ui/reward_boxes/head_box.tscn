@@ -19,9 +19,9 @@ expand_margin_top = 4.0
 expand_margin_right = 4.0
 expand_margin_bottom = 4.0
 
-[sub_resource type="Theme" id="Theme_p3niv"]
+[sub_resource type="Theme" id="Theme_qeakv"]
 Button/styles/normal = SubResource("StyleBoxFlat_b334d")
-Label/font_sizes/font_size = 12
+Label/font_sizes/font_size = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kv1n"]
 bg_color = Color(0.125666, 0.126421, 0.122977, 1)
@@ -71,10 +71,10 @@ layout_mode = 2
 [node name="VBoxStats" type="VBoxContainer" parent="AnchorStats"]
 layout_mode = 0
 offset_left = 242.0
-offset_top = 25.0
+offset_top = 47.0
 offset_right = 463.0
 offset_bottom = 136.0
-theme = SubResource("Theme_p3niv")
+theme = SubResource("Theme_qeakv")
 theme_override_constants/separation = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="AnchorStats/VBoxStats"]
@@ -213,13 +213,16 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -85.5
-offset_top = -13.0
+offset_top = -10.0
 offset_right = 16.5
-offset_bottom = 10.0
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("7_tr0oq")
-text = "Select"
+theme_override_constants/line_spacing = -14
+theme_override_font_sizes/font_size = 12
+text = "
+Select"
 
 [node name="Node2D" type="Node2D" parent="."]
 scale = Vector2(0.69, 0.69)

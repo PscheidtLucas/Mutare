@@ -53,7 +53,7 @@ material = SubResource("StandardMaterial3D_4od7l")
 size = Vector2(49, 49)
 
 [sub_resource type="Gradient" id="Gradient_2j5qn"]
-colors = PackedColorArray(0.874199, 0.435805, 0.31465, 1, 0.885536, 0.62336, 0.283134, 1)
+colors = PackedColorArray(0.87, 0.55448, 0.31320003, 1, 0.89, 0.50670666, 0.2848, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7jmcm"]
 noise_type = 2
@@ -96,8 +96,8 @@ seamless = true
 render_priority = 0
 shader = ExtResource("5_7jmcm")
 shader_parameter/WindNoise = SubResource("NoiseTexture2D_bwhkm")
-shader_parameter/BaseColor = Color(0.597802, 0.232851, 0.159188, 1)
-shader_parameter/ColorParameter = Color(0.979211, 0.779695, 0.387353, 1)
+shader_parameter/BaseColor = Color(1, 0.60366666, 0.18, 1)
+shader_parameter/ColorParameter = Color(0.63930005, 0.35862505, 0.2185961, 1)
 
 [sub_resource type="MultiMesh" id="MultiMesh_2j5qn"]
 transform_format = 1
@@ -588,7 +588,7 @@ shape = SubResource("BoxShape3D_rl8gb")
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1.91267)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.987334, -0.0403972, 0.153429, -0.15517, -0.0442133, 0.986898, -0.0330843, -0.998205, -0.0499218, 0, 18.633, 0)
+transform = Transform3D(0.98733366, -0.04039716, 0.15342863, -0.15516993, -0.044213306, 0.98689795, -0.03308429, -0.998205, -0.04992171, 0.032863617, 18.558094, 0.030639648)
 light_color = Color(0.979871, 0.964652, 0.754632, 1)
 light_energy = 0.8
 shadow_enabled = true
@@ -596,7 +596,7 @@ shadow_opacity = 0.8
 directional_shadow_mode = 0
 
 [node name="Player" parent="." instance=ExtResource("1_1ykrc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.133096, 1.0485, 3.84997)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16595961, 0.97359455, 3.8806098)
 _jump_height = 4.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -634,11 +634,12 @@ layer = 2
 [node name="PauseMenu" parent="Pause" instance=ExtResource("17_qwpgs")]
 toggle_action = "ui_cancel"
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("nodes_to_hide_in_start")]
 process_mode = 3
 script = ExtResource("3_htrvu")
 player_stats = ExtResource("15_3mfhf")
 game_state = ExtResource("2_fwegj")
+nodes_to_hide_in_start = [NodePath("TimerContainer/LevelTimerContainer/TimeLeftLabel"), NodePath("MarginContainer/HealthUI")]
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
 

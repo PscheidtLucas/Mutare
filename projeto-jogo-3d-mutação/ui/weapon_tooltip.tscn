@@ -2,7 +2,7 @@
 
 [sub_resource type="Theme" id="Theme_vuu3q"]
 Label/constants/line_spacing = 0
-Label/font_sizes/font_size = 11
+Label/font_sizes/font_size = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klgxq"]
 content_margin_left = 15.0
@@ -17,15 +17,16 @@ corner_radius_bottom_left = 25
 
 [node name="WeaponTooltip" type="PanelContainer"]
 offset_left = 58.0
-offset_top = -109.0
-offset_right = 239.0
-offset_bottom = 27.0
+offset_top = -101.5
+offset_right = 254.0
+offset_bottom = 19.5
 mouse_filter = 2
 theme = SubResource("Theme_vuu3q")
 theme_override_styles/panel = SubResource("StyleBoxFlat_klgxq")
 
 [node name="StatNames" type="Label" parent="."]
 layout_mode = 2
+theme_override_constants/line_spacing = 4
 text = "Dmg:
 Projectiles:
 Fire Rate:
@@ -36,6 +37,7 @@ Trans Bonus:"
 
 [node name="StatValues" type="Label" parent="."]
 layout_mode = 2
+theme_override_constants/line_spacing = 4
 text = "100.2
 3
 1.26 /s

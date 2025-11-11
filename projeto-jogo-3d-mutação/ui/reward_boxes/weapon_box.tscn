@@ -22,6 +22,7 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_p3niv"]
+font_size = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b334d"]
 bg_color = Color(1, 0.816, 0.31, 0.564706)
@@ -37,7 +38,7 @@ expand_margin_bottom = 4.0
 
 [sub_resource type="Theme" id="Theme_p3niv"]
 Button/styles/normal = SubResource("StyleBoxFlat_b334d")
-Label/font_sizes/font_size = 12
+Label/font_sizes/font_size = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kv1n"]
 bg_color = Color(0.125666, 0.126421, 0.122977, 1)
@@ -124,70 +125,69 @@ theme_override_constants/margin_bottom = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 0
+theme_override_constants/separation = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="NAME" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("weapon_box")]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Pistol"
+text = "Carniv"
 label_settings = SubResource("LabelSettings_p3niv")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_5kv1n")
 weapon_box = NodePath("../../../../../../..")
 
-[node name="VBoxStats" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="VBoxStatsTHEME" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_p3niv")
-theme_override_constants/separation = 2
+theme_override_constants/separation = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME"]
 layout_mode = 2
 
-[node name="Panel" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer"]
+[node name="Panel" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_5kv1n")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer/Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="DamageStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer/Panel/MarginContainer"]
+[node name="DamageStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer/Panel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Damage Per Bullet"
 
-[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer/Panel/MarginContainer" node_paths=PackedStringArray("weapon_box")]
+[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer/Panel/MarginContainer" node_paths=PackedStringArray("weapon_box")]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "105.1"
 script = ExtResource("3_b334d")
 weapon_box = NodePath("../../../../../../../../../..")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer2"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer2/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer2/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="ProjCountStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer2/PanelContainer/MarginContainer"]
+[node name="ProjCountStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer2/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Projectiles / Shot"
 
-[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer2/PanelContainer/MarginContainer" node_paths=PackedStringArray("weapon_box")]
+[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer2/PanelContainer/MarginContainer" node_paths=PackedStringArray("weapon_box")]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "3"
@@ -195,25 +195,25 @@ script = ExtResource("3_b334d")
 weapon_box = NodePath("../../../../../../../../../..")
 stat_type = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer3"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_k47en")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer3/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer3/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="FireRateStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer3/PanelContainer/MarginContainer"]
+[node name="FireRateStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer3/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Fire Rate"
 
-[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer3/PanelContainer/MarginContainer" node_paths=PackedStringArray("weapon_box")]
+[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer3/PanelContainer/MarginContainer" node_paths=PackedStringArray("weapon_box")]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "1.26 /s"
@@ -221,24 +221,24 @@ script = ExtResource("3_b334d")
 weapon_box = NodePath("../../../../../../../../../..")
 stat_type = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer4"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer4/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer4/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="AccStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer4/PanelContainer/MarginContainer"]
+[node name="AccStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer4/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Accuracy"
 
-[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer4/PanelContainer/MarginContainer" node_paths=PackedStringArray("weapon_box")]
+[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer4/PanelContainer/MarginContainer" node_paths=PackedStringArray("weapon_box")]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "66.3%"
@@ -246,25 +246,25 @@ script = ExtResource("3_b334d")
 weapon_box = NodePath("../../../../../../../../../..")
 stat_type = 3
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer5"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_k47en")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer5/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer5/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="ProjSpeedStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer5/PanelContainer/MarginContainer"]
+[node name="ProjSpeedStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer5/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Projectile Speed"
 
-[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer5/PanelContainer/MarginContainer" node_paths=PackedStringArray("weapon_box")]
+[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer5/PanelContainer/MarginContainer" node_paths=PackedStringArray("weapon_box")]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "5 m/s"
@@ -272,24 +272,24 @@ script = ExtResource("3_b334d")
 weapon_box = NodePath("../../../../../../../../../..")
 stat_type = 4
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
+[node name="HBoxContainer6" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer6"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer6"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer6/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer6/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="RangeStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer6/PanelContainer/MarginContainer"]
+[node name="RangeStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer6/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Range"
 
-[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer6/PanelContainer/MarginContainer" node_paths=PackedStringArray("weapon_box")]
+[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer6/PanelContainer/MarginContainer" node_paths=PackedStringArray("weapon_box")]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "10 m"
@@ -297,26 +297,26 @@ script = ExtResource("3_b334d")
 weapon_box = NodePath("../../../../../../../../../..")
 stat_type = 5
 
-[node name="HBoxContainer7" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats"]
+[node name="HBoxContainer7" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer7"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer7"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_36fv1")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer7/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer7/PanelContainer"]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
 
-[node name="TranBonusStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer7/PanelContainer/MarginContainer"]
+[node name="TranBonusStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer7/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Transcendency Bonus"
 
-[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStats/HBoxContainer7/PanelContainer/MarginContainer" node_paths=PackedStringArray("weapon_box")]
+[node name="Value" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer7/PanelContainer/MarginContainer" node_paths=PackedStringArray("weapon_box")]
 layout_mode = 2
 size_flags_horizontal = 8
 text = " +0.5% Damage"
@@ -355,7 +355,37 @@ offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("4_k47en")
-text = "Select"
+theme_override_constants/line_spacing = -14
+theme_override_font_sizes/font_size = 12
+text = "
+Select"
+
+[node name="MarginContainer" type="MarginContainer" parent="Anchor"]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 86.0
+offset_right = 226.0
+offset_bottom = 145.0
+theme_override_constants/margin_top = 4
+
+[node name="CenterContainer" type="CenterContainer" parent="Anchor/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Anchor/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="RatingWord" type="Label" parent="Anchor/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Rating"
+horizontal_alignment = 1
+
+[node name="RatingValue" type="Label" parent="Anchor/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "75"
+horizontal_alignment = 1
 
 [node name="Node2D" type="Node2D" parent="."]
 scale = Vector2(0.69, 0.69)
