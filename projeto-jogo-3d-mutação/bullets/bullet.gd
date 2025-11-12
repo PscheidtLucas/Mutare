@@ -9,6 +9,12 @@ var was_shot_from_player: bool = false
 var damage: float = 1.0
 var _config: RangedWeaponConfig = null
 
+
+func _ready() -> void:
+	GameEvents.wave_survived.connect(func() -> void:
+		queue_free())
+
+
 func _physics_process(delta: float) -> void:
 	global_translate(velocity * delta)
 

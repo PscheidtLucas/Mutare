@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=46 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -24,9 +24,197 @@
 [ext_resource type="Texture2D" uid="uid://cfufslelps5gm" path="res://ui/reward screen images/updated/Quadrado inventário - Braço.png" id="17_emeoy"]
 [ext_resource type="Texture2D" uid="uid://bdbnh2uyie1c8" path="res://ui/reward screen images/updated/Quadrado inventário - Perna.png" id="18_emeoy"]
 [ext_resource type="PackedScene" uid="uid://oupsgwycr6a7" path="res://ui/reward_boxes/head_box.tscn" id="18_hal1c"]
+[ext_resource type="Script" uid="uid://2ivusn8lp4x7" path="res://ui/evolve_button_manager.gd" id="20_lg4tu"]
+[ext_resource type="FontFile" uid="uid://ci0ch0j3lh3j3" path="res://ui/fonts/major_snafu/major.ttf" id="21_x8a5c"]
 [ext_resource type="Script" uid="uid://bce4s0diqnlkf" path="res://ui/value.gd" id="22_7pdxk"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="23_725ha"]
 [ext_resource type="Script" uid="uid://yvc18at3gobp" path="res://entities/player/player_stats.gd" id="24_725ha"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i80ks"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 25.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lg4tu"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.86562145, 0.83795667, 0.76725084, 0.23529412)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_piogr"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.69, 0.64699, 0.53819996, 0.23529412)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8a5c"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.69, 0.64699, 0.53819996, 0.23529412)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_y0g00"]
+default_font = ExtResource("21_x8a5c")
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_i80ks")
+Button/styles/hover = SubResource("StyleBoxFlat_lg4tu")
+Button/styles/normal = SubResource("StyleBoxFlat_piogr")
+Button/styles/pressed = SubResource("StyleBoxFlat_x8a5c")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucqqx"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.39215687)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 5
+
+[sub_resource type="Animation" id="Animation_lg4tu"]
+resource_name = "evolve_pressed"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%EvolveButton:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(55, 230), Vector2(55, 252)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%EvolveButtonBottom:size")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(464, 211), Vector2(464, 188)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%EvolveButtonBottom:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(55, 230), Vector2(55, 253)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%EvolveButton/EvolveWhiteLabel:theme_override_colors/font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.5254902, 1, 0.9882353, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x8a5c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%EvolveButton:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(55, 230)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%EvolveButtonBottom:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(464, 211)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%EvolveButtonBottom:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(55, 230)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%EvolveButton/EvolveWhiteLabel:theme_override_colors/font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i80ks"]
+_data = {
+&"RESET": SubResource("Animation_x8a5c"),
+&"evolve_pressed": SubResource("Animation_lg4tu")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwexk"]
 bg_color = Color(0.151447, 0.124627, 0.0944336, 1)
@@ -79,11 +267,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lsmmt")
 game_state = ExtResource("2_vw3wg")
-first_select_button = NodePath("MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox/Anchor/SelectButton")
-first_select_head_button = NodePath("MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/HeadBox/Anchor/SelectButton")
+first_select_button = NodePath("MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox/Anchor/SelectButton")
+first_select_head_button = NodePath("MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/HeadBox/Anchor/SelectButton")
 weapon_templates = Array[ExtResource("2_6bncb")]([ExtResource("3_bw4i5"), ExtResource("4_w26xa"), ExtResource("5_mur5e"), ExtResource("6_02iek")])
 heads_templates = Array[ExtResource("8_0p5y3")]([ExtResource("8_thu7a"), ExtResource("10_hal1c")])
-options_container = NodePath("MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer")
+options_container = NodePath("MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer")
 
 [node name="LeftBackground" type="TextureRect" parent="."]
 layout_mode = 0
@@ -493,23 +681,74 @@ size_flags_stretch_ratio = 0.2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightSide"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="FundoEscolhas" type="Sprite2D" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer"]
+[node name="FundoEscolhas" type="Sprite2D" parent="MarginContainer/HBoxContainer/RightSide"]
 z_index = -100
 position = Vector2(-1, 325)
 scale = Vector2(0.61, 0.61)
 texture = ExtResource("13_1dgt3")
 
-[node name="Anchor" type="Control" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer"]
+[node name="EvolveButtonManager" type="Control" parent="MarginContainer/HBoxContainer/RightSide" node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+script = ExtResource("20_lg4tu")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="EvolveButtonBottom" type="Button" parent="MarginContainer/HBoxContainer/RightSide/EvolveButtonManager"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 55.0
+offset_top = 230.0
+offset_right = 519.0
+offset_bottom = 441.0
+pivot_offset = Vector2(226, 211)
+theme = SubResource("Theme_y0g00")
+theme_override_colors/font_color = Color(0.37394443, 1, 0.9832812, 1)
+theme_override_font_sizes/font_size = 90
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ucqqx")
+disabled = true
+
+[node name="EvolveButton" type="Button" parent="MarginContainer/HBoxContainer/RightSide/EvolveButtonManager"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 55.0
+offset_top = 230.0
+offset_right = 519.0
+offset_bottom = 418.00104
+theme = SubResource("Theme_y0g00")
+theme_override_colors/font_color = Color(0.37394443, 1, 0.9832812, 1)
+theme_override_colors/font_hover_color = Color(0.37254903, 1, 0.9843137, 1)
+theme_override_font_sizes/font_size = 90
+text = "EVOLVE!"
+
+[node name="EvolveWhiteLabel" type="Label" parent="MarginContainer/HBoxContainer/RightSide/EvolveButtonManager/EvolveButton"]
+z_index = 1
+layout_mode = 0
+offset_left = 53.0
+offset_top = 40.0
+offset_right = 517.0
+offset_bottom = 228.0
+theme = SubResource("Theme_y0g00")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 90
+text = "EVOLVE!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/HBoxContainer/RightSide/EvolveButtonManager"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_i80ks")
+}
+
+[node name="ChoicesVBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightSide"]
+visible = false
 layout_mode = 2
 
-[node name="TítuloChoose1(1)" type="TextureRect" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer/Anchor"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Anchor" type="Control" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TítuloChoose1(1)" type="TextureRect" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer/Anchor"]
 layout_mode = 0
 offset_left = 58.04492
 offset_top = 3.0
@@ -519,13 +758,13 @@ texture = ExtResource("12_02iek")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer"]
 layout_mode = 2
 
-[node name="Anchor" type="Control" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2"]
+[node name="Anchor" type="Control" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="OptionsContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor"]
+[node name="OptionsContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = -252.0
@@ -535,46 +774,46 @@ scale = Vector2(0.95, 0.95)
 size_flags_vertical = 3
 theme_override_constants/separation = 25
 
-[node name="WeaponBox" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
+[node name="WeaponBox" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
 layout_mode = 2
 reward_screen = NodePath("../../../../../../../..")
 
-[node name="SelectButton" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox/Anchor" index="1"]
+[node name="SelectButton" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox/Anchor" index="1"]
 focus_neighbor_bottom = NodePath("../../../WeaponBox2/Anchor/SelectButton")
 
-[node name="WeaponBox2" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
+[node name="WeaponBox2" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
 layout_mode = 2
 reward_screen = NodePath("../../../../../../../..")
 
-[node name="SelectButton" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox2/Anchor" index="1"]
+[node name="SelectButton" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox2/Anchor" index="1"]
 focus_neighbor_bottom = NodePath("../../../WeaponBox3/Anchor/SelectButton")
 
-[node name="WeaponBox3" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
+[node name="WeaponBox3" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
 layout_mode = 2
 reward_screen = NodePath("../../../../../../../..")
 
-[node name="SelectButton" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox3/Anchor" index="1"]
+[node name="SelectButton" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox3/Anchor" index="1"]
 focus_neighbor_top = NodePath("../../../WeaponBox2/Anchor/SelectButton")
 
-[node name="HeadBox" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("18_hal1c")]
+[node name="HeadBox" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("18_hal1c")]
 layout_mode = 2
 reward_screen = NodePath("../../../../../../../..")
 
-[node name="HeadBox2" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("18_hal1c")]
+[node name="HeadBox2" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("18_hal1c")]
 layout_mode = 2
 reward_screen = NodePath("../../../../../../../..")
 
-[node name="HeadBox3" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("18_hal1c")]
+[node name="HeadBox3" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("18_hal1c")]
 layout_mode = 2
 reward_screen = NodePath("../../../../../../../..")
 
-[node name="Margin" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2"]
+[node name="Margin" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 6
 theme_override_constants/margin_right = 15
 
-[node name="RerollButton" type="Button" parent="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/Margin"]
+[node name="RerollButton" type="Button" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin"]
 visible = false
 custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
@@ -583,17 +822,17 @@ size_flags_vertical = 4
 theme = SubResource("Theme_nowss")
 text = "REROLL 15$"
 
+[node name="BotãoReroll" type="Sprite2D" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer"]
+position = Vector2(470, 619)
+scale = Vector2(0.355, 0.355)
+texture = ExtResource("16_cy6bo")
+
 [node name="PrototipoInv" type="Sprite2D" parent="."]
 visible = false
 z_index = -1
 position = Vector2(283, 323.99994)
 scale = Vector2(0.89057755, 0.93237424)
 texture = ExtResource("2_6ppac")
-
-[node name="BotãoReroll" type="Sprite2D" parent="."]
-position = Vector2(1053, 619)
-scale = Vector2(0.355, 0.355)
-texture = ExtResource("16_cy6bo")
 
 [node name="Stats" type="Control" parent="."]
 anchors_preset = 0
@@ -725,9 +964,11 @@ script = ExtResource("22_7pdxk")
 player_stats = ExtResource("23_725ha")
 stat_type = 3
 
-[editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox"]
-[editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox2"]
-[editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox3"]
-[editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/HeadBox"]
-[editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/HeadBox2"]
-[editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/HeadBox3"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/RightSide/EvolveButtonManager/EvolveButtonBottom" to="MarginContainer/HBoxContainer/RightSide/EvolveButtonManager" method="_on_evolve_button_bottom_pressed"]
+
+[editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox"]
+[editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox2"]
+[editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox3"]
+[editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/HeadBox"]
+[editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/HeadBox2"]
+[editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/HeadBox3"]

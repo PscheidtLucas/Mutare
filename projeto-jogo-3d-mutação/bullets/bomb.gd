@@ -17,7 +17,8 @@ var has_exploded: bool = false
 @export var array_of_meshes : Array[MeshInstance3D]
 
 func _ready() -> void:
-	# 1. Removemos a lógica do ExplosionTimer
+	GameEvents.wave_survived.connect(func() -> void:
+		queue_free())
 	
 	# 2. Configuramos o RigidBody para detectar o primeiro contato
 	contact_monitor = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cgodq53bkn7od"]
+[gd_scene load_steps=24 format=3 uid="uid://cgodq53bkn7od"]
 
 [ext_resource type="Script" uid="uid://c2ol1eufnlyiu" path="res://ui/reward_boxes/weapon_box.gd" id="1_lkbvd"]
 [ext_resource type="Script" uid="uid://b2vdaiy1d8rx7" path="res://ui/reward_boxes/image_container.gd" id="2_36fv1"]
@@ -43,12 +43,46 @@ Button/styles/normal = SubResource("StyleBoxFlat_b334d")
 Label/font_sizes/font_size = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kv1n"]
-bg_color = Color(0.125666, 0.126421, 0.122977, 1)
+bg_color = Color(0.9458776, 0, 0.43978712, 0.19607843)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k47en"]
-bg_color = Color(0.125666, 0.126421, 0.122977, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lijv"]
+bg_color = Color(0.34150237, 0.45938206, 1, 0.19607843)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqbxb"]
+bg_color = Color(0.6404846, 0.501195, 0, 0.19607843)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w1xjn"]
+bg_color = Color(1.2995303e-06, 0.6066007, 0.52111304, 0.19607843)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x60ks"]
+bg_color = Color(0, 0, 0, 0.27450982)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxjk3"]
+bg_color = Color(0.84, 0.84, 0.8316, 0.11764706)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36fv1"]
 bg_color = Color(0.125666, 0.126421, 0.122977, 1)
@@ -127,7 +161,7 @@ theme_override_constants/margin_bottom = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 6
+theme_override_constants/separation = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
@@ -145,7 +179,7 @@ weapon_box = NodePath("../../../../../../..")
 [node name="VBoxStatsTHEME" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_p3niv")
-theme_override_constants/separation = 4
+theme_override_constants/separation = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME"]
 layout_mode = 2
@@ -158,6 +192,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_5kv1n")
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer/Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 5
 
 [node name="DamageStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer/Panel/MarginContainer"]
@@ -178,10 +213,12 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_6lijv")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer2/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 5
 
 [node name="ProjCountStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer2/PanelContainer/MarginContainer"]
@@ -203,11 +240,12 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_k47en")
+theme_override_styles/panel = SubResource("StyleBoxFlat_yqbxb")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer3/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 5
 
 [node name="FireRateStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer3/PanelContainer/MarginContainer"]
@@ -229,10 +267,12 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_w1xjn")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer4/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 5
 
 [node name="AccStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer4/PanelContainer/MarginContainer"]
@@ -254,11 +294,12 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_k47en")
+theme_override_styles/panel = SubResource("StyleBoxFlat_x60ks")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer5/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 5
 
 [node name="ProjSpeedStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer5/PanelContainer/MarginContainer"]
@@ -280,10 +321,12 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer6"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mxjk3")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer6/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 5
 
 [node name="RangeStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer6/PanelContainer/MarginContainer"]
@@ -311,6 +354,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_36fv1")
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 5
 
 [node name="TranBonusStat" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/VBoxStatsTHEME/HBoxContainer7/PanelContainer/MarginContainer"]

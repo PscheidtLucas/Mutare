@@ -22,13 +22,26 @@ func _ready() -> void:
 	
 	get_tree().set_deferred("paused", true)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if wave_timer.is_stopped():
 		return
 	game_state.time_left = int(get_time_left())
+	
 
+## Jogador conseguiu sobreviver ao tempo total da wave, agora devemos ver se deve já ir para a próxima ou habilitar a tela de evolução com cycle_cleared (sinal presente no GameEvents)
 func on_level_timer_timeout() -> void:
 	if PlayerManager.player.is_alive():
+		check_if_cycle_ended()
+
+
+func check_if_cycle_ended() -> void:
+	if game_state.is_end_of_cycle():
+		## Se sim, significa que estamos na wave 10, 20, 30...
+		GameEvents.cycle_cleared.emit()
+		get_tree().set_deferred("paused", true)
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		##  É uma wave normal, (1-9), (11-19)...
 		game_state.increase_wave_numb()
 		GameEvents.wave_survived.emit()
 

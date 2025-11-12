@@ -1,5 +1,7 @@
-class_name RewardManager
+class_name RewardManager 
 extends Control
+
+## Script responsável tanto por mostrar as recompensas normais quanto por mostrar a tela de evolução
 
 @export var game_state: GameState
 @export var first_select_button: Button
