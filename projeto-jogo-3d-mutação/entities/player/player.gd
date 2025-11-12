@@ -79,6 +79,8 @@ func _ready() -> void:
 		)
 	GameEvents.wave_survived.connect(func()-> void:
 		reset_player() )
+	
+	GameEvents.evolution_completed.connect(_on_evolution_completed)
 		
 	GameEvents.weapon_selected.connect(equip)
 	
@@ -154,14 +156,16 @@ func die() -> void:
 	GameEvents.player_died.emit()
 	set_physics_process(false)
 	set_process(false)
-	#hide() #TODO 
+
+func _on_evolution_completed() -> void:
+	pass
+	#for item in item_inventory:
+		#var reward : RewardConfig = item.config
+		#stats.add_permanent_buff_from_reward(reward)
+		
 
 # Esta função recebe o impulso calculado pelo inimigo
 func apply_knockback(knockback_velocity: Vector3):
-	# Simplesmente definimos a velocidade do player para o impulso.
-	# O seu _physics_process normal (com gravidade, input, etc.)
-	# vai assumir o controle no próximo frame, mas o impulso
-	# inicial do knockback será aplicado.
 	velocity = knockback_velocity
 
 func is_alive() -> bool:

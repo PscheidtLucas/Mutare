@@ -4,16 +4,27 @@ class_name EvolveButtonManager extends Control
 @onready var evolve_button: Button = %EvolveButton
 @export var animation_player: AnimationPlayer 
 
+var evolve_was_pressed := false
+
 
 func _ready() -> void:
-	pass # Replace with function body.
+	evolve_was_pressed = false
+	evolve_button.pressed.connect(_on_evolve_button_pressed)
+	
+	animation_player.animation_finished.connect(on_evolution_finished)
 
 
-func _on_evolve_button_bottom_pressed() -> void:
-	print("pressed")
-	if animation_player.current_animation == "evolve_pressed":
-		print("returning early")
+func on_evolution_finished() -> void:
+	GameEvents.evolution_completed.emit()
+
+
+func _on_evolve_button_pressed() -> void:
+	if evolve_was_pressed:
 		return
+	evolve_was_pressed = true
+	animate_evolve_button() ## Anima o botão de evolução e envia o sinal "evolution_completed" quando a animação termina
+	
+	
+func animate_evolve_button() -> void:
 	if animation_player.is_playing() == false:
-		print("deveria tocar a animacao")
 		animation_player.play("evolve_pressed")

@@ -25,13 +25,24 @@ metadata/_custom_type_script = "uid://le5w1cm0ul8p"
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_oul6g")
 stats = ExtResource("2_7thud")
+fall_off_percent_damage = null
 rotation_speed = 170.0
 max_speed = 10.0
 acc = 1.0
 deceleration = 1.0
 max_fall_speed = -18.0
 _jump_height = 8.0
+_jump_time_to_peak = null
+_jump_time_to_descent = null
+_horiz_dist_jump = null
+_jump_cut_divider = null
+max_jumps = null
+_double_jump_height = null
+_double_jump_time_to_peak = null
+_double_jump_time_to_descent = null
+dash_speed = null
 dash_duration = 0.15
+dash_cooldown = null
 positions_for_weapons = [NodePath("CuboFrame/WeaponsManager/Position1"), NodePath("CuboFrame/WeaponsManager/Position4"), NodePath("CuboFrame/WeaponsManager/Position3"), NodePath("CuboFrame/WeaponsManager/Position2")]
 
 [node name="CameraAnchor" type="Node3D" parent="."]

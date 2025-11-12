@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RangedWeaponConfig" load_steps=4 format=3 uid="uid://bxx6u0q678oib"]
 
-[ext_resource type="PackedScene" uid="uid://8ukwdbx7rwvo" path="res://bullets/bullet.tscn" id="1_fppms"]
+[ext_resource type="PackedScene" uid="uid://cngkucju6ei4f" path="res://bullets/carniv_pistol_bullet.tscn" id="1_fppms"]
 [ext_resource type="Texture2D" uid="uid://dr40vjfyhg7t1" path="res://carnivorous_pistol.png" id="2_l20o5"]
 [ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="3_5gkr1"]
 

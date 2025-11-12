@@ -7,7 +7,7 @@ func _ready() -> void:
 	set_text_based_on_stat_type()
 	GameEvents.head_selected.connect(set_text_based_on_stat_type)
 
-func set_text_based_on_stat_type() -> void:
+func set_text_based_on_stat_type(head_config: HeadRewardConfig = null) -> void:
 	if not player_stats:
 		text = "N/A"
 		return

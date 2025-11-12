@@ -37,6 +37,7 @@ func on_level_timer_timeout() -> void:
 func check_if_cycle_ended() -> void:
 	if game_state.is_end_of_cycle():
 		## Se sim, significa que estamos na wave 10, 20, 30...
+		## Wave survived é emitido no reward manager, nessa caso, após a evolução ser concluída
 		GameEvents.cycle_cleared.emit()
 		get_tree().set_deferred("paused", true)
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

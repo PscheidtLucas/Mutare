@@ -7,10 +7,16 @@ extends Control
 @export var first_select_button: Button
 @export var first_select_head_button: Button
 
+@export var choices_v_box: VBoxContainer
+@export var evolve_button: Button
+@export var evolve_manager: EvolveButtonManager
+
 @export var weapon_templates: Array[RangedWeaponConfig]
 @export var meelee_templates: Array
 @export var heads_templates: Array[HeadRewardConfig]
 @export var legs_templates: Array
+
+
 
 @export var options_container: VBoxContainer
 
@@ -45,6 +51,8 @@ var _pending_focus_request := false
 func _ready() -> void:
 	GameEvents.wave_survived.connect(on_wave_survived)
 	GameEvents.wave_started.connect(on_wave_started)
+	GameEvents.cycle_cleared.connect(on_cycle_cleared)
+	
 	call_deferred("wave_0_config")
 
 	set_process_input(true)
@@ -54,9 +62,21 @@ func _ready() -> void:
 func wave_0_config() -> void:
 	on_wave_survived()
 
+## Lógica que mostra as o botão de evolução e esconde as escolhas de armas
+func on_cycle_cleared() -> void:
+	show()
+	
+	choices_v_box.hide()
+	evolve_manager.show()
 
+## Chamada das wavez 1-9 no final da wave, chamada na wave 10 depois que a evolução é concluída
 func on_wave_survived() -> void:
 	show()
+	
+	## Lógica que mostra as escolhas de armas e garante que o botao de evolve esteja escondido
+	choices_v_box.show()
+	evolve_manager.hide()
+	
 	var reward_type := reward_type_based_on_wave()
 
 	match reward_type:

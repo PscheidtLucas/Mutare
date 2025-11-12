@@ -107,58 +107,6 @@ corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 corner_detail = 5
 
-[sub_resource type="Animation" id="Animation_lg4tu"]
-resource_name = "evolve_pressed"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%EvolveButton:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.23333333),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector2(55, 230), Vector2(55, 252)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%EvolveButtonBottom:size")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.23333333),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector2(464, 211), Vector2(464, 188)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("%EvolveButtonBottom:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.23333333),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector2(55, 230), Vector2(55, 253)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("%EvolveButton/EvolveWhiteLabel:theme_override_colors/font_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.23333333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.5254902, 1, 0.9882353, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_x8a5c"]
 length = 0.001
 tracks/0/type = "value"
@@ -209,6 +157,82 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%EvolveButton:theme:Button/styles/focus:expand_margin_bottom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [25.0]
+}
+
+[sub_resource type="Animation" id="Animation_lg4tu"]
+resource_name = "evolve_pressed"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%EvolveButton:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(55, 230), Vector2(55, 252)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%EvolveButtonBottom:size")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(464, 211), Vector2(464, 188)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%EvolveButtonBottom:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(55, 230), Vector2(55, 253)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%EvolveButton/EvolveWhiteLabel:theme_override_colors/font_color")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.5254902, 1, 0.9882353, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%EvolveButton:theme:Button/styles/focus:expand_margin_bottom")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [25.0, 2.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i80ks"]
 _data = {
@@ -258,7 +282,7 @@ default_font_size = 8
 script = ExtResource("24_725ha")
 metadata/_custom_type_script = "uid://yvc18at3gobp"
 
-[node name="RewardManagerScreen" type="Control" node_paths=PackedStringArray("first_select_button", "first_select_head_button", "options_container")]
+[node name="RewardManagerScreen" type="Control" node_paths=PackedStringArray("first_select_button", "first_select_head_button", "choices_v_box", "evolve_button", "evolve_manager", "options_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -269,6 +293,9 @@ script = ExtResource("1_lsmmt")
 game_state = ExtResource("2_vw3wg")
 first_select_button = NodePath("MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox/Anchor/SelectButton")
 first_select_head_button = NodePath("MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/HeadBox/Anchor/SelectButton")
+choices_v_box = NodePath("MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer")
+evolve_button = NodePath("MarginContainer/HBoxContainer/RightSide/EvolveButtonManager/EvolveButton")
+evolve_manager = NodePath("MarginContainer/HBoxContainer/RightSide/EvolveButtonManager")
 weapon_templates = Array[ExtResource("2_6bncb")]([ExtResource("3_bw4i5"), ExtResource("4_w26xa"), ExtResource("5_mur5e"), ExtResource("6_02iek")])
 heads_templates = Array[ExtResource("8_0p5y3")]([ExtResource("8_thu7a"), ExtResource("10_hal1c")])
 options_container = NodePath("MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer")
@@ -715,6 +742,8 @@ offset_right = 519.0
 offset_bottom = 418.00104
 theme = SubResource("Theme_y0g00")
 theme_override_colors/font_color = Color(0.37394443, 1, 0.9832812, 1)
+theme_override_colors/font_focus_color = Color(0.37254903, 1, 0.9843137, 1)
+theme_override_colors/font_pressed_color = Color(0.37254903, 1, 0.9843137, 1)
 theme_override_colors/font_hover_color = Color(0.37254903, 1, 0.9843137, 1)
 theme_override_font_sizes/font_size = 90
 text = "EVOLVE!"
@@ -736,8 +765,10 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_i80ks")
 }
+speed_scale = 0.8
 
 [node name="ChoicesVBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightSide"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
@@ -963,8 +994,6 @@ horizontal_alignment = 2
 script = ExtResource("22_7pdxk")
 player_stats = ExtResource("23_725ha")
 stat_type = 3
-
-[connection signal="pressed" from="MarginContainer/HBoxContainer/RightSide/EvolveButtonManager/EvolveButtonBottom" to="MarginContainer/HBoxContainer/RightSide/EvolveButtonManager" method="_on_evolve_button_bottom_pressed"]
 
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox"]
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox2"]
