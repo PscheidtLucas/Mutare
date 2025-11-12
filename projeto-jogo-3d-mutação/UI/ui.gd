@@ -40,6 +40,8 @@ func on_wave_survived() -> void:
 	# Pausa toda a árvore de cenas
 	get_tree().paused = true
 	time_left_label.hide()
+	for node in nodes_to_hide_in_start:
+		node.hide()
 
 func on_wave_started() -> void:
 	for node in nodes_to_hide_in_start:

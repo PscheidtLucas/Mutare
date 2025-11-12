@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=35 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -14,13 +14,19 @@
 [ext_resource type="Resource" uid="uid://bf80h3suneegk" path="res://weapons/smg_tech/smg_tech_stats.tres" id="6_02iek"]
 [ext_resource type="PackedScene" uid="uid://di0s2eg2am62i" path="res://ui/weapon_tooltip.tscn" id="7_klgxq"]
 [ext_resource type="Script" uid="uid://b3jjmvq4w0nl6" path="res://rewards/head_reward_config.gd" id="8_0p5y3"]
-[ext_resource type="Texture2D" uid="uid://deqphs73r0lcf" path="res://Quadrado inventário - Cabeça (com símbolo).png" id="8_mur5e"]
 [ext_resource type="Resource" uid="uid://dhufbnjo4ie50" path="res://rewards/heads/tres files/engineer_head.tres" id="8_thu7a"]
 [ext_resource type="Resource" uid="uid://cbp2bamcj5q76" path="res://rewards/heads/tres files/robot_head.tres" id="10_hal1c"]
+[ext_resource type="Texture2D" uid="uid://cs0bc42878p2e" path="res://ui/reward screen images/updated/Fundo Inventário.png" id="11_cnv0r"]
 [ext_resource type="Texture2D" uid="uid://cvv7g2i3ro54s" path="res://ui/reward screen images/Título Choose 1 (1).png" id="12_02iek"]
 [ext_resource type="Texture2D" uid="uid://cy6etnva02wps" path="res://ui/reward screen images/Fundo Escolhas.png" id="13_1dgt3"]
+[ext_resource type="Texture2D" uid="uid://cl46bwbhl5q7c" path="res://ui/reward screen images/updated/Quadrado inventário - Cabeça.png" id="13_3kma2"]
 [ext_resource type="Texture2D" uid="uid://cxj4gnibdil3g" path="res://ui/reward screen images/Botão - Reroll.png" id="16_cy6bo"]
+[ext_resource type="Texture2D" uid="uid://cfufslelps5gm" path="res://ui/reward screen images/updated/Quadrado inventário - Braço.png" id="17_emeoy"]
+[ext_resource type="Texture2D" uid="uid://bdbnh2uyie1c8" path="res://ui/reward screen images/updated/Quadrado inventário - Perna.png" id="18_emeoy"]
 [ext_resource type="PackedScene" uid="uid://oupsgwycr6a7" path="res://ui/reward_boxes/head_box.tscn" id="18_hal1c"]
+[ext_resource type="Script" uid="uid://bce4s0diqnlkf" path="res://ui/value.gd" id="22_7pdxk"]
+[ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="23_725ha"]
+[ext_resource type="Script" uid="uid://yvc18at3gobp" path="res://entities/player/player_stats.gd" id="24_725ha"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwexk"]
 bg_color = Color(0.151447, 0.124627, 0.0944336, 1)
@@ -60,6 +66,10 @@ Button/styles/pressed = SubResource("StyleBoxFlat_xe12l")
 [sub_resource type="Theme" id="Theme_hal1c"]
 default_font_size = 8
 
+[sub_resource type="Resource" id="Resource_cnv0r"]
+script = ExtResource("24_725ha")
+metadata/_custom_type_script = "uid://yvc18at3gobp"
+
 [node name="RewardManagerScreen" type="Control" node_paths=PackedStringArray("first_select_button", "first_select_head_button", "options_container")]
 layout_mode = 3
 anchors_preset = 15
@@ -74,6 +84,13 @@ first_select_head_button = NodePath("MarginContainer/HBoxContainer/RightSide/VBo
 weapon_templates = Array[ExtResource("2_6bncb")]([ExtResource("3_bw4i5"), ExtResource("4_w26xa"), ExtResource("5_mur5e"), ExtResource("6_02iek")])
 heads_templates = Array[ExtResource("8_0p5y3")]([ExtResource("8_thu7a"), ExtResource("10_hal1c")])
 options_container = NodePath("MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer")
+
+[node name="LeftBackground" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1077.0
+offset_bottom = 648.0
+texture = ExtResource("11_cnv0r")
+expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -104,25 +121,72 @@ theme_override_constants/h_separation = 22
 theme_override_constants/v_separation = 22
 columns = 3
 script = ExtResource("4_vuu3q")
-weapon_slots = [NodePath("MarginContainer7/WeaponSlot1"), NodePath("MarginContainer9/WeaponSlot2"), NodePath("MarginContainer10/WeaponSlot3"), NodePath("MarginContainer12/WeaponSlot4")]
+weapon_slots = [NodePath("WMarginContainer7/WeaponSlot1"), NodePath("WMarginContainer9/WeaponSlot2"), NodePath("WMarginContainer10/WeaponSlot3"), NodePath("WMarginContainer12/WeaponSlot4")]
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="HMarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/margin_left = -100
-theme_override_constants/margin_top = -100
-theme_override_constants/margin_right = -100
-theme_override_constants/margin_bottom = -85
 
-[node name="FundoIconeAtt" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer"]
-visible = false
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer"]
 layout_mode = 2
-texture = ExtResource("8_mur5e")
-expand_mode = 1
-stretch_mode = 5
+mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer"]
+[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer/Control"]
+custom_minimum_size = Vector2(210, 120)
+layout_mode = 0
+offset_left = -110.0
+offset_top = -63.0
+offset_right = 100.0
+offset_bottom = 57.0
+pivot_offset = Vector2(93, 56)
+mouse_filter = 2
+texture = ExtResource("13_3kma2")
+expand_mode = 1
+
+[node name="HMarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer2/Control"]
+custom_minimum_size = Vector2(210, 120)
+layout_mode = 0
+offset_left = -110.0
+offset_top = -63.0
+offset_right = 100.0
+offset_bottom = 57.0
+pivot_offset = Vector2(93, 56)
+mouse_filter = 2
+texture = ExtResource("13_3kma2")
+expand_mode = 1
+
+[node name="HMarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer3"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer3/Control"]
+custom_minimum_size = Vector2(210, 120)
+layout_mode = 0
+offset_left = -65.0
+offset_top = -18.0
+offset_right = 145.0
+offset_bottom = 102.0
+pivot_offset = Vector2(93, 56)
+mouse_filter = 2
+texture = ExtResource("13_3kma2")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer3"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
@@ -130,12 +194,28 @@ mouse_filter = 0
 texture = ExtResource("1_lsdnj")
 expand_mode = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="HMarginContainer4" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer2"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer4"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer4/Control"]
+custom_minimum_size = Vector2(210, 120)
+layout_mode = 0
+offset_left = -65.0
+offset_top = -18.0
+offset_right = 145.0
+offset_bottom = 102.0
+pivot_offset = Vector2(93, 56)
+mouse_filter = 2
+texture = ExtResource("13_3kma2")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer4"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
@@ -143,12 +223,28 @@ mouse_filter = 0
 texture = ExtResource("1_lsdnj")
 expand_mode = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="HMarginContainer5" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer3"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer5"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer5/Control"]
+custom_minimum_size = Vector2(210, 120)
+layout_mode = 0
+offset_left = -65.0
+offset_top = -18.0
+offset_right = 145.0
+offset_bottom = 102.0
+pivot_offset = Vector2(93, 56)
+mouse_filter = 2
+texture = ExtResource("13_3kma2")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer5"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
@@ -156,12 +252,28 @@ mouse_filter = 0
 texture = ExtResource("1_lsdnj")
 expand_mode = 1
 
-[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="HMarginContainer6" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer4"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer6"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer6/Control"]
+custom_minimum_size = Vector2(210, 120)
+layout_mode = 0
+offset_left = -65.0
+offset_top = -18.0
+offset_right = 145.0
+offset_bottom = 102.0
+pivot_offset = Vector2(93, 56)
+mouse_filter = 2
+texture = ExtResource("13_3kma2")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer6"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
@@ -169,38 +281,28 @@ mouse_filter = 0
 texture = ExtResource("1_lsdnj")
 expand_mode = 1
 
-[node name="MarginContainer5" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="WMarginContainer7" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer5"]
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(90, 90)
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer7"]
 layout_mode = 2
-mouse_filter = 0
-texture = ExtResource("1_lsdnj")
+mouse_filter = 2
+
+[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer7/Control"]
+custom_minimum_size = Vector2(210, 120)
+layout_mode = 0
+offset_left = -65.0
+offset_top = -18.0
+offset_right = 145.0
+offset_bottom = 102.0
+pivot_offset = Vector2(93, 56)
+mouse_filter = 2
+texture = ExtResource("17_emeoy")
 expand_mode = 1
 
-[node name="MarginContainer6" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer6"]
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(90, 90)
-layout_mode = 2
-mouse_filter = 0
-texture = ExtResource("1_lsdnj")
-expand_mode = 1
-
-[node name="MarginContainer7" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="WeaponSlot1" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer7"]
+[node name="WeaponSlot1" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer7"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
 mouse_filter = 0
@@ -208,7 +310,7 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("5_bw4i5")
 
-[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer7/WeaponSlot1" instance=ExtResource("7_klgxq")]
+[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer7/WeaponSlot1" instance=ExtResource("7_klgxq")]
 z_index = 1
 layout_mode = 0
 offset_left = 71.0
@@ -221,12 +323,28 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer9" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="WMarginContainer9" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="WeaponSlot2" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer9"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer9"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer9/Control"]
+custom_minimum_size = Vector2(210, 120)
+layout_mode = 0
+offset_left = -65.0
+offset_top = -18.0
+offset_right = 145.0
+offset_bottom = 102.0
+pivot_offset = Vector2(93, 56)
+mouse_filter = 2
+texture = ExtResource("17_emeoy")
+expand_mode = 1
+
+[node name="WeaponSlot2" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer9"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
 mouse_filter = 0
@@ -235,7 +353,7 @@ stretch_mode = 5
 script = ExtResource("5_bw4i5")
 slot_number = 2
 
-[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer9/WeaponSlot2" instance=ExtResource("7_klgxq")]
+[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer9/WeaponSlot2" instance=ExtResource("7_klgxq")]
 z_index = 1
 layout_mode = 0
 offset_left = 73.0
@@ -243,12 +361,28 @@ offset_top = 9.0
 offset_right = 271.0
 offset_bottom = 145.0
 
-[node name="MarginContainer10" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="WMarginContainer10" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="WeaponSlot3" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer10"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer10"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer10/Control"]
+custom_minimum_size = Vector2(210, 120)
+layout_mode = 0
+offset_left = -65.0
+offset_top = -18.0
+offset_right = 145.0
+offset_bottom = 102.0
+pivot_offset = Vector2(93, 56)
+mouse_filter = 2
+texture = ExtResource("17_emeoy")
+expand_mode = 1
+
+[node name="WeaponSlot3" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer10"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
 mouse_filter = 0
@@ -257,7 +391,7 @@ stretch_mode = 5
 script = ExtResource("5_bw4i5")
 slot_number = 3
 
-[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer10/WeaponSlot3" instance=ExtResource("7_klgxq")]
+[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer10/WeaponSlot3" instance=ExtResource("7_klgxq")]
 z_index = 1
 layout_mode = 0
 offset_left = 71.0
@@ -270,12 +404,28 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer12" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="WMarginContainer12" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="WeaponSlot4" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer12"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer12"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer12/Control"]
+custom_minimum_size = Vector2(210, 120)
+layout_mode = 0
+offset_left = -65.0
+offset_top = -18.0
+offset_right = 145.0
+offset_bottom = 102.0
+pivot_offset = Vector2(93, 56)
+mouse_filter = 2
+texture = ExtResource("17_emeoy")
+expand_mode = 1
+
+[node name="WeaponSlot4" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer12"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
 mouse_filter = 0
@@ -284,7 +434,7 @@ stretch_mode = 5
 script = ExtResource("5_bw4i5")
 slot_number = 4
 
-[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer12/WeaponSlot4" instance=ExtResource("7_klgxq")]
+[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer12/WeaponSlot4" instance=ExtResource("7_klgxq")]
 z_index = 1
 layout_mode = 0
 offset_left = 73.0
@@ -297,12 +447,28 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer14" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="LMarginContainer14" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/MarginContainer14"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LegIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/Control"]
+custom_minimum_size = Vector2(210, 120)
+layout_mode = 0
+offset_left = -65.0
+offset_top = -18.0
+offset_right = 145.0
+offset_bottom = 102.0
+pivot_offset = Vector2(93, 56)
+mouse_filter = 2
+texture = ExtResource("18_emeoy")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
@@ -418,6 +584,7 @@ theme = SubResource("Theme_nowss")
 text = "REROLL 15$"
 
 [node name="PrototipoInv" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 position = Vector2(283, 323.99994)
 scale = Vector2(0.89057755, 0.93237424)
@@ -430,10 +597,10 @@ texture = ExtResource("16_cy6bo")
 
 [node name="Stats" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 380.0
-offset_top = 64.0
-offset_right = 540.0
-offset_bottom = 583.0
+offset_left = 388.0
+offset_top = 66.0
+offset_right = 548.0
+offset_bottom = 585.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Stats"]
 layout_mode = 1
@@ -454,11 +621,13 @@ layout_mode = 2
 layout_mode = 2
 text = "Max HP"
 
-[node name="Valeu" type="Label" parent="Stats/VBoxContainer/MaxHealth"]
+[node name="Value" type="Label" parent="Stats/VBoxContainer/MaxHealth"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "100.0"
 horizontal_alignment = 2
+script = ExtResource("22_7pdxk")
+player_stats = ExtResource("23_725ha")
 
 [node name="HP5" type="HBoxContainer" parent="Stats/VBoxContainer"]
 layout_mode = 2
@@ -467,11 +636,14 @@ layout_mode = 2
 layout_mode = 2
 text = "Health / 5 SEC"
 
-[node name="Valeu" type="Label" parent="Stats/VBoxContainer/HP5"]
+[node name="Value" type="Label" parent="Stats/VBoxContainer/HP5"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "5.0"
 horizontal_alignment = 2
+script = ExtResource("22_7pdxk")
+player_stats = ExtResource("23_725ha")
+stat_type = 1
 
 [node name="Damage" type="HBoxContainer" parent="Stats/VBoxContainer"]
 layout_mode = 2
@@ -480,11 +652,14 @@ layout_mode = 2
 layout_mode = 2
 text = "Damage"
 
-[node name="Valeu" type="Label" parent="Stats/VBoxContainer/Damage"]
+[node name="Value" type="Label" parent="Stats/VBoxContainer/Damage"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "+ 50.0 %"
 horizontal_alignment = 2
+script = ExtResource("22_7pdxk")
+player_stats = SubResource("Resource_cnv0r")
+stat_type = 2
 
 [node name="FireRate" type="HBoxContainer" parent="Stats/VBoxContainer"]
 layout_mode = 2
@@ -493,11 +668,14 @@ layout_mode = 2
 layout_mode = 2
 text = "Fire Rate"
 
-[node name="Valeu" type="Label" parent="Stats/VBoxContainer/FireRate"]
+[node name="Value" type="Label" parent="Stats/VBoxContainer/FireRate"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "+ 50.0 %"
 horizontal_alignment = 2
+script = ExtResource("22_7pdxk")
+player_stats = ExtResource("23_725ha")
+stat_type = 6
 
 [node name="CritChance" type="HBoxContainer" parent="Stats/VBoxContainer"]
 layout_mode = 2
@@ -506,11 +684,14 @@ layout_mode = 2
 layout_mode = 2
 text = "Crit Chance"
 
-[node name="Valeu" type="Label" parent="Stats/VBoxContainer/CritChance"]
+[node name="Value" type="Label" parent="Stats/VBoxContainer/CritChance"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "15.0 %"
 horizontal_alignment = 2
+script = ExtResource("22_7pdxk")
+player_stats = ExtResource("23_725ha")
+stat_type = 4
 
 [node name="CritDamage" type="HBoxContainer" parent="Stats/VBoxContainer"]
 layout_mode = 2
@@ -519,24 +700,30 @@ layout_mode = 2
 layout_mode = 2
 text = "Crit Damage"
 
-[node name="Valeu" type="Label" parent="Stats/VBoxContainer/CritDamage"]
+[node name="Value" type="Label" parent="Stats/VBoxContainer/CritDamage"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "100.0 %"
 horizontal_alignment = 2
+script = ExtResource("22_7pdxk")
+player_stats = ExtResource("23_725ha")
+stat_type = 5
 
 [node name="Speed" type="HBoxContainer" parent="Stats/VBoxContainer"]
 layout_mode = 2
 
 [node name="StatName" type="Label" parent="Stats/VBoxContainer/Speed"]
 layout_mode = 2
-text = "Speed"
+text = "MOV Speed"
 
-[node name="Valeu" type="Label" parent="Stats/VBoxContainer/Speed"]
+[node name="Value" type="Label" parent="Stats/VBoxContainer/Speed"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "+ 5.0 %"
 horizontal_alignment = 2
+script = ExtResource("22_7pdxk")
+player_stats = ExtResource("23_725ha")
+stat_type = 3
 
 [editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox"]
 [editable path="MarginContainer/HBoxContainer/RightSide/VBoxContainer2/MarginContainer2/Anchor/OptionsContainer/WeaponBox2"]

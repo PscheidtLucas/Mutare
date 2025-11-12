@@ -636,7 +636,7 @@ unique_name_in_owner = true
 layer = 2
 
 [node name="PauseMenu" parent="Pause" instance=ExtResource("17_qwpgs")]
-toggle_action = "ui_cancel"
+visible = false
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("nodes_to_hide_in_start")]
 process_mode = 3
