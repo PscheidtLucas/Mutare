@@ -21,4 +21,6 @@ min_range = 8.0
 max_range = 11.0
 projectile_speed = 20.0
 bullet_scene = ExtResource("1_yilro")
+perma_buff_percent_min = 0.01
+perma_buff_percent_max = 0.03
 metadata/_custom_type_script = "uid://ccx1jk5ymt3pe"

@@ -8,7 +8,7 @@ var weapon_config_generated : RewardConfig # passada pelo reward screen quando o
 
 signal update_labels(weapon_config: RewardConfig) ## Emitido aqui para atualizar as weapon_stats_label e também as imagens das armas no ImageContainer
 
-@onready var rating_value: Label = $Anchor/MarginContainer/CenterContainer/VBoxContainer/RatingValue
+@onready var rating_value: Label = %RatingValue
 
 
 func _ready() -> void:
@@ -39,7 +39,7 @@ func calc_and_update_rating(weapon_config: RangedWeaponConfig) -> void:
 	
 	# média simples dos valores normalizados
 	var avg = (damage_n + accuracy_n + range_n + fire_rate_n) / 4.0
-	
+
 	# converte para o intervalo 60–100
 	var rating = int(round(60 + (avg * 40)))
 	

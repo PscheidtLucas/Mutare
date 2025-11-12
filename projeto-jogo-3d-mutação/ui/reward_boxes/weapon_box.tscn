@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cgodq53bkn7od"]
+[gd_scene load_steps=20 format=3 uid="uid://cgodq53bkn7od"]
 
 [ext_resource type="Script" uid="uid://c2ol1eufnlyiu" path="res://ui/reward_boxes/weapon_box.gd" id="1_lkbvd"]
 [ext_resource type="Script" uid="uid://b2vdaiy1d8rx7" path="res://ui/reward_boxes/image_container.gd" id="2_36fv1"]
@@ -7,7 +7,9 @@
 [ext_resource type="Script" uid="uid://dqchtya6p2r5c" path="res://ui/reward_boxes/weapon_stats_labels/weapon_stats_label.gd" id="3_b334d"]
 [ext_resource type="Theme" uid="uid://bb4dm22qo2rvc" path="res://ui/reward_boxes/select_button.tres" id="4_k47en"]
 [ext_resource type="Texture2D" uid="uid://bemojfxcra7mh" path="res://ui/reward screen images/Cubo de escolha (parte de trás).png" id="7_5exlp"]
+[ext_resource type="Script" uid="uid://b8k65vebo0fno" path="res://ui/reward_boxes/evo_margin_container_2.gd" id="7_6lijv"]
 [ext_resource type="Texture2D" uid="uid://cnkv812utnc33" path="res://ui/reward screen images/Cubo de escolha (parte da frente).png" id="8_1gip4"]
+[ext_resource type="Texture2D" uid="uid://btsh07xmd7to1" path="res://ui/reward screen images/updated/Quadrado inventário - Braço (com símbolo).png" id="9_tc68k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42g51"]
 bg_color = Color(1, 1, 1, 0)
@@ -360,7 +362,7 @@ theme_override_font_sizes/font_size = 12
 text = "
 Select"
 
-[node name="MarginContainer" type="MarginContainer" parent="Anchor"]
+[node name="RatingMarginContainer" type="MarginContainer" parent="Anchor"]
 layout_mode = 0
 offset_left = 156.0
 offset_top = 86.0
@@ -368,23 +370,72 @@ offset_right = 226.0
 offset_bottom = 145.0
 theme_override_constants/margin_top = 4
 
-[node name="CenterContainer" type="CenterContainer" parent="Anchor/MarginContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Anchor/RatingMarginContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Anchor/MarginContainer/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Anchor/RatingMarginContainer/CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 1
 
-[node name="RatingWord" type="Label" parent="Anchor/MarginContainer/CenterContainer/VBoxContainer"]
+[node name="RatingWord" type="Label" parent="Anchor/RatingMarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "Rating"
 horizontal_alignment = 1
 
-[node name="RatingValue" type="Label" parent="Anchor/MarginContainer/CenterContainer/VBoxContainer"]
+[node name="RatingValue" type="Label" parent="Anchor/RatingMarginContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "75"
+horizontal_alignment = 1
+
+[node name="EvoMarginContainer" type="MarginContainer" parent="Anchor" node_paths=PackedStringArray("weapon_box")]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 15.0
+offset_right = 226.0
+offset_bottom = 74.0
+theme_override_constants/margin_top = 4
+script = ExtResource("7_6lijv")
+weapon_box = NodePath("../..")
+
+[node name="CenterContainer" type="CenterContainer" parent="Anchor/EvoMarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Anchor/EvoMarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="EvoWord" type="Label" parent="Anchor/EvoMarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Evo:"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Anchor/EvoMarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="NumberValueLabel" type="Label" parent="Anchor/EvoMarginContainer/CenterContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "+ 5.0%"
+horizontal_alignment = 1
+
+[node name="BonusWord1" type="Label" parent="Anchor/EvoMarginContainer/CenterContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Crit"
+horizontal_alignment = 1
+
+[node name="BonusWord2" type="Label" parent="Anchor/EvoMarginContainer/CenterContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Chance"
 horizontal_alignment = 1
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -400,5 +451,12 @@ texture = ExtResource("7_5exlp")
 material = SubResource("ShaderMaterial_1gip4")
 position = Vector2(237.68115, 113.04348)
 texture = ExtResource("8_1gip4")
+
+[node name="QuadradoInventárioBraço(comSímbolo)" type="Sprite2D" parent="."]
+visible = false
+z_index = -2
+position = Vector2(189.99998, 44)
+scale = Vector2(0.06296295, 0.06296296)
+texture = ExtResource("9_tc68k")
 
 [connection signal="pressed" from="Anchor/SelectButton" to="." method="_on_select_button_pressed"]

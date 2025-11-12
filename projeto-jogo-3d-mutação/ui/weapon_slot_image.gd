@@ -31,7 +31,8 @@ Projectiles:
 Fire Rate:
 Accuracy:
 Proj Speed:
-Range:"""
+Range:
+Evo:"""
 
 # Esta é a função que o seu RewardManager chama
 func equip_weapon(weapon_cfg: RangedWeaponConfig):
@@ -59,11 +60,11 @@ func _update_tooltip_labels():
 	values_text += _format_number(cfg.fire_rate, 2) + " /s\n"
 	values_text += _format_number(cfg.accuracy * 100.0, 1) + "%\n"
 	values_text += _format_number(cfg.projectile_speed, 1) + " m/s\n"
-	values_text += _format_number(cfg.range, 1) + " m"
+	values_text += _format_number(cfg.range, 1) + " m\n"
 	
-	#var bonus_pct := cfg.perma_buff_amount * 100.0
-	#var buff_name := _format_buff_name(cfg.perma_buff_type)
-	#values_text += "+" + _format_number(bonus_pct, 1) + "% " + buff_name
+	var bonus_pct := cfg.perma_buff_amount * 100.0
+	var buff_name := _format_buff_name(cfg.perma_buff_type)
+	values_text += "+" + _format_number(bonus_pct, 1) + "% " + buff_name
 
 	stat_value_label.text = values_text
 
