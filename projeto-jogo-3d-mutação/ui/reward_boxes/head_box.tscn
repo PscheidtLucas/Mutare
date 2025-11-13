@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://oupsgwycr6a7"]
+[gd_scene load_steps=15 format=3 uid="uid://oupsgwycr6a7"]
 
 [ext_resource type="Script" uid="uid://creftg701swqm" path="res://ui/reward_boxes/head_box.gd" id="1_0lqmn"]
+[ext_resource type="Script" uid="uid://dlchmrb4ojqh3" path="res://ui/reward_boxes/name_of_weapon.gd" id="2_0lqmn"]
 [ext_resource type="Script" uid="uid://4xpdpxw1pve8" path="res://ui/reward_boxes/3dui.gd" id="2_qeakv"]
+[ext_resource type="Script" uid="uid://b8k65vebo0fno" path="res://ui/reward_boxes/evo_margin_container_2.gd" id="5_4y6yc"]
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="6_l4c1i"]
 [ext_resource type="Theme" uid="uid://bb4dm22qo2rvc" path="res://ui/reward_boxes/select_button.tres" id="7_tr0oq"]
 [ext_resource type="Texture2D" uid="uid://bemojfxcra7mh" path="res://ui/reward screen images/Cubo de escolha (parte de trás).png" id="8_1j1h4"]
@@ -24,9 +26,12 @@ Button/styles/normal = SubResource("StyleBoxFlat_b334d")
 Label/font_sizes/font_size = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kv1n"]
-bg_color = Color(0.125666, 0.126421, 0.122977, 1)
+bg_color = Color(0.129155, 0.13, 0.1261, 0)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_ldppm"]
+font_size = 12
 
 [sub_resource type="Shader" id="Shader_5exlp"]
 code = "shader_type canvas_item;
@@ -71,11 +76,11 @@ layout_mode = 2
 [node name="VBoxStats" type="VBoxContainer" parent="AnchorStats"]
 layout_mode = 0
 offset_left = 242.0
-offset_top = 47.0
+offset_top = 62.0
 offset_right = 463.0
-offset_bottom = 136.0
+offset_bottom = 151.0
 theme = SubResource("Theme_qeakv")
-theme_override_constants/separation = 2
+theme_override_constants/separation = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="AnchorStats/VBoxStats"]
 layout_mode = 2
@@ -107,6 +112,7 @@ layout_mode = 2
 [node name="Panel" type="PanelContainer" parent="AnchorStats/VBoxStats/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kv1n")
 
 [node name="MarginContainer2" type="MarginContainer" parent="AnchorStats/VBoxStats/HBoxContainer2/Panel"]
 unique_name_in_owner = true
@@ -154,6 +160,7 @@ layout_mode = 2
 [node name="Panel" type="PanelContainer" parent="AnchorStats/VBoxStats/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_5kv1n")
 
 [node name="MarginContainer4" type="MarginContainer" parent="AnchorStats/VBoxStats/HBoxContainer4/Panel"]
 unique_name_in_owner = true
@@ -171,8 +178,26 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "+ 5 %"
 
+[node name="CenterContainer" type="CenterContainer" parent="AnchorStats"]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 24.0
+offset_right = 475.0
+offset_bottom = 64.0
+
+[node name="NAME" type="Label" parent="AnchorStats/CenterContainer" node_paths=PackedStringArray("reward_box")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sentry Guy Head"
+label_settings = SubResource("LabelSettings_ldppm")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_0lqmn")
+reward_box = NodePath("../../..")
+
 [node name="Anchor3DImage" type="Control" parent="."]
 layout_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="3DUI_MarginContainer" type="MarginContainer" parent="Anchor3DImage" node_paths=PackedStringArray("headbox")]
 custom_minimum_size = Vector2(150, 150)
@@ -190,6 +215,7 @@ headbox = NodePath("../..")
 
 [node name="Anchor" type="Control" parent="."]
 layout_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="RewardTypeSymbol" type="TextureRect" parent="Anchor"]
 visible = false
@@ -224,6 +250,83 @@ theme_override_font_sizes/font_size = 12
 text = "
 Select"
 
+[node name="RatingMarginContainer" type="MarginContainer" parent="Anchor"]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 86.0
+offset_right = 226.0
+offset_bottom = 145.0
+theme_override_constants/margin_top = 4
+
+[node name="CenterContainer" type="CenterContainer" parent="Anchor/RatingMarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Anchor/RatingMarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="RatingWord" type="Label" parent="Anchor/RatingMarginContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Rating"
+horizontal_alignment = 1
+
+[node name="RatingValue" type="Label" parent="Anchor/RatingMarginContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "75"
+horizontal_alignment = 1
+
+[node name="EvoMarginContainer" type="MarginContainer" parent="Anchor" node_paths=PackedStringArray("reward_box")]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 15.0
+offset_right = 226.0
+offset_bottom = 74.0
+theme_override_constants/margin_top = 4
+script = ExtResource("5_4y6yc")
+reward_box = NodePath("../..")
+
+[node name="CenterContainer" type="CenterContainer" parent="Anchor/EvoMarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Anchor/EvoMarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="EvoWord" type="Label" parent="Anchor/EvoMarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Evo:"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Anchor/EvoMarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="NumberValueLabel" type="Label" parent="Anchor/EvoMarginContainer/CenterContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "+ 5.0%"
+horizontal_alignment = 1
+
+[node name="BonusWord1" type="Label" parent="Anchor/EvoMarginContainer/CenterContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Crit"
+horizontal_alignment = 1
+
+[node name="BonusWord2" type="Label" parent="Anchor/EvoMarginContainer/CenterContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Chance"
+horizontal_alignment = 1
+
 [node name="Node2D" type="Node2D" parent="."]
 scale = Vector2(0.69, 0.69)
 
@@ -231,6 +334,7 @@ scale = Vector2(0.69, 0.69)
 z_index = -2
 position = Vector2(366.6667, 127.53623)
 texture = ExtResource("8_1j1h4")
+metadata/_edit_lock_ = true
 
 [node name="CuboDeEscolha(parteDaFrente)" type="Sprite2D" parent="Node2D"]
 material = SubResource("ShaderMaterial_1gip4")

@@ -1,24 +1,23 @@
 class_name EvoMarginContainer
 extends MarginContainer
 
-@export var weapon_box: WeaponBox
+@export var reward_box: MarginContainer
 @onready var number_value_label: Label = %NumberValueLabel
 @onready var bonus_word_1: Label = %BonusWord1
 @onready var bonus_word_2: Label = %BonusWord2
 
 
 func _ready() -> void:
-	weapon_box.update_labels.connect(_on_weapon_selected)
+	reward_box.update_labels.connect(_on_reward_selected)
 
 
-func _on_weapon_selected(weapon_config: RewardConfig) -> void:
-	if weapon_config == null or not (weapon_config is RangedWeaponConfig):
+func _on_reward_selected(reward_config: RewardConfig) -> void:
+	if reward_config == null or not (reward_config is RewardConfig):
 		_hide_all()
 		return
 
-	var ranged_config := weapon_config as RangedWeaponConfig
-	var buff_type := ranged_config.perma_buff_type
-	var buff_amount := ranged_config.perma_buff_amount
+	var buff_type := reward_config.perma_buff_type
+	var buff_amount := reward_config.perma_buff_amount
 
 	# Se não há bônus ativo, esconde tudo
 	if buff_amount <= 0.0:

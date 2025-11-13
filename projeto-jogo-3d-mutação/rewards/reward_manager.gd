@@ -143,14 +143,13 @@ func generate_rewards(type_of_reward: RewardType) -> Array[RewardConfig]:
 	
 	for i in range(num_choices):
 		var template = available_templates.pick_random()
-		var rolled_reward = template.duplicate()
+		var rolled_reward = template.duplicate(true)
 		rolled_reward.roll_stats(damage_scale)
 		choices.append(rolled_reward)
 		
 	return choices
 
-
-# --- NOVA SEÇÃO DE CONTROLE DE INPUT E FOCUS ---
+# --- SEÇÃO DE CONTROLE DE INPUT E FOCUS ---
 
 func _input(event: InputEvent) -> void:
 	var previous_using_mouse := _using_mouse

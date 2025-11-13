@@ -166,7 +166,7 @@ theme_override_constants/separation = 3
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 
-[node name="NAME" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("weapon_box")]
+[node name="NAME" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("reward_box")]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Carniv"
@@ -174,7 +174,7 @@ label_settings = SubResource("LabelSettings_p3niv")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_5kv1n")
-weapon_box = NodePath("../../../../../../..")
+reward_box = NodePath("../../../../../../..")
 
 [node name="VBoxStatsTHEME" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
@@ -372,6 +372,7 @@ stat_type = 6
 
 [node name="Anchor" type="Control" parent="."]
 layout_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="RewardTypeSymbol" type="TextureRect" parent="Anchor"]
 visible = false
@@ -434,7 +435,7 @@ theme_override_font_sizes/font_size = 20
 text = "75"
 horizontal_alignment = 1
 
-[node name="EvoMarginContainer" type="MarginContainer" parent="Anchor" node_paths=PackedStringArray("weapon_box")]
+[node name="EvoMarginContainer" type="MarginContainer" parent="Anchor" node_paths=PackedStringArray("reward_box")]
 layout_mode = 0
 offset_left = 156.0
 offset_top = 15.0
@@ -442,7 +443,7 @@ offset_right = 226.0
 offset_bottom = 74.0
 theme_override_constants/margin_top = 4
 script = ExtResource("7_6lijv")
-weapon_box = NodePath("../..")
+reward_box = NodePath("../..")
 
 [node name="CenterContainer" type="CenterContainer" parent="Anchor/EvoMarginContainer"]
 layout_mode = 2
@@ -490,6 +491,7 @@ z_index = -2
 material = SubResource("ShaderMaterial_1gip4")
 position = Vector2(366.6667, 127.53623)
 texture = ExtResource("7_5exlp")
+metadata/_edit_lock_ = true
 
 [node name="CuboDeEscolha(parteDaFrente)" type="Sprite2D" parent="Node2D"]
 material = SubResource("ShaderMaterial_1gip4")
