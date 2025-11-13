@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=60 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://cn7q1hmxe74tw" path="res://level/game_manager_n_state/game_manager.gd" id="1_ouysc"]
@@ -23,6 +23,7 @@
 [ext_resource type="FontFile" uid="uid://ci0ch0j3lh3j3" path="res://ui/fonts/major_snafu/major.ttf" id="18_6s3sm"]
 [ext_resource type="Script" uid="uid://c5ononq8u65k0" path="res://ui/wave_number.gd" id="18_t8p3i"]
 [ext_resource type="Script" uid="uid://db1iegjtuhxld" path="res://level/fps_label.gd" id="19_bwhkm"]
+[ext_resource type="Shader" uid="uid://uhq6fsi2piyk" path="res://ui/vignette_shader.gdshader" id="21_i07hj"]
 [ext_resource type="PackedScene" uid="uid://bsgosomawtovf" path="res://bullets/bomb.tscn" id="24_0i6i1"]
 [ext_resource type="PackedScene" uid="uid://bsnwfdo6oc0m1" path="res://level/props/ponte_meio_desgaste.tscn" id="24_dyurs"]
 [ext_resource type="ArrayMesh" uid="uid://ckqs34c8iwvpn" path="res://level/props/green_plant.res" id="25_0i6i1"]
@@ -178,6 +179,12 @@ size = Vector3(48.2883, 1, 1)
 size = Vector3(1, 1, 44)
 
 [sub_resource type="Theme" id="Theme_6s3sm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dl7sy"]
+shader = ExtResource("21_i07hj")
+shader_parameter/intensity = 0.4
+shader_parameter/radius = 0.6
+shader_parameter/softness = 0.25
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qd0o6"]
 
@@ -800,6 +807,16 @@ layout_mode = 2
 text = "5"
 script = ExtResource("18_t8p3i")
 game_state = ExtResource("2_fwegj")
+
+[node name="VignetteShaderColorRect" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_dl7sy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="CheatCodeManager" type="Node" parent="."]
 process_mode = 3
