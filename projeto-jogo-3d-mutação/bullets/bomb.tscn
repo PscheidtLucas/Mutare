@@ -35,7 +35,7 @@ top_radius = 0.1
 bottom_radius = 0.0
 
 [sub_resource type="Curve" id="Curve_d8ib7"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.487685, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.60902256), 0.0, 0.0, 0, 0, Vector2(0.5, 0.60902256), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_rwbnf"]
@@ -161,6 +161,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75029, 0)
 emitting = false
 amount = 50
 one_shot = true
+speed_scale = 2.0
 explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_buw3e")

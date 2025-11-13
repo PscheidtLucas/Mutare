@@ -84,13 +84,11 @@ func start_rotation_tween() -> void:
 	# 2. Verifica se há um filho para rotacionar
 	if get_child_count() == 0:
 		#if Engine.is_editor_hint():
-			#print("RotateChild: Aguardando um nó filho para rotacionar.")
 		return
 
 	var child = get_child(0)
 	if not child is Node3D:
 		#if Engine.is_editor_hint():
-			#print("RotateChild: O primeiro filho não é um Node3D.")
 		return
 		
 	# 3. Reseta a rotação do filho para um loop limpo e consistente

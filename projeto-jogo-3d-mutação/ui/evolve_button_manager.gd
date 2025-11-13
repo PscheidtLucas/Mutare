@@ -17,9 +17,13 @@ func _ready() -> void:
 
 
 func on_evolution_finished(anim_name: String) -> void:
-	GameEvents.evolution_completed.emit()
-	GameEvents.wave_survived.emit()
-	evolve_was_pressed = false
+	print("Animation finished!!!")
+	if anim_name == "evolve_pressed":
+		print("Animation name was evolve pressed? Name: ", anim_name)
+		GameEvents.evolution_completed.emit()
+		GameEvents.wave_survived.emit()
+		evolve_was_pressed = false
+		animation_player.play("RESET")
 
 
 func _on_evolve_button_pressed() -> void:

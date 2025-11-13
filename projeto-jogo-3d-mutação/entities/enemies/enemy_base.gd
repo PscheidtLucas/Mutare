@@ -4,6 +4,8 @@ extends CharacterBody3D
 enum State { IDLE, CHASE, JUMPING }
 var current_state: State = State.CHASE
 
+const CYCLE_HP_SCALE = 1.20    # 12% mais vida por ciclo
+
 @export var speedy_distance : float = 15.0
 @export var array_of_weapons_nodes : Array[BaseWeapon]
 @export var health := 3.0
@@ -198,4 +200,13 @@ func die() -> void:
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	velocity = safe_velocity
+	
+func scale_stats_for_cycle(cycle_number: int) -> void:
+	# Não faz nada no Ciclo 1
+	if cycle_number == 1:
+		return
+
+	# Calcula o expoente (Ciclo 2 = 1, Ciclo 3 = 2, ...)
+	var scale_level = cycle_number - 1
+	health = health * pow(CYCLE_HP_SCALE, scale_level)
 	

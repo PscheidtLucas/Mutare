@@ -12,7 +12,6 @@ func _ready() -> void:
 
 
 func _on_weapon_selected(weapon_config: RewardConfig) -> void:
-	print("weapon selected, weapon config no evoMargin: ", weapon_config)
 	if weapon_config == null or not (weapon_config is RangedWeaponConfig):
 		_hide_all()
 		return

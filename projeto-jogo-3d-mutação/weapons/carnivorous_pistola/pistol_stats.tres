@@ -22,5 +22,5 @@ max_range = 17.0
 projectile_speed = 22.0
 bullet_scene = ExtResource("1_fppms")
 perma_buff_percent_min = 0.02
-perma_buff_percent_max = 0.05
+perma_buff_percent_max = 0.04
 metadata/_custom_type_script = "uid://ccx1jk5ymt3pe"

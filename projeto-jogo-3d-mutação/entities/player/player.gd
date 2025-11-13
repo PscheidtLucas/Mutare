@@ -102,7 +102,6 @@ func heal(amount: float) -> void:
 	stats.health += amount
 	
 func reset_player() -> void:
-	print("reseting player position to: ", starting_global_pos)
 	global_position = starting_global_pos
 	target_camera_y_angle = starting_target_camera_y
 	
@@ -163,7 +162,6 @@ func _on_evolution_completed() -> void:
 	convert_weapons_to_perma_buffs()
 	
 	stats.reset_temporary_buffs()
-	print("Perma Buffs adicionados, lista deles: ", stats.permanent_buffs)
 
 func convert_weapons_to_perma_buffs() -> void:
 	for position in positions_for_weapons:

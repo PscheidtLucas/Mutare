@@ -4,14 +4,12 @@ class_name StatValue extends Label
 @export var stat_type: PlayerStats.BuffableStats
 
 func _ready() -> void:
-	print("StatValue usando stats: ", player_stats)
-	print("Player principal stats: ", PlayerManager.player.stats)
-	print("São o mesmo? ", player_stats == PlayerManager.player.stats)
-	
 	GameEvents.evolution_completed.connect(func() -> void:
 		on_evolution_completed.call_deferred())
-	set_text_based_on_stat_type()
+	
 	GameEvents.head_selected.connect(set_text_based_on_stat_type)
+	
+	set_text_based_on_stat_type.call_deferred()
 
 func on_evolution_completed() -> void:
 	set_text_based_on_stat_type()

@@ -148,7 +148,6 @@ func _on_evolution_completed() -> void:
 	if fade_tween:
 		fade_tween.kill()
 	tooltip.visible = false
-	tooltip.modulate.a = 0.0
 	
 	# Limpa os textos do tooltip
 	stat_name_label.text = ""

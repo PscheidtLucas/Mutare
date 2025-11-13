@@ -1,4 +1,4 @@
-class_name HeadsInventory extends Node3D
+class_name HeadsInventory extends Node3D ## Script em um nó filho do Player, responsavel por guardar as cabeças
 
 @export var player_stats: PlayerStats
 
@@ -7,7 +7,6 @@ func _ready() -> void:
 
 ## Chamado no player
 func equip(head_config: HeadRewardConfig) -> void:
-	print("equiping head on player, head config: ", head_config)
 	var head_sceane : PackedScene = load(head_config.scene_uid)
 	var instance := head_sceane.instantiate() as HeadGeneral
 	for node in get_children():
@@ -17,16 +16,18 @@ func equip(head_config: HeadRewardConfig) -> void:
 		instance.config = head_config
 		for buff: StatBuff in head_config.array_of_buffs:
 			player_stats.add_buff(buff)
-			print("Adicionando buff: ", buff.resource_name)
 			
-		print("Buffs no player stats: ", player_stats.stat_buffs)
 		break
 	
 	player_stats.setup_stats()
 
 ## Chamado no Player
 func convert_heads_to_perma_buff() -> void:
+	print("chamando convert head to perma buffs no heads inventory")
 	for child in get_children():
 		var head: HeadGeneral = child.get_child(0)
+		if head == null or head.config == null:
+			printerr("Cabeça identificada como null na hora de converter cabeça em perma buff.")
+			return
 		player_stats.add_permanent_buff_from_reward(head.config)
 		head.queue_free()

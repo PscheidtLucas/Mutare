@@ -101,7 +101,6 @@ func add_permanent_buff_from_reward(reward: RewardConfig) -> void:
 	buff.buff_amount = reward.perma_buff_amount
 	
 	add_permanent_buff(buff)
-	print("Buff permanente adicionado: ", BuffableStats.keys()[buff.stat], " +", buff.buff_amount * 100, "%")
 
 func recalculate_stats() -> void:
 	# reseta current stats para os base
