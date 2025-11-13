@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=4 uid="uid://bue2k0fqe3x0a"]
+[gd_scene load_steps=9 format=4 uid="uid://bue2k0fqe3x0a"]
+
+[ext_resource type="Script" uid="uid://ba4fvanc3vgh5" path="res://rewards/heads/head_general.gd" id="1_kmuo1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8rty"]
 resource_name = "Material.001"
@@ -152,6 +154,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3hb86")
 
 [node name="Cabeça Engineer" type="Node3D"]
+script = ExtResource("1_kmuo1")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.6160531, 0, 0, 0, 0.5923858, 0, 0, 0, 0.5923858, 0.0068583786, 0.83446896, 0.43340483)

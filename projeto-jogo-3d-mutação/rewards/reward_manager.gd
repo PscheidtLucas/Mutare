@@ -16,8 +16,6 @@ extends Control
 @export var heads_templates: Array[HeadRewardConfig]
 @export var legs_templates: Array
 
-
-
 @export var options_container: VBoxContainer
 
 enum RewardType {LONG_RANGE, MELEE, HEAD, LEG}
@@ -110,8 +108,11 @@ func on_wave_survived() -> void:
 
 
 func reward_type_based_on_wave() -> String:
-	if game_state.wave_number <= 10:
-		return wave_num_vs_reward_type[game_state.wave_number]
+	var wave_in_cycle = game_state.get_wave_in_cycle()
+	
+	if wave_in_cycle <= 10:
+		return wave_num_vs_reward_type[game_state.get_wave_in_cycle()]
+	printerr("Numero da wave no Reward Screen nao está correto, provavlmente maior q 10 ou a variavel wave in cycle contem erro!")
 	return "head"
 
 

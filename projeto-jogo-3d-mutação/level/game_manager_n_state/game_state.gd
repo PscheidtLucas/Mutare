@@ -16,7 +16,7 @@ func increase_wave_numb() -> void:
 	wave_number_changed.emit()
 
 
-func reset_wave_numer() -> void:
+func reset_wave_number() -> void:
 	wave_number = 1
 	cycle_number = 1
 

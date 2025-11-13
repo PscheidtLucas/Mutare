@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://di0s2eg2am62i"]
+[gd_scene load_steps=4 format=3 uid="uid://bcf55kljkn28u"]
+
+[ext_resource type="Script" uid="uid://cvmmwpppecfcm" path="res://ui/head_slot.gd" id="1_1ydsu"]
 
 [sub_resource type="Theme" id="Theme_vuu3q"]
 Label/constants/line_spacing = 0
@@ -15,17 +17,30 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
-[node name="WeaponTooltip" type="PanelContainer"]
+[node name="HeadSlot1" type="TextureRect"]
+custom_minimum_size = Vector2(100, 100)
+offset_left = -51.0
+offset_top = -50.0
+offset_right = 49.0
+offset_bottom = 50.0
+mouse_filter = 0
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("1_1ydsu")
+
+[node name="HeadTooltip" type="PanelContainer" parent="."]
 visible = false
-offset_left = 58.0
-offset_top = -101.5
-offset_right = 254.0
-offset_bottom = 19.5
+z_index = 1
+layout_mode = 0
+offset_left = 77.0
+offset_top = 8.0
+offset_right = 281.0
+offset_bottom = 144.0
 mouse_filter = 2
 theme = SubResource("Theme_vuu3q")
 theme_override_styles/panel = SubResource("StyleBoxFlat_klgxq")
 
-[node name="StatNames" type="Label" parent="."]
+[node name="StatNames" type="Label" parent="HeadTooltip"]
 layout_mode = 2
 theme_override_constants/line_spacing = 4
 text = "Dmg:
@@ -35,7 +50,7 @@ Accuracy:
 Proj Speed:
 Range:"
 
-[node name="StatValues" type="Label" parent="."]
+[node name="StatValues" type="Label" parent="HeadTooltip"]
 layout_mode = 2
 theme_override_constants/line_spacing = 4
 text = "100.2

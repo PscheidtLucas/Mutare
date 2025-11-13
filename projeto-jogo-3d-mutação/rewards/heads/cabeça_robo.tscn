@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://8w4c6ilv2ky"]
+[gd_scene load_steps=9 format=4 uid="uid://8w4c6ilv2ky"]
 
 [ext_resource type="Texture2D" uid="uid://wkulpl8f0ino" path="res://rewards/heads/glb files/cabecaRobo01_Cabeça Color.png" id="1_dcfrv"]
+[ext_resource type="Script" uid="uid://ba4fvanc3vgh5" path="res://rewards/heads/head_general.gd" id="1_wrhir"]
 [ext_resource type="Texture2D" uid="uid://dm6haqcc7nkm6" path="res://rewards/heads/glb files/cabecaRobo01_Cabeça Emission Color.png" id="2_wrhir"]
 [ext_resource type="Texture2D" uid="uid://bie36sjcf452b" path="res://rewards/heads/glb files/cabecaRobo01_Ucupaint orelhas Color.png" id="3_kdd0k"]
 
@@ -73,6 +74,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_d05v0")
 
 [node name="cabeça_robo" type="Node3D"]
+script = ExtResource("1_wrhir")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.6160531, 0, 0, 0, 0.5872665, 0.07771137, 0, -0.07771137, 0.5872665, -0.01583508, 0.88150775, 0.31417346)

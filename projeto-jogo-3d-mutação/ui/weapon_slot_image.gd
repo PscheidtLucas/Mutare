@@ -13,10 +13,12 @@ var weapon_config: RangedWeaponConfig
 @onready var stat_name_label: Label = $WeaponTooltip/StatNames
 @onready var stat_value_label: Label = $WeaponTooltip/StatValues
 
-
 var fade_tween: Tween
 
+
 func _ready() -> void:
+	GameEvents.evolution_completed.connect(_on_evolution_completed)
+	texture = null
 	# Esconde o tooltip no início e o deixa totalmente transparente
 	tooltip.visible = false
 	tooltip.modulate.a = 0.0
@@ -27,12 +29,12 @@ func _ready() -> void:
 	
 	# Preenche o label de nomes, já que ele é estático
 	stat_name_label.text = """Dmg:
-Projectiles:
-Fire Rate:
-Accuracy:
-Proj Speed:
-Range:
-Evo:"""
+	Projectiles:
+	Fire Rate:
+	Accuracy:
+	Proj Speed:
+	Range:
+	Evo:"""
 
 # Esta é a função que o seu RewardManager chama
 func equip_weapon(weapon_cfg: RangedWeaponConfig):
@@ -117,3 +119,18 @@ func _format_buff_name(buff_type: int) -> String:
 	name = name.to_lower().capitalize()
 	name = name.replace("_", " ")
 	return name
+
+func _on_evolution_completed() -> void:
+	# Limpa o slot de arma completamente
+	weapon_config = null
+	texture = null
+	
+	# Esconde e reseta o tooltip
+	if fade_tween:
+		fade_tween.kill()
+	tooltip.visible = false
+	tooltip.modulate.a = 0.0
+	
+	# Limpa os textos do tooltip
+	stat_value_label.text = ""
+	# Como o stat_name_label é fixo, mantemos o texto padrão

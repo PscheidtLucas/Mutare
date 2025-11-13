@@ -1,5 +1,7 @@
 class_name EvolveButtonManager extends Control
 
+@export var game_state: GameState
+
 @onready var evolve_button_bottom: Button = %EvolveButtonBottom
 @onready var evolve_button: Button = %EvolveButton
 @export var animation_player: AnimationPlayer 
@@ -14,8 +16,10 @@ func _ready() -> void:
 	animation_player.animation_finished.connect(on_evolution_finished)
 
 
-func on_evolution_finished() -> void:
+func on_evolution_finished(anim_name: String) -> void:
 	GameEvents.evolution_completed.emit()
+	GameEvents.wave_survived.emit()
+	evolve_was_pressed = false
 
 
 func _on_evolve_button_pressed() -> void:

@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="HeadRewardConfig" load_steps=7 format=3 uid="uid://dhufbnjo4ie50"]
+[gd_resource type="Resource" script_class="HeadRewardConfig" load_steps=8 format=3 uid="uid://dhufbnjo4ie50"]
 
 [ext_resource type="Script" uid="uid://cjfuvhi515usr" path="res://entities/player/stat_buff.gd" id="1_jkddv"]
+[ext_resource type="Texture2D" uid="uid://bqoodhg3ab2r0" path="res://rewards/heads/engineer_image.png" id="2_1rn8c"]
 [ext_resource type="Script" uid="uid://b3jjmvq4w0nl6" path="res://rewards/head_reward_config.gd" id="2_utvc2"]
 
 [sub_resource type="Resource" id="Resource_f6pdq"]
+resource_name = "max health"
 script = ExtResource("1_jkddv")
 buff_type = 1
 min_buff_amount = 10.0
@@ -19,6 +21,7 @@ max_buff_amount = 5.0
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [sub_resource type="Resource" id="Resource_puonc"]
+resource_name = "damage increase"
 script = ExtResource("1_jkddv")
 stat = 2
 min_buff_amount = 0.2
@@ -26,6 +29,7 @@ max_buff_amount = 0.2
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [sub_resource type="Resource" id="Resource_jkddv"]
+resource_name = "fire rate"
 script = ExtResource("1_jkddv")
 stat = 6
 min_buff_amount = 0.3
@@ -37,7 +41,8 @@ script = ExtResource("2_utvc2")
 scene_uid = "uid://bue2k0fqe3x0a"
 ui_scene = "uid://cn1xd5qxv3iy0"
 array_of_buffs = Array[ExtResource("1_jkddv")]([SubResource("Resource_f6pdq"), SubResource("Resource_72rib"), SubResource("Resource_puonc"), SubResource("Resource_jkddv")])
+image = ExtResource("2_1rn8c")
 type = 2
-perma_buff_percent_min = 2.0
-perma_buff_percent_max = 2.0
+perma_buff_percent_min = 0.02
+perma_buff_percent_max = 0.1
 metadata/_custom_type_script = "uid://b3jjmvq4w0nl6"

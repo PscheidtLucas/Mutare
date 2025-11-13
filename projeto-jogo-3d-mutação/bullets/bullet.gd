@@ -14,7 +14,6 @@ func _ready() -> void:
 	GameEvents.wave_survived.connect(func() -> void:
 		queue_free())
 
-
 func _physics_process(delta: float) -> void:
 	global_translate(velocity * delta)
 

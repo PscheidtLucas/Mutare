@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=56 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://cn7q1hmxe74tw" path="res://level/game_manager_n_state/game_manager.gd" id="1_ouysc"]
@@ -160,16 +160,6 @@ volumetric_fog_density = 0.3041
 volumetric_fog_emission = Color(0.205117, 0.205117, 0.205117, 1)
 adjustment_enabled = true
 adjustment_brightness = 0.95
-
-[sub_resource type="Curve" id="Curve_7jmcm"]
-_limits = [0.0, 10.0, 0.0, 1.0]
-_data = [Vector2(0, 7), 0.0, -8.30416, 0, 0, Vector2(0.4, 4.5), -2.96983, -2.96983, 0, 0, Vector2(1, 3.7), -3.07827, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Curve" id="Curve_dyurs"]
-_limits = [0.0, 6.0, 0.0, 1.0]
-_data = [Vector2(0, 1.01124), 0.0, 4.14466, 0, 0, Vector2(0.282, 2), 7.4151, 0.0, 0, 0]
-point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6lfjr"]
 size = Vector3(48.2883, 1, 1)
@@ -608,10 +598,8 @@ environment = SubResource("Environment_ycx7s")
 
 [node name="SpawnArea" type="Area3D" parent="."]
 script = ExtResource("3_6lfjr")
+game_state = ExtResource("2_fwegj")
 array_of_enemy_types = Array[PackedScene]([ExtResource("5_36fav"), ExtResource("10_3sjje")])
-spawn_time_curve = SubResource("Curve_7jmcm")
-enemies_per_wave_curve = SubResource("Curve_dyurs")
-min_spawn_time = 2.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19812, 1.19972, -23.7382)
@@ -712,6 +700,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="TimerContainer" type="MarginContainer" parent="UI"]
+z_index = -100
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

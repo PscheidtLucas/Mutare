@@ -9,7 +9,7 @@ var wave_starting_duration := 50.0
 
 
 func _ready() -> void:
-	game_state.reset_wave_numer()
+	game_state.reset_wave_number()
 	GameEvents.wave_started.connect(on_wave_started)
 	GameEvents.wave_survived.connect(on_wave_survived)
 	GameEvents.player_died.connect(on_player_lost)
@@ -21,6 +21,7 @@ func _ready() -> void:
 	add_child(wave_timer)
 	
 	get_tree().set_deferred("paused", true)
+
 
 func _process(_delta: float) -> void:
 	if wave_timer.is_stopped():
@@ -36,15 +37,18 @@ func on_level_timer_timeout() -> void:
 
 func check_if_cycle_ended() -> void:
 	if game_state.is_end_of_cycle():
-		## Se sim, significa que estamos na wave 10, 20, 30...
-		## Wave survived é emitido no reward manager, nessa caso, após a evolução ser concluída
+		## Se sim, significa que estamos na wave 10, 20, 30... (Abre a tela de evolução para o jogador)
 		GameEvents.cycle_cleared.emit()
+		
+		game_state.increase_wave_numb()
+		
 		get_tree().set_deferred("paused", true)
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
 		##  É uma wave normal, (1-9), (11-19)...
 		game_state.increase_wave_numb()
-		GameEvents.wave_survived.emit()
+		GameEvents.wave_survived.emit() ## Wave survived também é emitido no EvolveButtonManager, após uma evolução ser concluída
+		
 
 func on_wave_started():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

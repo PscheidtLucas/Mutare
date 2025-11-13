@@ -4,8 +4,17 @@ class_name StatValue extends Label
 @export var stat_type: PlayerStats.BuffableStats
 
 func _ready() -> void:
+	print("StatValue usando stats: ", player_stats)
+	print("Player principal stats: ", PlayerManager.player.stats)
+	print("São o mesmo? ", player_stats == PlayerManager.player.stats)
+	
+	GameEvents.evolution_completed.connect(func() -> void:
+		on_evolution_completed.call_deferred())
 	set_text_based_on_stat_type()
 	GameEvents.head_selected.connect(set_text_based_on_stat_type)
+
+func on_evolution_completed() -> void:
+	set_text_based_on_stat_type()
 
 func set_text_based_on_stat_type(head_config: HeadRewardConfig = null) -> void:
 	if not player_stats:
@@ -43,7 +52,7 @@ func set_text_based_on_stat_type(head_config: HeadRewardConfig = null) -> void:
 			is_percentage = true
 			decimal_places = 1
 		
-		PlayerStats.BuffableStats.CRIT_DAMAGE_INCREASE:
+		PlayerStats.BuffableStats.CRIT_DAMAGE:
 			value = player_stats.crit_damage
 			is_percentage = true
 			decimal_places = 1
@@ -60,11 +69,7 @@ func set_text_based_on_stat_type(head_config: HeadRewardConfig = null) -> void:
 			show_plus = true
 			decimal_places = 1
 		
-		PlayerStats.BuffableStats.DAMAGE_REDUCTION_PERC:
-			value = player_stats.damage_reduction_perc
-			is_percentage = true
-			decimal_places = 1
-	
+
 	# Converte para porcentagem se necessário
 	if is_percentage:
 		value *= 100.0

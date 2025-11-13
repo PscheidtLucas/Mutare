@@ -81,10 +81,10 @@ func _ready() -> void:
 		reset_player() )
 	
 	GameEvents.evolution_completed.connect(_on_evolution_completed)
-		
+	
 	GameEvents.weapon_selected.connect(equip)
 	
-	stats.reset_stats()
+	stats.reset_all_stats()
 
 
 func create_hp5_timer() -> void:
@@ -158,11 +158,18 @@ func die() -> void:
 	set_process(false)
 
 func _on_evolution_completed() -> void:
-	pass
-	#for item in item_inventory:
-		#var reward : RewardConfig = item.config
-		#stats.add_permanent_buff_from_reward(reward)
-		
+	var heads_inventory: HeadsInventory = %HeadsInventory
+	heads_inventory.convert_heads_to_perma_buff()
+	convert_weapons_to_perma_buffs()
+	
+	stats.reset_temporary_buffs()
+	print("Perma Buffs adicionados, lista deles: ", stats.permanent_buffs)
+
+func convert_weapons_to_perma_buffs() -> void:
+	for position in positions_for_weapons:
+		var weapon : BaseWeapon = position.get_child(0)
+		stats.add_permanent_buff_from_reward(weapon.config)
+		weapon.queue_free()
 
 # Esta função recebe o impulso calculado pelo inimigo
 func apply_knockback(knockback_velocity: Vector3):

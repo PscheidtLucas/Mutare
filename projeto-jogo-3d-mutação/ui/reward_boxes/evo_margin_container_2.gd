@@ -45,10 +45,6 @@ func _on_weapon_selected(weapon_config: RewardConfig) -> void:
 			_set_bonus_words("FIRE", "RATE")
 		RewardConfig.PermaBuffType.MOVE_SPEED:
 			_set_bonus_words("MOVE", "SPD")
-		RewardConfig.PermaBuffType.RANGE:
-			_set_bonus_words("RANGE")
-		RewardConfig.PermaBuffType.ACCURACY:
-			_set_bonus_words("ACC")
 		#RewardConfig.PermaBuffType.HP_REGEN:
 			#_set_bonus_words("HP5")
 		#RewardConfig.PermaBuffType.MAX_HP:
