@@ -52,6 +52,7 @@ func _ready() -> void:
 
 	configure_weapon_stats()
 
+
 func configure_weapon_stats() -> void:
 	for weapon_node: BaseWeapon in array_of_weapons_nodes:
 		weapon_node.config.roll_stats()

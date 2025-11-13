@@ -66,13 +66,13 @@ func _on_spawn_timer_timeout() -> void:
 	var next_spawn_time = calculate_next_spawn_time(wave_in_cycle)
 	spawn_timer.wait_time = max(next_spawn_time, min_spawn_time)
 	
-	print("Wave: %s (Ciclo: %s, Relativa: %s) | Inimigos: %s | Tempo Spawn: %s" % [
-		game_state.wave_number, 
-		game_state.cycle_number, 
-		wave_in_cycle, 
-		enemies_to_spawn, 
-		next_spawn_time
-	])
+	#print("Wave: %s (Ciclo: %s, Relativa: %s) | Inimigos: %s | Tempo Spawn: %s" % [
+		#game_state.wave_number, 
+		#game_state.cycle_number, 
+		#wave_in_cycle, 
+		#enemies_to_spawn, 
+		#next_spawn_time
+	#])
 	
 	# O timer já está rodando, então não precisa dar start()
 	# Ele vai automaticamente usar o novo wait_time na próxima vez
@@ -121,9 +121,10 @@ func spawn_enemies(count: int) -> void:
 			if enemy.has_method("scale_stats_for_cycle"):
 				enemy.scale_stats_for_cycle(game_state.cycle_number)
 			
+			enemy.position = spawn_position
 			# Adiciona ao scene tree de forma diferida e posiciona também diferido
 			get_tree().current_scene.call_deferred("add_child", enemy)
-			enemy.set_deferred("global_position", spawn_position)
+
 
 
 func get_random_spawn_position() -> Vector3:

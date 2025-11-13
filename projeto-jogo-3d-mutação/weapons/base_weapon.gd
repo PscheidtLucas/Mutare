@@ -68,7 +68,6 @@ func config_timer() -> void:
 		if updated_fire_rate <= 0.0:
 			return
 		time_to_fire = 1.0 / updated_fire_rate
-		printt("Fire rate: ", updated_fire_rate)
 	else:
 		if config.fire_rate <= 0.0:
 			return
