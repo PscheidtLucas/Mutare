@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bkdlu431jcddu" path="res://entities/enemies/cubo_model.tscn" id="4_yc03e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6dmn1"]
+size = Vector3(1, 1.5899658, 1)
 
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("array_of_weapons_nodes")]
 script = ExtResource("1_6dmn1")
@@ -15,11 +16,11 @@ health = 70.0
 move_speed = 8.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.980168, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.5701338, 0)
 shape = SubResource("BoxShape3D_6dmn1")
 
 [node name="Pistol" parent="." instance=ExtResource("1_tllp7")]
-transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -0.0205765, 0.639937, -0.934877)
+transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -0.0205765, 0.8171649, -0.934877)
 config = ExtResource("3_prjjb")
 
 [node name="RayCast3D" type="RayCast3D" parent="Pistol"]
@@ -37,6 +38,6 @@ avoidance_mask = 5
 debug_enabled = true
 
 [node name="InimigoCubo" parent="." instance=ExtResource("4_yc03e")]
-transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0, 1.08983, 0)
+transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0, 2.088004, 0)
 
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

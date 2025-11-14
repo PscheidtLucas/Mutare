@@ -1,5 +1,8 @@
 extends Node
 
+@export var leg_anchor: Node3D
+@export var leg_rotation_smooth_speed: float = 10.0 # quanto maior, mais rápido a perna gira
+
 @onready var p: Player = get_parent()
 @onready var state_chart: StateChart = $StateChart
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
@@ -45,7 +48,8 @@ func _on_movement_state_physics_processing(delta: float) -> void:
 	else:
 		p.velocity.x = move_toward(p.velocity.x, target_velocity.x, p.acc)
 		p.velocity.z = move_toward(p.velocity.z, target_velocity.z, p.acc)
-
+	
+	update_leg_rotation(delta)
 	p.move_and_slide()
 
 func _on_ground_state_physics_processing(delta: float) -> void:
@@ -114,3 +118,26 @@ func _on_player_died() -> void:
 	state_chart.set_expression_property("player_alive", false)
 	set_physics_process(false)
 	set_process(false)
+
+func update_leg_rotation(delta: float) -> void:
+	if leg_anchor == null:
+		return
+
+	# Se não tem direção de input, não muda (mantém última rotação)
+	if move_dir == Vector3.ZERO:
+		return
+
+	# ângulo alvo em relação ao eixo Y: atan2(x, z)
+	var target_angle := atan2(move_dir.x, move_dir.z) # A+S -> ~0 ; W+D -> ~PI ou -PI
+
+	# ângulo atual
+	var current_angle := leg_anchor.rotation.y
+
+	# interpola suavemente entre ângulos (cuida do wrap 180/-180)
+	var t = clamp(leg_rotation_smooth_speed * delta, 0.0, 1.0)
+	var new_angle := lerp_angle(current_angle, target_angle, t)
+
+	# aplica
+	var r := leg_anchor.rotation
+	r.y = new_angle
+	leg_anchor.rotation = r

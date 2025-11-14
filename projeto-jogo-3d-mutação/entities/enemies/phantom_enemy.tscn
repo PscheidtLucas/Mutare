@@ -7,13 +7,13 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b46nk"]
 radius = 0.450453
-height = 1.16774
+height = 2.1263504
 
 [node name="GhostEnemy" type="CharacterBody3D" node_paths=PackedStringArray("node_to_float", "array_of_weapons_nodes")]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_lc4ou")
-hover_height = 1.5
+hover_height = 0.5
 bob_frequency = 3.0
 bob_amplitude = 0.5
 node_to_float = NodePath("Inimigo octaedro")
@@ -23,16 +23,16 @@ health = 45.0
 move_speed = 12.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.1404, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.0990105, 0)
 shape = SubResource("CapsuleShape3D_b46nk")
 
 [node name="Pistol" parent="." instance=ExtResource("2_b46nk")]
-transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -0.236933, 0.691556, -0.618837)
+transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -0.236933, 0.95944047, -0.618837)
 config = ExtResource("3_fgb2s")
 
 [node name="RayCast3D" type="RayCast3D" parent="Pistol"]
 unique_name_in_owner = true
-transform = Transform3D(-1.2489e-08, 0, 0.285714, 0, 0.285714, 0, -0.285714, 0, -1.2489e-08, 0.411577, -0.0150584, -0.00587902)
+transform = Transform3D(-1.2489e-08, 0, 0.285714, 0, 0.285714, 0, -0.285714, 0, -1.2489e-08, 0.411577, -0.335237, -0.005879011)
 target_position = Vector3(0, 0, -10)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -46,6 +46,6 @@ avoidance_mask = 2
 debug_enabled = true
 
 [node name="Inimigo octaedro" parent="." instance=ExtResource("5_b3r68")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.06845, 0)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 2.0965347, 0)
 
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
