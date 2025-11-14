@@ -53,6 +53,10 @@ func _on_body_entered(body: Node3D) -> void:
 
 	# Atingiu o jogador E foi atirada por um inimigo
 	elif body is Player and not was_shot_from_player:
+		
+		## Aumenta o dano conforme o ciclo
+		increase_enemy_damage_bullet_based_on_cycle()
+
 		if body.has_method("take_damage"):
 			body.take_damage(damage)
 		else:
@@ -77,3 +81,7 @@ func calc_player_damage() -> void:
 	if player_stats.crit_chance > 0.0:
 		if randf() < player_stats.crit_chance:
 			damage *= (1 + player_stats.crit_damage)
+
+func increase_enemy_damage_bullet_based_on_cycle() -> void:
+	damage =  min(damage * pow(1.5, GameState.cycle_number - 1), 49)
+	printt("Dano do inimigo: ", damage)

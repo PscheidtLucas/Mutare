@@ -1,7 +1,7 @@
 class_name GameState extends Resource
 
 @export var wave_number: int = 1
-@export var cycle_number: int = 1 # Cycle 1: wave 1-10, Cycle 2: 11-20...
+static var cycle_number: int = 1 # Cycle 1: wave 1-10, Cycle 2: 11-20...
 @export var time_left: float = 0.0
 
 signal wave_number_changed
