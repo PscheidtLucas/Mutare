@@ -92,10 +92,6 @@ func calculate_head_rating(buffs: Array[StatBuff]) -> int:
 		var t : float = (buff.buff_amount - min_val) / max(0.0001, (max_val - min_val))
 		t = clamp(t, 0.0, 1.0)
 		
-		# Caso seja um debuff (valores negativos)
-		if max_val < 0.0 and min_val < 0.0:
-			t = 1.0 - t
-		
 		total_score += t
 	
 	var avg_score := total_score / buffs.size()

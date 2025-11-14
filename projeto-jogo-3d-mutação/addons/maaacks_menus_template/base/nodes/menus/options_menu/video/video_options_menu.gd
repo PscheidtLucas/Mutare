@@ -7,12 +7,16 @@ func _update_resolution_options_enabled(window : Window) -> void:
 	if OS.has_feature("web"):
 		%ResolutionControl.editable = false
 		%ResolutionControl.tooltip_text = "Disabled for web"
-	elif AppSettings.is_fullscreen(window):
-		%ResolutionControl.editable = false
-		%ResolutionControl.tooltip_text = "Disabled for fullscreen"
+	# ELIF REMOVIDO DAQUI
 	else:
 		%ResolutionControl.editable = true
 		%ResolutionControl.tooltip_text = "Select a screen size"
+
+	# Se quiser, pode até forçar a re-abilitação (mas remover o elif já basta)
+	# if !OS.has_feature("web"):
+	# 	%ResolutionControl.editable = true
+	# 	%ResolutionControl.tooltip_text = "Select a screen size"
+
 
 func _update_ui(window : Window) -> void:
 	%FullscreenControl.value = AppSettings.is_fullscreen(window)
@@ -30,8 +34,26 @@ func _on_fullscreen_control_setting_changed(value) -> void:
 	AppSettings.set_fullscreen_enabled(value, window)
 	_update_resolution_options_enabled(window)
 
-func _on_resolution_control_setting_changed(value) -> void:
-	AppSettings.set_resolution(value, get_window(), false)
+func _on_resolution_control_setting_changed(value: Vector2i) -> void:
+	var window : Window = get_window()
+
+	if AppSettings.is_fullscreen(window):
+		# MODO FULLSCREEN: Mude a ESCALA DE RENDERIZAÇÃO
+		
+		# 1. Pegamos a resolução nativa real do monitor atual
+		var native_res : Vector2i = DisplayServer.screen_get_size(window.current_screen)
+
+		# 2. Calculamos o fator de escala (ex: 1280px / 1920px = 0.66)
+		#    Usamos a largura (x) como base para o cálculo.
+		var scale_factor : float = float(value.x) / float(native_res.x)
+
+		# 3. Aplicamos a escala!
+		#    Isso afeta APENAS a renderização 3D. Sua UI continuará nítida.
+		get_viewport().scaling_3d_scale = scale_factor
+		
+	else:
+		# MODO JANELA: Mude o TAMANHO DA JANELA (como seu código já fazia)
+		AppSettings.set_resolution(value, get_window(), false)
 
 func _on_v_sync_control_setting_changed(value) -> void:
 	AppSettings.set_vsync(value, get_window())
