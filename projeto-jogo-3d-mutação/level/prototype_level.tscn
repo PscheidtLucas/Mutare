@@ -155,12 +155,14 @@ glow_levels/4 = 0.5
 glow_levels/6 = 1.0
 glow_intensity = 1.25
 glow_blend_mode = 1
+glow_hdr_threshold = 0.95
 fog_light_color = Color(1, 1, 1, 1)
 fog_sky_affect = 0.0
 volumetric_fog_density = 0.3041
 volumetric_fog_emission = Color(0.205117, 0.205117, 0.205117, 1)
 adjustment_enabled = true
-adjustment_brightness = 0.95
+adjustment_brightness = 1.05
+adjustment_contrast = 1.1
 
 [sub_resource type="Curve" id="Curve_6s3sm"]
 _limits = [0.0, 10.0, 0.0, 1.0]

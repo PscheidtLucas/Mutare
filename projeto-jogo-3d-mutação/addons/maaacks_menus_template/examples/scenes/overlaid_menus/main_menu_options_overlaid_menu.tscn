@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy8sr0cd8nbiu"]
+[gd_scene load_steps=4 format=3 uid="uid://dy8sr0cd8nbiu"]
 
 [ext_resource type="PackedScene" uid="uid://bqqngki8bm3iq" path="res://addons/maaacks_menus_template/base/nodes/overlaid_menu/overlaid_menu_container.tscn" id="1_kl0kf"]
 [ext_resource type="PackedScene" uid="uid://bdvdf5v87mmrr" path="res://addons/maaacks_menus_template/examples/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="2_vemvc"]
 
+[sub_resource type="Theme" id="Theme_emw26"]
+default_font_size = 13
+
 [node name="MasterOptionsOverlaidMenu" instance=ExtResource("1_kl0kf")]
-visible = true
 menu_scene = ExtResource("2_vemvc")
 
 [node name="BackgroundColor" parent="." index="0"]
@@ -17,9 +19,10 @@ anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 0.0
-offset_top = 0.0
+offset_top = -2.0
 offset_right = 0.0
-offset_bottom = 0.0
+offset_bottom = 18.0
+theme = SubResource("Theme_emw26")
 
 [node name="TitleMargin" parent="MenuPanelContainer/MarginContainer/BoxContainer" index="0"]
 visible = false
