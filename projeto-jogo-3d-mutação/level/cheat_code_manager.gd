@@ -12,3 +12,8 @@ func _process(delta: float) -> void:
 	else:
 		Engine.time_scale = normal_speed
 		PlayerManager.player.is_cheating = false
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("restart_button"):
+		get_tree().reload_current_scene()

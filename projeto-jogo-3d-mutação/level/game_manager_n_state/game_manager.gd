@@ -7,7 +7,6 @@ class_name GameManager extends Node
 var wave_timer : Timer
 var wave_starting_duration := 50.0
 
-
 func _ready() -> void:
 	game_state.reset_wave_number()
 	GameEvents.wave_started.connect(on_wave_started)

@@ -1,17 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmu6kouqfkb2n"]
+[gd_scene load_steps=7 format=3 uid="uid://dmu6kouqfkb2n"]
 
 [ext_resource type="Script" uid="uid://b4xkwcbtmsa3n" path="res://bullets/bullet.gd" id="1_42d76"]
+[ext_resource type="Material" uid="uid://dqlnaqcs4wkrq" path="res://bullets/trail_shader_updated.tres" id="2_1bqo5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qrgb1"]
 radius = 0.154288
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ovbbc"]
 albedo_color = Color(0, 0, 0, 1)
-metallic_specular = 0.42
-emission_enabled = true
-emission_energy_multiplier = 2.0
+metallic_specular = 0.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_sxnja"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_sm302"]
+size = Vector2(0.175, 1.2)
 
 [node name="EnemyBullet" type="Area3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
@@ -23,9 +25,29 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("SphereShape3D_qrgb1")
 
 [node name="BulletBall" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_ovbbc")
 mesh = SubResource("SphereMesh_sxnja")
 skeleton = NodePath("")
+
+[node name="TrailMeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 7.1054274e-15, -5.9604645e-08, 5.9604645e-08, -4.3711392e-08, 1, -3.6301415e-22, -1, -4.371139e-08, 0, 0, 0.5979794)
+material_override = ExtResource("2_1bqo5")
+mesh = SubResource("QuadMesh_sm302")
+
+[node name="TrailMeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.7071067, 3.0908623e-08, -0.7071068, 0.7071068, -3.0908616e-08, 0.7071067, -3.6301415e-22, -1, -4.371139e-08, 0, 0, 0.5979794)
+material_override = ExtResource("2_1bqo5")
+mesh = SubResource("QuadMesh_sm302")
+
+[node name="TrailMeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.86602545, -2.1855687e-08, 0.49999988, -0.49999988, -3.7855173e-08, 0.86602545, -3.6301415e-22, -1, -4.371139e-08, 0, 0, 0.5979794)
+material_override = ExtResource("2_1bqo5")
+mesh = SubResource("QuadMesh_sm302")
+
+[node name="TrailMeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.9802322e-08, 4.3711395e-08, -1.0000001, 1.0000001, 7.963342e-15, -2.9802322e-08, 8.579141e-16, -1, -4.371139e-08, 0, 0, 0.5979794)
+material_override = ExtResource("2_1bqo5")
+mesh = SubResource("QuadMesh_sm302")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

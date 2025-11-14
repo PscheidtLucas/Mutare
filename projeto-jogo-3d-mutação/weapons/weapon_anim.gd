@@ -4,4 +4,5 @@ class_name WeaponAnim extends AnimationPlayer
 
 func _ready() -> void:
 	weapon.shot_emitted.connect(func() -> void:
+		stop(false)
 		play("shoot"))

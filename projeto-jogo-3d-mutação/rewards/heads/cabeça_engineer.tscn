@@ -157,6 +157,6 @@ shadow_mesh = SubResource("ArrayMesh_3hb86")
 script = ExtResource("1_kmuo1")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.6160531, 0, 0, 0, 0.5923858, 0, 0, 0, 0.5923858, 0.0068583786, 0.83446896, 0.43340483)
+transform = Transform3D(0.6160531, 0, 0, 0, 0.5923858, 0, 0, 0, 0.5923858, 0.0068583786, 0.83446896, 0.19039151)
 mesh = SubResource("ArrayMesh_kmuo1")
 skeleton = NodePath("")

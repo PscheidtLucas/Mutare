@@ -1,17 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://cngkucju6ei4f"]
+[gd_scene load_steps=8 format=3 uid="uid://cngkucju6ei4f"]
 
 [ext_resource type="Script" uid="uid://b4xkwcbtmsa3n" path="res://bullets/bullet.gd" id="1_1yf1b"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="2_plxcf"]
+[ext_resource type="Material" uid="uid://dqlnaqcs4wkrq" path="res://bullets/trail_shader_updated.tres" id="3_plxcf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qrgb1"]
 radius = 0.154288
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1yf1b"]
-albedo_color = Color(1, 0, 0, 1)
-emission_enabled = true
-emission = Color(0.74711114, 0.026972618, 2.8878452e-07, 1)
+albedo_color = Color(0.6, 0.060000017, 0, 1)
+emission = Color(0.4056674, 0.038034905, 0, 1)
+emission_energy_multiplier = 2.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_sxnja"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_52vbk"]
+size = Vector2(0.175, 1.2)
 
 [node name="Bullet" type="Area3D"]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
@@ -28,5 +32,15 @@ transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_1yf1b")
 mesh = SubResource("SphereMesh_sxnja")
 skeleton = NodePath("")
+
+[node name="TrailMeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 7.1054274e-15, -5.9604645e-08, 5.9604645e-08, -4.3711392e-08, 1, -3.6301415e-22, -1, -4.371139e-08, 0, 0, 0.5979794)
+material_override = ExtResource("3_plxcf")
+mesh = SubResource("QuadMesh_52vbk")
+
+[node name="TrailMeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.0331604e-07, 4.3711392e-08, -1, 1, 9.0161135e-15, -1.0331604e-07, -3.6301417e-22, -1, -4.371139e-08, 0, 0, 0.5979794)
+material_override = ExtResource("3_plxcf")
+mesh = SubResource("QuadMesh_52vbk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
