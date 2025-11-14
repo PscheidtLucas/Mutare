@@ -1,5 +1,9 @@
-class_name Enemy
+class_name Enemy 
 extends CharacterBody3D
+
+@export var label_height := 3.9
+
+const label_appear_radius := 0.9
 
 enum State { IDLE, CHASE, JUMPING }
 var current_state: State = State.CHASE
@@ -51,6 +55,53 @@ func _ready() -> void:
 	chase_cooldown_timer.timeout.connect(_on_chase_cooldown_timeout)
 
 	configure_weapon_stats()
+
+func create_and_configure_label(damage: float) -> void:
+	var label_3d := Label3D.new()
+	
+	var rand_angle := randf() * TAU
+	var radius := sqrt(randf()) * label_appear_radius
+
+	var offset := Vector3(
+		radius * cos(rand_angle),
+		0.0,
+		radius * sin(rand_angle)
+	)
+
+	get_tree().current_scene.add_child(label_3d)
+
+	label_3d.text = str(int(damage))
+	label_3d.font_size = 85
+	label_3d.global_position = global_position + Vector3(0, label_height, 0) + offset
+	label_3d.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	label_3d.outline_size = 30
+	
+	tween_in_then_out_label(label_3d)
+
+func tween_in_then_out_label(label: Label3D) -> void:
+	label.scale = Vector3.ZERO
+	label.modulate.a = 1.0   # garante alpha inicial
+
+	var t := label.create_tween()
+
+	# Tween IN — escala pop rápido (0.12s)
+	t.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	t.tween_property(label, "scale", Vector3.ONE, 0.12)
+
+	# Tween OUT — fade usando *modulate* (0.20s)
+	var out_color := label.modulate
+	out_color.a = 0.0
+
+	t.tween_property(label, "modulate", out_color, 0.20).set_delay(0.12) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_IN)
+	t.parallel()
+	t.tween_property(label, "outline_modulate", out_color, 0.2).set_delay(0.12) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_IN)
+		
+	# limpa a label no final
+	t.finished.connect(label.queue_free)
 
 
 func configure_weapon_stats() -> void:
@@ -193,6 +244,9 @@ func _look_at_player():
 
 func take_damage(damage: float) -> void:
 	health -= damage
+	
+	create_and_configure_label(damage)
+	
 	if health <= 0:
 		die()
 
