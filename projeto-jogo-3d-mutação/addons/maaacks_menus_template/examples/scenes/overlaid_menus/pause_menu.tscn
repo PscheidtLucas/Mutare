@@ -56,7 +56,7 @@ shader = SubResource("Shader_a80ph")
 shader_parameter/speed = 2.0
 shader_parameter/distortion_strength = 0.1
 shader_parameter/pulse_strength = 0.02
-shader_parameter/color_tint = Color(1, 1, 1, 1)
+shader_parameter/color_tint = Color(1.3330661, 1.3330661, 1.3330661, 0.827451)
 
 [sub_resource type="Shader" id="Shader_mslaq"]
 code = "shader_type canvas_item;
@@ -142,8 +142,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
-modulate = Color(1, 1, 1, 0.78431374)
+[node name="Fundo" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0.92941177)
 material = SubResource("ShaderMaterial_l22qf")
 layout_mode = 1
 anchors_preset = 15
@@ -189,9 +189,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -284.0
+offset_left = -287.0
 offset_top = -101.0
-offset_right = 290.0
+offset_right = 287.0
 offset_bottom = 163.0
 grow_horizontal = 2
 grow_vertical = 2

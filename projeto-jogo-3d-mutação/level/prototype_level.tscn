@@ -144,10 +144,11 @@ background_mode = 2
 sky = SubResource("Sky_7tdet")
 sky_custom_fov = 50.0
 ambient_light_source = 2
-ambient_light_color = Color(0.605802, 0.564458, 0.823027, 1)
-tonemap_mode = 2
-tonemap_exposure = 0.4
-tonemap_white = 1.2
+ambient_light_color = Color(0.73171836, 0.75050163, 0.79165536, 1)
+ambient_light_sky_contribution = 0.8
+ambient_light_energy = 0.33
+reflected_light_source = 1
+tonemap_exposure = 0.9
 glow_enabled = true
 glow_levels/2 = 2.0
 glow_levels/3 = 1.5
@@ -161,8 +162,8 @@ fog_sky_affect = 0.0
 volumetric_fog_density = 0.3041
 volumetric_fog_emission = Color(0.205117, 0.205117, 0.205117, 1)
 adjustment_enabled = true
-adjustment_brightness = 1.05
-adjustment_contrast = 1.1
+adjustment_contrast = 1.05
+adjustment_saturation = 0.95
 
 [sub_resource type="Curve" id="Curve_6s3sm"]
 _limits = [0.0, 10.0, 0.0, 1.0]
@@ -184,9 +185,9 @@ size = Vector3(1, 1, 44)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dl7sy"]
 shader = ExtResource("21_i07hj")
-shader_parameter/intensity = 0.4
-shader_parameter/radius = 0.6
-shader_parameter/softness = 0.25
+shader_parameter/intensity = 0.30000001425
+shader_parameter/radius = 0.70000003325
+shader_parameter/softness = 0.2000000095
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qd0o6"]
 
@@ -602,8 +603,8 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.98733366, -0.04039716, 0.15342863, -0.15516993, -0.044213306, 0.98689795, -0.03308429, -0.998205, -0.04992171, 0.032863617, 18.558094, 0.030639648)
-light_color = Color(0.979871, 0.964652, 0.754632, 1)
-light_energy = 0.8
+light_color = Color(0.8516903, 0.95914286, 0.92071915, 1)
+light_energy = 1.124
 shadow_enabled = true
 shadow_opacity = 0.8
 directional_shadow_mode = 0

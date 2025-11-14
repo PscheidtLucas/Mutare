@@ -43,7 +43,6 @@ radius = 1.08
 max_speed = 3.5
 avoidance_layers = 2
 avoidance_mask = 2
-debug_enabled = true
 
 [node name="Inimigo octaedro" parent="." instance=ExtResource("5_b3r68")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 2.0965347, 0)
