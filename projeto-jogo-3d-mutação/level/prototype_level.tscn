@@ -56,11 +56,11 @@ material = SubResource("StandardMaterial3D_4od7l")
 size = Vector2(49, 49)
 
 [sub_resource type="Gradient" id="Gradient_2j5qn"]
-colors = PackedColorArray(0.87, 0.55448, 0.31320003, 1, 0.89, 0.50670666, 0.2848, 1)
+offsets = PackedFloat32Array(0, 0.78504676)
+colors = PackedColorArray(0.91405857, 0.6079433, 0.35896483, 1, 0.9490146, 0.5046497, 0.08338786, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7jmcm"]
-noise_type = 2
-frequency = 0.4
+frequency = 0.0029
 fractal_gain = 9.85
 cellular_distance_function = 3
 
@@ -99,8 +99,8 @@ seamless = true
 render_priority = 0
 shader = ExtResource("5_7jmcm")
 shader_parameter/WindNoise = SubResource("NoiseTexture2D_bwhkm")
-shader_parameter/BaseColor = Color(1, 0.60366666, 0.18, 1)
-shader_parameter/ColorParameter = Color(0.63930005, 0.35862505, 0.2185961, 1)
+shader_parameter/BaseColor = Color(0.99320716, 0.60719055, 0.2240437, 1)
+shader_parameter/ColorParameter = Color(0.8203025, 0.40831596, 0.1508111, 1)
 
 [sub_resource type="MultiMesh" id="MultiMesh_2j5qn"]
 transform_format = 1
@@ -249,27 +249,27 @@ mesh = SubResource("BoxMesh_1ykrc")
 skeleton = NodePath("../../..")
 
 [node name="GrassLessAmount" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
-transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 0.0470295, 0.290969, 0.233307)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.0470295, 0.3007537, 0.233307)
 material_override = SubResource("ShaderMaterial_dyurs")
 multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount5" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
-transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 0.0470295, 0.290969, -52.0853)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 54.122623, 0.3007537, 0.233307)
 material_override = SubResource("ShaderMaterial_dyurs")
 multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount4" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
-transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 0.0470295, 0.290969, 53.9863)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, -54.12444, 0.3007537, 0.233307)
 material_override = SubResource("ShaderMaterial_dyurs")
 multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount2" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
-transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, -54.2591, 0.290969, 0.233307)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.0470295, 0.3007537, 54.041557)
 material_override = SubResource("ShaderMaterial_dyurs")
 multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount3" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
-transform = Transform3D(1, 0, 0, 0, 0.6, 0, 0, 0, 1, 54.2132, 0.290969, 0.233307)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.0470295, 0.3007537, -52.20436)
 material_override = SubResource("ShaderMaterial_dyurs")
 multimesh = SubResource("MultiMesh_2j5qn")
 
@@ -852,7 +852,6 @@ transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -2, -1, 27)
 transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -14, -1, 27)
 
 [node name="FPSLabel" type="Label" parent="."]
-visible = false
 offset_top = 30.0
 offset_right = 131.0
 offset_bottom = 107.0
