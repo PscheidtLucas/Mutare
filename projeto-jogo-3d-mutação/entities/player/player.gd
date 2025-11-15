@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody3D
 
+@onready var player_mesh: MeshInstance3D = $CuboFrame/PlayerMesh
+
 # Câmera do player
 ## TODO NERFAR O DASH -> COLOCAR BARRA DE STAMINA SÓ PRO DASH 
 @export var stats: PlayerStats
@@ -145,6 +147,7 @@ func take_damage(damage_data : Damage) -> void:
 		return
 	if is_cheating == true:
 		return
+	flash_animation()
 	stats.health -= damage_data.amount * (1.0 - stats.damage_reduction_perc)
 	if stats.health <= 0:
 		stats.health = 0
@@ -178,3 +181,24 @@ func is_alive() -> bool:
 		return false
 	else:
 		return true
+
+var flash_tween: Tween
+func flash_animation() -> void:
+	var mat: ShaderMaterial = player_mesh.material_overlay
+	
+	# Se já existe tween rolando, mata pra evitar overlap
+	if flash_tween and flash_tween.is_valid():
+		flash_tween.kill()
+	
+	# Cria tween novo
+	flash_tween = create_tween()
+	flash_tween.set_trans(Tween.TRANS_CUBIC)
+	flash_tween.set_ease(Tween.EASE_IN_OUT)
+	mat.set_shader_parameter("hit_flash", 1.0)
+	# Sobe o flash rapidamente
+	flash_tween.tween_method(
+		func(value: float): mat.set_shader_parameter("hit_flash", value),
+		1.0,  # valor inicial
+		0.0,  # valor final
+		0.2  # duração
+	)

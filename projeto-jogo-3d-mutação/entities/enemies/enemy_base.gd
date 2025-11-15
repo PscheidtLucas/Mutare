@@ -1,6 +1,7 @@
 class_name Enemy 
 extends CharacterBody3D
 
+@export var mesh_enemy: MeshInstance3D
 @export var label_height := 3.9
 
 const label_appear_radius := 0.9
@@ -250,7 +251,7 @@ func _look_at_player():
 
 func take_damage(damage_data: Damage) -> void:
 	health -= damage_data.amount
-	
+	flash_animation()
 	create_and_configure_label(damage_data.amount, damage_data.is_crit)
 	
 	if health <= 0:
@@ -271,3 +272,31 @@ func scale_stats_for_cycle(cycle_number: int) -> void:
 	var scale_level = cycle_number - 1
 	health = health * pow(CYCLE_HP_SCALE, scale_level)
 	
+
+var flash_tween: Tween = null
+
+func flash_animation() -> void:
+	# Garante o overlay
+	if not mesh_enemy.material_overlay:
+		var shader_mat := ShaderMaterial.new()
+		shader_mat.shader = preload("uid://bnpb3ajryxvro")
+		mesh_enemy.material_overlay = shader_mat
+	
+	var mat: ShaderMaterial = mesh_enemy.material_overlay
+	
+	# Se já existe tween rolando, mata pra evitar overlap
+	if flash_tween and flash_tween.is_valid():
+		flash_tween.kill()
+	
+	# Cria tween novo
+	flash_tween = create_tween()
+	flash_tween.set_trans(Tween.TRANS_CUBIC)
+	flash_tween.set_ease(Tween.EASE_IN)
+	mat.set_shader_parameter("hit_flash", 1.0)
+	# Sobe o flash rapidamente
+	flash_tween.tween_method(
+		func(value: float): mat.set_shader_parameter("hit_flash", value),
+		1.0,  # valor inicial
+		0.0,  # valor final
+		0.15  # duração
+	)
