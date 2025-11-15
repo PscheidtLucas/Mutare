@@ -2,7 +2,6 @@ class_name Player extends CharacterBody3D
 
 @onready var player_mesh: MeshInstance3D = $CuboFrame/PlayerMesh
 
-# Câmera do player
 ## TODO NERFAR O DASH -> COLOCAR BARRA DE STAMINA SÓ PRO DASH 
 @export var stats: PlayerStats
 

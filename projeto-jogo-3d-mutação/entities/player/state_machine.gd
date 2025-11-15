@@ -1,5 +1,8 @@
 extends Node
 
+@export var afterimage_emitter: AfterimageEmitter
+@export var leg_player: AnimationPlayer
+
 @export var leg_anchor: Node3D
 @export var leg_rotation_smooth_speed: float = 10.0 # quanto maior, mais rápido a perna gira
 
@@ -31,6 +34,8 @@ func _on_movement_state_physics_processing(delta: float) -> void:
 	var dir_ver := Input.get_axis("move_up", "move_down")
 	input_dir = Vector2(dir_hor, dir_ver).normalized()
 	
+	var was_moving := move_dir != Vector3.ZERO
+	
 	## Rotaciona o vetor em 45° para alinhar ao grid isométrico, e depois rotaciona em relação a camera
 	if input_dir != Vector2.ZERO:
 		var rotated_iso := input_dir.rotated(-PI / 4) ## -45 graus
@@ -38,6 +43,13 @@ func _on_movement_state_physics_processing(delta: float) -> void:
 		move_dir = Vector3(rotated_camera.x, 0, rotated_camera.y).normalized()
 	else:
 		move_dir = Vector3.ZERO
+	
+	var is_moving := move_dir != Vector3.ZERO
+	
+	if is_moving and not was_moving:
+		state_chart.send_event("started_moving")
+	elif not is_moving and was_moving:
+		state_chart.send_event("stopped_moving")
 	
 	## Aplica movimento
 	var target_velocity = move_dir * p.max_speed * (1 + p.stats.speed_increase)
@@ -59,6 +71,8 @@ func _on_ground_state_physics_processing(delta: float) -> void:
 		state_chart.send_event("started_falling")
 
 func _on_jump_state_entered() -> void:
+	
+	leg_player.play("Jump")
 	p.velocity.y += p.jump_speed
 
 func _on_jump_state_physics_processing(delta: float) -> void:
@@ -97,7 +111,10 @@ func _on_dash_state_entered() -> void:
 	if dash_direction == Vector3.ZERO:
 		dash_direction = -p.global_transform.basis.z
 	p.velocity = dash_direction.normalized() * p.dash_speed
-
+	
+	afterimage_emitter.spawn_afterimages()
+	leg_player.play("Walk", -1, 3)
+	
 	## O timer agora deve enviar um evento para voltar ao estado "None"
 	var dash_timer = get_tree().create_timer(p.dash_duration)
 	dash_timer.timeout.connect(state_chart.send_event.bind("dash_finished"))
@@ -141,3 +158,18 @@ func update_leg_rotation(delta: float) -> void:
 	var r := leg_anchor.rotation
 	r.y = new_angle
 	leg_anchor.rotation = r
+
+func _on_idle_state_entered() -> void:
+	leg_player.play("Idle")
+
+func _on_move_state_entered() -> void:
+	leg_player.play("Walk")
+
+func _on_fall_state_entered() -> void:
+	if should_fall:
+		leg_player.play("Fall")
+
+
+func _on_ground_state_entered() -> void:
+	if move_dir != Vector3.ZERO:
+		state_chart.send_event("started_moving")
