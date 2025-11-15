@@ -56,7 +56,7 @@ func _ready() -> void:
 
 	configure_weapon_stats()
 
-func create_and_configure_label(damage: float) -> void:
+func create_and_configure_label(damage: float, is_crit: bool = false) -> void:
 	var label_3d := Label3D.new()
 	
 	var rand_angle := randf() * TAU
@@ -71,11 +71,17 @@ func create_and_configure_label(damage: float) -> void:
 	get_tree().current_scene.add_child(label_3d)
 
 	label_3d.text = str(int(damage))
-	label_3d.font_size = 85
 	label_3d.global_position = global_position + Vector3(0, label_height, 0) + offset
 	label_3d.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	label_3d.outline_size = 30
-	
+
+	label_3d.no_depth_test = true
+
+	if is_crit:
+		label_3d.font_size = 150
+		label_3d.modulate = Color(1.0, 0.524, 0.479, 1.0)
+	else:
+		label_3d.font_size = 85
 	tween_in_then_out_label(label_3d)
 
 func tween_in_then_out_label(label: Label3D) -> void:
@@ -92,11 +98,11 @@ func tween_in_then_out_label(label: Label3D) -> void:
 	var out_color := label.modulate
 	out_color.a = 0.0
 
-	t.tween_property(label, "modulate", out_color, 0.20).set_delay(0.12) \
+	t.tween_property(label, "modulate", out_color, 0.20).set_delay(0.3) \
 		.set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_IN)
 	t.parallel()
-	t.tween_property(label, "outline_modulate", out_color, 0.2).set_delay(0.12) \
+	t.tween_property(label, "outline_modulate", out_color, 0.2).set_delay(0.3) \
 		.set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_IN)
 		
@@ -145,7 +151,7 @@ func manage_knockback(delta: float) -> void:
 				
 				# Chamamos a função no player, passando o impulso
 				player.apply_knockback(direction * knockback_force)
-				player.take_damage(collision_damage)
+				player.take_damage(Damage.new(collision_damage))
 				
 				# Paramos o loop, só queremos um knockback por frame
 				break
@@ -242,10 +248,10 @@ func _look_at_player():
 	if to_player.length_squared() > 0.01:
 		look_at(global_position + to_player, Vector3.UP)
 
-func take_damage(damage: float) -> void:
-	health -= damage
+func take_damage(damage_data: Damage) -> void:
+	health -= damage_data.amount
 	
-	create_and_configure_label(damage)
+	create_and_configure_label(damage_data.amount, damage_data.is_crit)
 	
 	if health <= 0:
 		die()

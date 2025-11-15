@@ -74,7 +74,7 @@ func _ready() -> void:
 	PlayerManager.player = self
 	
 	GameEvents.player_fell_off.connect(func() -> void:
-		take_damage(stats.max_health * fall_off_percent_damage)
+		take_damage(Damage.new(stats.max_health * fall_off_percent_damage))
 		reset_player()  
 		)
 	GameEvents.wave_survived.connect(func()-> void:
@@ -140,12 +140,12 @@ func equip(weapon_config: RangedWeaponConfig) -> void:
 		instance.config = weapon_config
 		break
 
-func take_damage(damage: float) -> void:
+func take_damage(damage_data : Damage) -> void:
 	if is_alive() == false:
 		return
 	if is_cheating == true:
 		return
-	stats.health -= damage * (1.0 - stats.damage_reduction_perc)
+	stats.health -= damage_data.amount * (1.0 - stats.damage_reduction_perc)
 	if stats.health <= 0:
 		stats.health = 0
 		die()

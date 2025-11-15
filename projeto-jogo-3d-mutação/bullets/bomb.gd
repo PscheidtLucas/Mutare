@@ -82,7 +82,7 @@ func _cause_damage():
 			continue # Pula para o próximo 'body' no loop
 		
 		if body.has_method("take_damage"):
-			body.take_damage(damage_to_deal) 
+			body.take_damage(Damage.new(damage_to_deal, false)) 
 	
 	await get_tree().create_timer(0.1).timeout
 	explosion_area_3d.monitoring = false

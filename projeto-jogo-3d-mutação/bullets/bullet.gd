@@ -36,7 +36,6 @@ func initialize(start_position: Vector3, direction: Vector3, config: RangedWeapo
 	timer.start(lifetime)
 
 func _on_body_entered(body: Node3D) -> void:
-	# Lógica mantida exatamente como você prefere
 	if body is Player and was_shot_from_player:
 		return
 		
@@ -44,7 +43,8 @@ func _on_body_entered(body: Node3D) -> void:
 	elif body is Enemy and was_shot_from_player:
 		if body.has_method("take_damage"):
 			calc_player_damage()
-			body.take_damage(damage)
+			var is_crit : bool = is_crit_damage()
+			body.take_damage(Damage.new(damage, is_crit))
 		else:
 			printerr("Inimigo acertado por bala não tem o método take_damage esperado!")
 		if destroy_at_first:
@@ -58,7 +58,7 @@ func _on_body_entered(body: Node3D) -> void:
 		increase_enemy_damage_bullet_based_on_cycle()
 
 		if body.has_method("take_damage"):
-			body.take_damage(damage)
+			body.take_damage(Damage.new(damage, false))
 		else:
 			printerr("Jogador acertado por bala não tem o método take_damage esperado!")
 		queue_free()
@@ -76,11 +76,14 @@ func calc_player_damage() -> void:
 	
 	## Cálculo do dano:
 	damage *= (1 + player_stats.damage_increase)
-	
+
+func is_crit_damage() -> bool:
 	## Cálculo do crítico:
 	if player_stats.crit_chance > 0.0:
 		if randf() < player_stats.crit_chance:
 			damage *= (1 + player_stats.crit_damage)
+			return true
+	return false
 
 func increase_enemy_damage_bullet_based_on_cycle() -> void:
 	damage =  min(damage * pow(1.5, GameState.cycle_number - 1), 49)
