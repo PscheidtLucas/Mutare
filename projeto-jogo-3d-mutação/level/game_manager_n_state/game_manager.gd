@@ -1,6 +1,8 @@
 class_name GameManager extends Node
 # TODO: 
 # Arrumar o escalonamento da dificuldade e o process
+const JOGO_MUTARE = preload("uid://bvfuj7sx36s5f")
+const MENU_MUTARE = preload("uid://cpm1ksmrdh5ca")
 
 @export var game_state: GameState
 
@@ -8,6 +10,8 @@ var wave_timer : Timer
 var wave_starting_duration := 50.0
 
 func _ready() -> void:
+	AudioManager.play_music(MENU_MUTARE)
+
 	game_state.cycle_number = 0
 	
 	game_state.reset_wave_number()
@@ -34,6 +38,7 @@ func _process(_delta: float) -> void:
 func on_level_timer_timeout() -> void:
 	if PlayerManager.player.is_alive():
 		check_if_cycle_ended()
+		
 
 
 func check_if_cycle_ended() -> void:
@@ -54,9 +59,11 @@ func check_if_cycle_ended() -> void:
 func on_wave_started():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	wave_timer.start()
+	AudioManager.play_music(JOGO_MUTARE)
 
 func on_wave_survived():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	AudioManager.play_music(MENU_MUTARE)
 
 func get_time_left() -> float:
 	return wave_timer.time_left
