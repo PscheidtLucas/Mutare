@@ -39,9 +39,7 @@ func _process(_delta: float) -> void:
 func on_level_timer_timeout() -> void:
 	if PlayerManager.player.is_alive():
 		check_if_cycle_ended()
-		
-
-
+	
 func check_if_cycle_ended() -> void:
 	if game_state.is_end_of_cycle():
 		## Se sim, significa que estamos na wave 10, 20, 30... (Abre a tela de evolução para o jogador)

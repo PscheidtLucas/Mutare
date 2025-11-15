@@ -1,46 +1,22 @@
 [gd_scene load_steps=7 format=3 uid="uid://c6nltib5mbsd4"]
 
-[ext_resource type="PackedScene" uid="uid://bb8tqyvmrwian" path="res://weapons/cannon_bomb_gun/Arma canhão na mão correto.glb" id="1_faygw"]
 [ext_resource type="Script" uid="uid://3v0j07kf32d2" path="res://weapons/cannon_bomb_gun/cannon_bomb_gun.gd" id="2_rhmay"]
 [ext_resource type="Script" uid="uid://c8vv03wj0fnos" path="res://weapons/weapon_anim.gd" id="3_rhmay"]
+[ext_resource type="PackedScene" uid="uid://d1d1t2fwd1kxf" path="res://weapons/cannon_bomb_gun/cannon_bomb_model.tscn" id="3_wfqvf"]
 
 [sub_resource type="Animation" id="Animation_3mdeq"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Cube:position")
+tracks/0/path = NodePath("Arma canhão na mão correto:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Cube:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
 "values": [Vector3(0, -1.5708, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Cube:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.15, 0.15, 0.15)]
 }
 
 [sub_resource type="Animation" id="Animation_wfqvf"]
@@ -49,38 +25,14 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Cube:position")
+tracks/0/path = NodePath("Arma canhão na mão correto:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Cube:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.81074, -1.5708, 4.5985e-08), Vector3(0, -1.5708, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Cube:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.18, 0.18, 0.18), Vector3(0.15, 0.15, 0.15)]
+"values": [Vector3(0, -1.5708, 0), Vector3(-0.42748353, -1.5708003, 1.64919e-06), Vector3(0, -1.5708, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ym1q"]
@@ -89,36 +41,21 @@ _data = {
 &"shoot": SubResource("Animation_wfqvf")
 }
 
-[node name="CannonBombGun" instance=ExtResource("1_faygw")]
+[node name="CannonBombGun" type="Node3D"]
 script = ExtResource("2_rhmay")
 launch_angle_degrees = 30.0
 
-[node name="Cube" parent="." index="0"]
-transform = Transform3D(-5.429985e-07, 0, -0.15, 0, 0.15, 0, 0.15, 0, -5.429985e-07, 0, 0, 0)
-
-[node name="BézierCircle" parent="Cube" index="0"]
-transform = Transform3D(-1.16071, -1.72824e-08, -8.32743e-08, 5.83594e-08, -0.685664, -1.55927, -1.02775e-08, -1.94164, 0.550634, 0, 4.32184, 6.72567)
-
-[node name="BézierCircle_003" parent="Cube" index="1"]
-transform = Transform3D(-1.16457, -7.20552e-08, -8.69254e-08, 8.07695e-08, -0.459322, -1.89155, 5.27024e-08, -0.88827, 0.978118, 0, 3.90248, 5.18432)
-
-[node name="Cylinder" parent="Cube" index="2"]
-transform = Transform3D(-1, -1.3278e-07, -4.69964e-08, 5.59098e-08, -1.48562, -0.928923, 1.334e-08, -3.72705, 0.370274, 0, 4.53857, 4.80144)
-
-[node name="Cylinder_001" parent="Cube" index="3"]
-transform = Transform3D(-0.294739, -1.52169e-09, -4.09781e-08, 8.6809e-09, 0.0520507, -0.114982, 4.08264e-08, -0.0220531, -0.271386, 0, 5.27655, 2.84563)
-
-[node name="NurbsPath" parent="Cube" index="4"]
-transform = Transform3D(-2.00729, -4.16348e-08, -1.62758e-07, 6.96085e-08, 1.21992, -0.557377, 2.67098e-07, -0.630816, -1.07789, 0.00915699, 5.5727, 2.59165)
-
-[node name="Muzzle" type="Marker3D" parent="Cube" index="5"]
-unique_name_in_owner = true
-transform = Transform3D(6.66667, 0, 0, 0, 6.66667, 0, 0, 0, 6.66667, 0, 5.74044, 8.36392)
-
-[node name="WeaponAnim" type="AnimationPlayer" parent="." index="1" node_paths=PackedStringArray("weapon")]
+[node name="WeaponAnim" type="AnimationPlayer" parent="." node_paths=PackedStringArray("weapon")]
 libraries = {
 &"": SubResource("AnimationLibrary_0ym1q")
 }
 script = ExtResource("3_rhmay")
 weapon = NodePath("..")
 metadata/_custom_type_script = "uid://c8vv03wj0fnos"
+
+[node name="Arma canhão na mão correto" parent="." instance=ExtResource("3_wfqvf")]
+transform = Transform3D(-5.4299846e-07, 0, -0.14999999, 0, 0.14999999, 0, 0.14999999, 0, -5.4299846e-07, 0, 0, 0)
+
+[node name="Muzzle" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.331941, 0.8979391, 0)

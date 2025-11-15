@@ -14,7 +14,9 @@ func _ready() -> void:
 
 func _on_update_weapon(weapon_config: RangedWeaponConfig) -> void:
 	var weapon_ui_scene_path : String = weapon_config.ui_scene_uid
-	var loaded_scene := load(weapon_ui_scene_path)
-	var instance : Control = loaded_scene.instantiate()
+	
+	var packed := CacheUIScenes.get_scene(weapon_ui_scene_path)
+	var instance : Control = packed.instantiate()
+
 	add_child(instance)
 	weapon_ui_image = instance

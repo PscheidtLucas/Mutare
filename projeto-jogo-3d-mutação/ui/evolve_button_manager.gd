@@ -8,7 +8,6 @@ class_name EvolveButtonManager extends Control
 
 var evolve_was_pressed := false
 
-
 func _ready() -> void:
 	evolve_was_pressed = false
 	evolve_button.pressed.connect(_on_evolve_button_pressed)

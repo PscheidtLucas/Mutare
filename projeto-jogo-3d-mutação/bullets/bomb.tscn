@@ -122,7 +122,7 @@ rings = 4
 collision_layer = 0
 physics_material_override = SubResource("PhysicsMaterial_d8ib7")
 script = ExtResource("1_d8ib7")
-array_of_meshes = [NodePath("MeshInstance3D"), NodePath(""), NodePath(""), NodePath("")]
+array_of_meshes = [NodePath("MeshInstance3D")]
 
 [node name="ExplosionArea3D" type="Area3D" parent="."]
 collision_layer = 16

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="1_i3igd"]
 [ext_resource type="PackedScene" uid="uid://bsgosomawtovf" path="res://bullets/bomb.tscn" id="1_ru61r"]
-[ext_resource type="Texture2D" uid="uid://dod6mfi3daprv" path="res://hand_cannon.png" id="2_ru61r"]
+[ext_resource type="Texture2D" uid="uid://5fjlj4ngfrp0" path="res://weapons/cannon_bomb_gun/image_2025-11-15_195100022-removebg-preview.png" id="2_ru61r"]
 
 [resource]
 script = ExtResource("1_i3igd")

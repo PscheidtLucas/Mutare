@@ -4,9 +4,11 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ydy33"]
 resource_name = "Material"
-vertex_color_use_as_albedo = true
+cull_mode = 2
 albedo_texture = ExtResource("1_6pu8u")
-emission_enabled = true
+metallic = 0.7
+metallic_specular = 1.0
+roughness = 0.7
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
 

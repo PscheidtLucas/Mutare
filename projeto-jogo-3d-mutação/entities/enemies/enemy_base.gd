@@ -1,6 +1,8 @@
 class_name Enemy 
 extends CharacterBody3D
 
+static var enemy_count := 0
+
 @export var mesh_enemy: MeshInstance3D
 @export var label_height := 3.9
 
@@ -41,7 +43,7 @@ var path_update_offset: float = 0.0    # offset aleatório pra desincronizar upd
 var last_target_position: Vector3 = Vector3.INF
 
 func _ready() -> void:
-	
+	set_max_slides(3)
 	path_update_offset = randf_range(0.0, PATH_UPDATE_INTERVAL)
 	GameEvents.wave_survived.connect(die)
 	
@@ -63,6 +65,8 @@ func _ready() -> void:
 		mesh_enemy.material_overlay = shader_mat
 	
 	configure_weapon_stats()
+	enemy_count += 1
+	print("total enemies spawned: ", enemy_count)
 
 func create_and_configure_label(damage: float, is_crit: bool = false) -> void:
 	var label_3d := Label3D.new()
@@ -142,7 +146,12 @@ func _physics_process(delta: float) -> void:
 	if to_player.length_squared() > 0.01:
 		var target_rot = atan2(-to_player.x, -to_player.z)
 		rotation.y = target_rot
-	move_and_slide()
+	
+	var collision : KinematicCollision3D = move_and_collide(velocity * delta)
+	if collision:
+		var collider: Object = collision.get_collider()
+		if collider is CharacterBody3D:
+			velocity = velocity.slide(collision.get_normal())
 	manage_knockback(delta)
 
 func manage_knockback(delta: float) -> void:

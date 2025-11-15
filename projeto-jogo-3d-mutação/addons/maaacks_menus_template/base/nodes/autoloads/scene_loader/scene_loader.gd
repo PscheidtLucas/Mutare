@@ -113,7 +113,11 @@ func _unhandled_key_input(event : InputEvent) -> void:
 			get_tree().quit()
 
 func _ready() -> void:
+	# pré-carrega cenas 3D da UI sem bloquear o addon
+
 	set_process(false)
+
+
 
 func _process(_delta) -> void:
 	var status = get_status()

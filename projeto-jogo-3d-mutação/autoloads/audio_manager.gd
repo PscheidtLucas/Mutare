@@ -35,8 +35,6 @@ func _init_pools() -> void:
 		m.bus = music_bus
 		add_child(m)
 		_music_players.append(m)
-
-
 # -------------------------------------------------------------
 #	SFX: sons rápidos e múltiplos
 # -------------------------------------------------------------
@@ -59,7 +57,6 @@ func play_sfx(
 	player.volume_db = volume_db
 	player.pitch_scale = pitch_scale + randf_range(-random_pitch, random_pitch)
 	player.play()
-
 
 # -------------------------------------------------------------
 #	Música: trocas mais controladas
