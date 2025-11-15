@@ -7,14 +7,14 @@
 [ext_resource type="Script" uid="uid://cm80rdk4fg0dm" path="res://level/spawner/spawn_area.gd" id="3_6lfjr"]
 [ext_resource type="Script" uid="uid://wvedouoyhons" path="res://ui/ui.gd" id="3_htrvu"]
 [ext_resource type="Shader" uid="uid://0t2ge4n4s4ti" path="res://level/grass_shader.tres" id="5_7jmcm"]
+[ext_resource type="PackedScene" uid="uid://34re6cmm8c1w" path="res://entities/enemies/enemy_base.tscn" id="5_36fav"]
 [ext_resource type="Script" uid="uid://bthwivcdoldgd" path="res://level/cheat_code_manager.gd" id="5_qd0o6"]
 [ext_resource type="Texture2D" uid="uid://cwbv8vbx4qew1" path="res://panorama_image.png" id="5_rmo25"]
 [ext_resource type="Script" uid="uid://bwxxutjdjee1w" path="res://level/fall_area.gd" id="6_i5e4g"]
 [ext_resource type="PackedScene" uid="uid://835lpg144rkm" path="res://level/props/purple_flower.tscn" id="7_dyurs"]
 [ext_resource type="PackedScene" uid="uid://bnvdkitdn2cw" path="res://level/low_poly_map_assets/espinho_low_poly.tscn" id="7_pvbb1"]
+[ext_resource type="PackedScene" uid="uid://xy5xbxhkkgeh" path="res://entities/enemies/phantom_enemy.tscn" id="10_3sjje"]
 [ext_resource type="PackedScene" uid="uid://cn4ylkriiiien" path="res://ui/reward_screen.tscn" id="10_ouysc"]
-[ext_resource type="PackedScene" uid="uid://xy5xbxhkkgeh" path="res://entities/enemies/phantom_enemy.tscn" id="12_i07hj"]
-[ext_resource type="PackedScene" uid="uid://34re6cmm8c1w" path="res://entities/enemies/enemy_base.tscn" id="13_dl7sy"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="15_3mfhf"]
 [ext_resource type="Texture2D" uid="uid://c3u7e4k3v03fy" path="res://ui/Vida.png" id="17_1gmhc"]
 [ext_resource type="PackedScene" uid="uid://bntkkgjp5chye" path="res://grass/multi_mesh_instance_3d.tscn" id="17_fwegj"]
@@ -192,13 +192,15 @@ adjustment_enabled = true
 adjustment_contrast = 1.05
 adjustment_saturation = 0.95
 
-[sub_resource type="Curve" id="Curve_3n5u0"]
-_data = [Vector2(0, 0.3527739), 0.0, 0.0, 0, 0]
-point_count = 1
+[sub_resource type="Curve" id="Curve_6s3sm"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 7), 0.0, -8.3, 0, 0, Vector2(0.4, 4.5), -2.9, 0.0, 0, 0, Vector2(0.89, 3.7), -3.0, 0.0, 0, 0, Vector2(0.89, 3.7), -3.0, 0.0, 0, 0, Vector2(0.9, 3.5), -3.0, -8.3, 0, 0]
+point_count = 5
 
-[sub_resource type="Curve" id="Curve_e14j2"]
-_data = [Vector2(0, 0.36656678), 0.0, 0.0, 0, 0]
-point_count = 1
+[sub_resource type="Curve" id="Curve_i07hj"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 2), 0.0, -0.70310444, 0, 0, Vector2(0.3, 3), 7.4, 0.0, 0, 0, Vector2(0.6, 4), 0.20336656, 0.20336656, 0, 0, Vector2(0.89, 4), -0.8274166, -0.8274166, 0, 0, Vector2(0.9, 5), 7.4, -0.70310444, 0, 0]
+point_count = 5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6lfjr"]
 size = Vector3(48.2883, 1, 1)
@@ -657,9 +659,9 @@ environment = SubResource("Environment_ycx7s")
 [node name="SpawnArea" type="Area3D" parent="."]
 script = ExtResource("3_6lfjr")
 game_state = ExtResource("2_fwegj")
-array_of_enemy_types = Array[PackedScene]([ExtResource("12_i07hj"), ExtResource("13_dl7sy")])
-spawn_time_curve = SubResource("Curve_3n5u0")
-enemies_per_wave_curve = SubResource("Curve_e14j2")
+array_of_enemy_types = Array[PackedScene]([ExtResource("5_36fav"), ExtResource("10_3sjje")])
+spawn_time_curve = SubResource("Curve_6s3sm")
+enemies_per_wave_curve = SubResource("Curve_i07hj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19812, 1.19972, -23.7382)
