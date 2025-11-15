@@ -158,8 +158,12 @@ locale/translations=PackedStringArray("res://addons/maaacks_menus_template/base/
 [layer_names]
 
 3d_physics/layer_1="world"
-3d_physics/layer_2="phantom enemy"
-3d_physics/layer_3="player"
+3d_physics/layer_2="player"
+3d_physics/layer_3="basic_enemy"
+3d_physics/layer_4="phantom_enemy"
+3d_physics/layer_5="player_bullet"
+3d_physics/layer_6="enemy_bullet"
+3d_physics/layer_7="spikes_and_obj_that_only_hurts_player"
 
 [maaacks_menus_template]
 

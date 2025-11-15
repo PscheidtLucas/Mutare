@@ -283,6 +283,8 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nq0l7")
 
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("mesh_enemy", "array_of_weapons_nodes")]
+collision_layer = 4
+collision_mask = 19
 script = ExtResource("1_6dmn1")
 mesh_enemy = NodePath("InimigoCubo/Corpo")
 speedy_distance = 40.0
@@ -318,16 +320,16 @@ weapon = NodePath("..")
 unique_name_in_owner = true
 transform = Transform3D(-1.2489e-08, 0, 0.285714, 0, 0.285714, 0, -0.285714, 0, -1.2489e-08, 0.17360742, 0.10267386, -0.00587901)
 target_position = Vector3(0, 0, -5)
+collision_mask = 2
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true
-simplify_path = true
-simplify_epsilon = 1.0
-path_search_max_polygons = 2048
+path_search_max_polygons = 64
+path_search_max_distance = 80.0
 avoidance_enabled = true
-radius = 1.08
-neighbor_distance = 10.0
-max_neighbors = 5
+radius = 1.0
+neighbor_distance = 5.0
+max_neighbors = 3
 max_speed = 3.0
 avoidance_layers = 4
 avoidance_mask = 5

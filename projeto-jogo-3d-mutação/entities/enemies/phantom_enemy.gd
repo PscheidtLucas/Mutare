@@ -31,8 +31,11 @@ func _physics_process(delta: float) -> void:
 		State.CHASE:
 			_chase_state(delta)
 	
-	# Reutiliza as funções de olhar para o jogador e mover
-	_look_at_player()
+	var to_player = player.global_position - global_position
+	to_player.y = 0.0
+	if to_player.length_squared() > 0.01:
+		var target_rot = atan2(-to_player.x, -to_player.z)
+		rotation.y = target_rot
 	move_and_slide()
 
 # --- MUDANÇA 3: Desativa a Lógica de Pulo ---

@@ -43,7 +43,8 @@ size = Vector2(0.12, 0.5)
 
 [node name="Bullet" type="Area3D"]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
-collision_mask = 3
+collision_layer = 16
+collision_mask = 13
 monitorable = false
 script = ExtResource("1_37f7c")
 player_stats = ExtResource("2_wo3kc")

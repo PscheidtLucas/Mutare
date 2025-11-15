@@ -125,7 +125,8 @@ script = ExtResource("1_d8ib7")
 array_of_meshes = [NodePath("MeshInstance3D"), NodePath(""), NodePath(""), NodePath("")]
 
 [node name="ExplosionArea3D" type="Area3D" parent="."]
-collision_mask = 3
+collision_layer = 16
+collision_mask = 13
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea3D"]

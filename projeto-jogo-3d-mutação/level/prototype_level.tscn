@@ -252,6 +252,7 @@ start_position = Vector3(-8.12948, 1.49356, 22.8871)
 end_position = Vector3(-8.09884, 1.52923, 30.8957)
 
 [node name="Ilha1" type="StaticBody3D" parent="MainNavigationRegion" groups=["phaton_region"]]
+collision_mask = 54
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Ilha1"]
@@ -349,6 +350,7 @@ transform = Transform3D(-0.999487, 0, 0.032021, 0, 1, 0, -0.032021, 0, -0.999487
 
 [node name="Ilha3" type="StaticBody3D" parent="MainNavigationRegion" groups=["phaton_region"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 54.0316, 0, 0)
+collision_mask = 54
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Ilha3"]
@@ -381,6 +383,7 @@ mesh = SubResource("PlaneMesh_7tdet")
 
 [node name="Ilha5" type="StaticBody3D" parent="MainNavigationRegion" groups=["phaton_region"]]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -54.0919, 0, 0)
+collision_mask = 54
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Ilha5"]
@@ -419,6 +422,7 @@ mesh = SubResource("PlaneMesh_7tdet")
 
 [node name="Ilha2" type="StaticBody3D" parent="MainNavigationRegion" groups=["phaton_region"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -52.3781)
+collision_mask = 54
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Ilha2"]
@@ -451,6 +455,7 @@ mesh = SubResource("PlaneMesh_7tdet")
 
 [node name="Ilha4" type="StaticBody3D" parent="MainNavigationRegion" groups=["phaton_region"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11168, 53.6972)
+collision_mask = 54
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Ilha4"]
@@ -478,6 +483,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.88832, -3.6972)
 
 [node name="Ponte" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 25)
+collision_mask = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0246582, 1.5)
@@ -488,6 +494,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="Ponte2" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.38165, 0, -27.6103)
+collision_mask = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte2"]
@@ -499,6 +506,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="Ponte15" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1162, 0, -27.6103)
+collision_mask = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte15"]
@@ -510,6 +518,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="Ponte3" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.9389, 0, -28.6847)
+collision_mask = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte3"]
@@ -521,6 +530,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="Ponte4" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.9389, 0, -31.752)
+collision_mask = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte4"]
@@ -532,6 +542,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="Ponte5" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -25.45, 0, -30.2845)
+collision_mask = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte5"]
@@ -543,6 +554,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="Ponte6" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -25.45, 0, -7.14039)
+collision_mask = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte6"]
@@ -554,6 +566,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="Ponte7" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -25.45, 0, 20.9714)
+collision_mask = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte7"]
@@ -565,6 +578,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="Ponte8" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.4455, 0, 12.2992)
+collision_mask = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte8"]
@@ -576,6 +590,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="Ponte9" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.4455, 0, -10.1442)
+collision_mask = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte9"]
@@ -587,6 +602,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="Ponte10" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 25.8008, 0, -35.9214)
+collision_mask = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte10"]
@@ -598,6 +614,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="Ponte11" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 28.7698, 0, -32.9524)
+collision_mask = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte11"]
@@ -609,6 +626,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="Ponte12" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 31.8137, 0, -29.9085)
+collision_mask = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte12"]
@@ -620,6 +638,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="Ponte13" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 34.7827, 0, -26.9395)
+collision_mask = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte13"]
@@ -631,6 +650,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 
 [node name="Ponte14" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 37.7517, 0, -23.9705)
+collision_mask = 6
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainNavigationRegion/Pontes/Ponte14"]
@@ -669,6 +689,10 @@ draw_pass_1 = SubResource("SphereMesh_3n5u0")
 environment = SubResource("Environment_ycx7s")
 
 [node name="SpawnArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
 script = ExtResource("3_6lfjr")
 game_state = ExtResource("2_fwegj")
 array_of_enemy_types = Array[PackedScene]([ExtResource("12_i07hj"), ExtResource("13_dl7sy")])
@@ -878,6 +902,8 @@ process_mode = 3
 script = ExtResource("5_qd0o6")
 
 [node name="FallArea" type="Area3D" parent="."]
+collision_layer = 64
+collision_mask = 2
 script = ExtResource("6_i5e4g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FallArea"]
@@ -886,13 +912,15 @@ shape = SubResource("WorldBoundaryShape3D_qd0o6")
 
 [node name="FallArea2" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.3148, 0)
+collision_layer = 64
+collision_mask = 2
 script = ExtResource("6_i5e4g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FallArea2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.01338, -17.7051, 26.7144)
 shape = SubResource("BoxShape3D_7jmcm")
 
-[node name="BunchOfSpikes" type="Node3D" parent="."]
+[node name="BunchOfSpikes" type="Node" parent="."]
 
 [node name="Espinho low-poly2" parent="BunchOfSpikes" instance=ExtResource("7_pvbb1")]
 transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -6, -1.05345, 26.8801)

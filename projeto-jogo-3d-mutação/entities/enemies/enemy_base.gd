@@ -34,13 +34,15 @@ var jump_target_position: Vector3
 
 @onready var navigation_agent_3d: NavigationAgent3D = %NavigationAgent3D
 
-const PATH_UPDATE_INTERVAL := 0.8    # tempo mínimo entre updates de path para este agente
-const TARGET_UPDATE_DIST := 1.0      # só atualiza target se o player se mover > isso
+const PATH_UPDATE_INTERVAL := 1.2    # tempo mínimo entre updates de path para este agente
+const TARGET_UPDATE_DIST := 1.5      # só atualiza target se o player se mover > isso
 var path_update_accum: float = 0.0
 var path_update_offset: float = 0.0    # offset aleatório pra desincronizar updates
 var last_target_position: Vector3 = Vector3.INF
 
 func _ready() -> void:
+	
+	path_update_offset = randf_range(0.0, PATH_UPDATE_INTERVAL)
 	GameEvents.wave_survived.connect(die)
 	
 	if array_of_weapons_nodes.is_empty():
@@ -134,7 +136,12 @@ func _physics_process(delta: float) -> void:
 		State.CHASE:
 			_chase_state(delta)
 
-	_look_at_player()
+	var to_player = player.global_position - global_position
+	to_player.y = 0.0
+
+	if to_player.length_squared() > 0.01:
+		var target_rot = atan2(-to_player.x, -to_player.z)
+		rotation.y = target_rot
 	move_and_slide()
 	manage_knockback(delta)
 
@@ -168,7 +175,7 @@ func _idle_state():
 	navigation_agent_3d.set_velocity(Vector3.ZERO)
 
 var raycast_check_accum: float = 0.0
-const RAYCAST_CHECK_INTERVAL := 0.2
+const RAYCAST_CHECK_INTERVAL := 0.3
 func _chase_state(delta: float):
 	raycast_check_accum += delta
 	if raycast_check_accum >= RAYCAST_CHECK_INTERVAL:
@@ -194,8 +201,11 @@ func _chase_state(delta: float):
 			# set_target_position evita múltiplas queries se for igual; usamos property também ok
 			navigation_agent_3d.target_position = player.global_position
 			last_target_position = player.global_position
+	## TESTE1 
+	if navigation_agent_3d.is_navigation_finished():
+		navigation_agent_3d.set_velocity(Vector3.ZERO)
+		return
 
-	# Usar o next_path_position toda physics frame (recomendado)
 	var next_path_position = navigation_agent_3d.get_next_path_position()
 	# Se navigation_agent não tem caminho válido, get_next_path_position pode retornar sua posição atual;
 	# verifique para evitar divisão por zero
@@ -305,9 +315,5 @@ func flash_animation() -> void:
 	flash_tween.set_ease(Tween.EASE_IN)
 	mat.set_shader_parameter("hit_flash", 1.0)
 	# Sobe o flash rapidamente
-	flash_tween.tween_method(
-		func(value: float): mat.set_shader_parameter("hit_flash", value),
-		1.0,  # valor inicial
-		0.0,  # valor final
-		0.15  # duração
-	)
+	mat.set_shader_parameter("hit_flash", 1.0)
+	flash_tween.tween_property(mat, "shader_parameter/hit_flash", 0.0, 0.15)
