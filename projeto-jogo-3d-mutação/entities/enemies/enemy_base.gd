@@ -73,13 +73,13 @@ func create_and_configure_label(damage: float, is_crit: bool = false) -> void:
 	label_3d.text = str(int(damage))
 	label_3d.global_position = global_position + Vector3(0, label_height, 0) + offset
 	label_3d.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	label_3d.outline_size = 30
+	label_3d.outline_size = 50
 
 	label_3d.no_depth_test = true
-
+	
 	if is_crit:
 		label_3d.font_size = 150
-		label_3d.modulate = Color(1.0, 0.524, 0.479, 1.0)
+		label_3d.modulate = Color(1.0, 0.855, 0.13, 1.0)
 	else:
 		label_3d.font_size = 85
 	tween_in_then_out_label(label_3d)
@@ -93,7 +93,7 @@ func tween_in_then_out_label(label: Label3D) -> void:
 	# Tween IN — escala pop rápido (0.12s)
 	t.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	t.tween_property(label, "scale", Vector3.ONE, 0.12)
-
+	
 	# Tween OUT — fade usando *modulate* (0.20s)
 	var out_color := label.modulate
 	out_color.a = 0.0

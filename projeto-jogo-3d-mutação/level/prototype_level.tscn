@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=63 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://cn7q1hmxe74tw" path="res://level/game_manager_n_state/game_manager.gd" id="1_ouysc"]
@@ -111,6 +111,33 @@ buffer = PackedFloat32Array(-0.755644, -0.0335946, -0.290874, 14.5988, -0.047518
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rl8gb"]
 size = Vector3(3.96191, 1.04932, 4.7356)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i07hj"]
+emission_shape_offset = Vector3(0, 1, 0)
+emission_shape = 3
+emission_box_extents = Vector3(40, 1, 40)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dl7sy"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(1.5720325, 1.5720325, 1.5720325, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0
+disable_receive_shadows = true
+shadow_to_opacity = true
+billboard_mode = 1
+billboard_keep_scale = true
+point_size = 50.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_3n5u0"]
+material = SubResource("StandardMaterial3D_dl7sy")
+radius = 0.1
+height = 0.2
 
 [sub_resource type="Shader" id="Shader_ms54u"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.4.1.stable's PanoramaSkyMaterial.
@@ -615,6 +642,16 @@ directional_shadow_fade_start = 1.0
 [node name="Player" parent="." instance=ExtResource("1_1ykrc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16595961, 0.97359455, 3.8806098)
 _jump_height = 4.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Player"]
+amount = 100
+lifetime = 2.0
+preprocess = 3.0
+speed_scale = 0.3
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_i07hj")
+draw_pass_1 = SubResource("SphereMesh_3n5u0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ycx7s")
