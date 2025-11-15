@@ -27,13 +27,23 @@ func _ready() -> void:
 func _fire() -> void:
 	if not config or not config.bullet_scene:
 		return
-
+	
 	var base_forward := -muzzle.global_transform.basis.x.normalized()
 	var num := config.number_of_projectiles
 	var spread_angles := _calculate_spread_angles(num, config.accuracy)
-
+	
 	for angle_deg in spread_angles:
-		var projectile := config.bullet_scene.instantiate() as Bullet
+		var projectile: Bullet
+		
+		if is_player_weapon:
+			projectile = config.bullet_scene.instantiate() as Bullet
+		else:
+			projectile = BulletPool.get_bullet(config.bullet_scene)
+
+		# Garantir que não tenha parent antes de adicionar
+		if projectile.get_parent():
+			projectile.get_parent().remove_child(projectile)
+
 		get_tree().current_scene.add_child(projectile)
 		
 		var final_dir := base_forward.rotated(Vector3.UP, deg_to_rad(angle_deg))

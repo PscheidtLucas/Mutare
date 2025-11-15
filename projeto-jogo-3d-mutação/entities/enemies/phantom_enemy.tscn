@@ -258,7 +258,10 @@ shape = SubResource("CapsuleShape3D_b46nk")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 unique_name_in_owner = true
+path_max_distance = 3.01
 navigation_layers = 2
+simplify_path = true
+simplify_epsilon = 1.0
 avoidance_enabled = true
 radius = 1.08
 max_speed = 3.5
@@ -270,6 +273,7 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 2.0965347, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="Inimigo octaedro"]
 transform = Transform3D(1.539099, 0, 0, 0, 1.539099, 0, 0, 0, 1.539099, 0.0044080303, 0.0058947424, 0.005615036)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_kkfs2")
 skeleton = NodePath("")
 
@@ -284,6 +288,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.319924, 0.0927379, 0)
 
 [node name="pistola" parent="Pistol" instance=ExtResource("5_8qdup")]
 transform = Transform3D(7, 0, 0, 0, -3.2579912e-05, 8, 0, -9, -2.8959921e-05, -0.186135, 0.0919371, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_4jd51")
 
 [node name="WeaponAnim" type="AnimationPlayer" parent="Pistol" node_paths=PackedStringArray("weapon")]

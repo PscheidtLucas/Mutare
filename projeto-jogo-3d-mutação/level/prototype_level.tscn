@@ -91,14 +91,14 @@ size = Vector3(50, 0.5, 50)
 noise_type = 3
 fractal_type = 0
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bwhkm"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i07hj"]
 noise = SubResource("FastNoiseLite_4od7l")
 seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dyurs"]
 render_priority = 0
 shader = ExtResource("5_7jmcm")
-shader_parameter/WindNoise = SubResource("NoiseTexture2D_bwhkm")
+shader_parameter/WindNoise = SubResource("NoiseTexture2D_i07hj")
 shader_parameter/BaseColor = Color(0.99320716, 0.60719055, 0.2240437, 1)
 shader_parameter/ColorParameter = Color(0.75632495, 0.3688494, 0.1201187, 1)
 
@@ -138,6 +138,8 @@ point_size = 50.0
 material = SubResource("StandardMaterial3D_dl7sy")
 radius = 0.1
 height = 0.2
+radial_segments = 4
+rings = 2
 
 [sub_resource type="Shader" id="Shader_ms54u"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.4.1.stable's PanoramaSkyMaterial.
@@ -165,7 +167,8 @@ shader_parameter/scroll_speed = 0.006
 [sub_resource type="Sky" id="Sky_7tdet"]
 resource_local_to_scene = true
 sky_material = SubResource("ShaderMaterial_rmo25")
-process_mode = 1
+process_mode = 3
+radiance_size = 0
 
 [sub_resource type="Environment" id="Environment_ycx7s"]
 background_mode = 2
@@ -280,29 +283,39 @@ skeleton = NodePath("../../..")
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.0470295, 0.3007537, 0.233307)
 layers = 2
 material_override = SubResource("ShaderMaterial_dyurs")
+gi_mode = 0
 multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount5" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 54.122623, 0.3007537, 0.233307)
+layers = 2
 material_override = SubResource("ShaderMaterial_dyurs")
+gi_mode = 0
 multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount4" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, -54.12444, 0.3007537, 0.233307)
+layers = 2
 material_override = SubResource("ShaderMaterial_dyurs")
+gi_mode = 0
 multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount2" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.0470295, 0.3007537, 54.041557)
+layers = 2
 material_override = SubResource("ShaderMaterial_dyurs")
+gi_mode = 0
 multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount3" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.0470295, 0.3007537, -52.20436)
+layers = 2
 material_override = SubResource("ShaderMaterial_dyurs")
+gi_mode = 0
 multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="Flowers" type="Node3D" parent="MainNavigationRegion/Ilha1"]
+process_mode = 4
 
 [node name="folha_001" parent="MainNavigationRegion/Ilha1/Flowers" instance=ExtResource("7_dyurs")]
 transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -48.9706, 1.45995, 7.26853)
@@ -461,7 +474,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0.88832, 18.3028)
 [node name="arvoreLowPoly9" parent="MainNavigationRegion/Ilha4" instance=ExtResource("2_1wlit")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.88832, -3.6972)
 
-[node name="Pontes" type="Node3D" parent="MainNavigationRegion"]
+[node name="Pontes" type="Node" parent="MainNavigationRegion"]
 
 [node name="Ponte" type="StaticBody3D" parent="MainNavigationRegion/Pontes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 25)
@@ -631,6 +644,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0153046, 0.341707, 1
 transform = Transform3D(0.9488368, -0.040397167, 0.31317213, -0.31481853, -0.044213302, 0.94812167, -0.024455033, -0.99820495, -0.05466899, 0.032863617, 18.558094, 0.030639648)
 light_color = Color(0.8516903, 0.95914286, 0.92071915, 1)
 light_energy = 1.124
+light_bake_mode = 0
 shadow_enabled = true
 shadow_opacity = 0.8
 shadow_caster_mask = 4294967293
@@ -900,6 +914,7 @@ text = "FPS:"
 script = ExtResource("19_bwhkm")
 
 [node name="Meshes" type="Node" parent="."]
+process_mode = 4
 
 [node name="GreenPlant" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(1.73902, 0, -0.987823, 0, 2, 0, 0.987823, 0, 1.73902, 20.1271, 1.32877, 69.8387)

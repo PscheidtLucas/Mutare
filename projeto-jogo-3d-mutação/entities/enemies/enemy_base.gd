@@ -34,8 +34,8 @@ var jump_target_position: Vector3
 
 @onready var navigation_agent_3d: NavigationAgent3D = %NavigationAgent3D
 
-const PATH_UPDATE_INTERVAL := 0.5    # tempo mínimo entre updates de path para este agente
-const TARGET_UPDATE_DIST := 0.5      # só atualiza target se o player se mover > isso
+const PATH_UPDATE_INTERVAL := 0.8    # tempo mínimo entre updates de path para este agente
+const TARGET_UPDATE_DIST := 1.0      # só atualiza target se o player se mover > isso
 var path_update_accum: float = 0.0
 var path_update_offset: float = 0.0    # offset aleatório pra desincronizar updates
 var last_target_position: Vector3 = Vector3.INF
@@ -54,7 +54,12 @@ func _ready() -> void:
 	chase_cooldown_timer.one_shot = true # Garante que o timer pare após disparar uma vez
 	add_child(chase_cooldown_timer) # Adiciona o timer à cena para que ele funcione
 	chase_cooldown_timer.timeout.connect(_on_chase_cooldown_timeout)
-
+	
+	if mesh_enemy.material_overlay == null:
+		var shader_mat := ShaderMaterial.new()
+		shader_mat.shader = preload("uid://bnpb3ajryxvro")
+		mesh_enemy.material_overlay = shader_mat
+	
 	configure_weapon_stats()
 
 func create_and_configure_label(damage: float, is_crit: bool = false) -> void:
@@ -157,18 +162,22 @@ func manage_knockback(delta: float) -> void:
 				# Paramos o loop, só queremos um knockback por frame
 				break
 
-
 ## Estados da IA
 
 func _idle_state():
 	navigation_agent_3d.set_velocity(Vector3.ZERO)
 
+var raycast_check_accum: float = 0.0
+const RAYCAST_CHECK_INTERVAL := 0.2
 func _chase_state(delta: float):
+	raycast_check_accum += delta
+	if raycast_check_accum >= RAYCAST_CHECK_INTERVAL:
+		raycast_check_accum = 0.0
 	# se o raycast vê o player, para e starta cooldown (o raycast é barato)
-	if ray_cast_3d.is_colliding() and ray_cast_3d.get_collider() == player:
-		current_state = State.IDLE
-		chase_cooldown_timer.start(2.0)
-		return
+		if ray_cast_3d.is_colliding() and ray_cast_3d.get_collider() == player:
+			current_state = State.IDLE
+			chase_cooldown_timer.start(2.0)
+			return
 
 	# --- Otimização central: NÃO setar target toda vez ---
 	# acumulador com offset pra dessincronizar
@@ -194,7 +203,6 @@ func _chase_state(delta: float):
 		navigation_agent_3d.set_velocity(Vector3.ZERO)
 		return
 
-	# --- INÍCIO DA MODIFICAÇÃO ---
 	var current_move_speed = move_speed # Velocidade base
 	var dist_to_player = global_position.distance_to(player.global_position)
 
@@ -208,7 +216,11 @@ func _chase_state(delta: float):
 	var dir = next_path_position - global_position
 	dir.y = 0.0 # mantém no plano, evita subidas/descidas bruscas
 	var desired_velocity = dir.normalized() * current_move_speed
-	navigation_agent_3d.set_velocity(desired_velocity)
+	
+	if not navigation_agent_3d.avoidance_enabled:
+		velocity = desired_velocity
+	else:
+		navigation_agent_3d.set_velocity(desired_velocity)
 
 func _jumping_state():
 	var new_pos = jump_start_position.lerp(jump_target_position, jump_progress)
@@ -278,9 +290,8 @@ var flash_tween: Tween = null
 func flash_animation() -> void:
 	# Garante o overlay
 	if not mesh_enemy.material_overlay:
-		var shader_mat := ShaderMaterial.new()
-		shader_mat.shader = preload("uid://bnpb3ajryxvro")
-		mesh_enemy.material_overlay = shader_mat
+		printerr("no shader indentified on enemy mesh")
+		return
 	
 	var mat: ShaderMaterial = mesh_enemy.material_overlay
 	

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj81tfwj8w77v"]
+
+[ext_resource type="Script" uid="uid://db1iegjtuhxld" path="res://level/fps_label.gd" id="1_kybil"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="FPSLabel" type="Label" parent="."]
+offset_top = 30.0
+offset_right = 131.0
+offset_bottom = 107.0
+text = "FPS:"
+script = ExtResource("1_kybil")

@@ -25,6 +25,7 @@ ProjectMusicController="*res://addons/maaacks_menus_template/base/nodes/autoload
 ProjectUISoundController="*res://addons/maaacks_menus_template/base/nodes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn"
 FullscreenManager="*res://autoloads/fullscreen_manager.gd"
 AudioManager="*res://autoloads/audio_manager.gd"
+BulletPool="*res://autoloads/bullet_pool.gd"
 
 [display]
 
@@ -156,7 +157,9 @@ locale/translations=PackedStringArray("res://addons/maaacks_menus_template/base/
 
 [layer_names]
 
+3d_physics/layer_1="world"
 3d_physics/layer_2="phantom enemy"
+3d_physics/layer_3="player"
 
 [maaacks_menus_template]
 
@@ -166,6 +169,7 @@ disable_install_wizard=true
 
 [physics]
 
+3d/physics_engine="Jolt Physics"
 3d/default_gravity=30.0
 
 [rendering]

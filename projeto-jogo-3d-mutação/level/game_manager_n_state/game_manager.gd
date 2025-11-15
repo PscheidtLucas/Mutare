@@ -15,6 +15,7 @@ func _ready() -> void:
 	game_state.cycle_number = 0
 	
 	game_state.reset_wave_number()
+	
 	GameEvents.wave_started.connect(on_wave_started)
 	GameEvents.wave_survived.connect(on_wave_survived)
 	GameEvents.player_died.connect(on_player_lost)

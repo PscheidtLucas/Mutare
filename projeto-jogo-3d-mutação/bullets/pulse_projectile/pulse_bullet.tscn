@@ -20,6 +20,7 @@ shape = SubResource("BoxShape3D_1ablr")
 
 [node name="ProjPulse" parent="." instance=ExtResource("2_1ablr")]
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="Model" parent="ProjPulse" index="0"]
+cast_shadow = 0
 
 [editable path="ProjPulse"]
