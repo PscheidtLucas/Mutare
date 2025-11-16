@@ -43,6 +43,7 @@ var path_update_offset: float = 0.0    # offset aleatório pra desincronizar upd
 var last_target_position: Vector3 = Vector3.INF
 
 func _ready() -> void:
+	raycast_check_interval = 0.3 + 0.1 * randf()
 	set_max_slides(3)
 	path_update_offset = randf_range(0.0, PATH_UPDATE_INTERVAL)
 	GameEvents.wave_survived.connect(die)
@@ -147,11 +148,7 @@ func _physics_process(delta: float) -> void:
 		var target_rot = atan2(-to_player.x, -to_player.z)
 		rotation.y = target_rot
 	
-	var collision : KinematicCollision3D = move_and_collide(velocity * delta)
-	if collision:
-		var collider: Object = collision.get_collider()
-		if collider is CharacterBody3D:
-			velocity = velocity.slide(collision.get_normal())
+	move_and_slide()
 	manage_knockback(delta)
 
 func manage_knockback(delta: float) -> void:
@@ -184,10 +181,11 @@ func _idle_state():
 	navigation_agent_3d.set_velocity(Vector3.ZERO)
 
 var raycast_check_accum: float = 0.0
-const RAYCAST_CHECK_INTERVAL := 0.3
+var raycast_check_interval := 0.0 ## atualizado no ready
 func _chase_state(delta: float):
 	raycast_check_accum += delta
-	if raycast_check_accum >= RAYCAST_CHECK_INTERVAL:
+	if raycast_check_accum >= raycast_check_interval:
+		ray_cast_3d.force_raycast_update()
 		raycast_check_accum = 0.0
 	# se o raycast vê o player, para e starta cooldown (o raycast é barato)
 		if ray_cast_3d.is_colliding() and ray_cast_3d.get_collider() == player:
@@ -218,7 +216,7 @@ func _chase_state(delta: float):
 	var next_path_position = navigation_agent_3d.get_next_path_position()
 	# Se navigation_agent não tem caminho válido, get_next_path_position pode retornar sua posição atual;
 	# verifique para evitar divisão por zero
-	if next_path_position == Vector3.ZERO and navigation_agent_3d.is_navigation_finished():
+	if next_path_position == Vector3.ZERO:
 		navigation_agent_3d.set_velocity(Vector3.ZERO)
 		return
 
@@ -324,5 +322,4 @@ func flash_animation() -> void:
 	flash_tween.set_ease(Tween.EASE_IN)
 	mat.set_shader_parameter("hit_flash", 1.0)
 	# Sobe o flash rapidamente
-	mat.set_shader_parameter("hit_flash", 1.0)
 	flash_tween.tween_property(mat, "shader_parameter/hit_flash", 0.0, 0.15)

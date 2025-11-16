@@ -319,7 +319,8 @@ weapon = NodePath("..")
 [node name="RayCast3D" type="RayCast3D" parent="Pistol"]
 unique_name_in_owner = true
 transform = Transform3D(-1.2489e-08, 0, 0.285714, 0, 0.285714, 0, -0.285714, 0, -1.2489e-08, 0.17360742, 0.10267386, -0.00587901)
-target_position = Vector3(0, 0, -5)
+enabled = false
+target_position = Vector3(0, 0, -6)
 collision_mask = 2
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
