@@ -43,6 +43,7 @@ var path_update_offset: float = 0.0    # offset aleatório pra desincronizar upd
 var last_target_position: Vector3 = Vector3.INF
 
 func _ready() -> void:
+	#navigation_agent_3d.velocity_computed.connect(_on_navigation_agent_3d_velocity_computed)
 	raycast_check_interval = 0.3 + 0.1 * randf()
 	set_max_slides(3)
 	path_update_offset = randf_range(0.0, PATH_UPDATE_INTERVAL)
@@ -178,66 +179,56 @@ func manage_knockback(delta: float) -> void:
 ## Estados da IA
 
 func _idle_state():
-	navigation_agent_3d.set_velocity(Vector3.ZERO)
+	velocity = Vector3.ZERO
 
 var raycast_check_accum: float = 0.0
 var raycast_check_interval := 0.0 ## atualizado no ready
+
 func _chase_state(delta: float):
+	# 1. RAYCAST CHECK (dessincronizado)
 	raycast_check_accum += delta
 	if raycast_check_accum >= raycast_check_interval:
-		ray_cast_3d.force_raycast_update()
 		raycast_check_accum = 0.0
-	# se o raycast vê o player, para e starta cooldown (o raycast é barato)
+		ray_cast_3d.force_raycast_update()
 		if ray_cast_3d.is_colliding() and ray_cast_3d.get_collider() == player:
 			current_state = State.IDLE
 			chase_cooldown_timer.start(2.0)
 			return
 
-	# --- Otimização central: NÃO setar target toda vez ---
-	# acumulador com offset pra dessincronizar
+	# 2. PATH UPDATE (dessincronizado)
 	path_update_accum += delta
-	if path_update_accum + path_update_offset >= PATH_UPDATE_INTERVAL:
+	if path_update_accum >= PATH_UPDATE_INTERVAL:
 		path_update_accum = 0.0
-		# Só setar novo target se o player se moveu o suficiente do último target
-		var dist_to_last_target: float
+		
+		# Só atualiza se o player se moveu
+		var player_moved_enough := false
 		if last_target_position == Vector3.INF:
-			dist_to_last_target = 99999.0
+			player_moved_enough = true
 		else:
-			dist_to_last_target = last_target_position.distance_to(player.global_position)
-		if dist_to_last_target >= TARGET_UPDATE_DIST:
-			# set_target_position evita múltiplas queries se for igual; usamos property também ok
+			var dist = last_target_position.distance_to(player.global_position)
+			player_moved_enough = dist >= TARGET_UPDATE_DIST
+		
+		if player_moved_enough:
 			navigation_agent_3d.target_position = player.global_position
 			last_target_position = player.global_position
-	## TESTE1 
+
+	# 3. MOVIMENTO SIMPLES
+	# Se chegou no destino, para
 	if navigation_agent_3d.is_navigation_finished():
-		navigation_agent_3d.set_velocity(Vector3.ZERO)
+		velocity = Vector3.ZERO
 		return
-
-	var next_path_position = navigation_agent_3d.get_next_path_position()
-	# Se navigation_agent não tem caminho válido, get_next_path_position pode retornar sua posição atual;
-	# verifique para evitar divisão por zero
-	if next_path_position == Vector3.ZERO:
-		navigation_agent_3d.set_velocity(Vector3.ZERO)
-		return
-
-	var current_move_speed = move_speed # Velocidade base
-	var dist_to_player = global_position.distance_to(player.global_position)
-
-	if dist_to_player > speedy_distance:
-		current_move_speed = move_speed * 1.5 # Dobra a velocidade
 	
-	# Esta é a correção: atualizar a velocidade MÁXIMA do agente
-	navigation_agent_3d.max_speed = current_move_speed
-	# --- FIM DA MODIFICAÇÃO ---
-
-	var dir = next_path_position - global_position
-	dir.y = 0.0 # mantém no plano, evita subidas/descidas bruscas
-	var desired_velocity = dir.normalized() * current_move_speed
+	# Pega próxima posição do caminho
+	var next_pos := navigation_agent_3d.get_next_path_position()
+	var direction := (next_pos - global_position).normalized()
+	direction.y = 0.0  # Mantém no plano
 	
-	if not navigation_agent_3d.avoidance_enabled:
-		velocity = desired_velocity
-	else:
-		navigation_agent_3d.set_velocity(desired_velocity)
+	# Ajusta velocidade baseado em distância
+	var dist_to_player := global_position.distance_to(player.global_position)
+	var speed := move_speed * 1.5 if dist_to_player > speedy_distance else move_speed
+	
+	# Aplica velocidade
+	velocity = direction * speed
 
 func _jumping_state():
 	var new_pos = jump_start_position.lerp(jump_target_position, jump_progress)
@@ -248,12 +239,16 @@ func _jumping_state():
 ## Funções de Navegação e Combate
 
 func _on_chase_cooldown_timeout():
-	# reativa chase somente se o raycast não está vendo o jogador
-	if current_state == State.IDLE and not (ray_cast_3d.is_colliding() and ray_cast_3d.get_collider() == player):
-		current_state = State.CHASE
-	else:
-		# reinicia o timer de forma simples (mantém comportamento)
+	# Força update do raycast antes de checar
+	ray_cast_3d.force_raycast_update()
+	
+	# Só fica IDLE se AINDA está vendo o player
+	if ray_cast_3d.is_colliding() and ray_cast_3d.get_collider() == player:
+		# Player ainda está na mira, reinicia timer
 		chase_cooldown_timer.start(2.0)
+	else:
+		# Player saiu da mira, volta pro chase
+		current_state = State.CHASE
 
 func _on_link_reached(details: Dictionary) -> void:
 	current_state = State.JUMPING

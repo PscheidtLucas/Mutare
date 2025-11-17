@@ -1,8 +1,8 @@
 # BulletPool.gd
 extends Node
 
-const INITIAL_POOL_SIZE := 400
-const MAX_POOL_SIZE := 500
+const INITIAL_POOL_SIZE := 200
+const MAX_POOL_SIZE := 400
 var enemy_bullet_scene: PackedScene = null
 var available_bullets: Array[Bullet] = []
 var active_bullets: Array[Bullet] = []

@@ -41,6 +41,7 @@ func on_level_timer_timeout() -> void:
 		check_if_cycle_ended()
 	
 func check_if_cycle_ended() -> void:
+	AudioManager.play_music(MENU_MUTARE)
 	if game_state.is_end_of_cycle():
 		## Se sim, significa que estamos na wave 10, 20, 30... (Abre a tela de evolução para o jogador)
 		GameEvents.cycle_cleared.emit()
@@ -62,7 +63,7 @@ func on_wave_started():
 
 func on_wave_survived():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	AudioManager.play_music(MENU_MUTARE)
+	
 
 func get_time_left() -> float:
 	return wave_timer.time_left

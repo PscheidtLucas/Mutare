@@ -240,7 +240,7 @@ _data = {
 
 [node name="GhostEnemy" type="CharacterBody3D" node_paths=PackedStringArray("node_to_float", "mesh_enemy", "array_of_weapons_nodes")]
 collision_layer = 8
-collision_mask = 16
+collision_mask = 24
 script = ExtResource("1_lc4ou")
 hover_height = 0.5
 bob_frequency = 3.0
@@ -261,7 +261,6 @@ unique_name_in_owner = true
 path_max_distance = 3.01
 navigation_layers = 2
 path_search_max_polygons = 64
-avoidance_enabled = true
 radius = 1.08
 neighbor_distance = 5.0
 max_neighbors = 3

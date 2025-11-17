@@ -562,7 +562,7 @@ tracks/35/keys = {
 tracks/36/type = "value"
 tracks/36/imported = false
 tracks/36/enabled = true
-tracks/36/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/SlotAnchor/LegSlot:position")
+tracks/36/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:position")
 tracks/36/interp = 1
 tracks/36/loop_wrap = true
 tracks/36/keys = {
@@ -574,7 +574,7 @@ tracks/36/keys = {
 tracks/37/type = "value"
 tracks/37/imported = false
 tracks/37/enabled = true
-tracks/37/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/SlotAnchor/LegSlot:scale")
+tracks/37/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:scale")
 tracks/37/interp = 1
 tracks/37/loop_wrap = true
 tracks/37/keys = {
@@ -586,7 +586,7 @@ tracks/37/keys = {
 tracks/38/type = "value"
 tracks/38/imported = false
 tracks/38/enabled = true
-tracks/38/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/SlotAnchor/LegSlot:modulate")
+tracks/38/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:modulate")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/keys = {
@@ -1034,7 +1034,7 @@ tracks/35/keys = {
 tracks/36/type = "value"
 tracks/36/imported = false
 tracks/36/enabled = true
-tracks/36/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/SlotAnchor/LegSlot:position")
+tracks/36/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:position")
 tracks/36/interp = 2
 tracks/36/loop_wrap = true
 tracks/36/keys = {
@@ -1046,7 +1046,7 @@ tracks/36/keys = {
 tracks/37/type = "value"
 tracks/37/imported = false
 tracks/37/enabled = true
-tracks/37/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/SlotAnchor/LegSlot:scale")
+tracks/37/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:scale")
 tracks/37/interp = 2
 tracks/37/loop_wrap = true
 tracks/37/keys = {
@@ -1058,7 +1058,7 @@ tracks/37/keys = {
 tracks/38/type = "value"
 tracks/38/imported = false
 tracks/38/enabled = true
-tracks/38/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/SlotAnchor/LegSlot:modulate")
+tracks/38/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:modulate")
 tracks/38/interp = 2
 tracks/38/loop_wrap = true
 tracks/38/keys = {
@@ -1562,11 +1562,12 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14"]
+[node name="LegControl" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 
-[node name="LegIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/Control"]
+[node name="LegIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegControl"]
 custom_minimum_size = Vector2(210, 120)
 layout_mode = 0
 offset_left = -65.0
@@ -1578,10 +1579,11 @@ mouse_filter = 2
 texture = ExtResource("18_emeoy")
 expand_mode = 1
 
-[node name="SlotAnchor" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14"]
+[node name="LegSlotAnchor" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14"]
+visible = false
 layout_mode = 2
 
-[node name="LegSlot" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/SlotAnchor"]
+[node name="LegSlot" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 0
 offset_right = 90.0
@@ -1591,7 +1593,7 @@ texture = ExtResource("22_piogr")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="LegTooltip" type="PanelContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/SlotAnchor/LegSlot"]
+[node name="LegTooltip" type="PanelContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot"]
 visible = false
 z_index = 1
 layout_mode = 0
@@ -1602,7 +1604,7 @@ mouse_filter = 2
 theme = SubResource("Theme_vuu3q")
 theme_override_styles/panel = SubResource("StyleBoxFlat_klgxq")
 
-[node name="StatNames" type="Label" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/SlotAnchor/LegSlot/LegTooltip"]
+[node name="StatNames" type="Label" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot/LegTooltip"]
 layout_mode = 2
 theme_override_constants/line_spacing = 4
 text = "Dmg:
@@ -1612,7 +1614,7 @@ Accuracy:
 Proj Speed:
 Range:"
 
-[node name="StatValues" type="Label" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/SlotAnchor/LegSlot/LegTooltip"]
+[node name="StatValues" type="Label" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot/LegTooltip"]
 layout_mode = 2
 theme_override_constants/line_spacing = 4
 text = "100.2

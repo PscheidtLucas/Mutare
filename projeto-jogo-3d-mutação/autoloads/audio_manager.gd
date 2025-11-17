@@ -10,7 +10,7 @@ extends Node
 var _sfx_players: Array[AudioStreamPlayer] = []
 var _music_players: Array[AudioStreamPlayer] = []
 
-@export var fade_time := 0.01
+@export var fade_time := 0.5
 
 var current_music : AudioStream = null
 var music_player : AudioStreamPlayer = null

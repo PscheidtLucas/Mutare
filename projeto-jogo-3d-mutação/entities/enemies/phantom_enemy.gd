@@ -20,27 +20,27 @@ func _ready() -> void:
 	motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 	start_float_tween()
 
-func _physics_process(delta: float) -> void:
-	if player == null:
-		return
-	
-	# Reutiliza a lógica de estados (IDLE/CHASE) da classe base
-	match current_state:
-		State.IDLE:
-			_idle_state()
-		State.CHASE:
-			_chase_state(delta)
-	
-	var to_player = player.global_position - global_position
-	to_player.y = 0.0
-	if to_player.length_squared() > 0.01:
-		var target_rot = atan2(-to_player.x, -to_player.z)
-		rotation.y = target_rot
-	var collision : KinematicCollision3D = move_and_collide(velocity * delta)
-	if collision:
-		var collider: Object = collision.get_collider()
-		if collider is CharacterBody3D:
-			velocity = velocity.slide(collision.get_normal())
+#func _physics_process(delta: float) -> void:
+	#if player == null:
+		#return
+	#
+	## Reutiliza a lógica de estados (IDLE/CHASE) da classe base
+	#match current_state:
+		#State.IDLE:
+			#_idle_state()
+		#State.CHASE:
+			#_chase_state(delta)
+	#
+	#var to_player = player.global_position - global_position
+	#to_player.y = 0.0
+	#if to_player.length_squared() > 0.01:
+		#var target_rot = atan2(-to_player.x, -to_player.z)
+		#rotation.y = target_rot
+	#var collision : KinematicCollision3D = move_and_collide(velocity * delta)
+	#if collision:
+		#var collider: Object = collision.get_collider()
+		#if collider is CharacterBody3D:
+			#velocity = velocity.slide(collision.get_normal())
 
 # --- MUDANÇA 3: Desativa a Lógica de Pulo ---
 # Sobrescrevemos as funções de pulo da classe base para que não façam nada.

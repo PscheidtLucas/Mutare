@@ -56,36 +56,52 @@ func explode():
 	await get_tree().create_timer(2).timeout
 	queue_free()
 
+
+var final_damage := 0.0
+var final_is_crit := false
+var has_calculated_damage := false
+
 func _cause_damage():
-	var damage_to_deal : float
 	# Garante que o config foi passado antes de tentar ler o dano
 	if not config:
 		printerr("Bomba explodiu sem um RangedWeaponConfig!")
 		return
-	
-	if is_player_weapon:
-		if PlayerManager.player == null:
-			return
-		var player_stats : PlayerStats = PlayerManager.player.stats
-	
-		damage_to_deal = config.damage * (1 + player_stats.damage_increase)
-	else:
-		damage_to_deal = config.damage
-	
+
+	# Calcula o dano final só uma vez
+	if not has_calculated_damage:
+		_calculate_final_damage()
+		has_calculated_damage = true
+
 	await get_tree().physics_frame
+
 	for body in explosion_area_3d.get_overlapping_bodies():
-		
-		# --- CORREÇÃO AQUI ---
-		# Se o corpo na área de explosão é o Jogador E a bomba foi atirada pelo Jogador,
-		# pule para o próximo corpo (não cause dano).
 		if body is Player and is_player_weapon:
-			continue # Pula para o próximo 'body' no loop
-		
+			continue
+
 		if body.has_method("take_damage"):
-			body.take_damage(Damage.new(damage_to_deal, false)) 
-	
+			body.take_damage(Damage.new(final_damage, final_is_crit))
+
 	await get_tree().create_timer(0.1).timeout
 	explosion_area_3d.monitoring = false
+
+func _calculate_final_damage():
+	# Base
+	final_damage = config.damage
+
+	if is_player_weapon:
+		var player_stats : PlayerStats = PlayerManager.player.stats
+		if player_stats:
+			final_damage *= (1 + player_stats.damage_increase)
+
+		# Tentativa de crítico
+		if player_stats and player_stats.crit_chance > 0.0:
+			if randf() < player_stats.crit_chance:
+				final_damage *= (1 + player_stats.crit_damage)
+				final_is_crit = true
+			else:
+				final_is_crit = false
+
+
 
 func hide_mashes()->void:
 	for mesh in array_of_meshes:
