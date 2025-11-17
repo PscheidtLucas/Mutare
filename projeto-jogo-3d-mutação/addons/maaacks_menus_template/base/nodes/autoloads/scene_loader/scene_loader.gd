@@ -97,6 +97,12 @@ func load_scene(scene_path : String, in_background : bool = false) -> void:
 		return
 	_scene_path = scene_path
 	_background_loading = in_background
+	
+	# PRÉ-CARREGA TODAS AS DEPENDÊNCIAS ANTES DE QUALQUER COISA
+	# ESPECIAL PARA WEB
+	
+	preload_dependencies(scene_path)
+	
 	if ResourceLoader.has_cached(_scene_path):
 		call_deferred("emit_signal", "scene_loaded")
 		if not _background_loading:
@@ -112,12 +118,22 @@ func _unhandled_key_input(event : InputEvent) -> void:
 		if DisplayServer.clipboard_get().hash() == _exit_hash:
 			get_tree().quit()
 
+func preload_dependencies(scene_path: String) -> void:
+	var deps := ResourceLoader.get_dependencies(scene_path)
+	if deps.is_empty():
+		return
+
+	for dep_path in deps:
+		if not ResourceLoader.has_cached(dep_path):
+			var res = ResourceLoader.load(dep_path)
+			if res == null:
+				push_warning("Falha ao carregar dependência: %s" % dep_path)
+
+
 func _ready() -> void:
 	# pré-carrega cenas 3D da UI sem bloquear o addon
 
 	set_process(false)
-
-
 
 func _process(_delta) -> void:
 	var status = get_status()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=65 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://cn7q1hmxe74tw" path="res://level/game_manager_n_state/game_manager.gd" id="1_ouysc"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://835lpg144rkm" path="res://level/props/purple_flower.tscn" id="7_dyurs"]
 [ext_resource type="PackedScene" uid="uid://bnvdkitdn2cw" path="res://level/low_poly_map_assets/espinho_low_poly.tscn" id="7_pvbb1"]
 [ext_resource type="PackedScene" uid="uid://cn4ylkriiiien" path="res://ui/reward_screen.tscn" id="10_ouysc"]
+[ext_resource type="PackedScene" uid="uid://xy5xbxhkkgeh" path="res://entities/enemies/phantom_enemy.tscn" id="12_i07hj"]
 [ext_resource type="PackedScene" uid="uid://34re6cmm8c1w" path="res://entities/enemies/enemy_base.tscn" id="13_dl7sy"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="15_3mfhf"]
 [ext_resource type="Texture2D" uid="uid://c3u7e4k3v03fy" path="res://ui/Vida.png" id="17_1gmhc"]
@@ -212,12 +213,12 @@ adjustment_contrast = 1.05
 adjustment_saturation = 0.95
 
 [sub_resource type="Curve" id="Curve_3n5u0"]
-_data = [Vector2(0, 0.3527739), 0.0, 0.0, 0, 0]
-point_count = 1
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.4984144), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Curve" id="Curve_e14j2"]
-_data = [Vector2(0, 0.36656678), 0.0, 0.0, 0, 0]
-point_count = 1
+_data = [Vector2(0, 0.50528544), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6lfjr"]
 size = Vector3(48.2883, 1, 1)
@@ -299,7 +300,6 @@ skeleton = NodePath("../../..")
 
 [node name="GrassLessAmount" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.0470295, 0.3007537, 0.233307)
-visible = false
 layers = 2
 material_override = SubResource("ShaderMaterial_dyurs")
 gi_mode = 0
@@ -307,7 +307,6 @@ multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount5" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 54.122623, 0.3007537, 0.233307)
-visible = false
 layers = 2
 material_override = SubResource("ShaderMaterial_dyurs")
 gi_mode = 0
@@ -315,7 +314,6 @@ multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount4" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, -54.12444, 0.3007537, 0.233307)
-visible = false
 layers = 2
 material_override = SubResource("ShaderMaterial_dyurs")
 gi_mode = 0
@@ -323,7 +321,6 @@ multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount2" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.0470295, 0.3007537, 54.041557)
-visible = false
 layers = 2
 material_override = SubResource("ShaderMaterial_dyurs")
 gi_mode = 0
@@ -331,7 +328,6 @@ multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount3" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.0470295, 0.3007537, -52.20436)
-visible = false
 layers = 2
 material_override = SubResource("ShaderMaterial_dyurs")
 gi_mode = 0
@@ -717,7 +713,7 @@ monitoring = false
 monitorable = false
 script = ExtResource("3_6lfjr")
 game_state = ExtResource("2_fwegj")
-array_of_enemy_types = Array[PackedScene]([ExtResource("13_dl7sy")])
+array_of_enemy_types = Array[PackedScene]([ExtResource("13_dl7sy"), ExtResource("12_i07hj")])
 spawn_time_curve = SubResource("Curve_3n5u0")
 enemies_per_wave_curve = SubResource("Curve_e14j2")
 

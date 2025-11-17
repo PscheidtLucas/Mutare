@@ -2,6 +2,10 @@ extends Node
 
 @export var afterimage_emitter: AfterimageEmitter
 @export var leg_player: AnimationPlayer
+@export var player_mesh: Node3D
+var downwords_position := -0.39 ## posicao em y para a mesh se mover para baixo para a animação de andar
+var initial_mesh_y: float
+var walking_tween: Tween
 
 @export var leg_anchor: Node3D
 @export var leg_rotation_smooth_speed: float = 10.0 # quanto maior, mais rápido a perna gira
@@ -24,6 +28,8 @@ func _ready() -> void:
 	state_chart.set_expression_property("player_alive", true) # usado em ToFall, ToGround, ToJump
 	state_chart.set_expression_property("dash_cd_reseted", true) # usado em ToDash
 	GameEvents.player_died.connect(_on_player_died)
+	initial_mesh_y = player_mesh.position.y
+	animate_cube_frame_walking()
 	
 #endregion
 
@@ -71,10 +77,10 @@ func _on_ground_state_physics_processing(delta: float) -> void:
 		state_chart.send_event("started_falling")
 
 func _on_jump_state_entered() -> void:
-	
 	leg_player.play("Jump")
 	p.velocity.y += p.jump_speed
-
+	if walking_tween: walking_tween.pause()
+	
 func _on_jump_state_physics_processing(delta: float) -> void:
 	p.velocity.y -= p.jump_gravity * delta
 	if p.velocity.y <= 0:
@@ -161,15 +167,34 @@ func update_leg_rotation(delta: float) -> void:
 
 func _on_idle_state_entered() -> void:
 	leg_player.play("Idle")
+	if walking_tween: walking_tween.pause()
 
 func _on_move_state_entered() -> void:
 	leg_player.play("Walk")
+	if walking_tween: walking_tween.play()
 
 func _on_fall_state_entered() -> void:
 	if should_fall:
 		leg_player.play("Fall")
+	if walking_tween: walking_tween.pause()
 
 
 func _on_ground_state_entered() -> void:
 	if move_dir != Vector3.ZERO:
 		state_chart.send_event("started_moving")
+
+func animate_cube_frame_walking() -> void:
+	if walking_tween:
+		walking_tween.kill()
+	
+	walking_tween = create_tween()
+	walking_tween.set_loops() # Loop infinito
+	walking_tween.set_trans(Tween.TRANS_SINE)
+	walking_tween.set_ease(Tween.EASE_IN_OUT)
+	
+	# Passo 1: Move para baixo (posição inicial - constante)
+	walking_tween.tween_property(player_mesh, "position:y", initial_mesh_y - downwords_position, 0.15)
+	# Passo 2: Move de volta para a posição inicial
+	walking_tween.tween_property(player_mesh, "position:y", initial_mesh_y, 0.15)
+	
+	walking_tween.pause() # Começa pausado para não animar parado

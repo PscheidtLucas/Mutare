@@ -236,11 +236,12 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 3.9831724, 0)
 [node name="Position6" type="Node3D" parent="CuboFrame/HeadsInventory"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 5.0549173, 0)
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("afterimage_emitter", "leg_player", "leg_anchor")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("afterimage_emitter", "leg_player", "player_mesh", "leg_anchor")]
 unique_name_in_owner = true
 script = ExtResource("2_g6k8r")
 afterimage_emitter = NodePath("../AfterImageEmitter")
 leg_player = NodePath("../animacaoPerna/AnimationPlayer")
+player_mesh = NodePath("../CuboFrame")
 leg_anchor = NodePath("../animacaoPerna")
 
 [node name="StateChart" type="Node" parent="StateMachine"]
