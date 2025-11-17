@@ -57,6 +57,7 @@ func get_resource() -> Resource:
 func change_scene_to_resource() -> void:
 	if debug_enabled:
 		return
+	await get_tree().process_frame
 	var err = get_tree().change_scene_to_packed(get_resource())
 	if err:
 		push_error("failed to change scenes: %d" % err)
@@ -64,6 +65,10 @@ func change_scene_to_resource() -> void:
 
 func change_scene_to_loading_screen() -> void:
 	_background_loading = false
+	await get_tree().process_frame
+	if _loading_screen == null:
+		push_error("loading screen resource is null")
+		return
 	var err = get_tree().change_scene_to_packed(_loading_screen)
 	if err:
 		push_error("failed to change scenes to loading screen: %d" % err)
@@ -74,7 +79,9 @@ func set_loading_screen(value : String) -> void:
 	if loading_screen_path == "":
 		push_warning("loading screen path is empty")
 		return
-	_loading_screen = load(loading_screen_path)
+	_loading_screen = ResourceLoader.load(loading_screen_path)
+	if _loading_screen == null:
+		push_error("failed to load loading screen from: %s" % loading_screen_path)
 
 func is_loading_scene(check_scene_path) -> bool:
 	return check_scene_path == _scene_path
@@ -86,6 +93,9 @@ func _check_loading_screen() -> bool:
 	if not has_loading_screen():
 		push_error("loading screen is not set")
 		return false
+	if _loading_screen == null:
+		push_error("loading screen resource is null")
+		return false
 	return true
 
 func reload_current_scene() -> void:
@@ -95,52 +105,44 @@ func load_scene(scene_path : String, in_background : bool = false) -> void:
 	if scene_path == null or scene_path.is_empty():
 		push_error("no path given to load")
 		return
+	
+	print("[SceneLoader] Loading scene: ", scene_path, " | Background: ", in_background)
+	
 	_scene_path = scene_path
 	_background_loading = in_background
 	
-	# PRÉ-CARREGA TODAS AS DEPENDÊNCIAS ANTES DE QUALQUER COISA
-	# ESPECIAL PARA WEB
-	
-	preload_dependencies(scene_path)
-	
 	if ResourceLoader.has_cached(_scene_path):
+		print("[SceneLoader] Scene already cached")
 		call_deferred("emit_signal", "scene_loaded")
 		if not _background_loading:
-			change_scene_to_resource()
+			call_deferred("change_scene_to_resource")
 		return
+	
+	print("[SceneLoader] Starting threaded load request")
 	ResourceLoader.load_threaded_request(_scene_path)
 	set_process(true)
+	
 	if _check_loading_screen() and not _background_loading:
-		change_scene_to_loading_screen()
+		print("[SceneLoader] Changing to loading screen...")
+		call_deferred("change_scene_to_loading_screen")
 
 func _unhandled_key_input(event : InputEvent) -> void:
 	if event.is_action_pressed(&"ui_paste"):
 		if DisplayServer.clipboard_get().hash() == _exit_hash:
 			get_tree().quit()
 
-func preload_dependencies(scene_path: String) -> void:
-	var deps := ResourceLoader.get_dependencies(scene_path)
-	if deps.is_empty():
-		return
-
-	for dep_path in deps:
-		if not ResourceLoader.has_cached(dep_path):
-			var res = ResourceLoader.load(dep_path)
-			if res == null:
-				push_warning("Falha ao carregar dependência: %s" % dep_path)
-
-
 func _ready() -> void:
 	# pré-carrega cenas 3D da UI sem bloquear o addon
-
 	set_process(false)
 
 func _process(_delta) -> void:
 	var status = get_status()
 	match(status):
 		ResourceLoader.THREAD_LOAD_INVALID_RESOURCE, ResourceLoader.THREAD_LOAD_FAILED:
+			push_error("[SceneLoader] Failed to load scene: %s" % _scene_path)
 			set_process(false)
 		ResourceLoader.THREAD_LOAD_LOADED:
+			print("[SceneLoader] Scene loaded successfully")
 			emit_signal("scene_loaded")
 			set_process(false)
 			if not _background_loading:

@@ -1,6 +1,9 @@
 [gd_scene load_steps=26 format=3 uid="uid://bsgosomawtovf"]
 
 [ext_resource type="Script" uid="uid://bgmb4yf0081im" path="res://bullets/bomb.gd" id="1_d8ib7"]
+[ext_resource type="Material" uid="uid://dctlptvyso364" path="res://0_materials_spatial/debris_mat.tres" id="2_es61y"]
+[ext_resource type="Material" uid="uid://bc68vo2ynx8a4" path="res://0_materials_spatial/fire_mat.tres" id="3_buw3e"]
+[ext_resource type="Material" uid="uid://rfq6ba3xl77l" path="res://0_materials_spatial/bomb.tres" id="4_fivos"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d8ib7"]
 bounce = 0.2
@@ -23,14 +26,8 @@ initial_velocity_max = 24.0
 scale_min = 0.5
 scale_curve = SubResource("CurveTexture_uooff")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_buw3e"]
-albedo_color = Color(0.830485, 0.330946, 0, 1)
-emission_enabled = true
-emission = Color(0.916848, 0.164906, 0, 1)
-emission_energy_multiplier = 2.0
-
 [sub_resource type="CylinderMesh" id="CylinderMesh_fivos"]
-material = SubResource("StandardMaterial3D_buw3e")
+material = ExtResource("2_es61y")
 top_radius = 0.1
 bottom_radius = 0.0
 radial_segments = 8
@@ -62,12 +59,8 @@ scale_curve = SubResource("CurveTexture_es61y")
 color = Color(0.122252, 0.122252, 0.122252, 1)
 alpha_curve = SubResource("CurveTexture_rwbnf")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1vwa"]
-transparency = 1
-vertex_color_use_as_albedo = true
-
 [sub_resource type="SphereMesh" id="SphereMesh_kgb54"]
-material = SubResource("StandardMaterial3D_a1vwa")
+material = ExtResource("3_buw3e")
 radial_segments = 8
 rings = 4
 
@@ -108,13 +101,8 @@ emission_curve = SubResource("CurveTexture_2vkah")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rwbnf"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d8ib7"]
-albedo_color = Color(0, 0, 0, 1)
-metallic = 0.59
-metallic_specular = 0.4
-
 [sub_resource type="SphereMesh" id="SphereMesh_rwbnf"]
-material = SubResource("StandardMaterial3D_d8ib7")
+material = ExtResource("4_fivos")
 radial_segments = 8
 rings = 4
 

@@ -40,7 +40,6 @@ metadata/_custom_type_script = "uid://cjfuvhi515usr"
 script = ExtResource("2_mimky")
 name = "Not Wall-E"
 scene_uid = "uid://8w4c6ilv2ky"
-ui_scene = "uid://bc4srpmmbh8e4"
 array_of_buffs = Array[ExtResource("1_fw15h")]([SubResource("Resource_fw15h"), SubResource("Resource_mimky"), SubResource("Resource_6rtub"), SubResource("Resource_ef2ha")])
 image = ExtResource("2_6rtub")
 type = 2

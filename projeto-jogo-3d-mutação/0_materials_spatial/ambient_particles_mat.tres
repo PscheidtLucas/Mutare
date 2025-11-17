@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://byccfkxit0aba"]
+
+[resource]
+vertex_color_use_as_albedo = true
+albedo_color = Color(1.5720325, 1.5720325, 1.5720325, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0
+disable_receive_shadows = true
+shadow_to_opacity = true
+billboard_mode = 1
+billboard_keep_scale = true
+point_size = 50.0

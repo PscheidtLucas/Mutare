@@ -41,7 +41,6 @@ metadata/_custom_type_script = "uid://cjfuvhi515usr"
 script = ExtResource("2_utvc2")
 name = "Sentry Guy’s Head"
 scene_uid = "uid://bue2k0fqe3x0a"
-ui_scene = "uid://cn1xd5qxv3iy0"
 array_of_buffs = Array[ExtResource("1_jkddv")]([SubResource("Resource_f6pdq"), SubResource("Resource_72rib"), SubResource("Resource_puonc"), SubResource("Resource_jkddv")])
 image = ExtResource("2_1rn8c")
 type = 2

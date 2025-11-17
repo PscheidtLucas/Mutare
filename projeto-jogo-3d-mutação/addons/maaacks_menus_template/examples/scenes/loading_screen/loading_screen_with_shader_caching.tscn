@@ -1,18 +1,76 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvp3b2tdsbtmo"]
+[gd_scene load_steps=12 format=3 uid="uid://dvp3b2tdsbtmo"]
 
 [ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_menus_template/base/nodes/loading_screen/loading_screen.tscn" id="1_4k0mc"]
 [ext_resource type="Script" uid="uid://ymuduuk7envr" path="res://addons/maaacks_menus_template/examples/scenes/loading_screen/loading_screen_with_shader_caching.gd" id="2_3xu6h"]
+[ext_resource type="PackedScene" uid="uid://bsgosomawtovf" path="res://bullets/bomb.tscn" id="3_own3t"]
+[ext_resource type="Script" uid="uid://ckf4mjlo8s2ba" path="res://bullets/bomb_explode_one_frame.gd" id="4_dmk1a"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_klnwy"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mliqc"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.05, 0.05, 0.05, 0.78431374)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Curve" id="Curve_u8spf"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2887538, 0.75605327), 5.6805906, 5.6805906, 0, 0, Vector2(0.32826746, 1.0084746), 0.0, 0.0, 0, 0, Vector2(0.67781156, 0.9927361), 0.0, 0.0, 0, 0, Vector2(0.71428573, 0.7639225), -5.556354, -5.556354, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_dl7sy"]
+curve = SubResource("Curve_u8spf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6uruf"]
+emission_shape_offset = Vector3(0, 1, 0)
+emission_shape = 3
+emission_box_extents = Vector3(40, 1, 40)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -1.0000023
+linear_accel_max = 0.99999774
+alpha_curve = SubResource("CurveTexture_dl7sy")
+turbulence_enabled = true
+turbulence_noise_scale = 4.798
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dl7sy"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(1.5720325, 1.5720325, 1.5720325, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0
+disable_receive_shadows = true
+shadow_to_opacity = true
+billboard_mode = 1
+billboard_keep_scale = true
+point_size = 50.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_8yyak"]
+material = SubResource("StandardMaterial3D_dl7sy")
+radius = 0.1
+height = 0.2
+radial_segments = 4
+rings = 2
+
 [node name="LoadingScreen" instance=ExtResource("1_4k0mc")]
 script = ExtResource("2_3xu6h")
-_spatial_shader_material_dir = ""
-_cache_shaders_scene = "res://addons/maaacks_menus_template/examples/scenes/game_scene/game_ui.tscn"
+_spatial_shader_material_dir = "res://0_materials_spatial/"
+_cache_shaders_scene = "uid://4qldqg5yaw6t"
 _mesh = SubResource("QuadMesh_klnwy")
 _matching_extensions = Array[String]([".tres", ".material", ".res"])
 _ignore_subfolders = Array[String]([".", ".."])
 _shader_delay_timer = 0.1
+
+[node name="BackPanel" parent="Control" index="0"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_mliqc")
 
 [node name="SpatialShaderTypeCaches" type="Node3D" parent="." index="2"]
 unique_name_in_owner = true
@@ -20,3 +78,32 @@ unique_name_in_owner = true
 [node name="Camera3D" type="Camera3D" parent="SpatialShaderTypeCaches" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.408)
 current = true
+
+[node name="AmbientGPUParticles3D" type="GPUParticles3D" parent="SpatialShaderTypeCaches" index="1"]
+amount = 150
+lifetime = 4.0
+preprocess = 3.0
+speed_scale = 0.5
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_6uruf")
+draw_pass_1 = SubResource("SphereMesh_8yyak")
+
+[node name="Bomb" parent="SpatialShaderTypeCaches" index="2" instance=ExtResource("3_own3t")]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3525349, 0.06808066, -5.452097)
+script = ExtResource("4_dmk1a")
+
+[node name="Debris" parent="SpatialShaderTypeCaches/Bomb" index="1"]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+
+[node name="Smoke" parent="SpatialShaderTypeCaches/Bomb" index="2"]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 1.75029, 0)
+
+[node name="Fire" parent="SpatialShaderTypeCaches/Bomb" index="3"]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, 0)
+
+[node name="MeshInstance3D" parent="SpatialShaderTypeCaches/Bomb" index="6"]
+transform = Transform3D(0.521302, 0, 0, 0, 0.521302, 0, 0, 0, 0.521302, -0.48076817, 0, 0.04634428)
+
+[editable path="SpatialShaderTypeCaches/Bomb"]

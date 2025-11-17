@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://c8hlukfljebpa"]
+
+[ext_resource type="Shader" uid="uid://ojgwpslpg4r3" path="res://bullets/trail_mesh.gdshader" id="1_uos2h"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ascq4"]
+noise_type = 2
+frequency = 0.0038
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xuifw"]
+noise = SubResource("FastNoiseLite_ascq4")
+seamless = true
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_uos2h")
+shader_parameter/trail_color = Color(2.7915835e-06, 0.60603935, 0.6760575, 1)
+shader_parameter/width = 0.75900003535398
+shader_parameter/fade_length = 1.6730000762076205
+shader_parameter/scroll_speed = 2.6470001257325
+shader_parameter/noise_strength = 1.0
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_xuifw")
+shader_parameter/smoothness = 1.0

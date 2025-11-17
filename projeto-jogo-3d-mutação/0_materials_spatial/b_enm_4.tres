@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bsqy2ip3tbbma"]
+
+[resource]
+resource_name = "Ihanen"
+cull_mode = 2
+albedo_color = Color(0.906422, 0.263795, 0.274752, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 0.314581, 0.362977, 1)
+emission_energy_multiplier = 2.0

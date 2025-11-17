@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=62 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://cn7q1hmxe74tw" path="res://level/game_manager_n_state/game_manager.gd" id="1_ouysc"]
@@ -6,12 +6,13 @@
 [ext_resource type="Resource" uid="uid://bpsmw37wyl1vp" path="res://level/game_manager_n_state/main_state.tres" id="2_fwegj"]
 [ext_resource type="Script" uid="uid://cm80rdk4fg0dm" path="res://level/spawner/spawn_area.gd" id="3_6lfjr"]
 [ext_resource type="Script" uid="uid://wvedouoyhons" path="res://ui/ui.gd" id="3_htrvu"]
-[ext_resource type="Shader" uid="uid://0t2ge4n4s4ti" path="res://level/grass_shader.tres" id="5_7jmcm"]
+[ext_resource type="Material" uid="uid://dpe1i4e2tstgj" path="res://0_materials_spatial/grass_shader_material.tres" id="5_i07hj"]
 [ext_resource type="Script" uid="uid://bthwivcdoldgd" path="res://level/cheat_code_manager.gd" id="5_qd0o6"]
 [ext_resource type="Texture2D" uid="uid://cwbv8vbx4qew1" path="res://level/panorama_image.png" id="5_rmo25"]
 [ext_resource type="Script" uid="uid://bwxxutjdjee1w" path="res://level/fall_area.gd" id="6_i5e4g"]
 [ext_resource type="PackedScene" uid="uid://835lpg144rkm" path="res://level/props/purple_flower.tscn" id="7_dyurs"]
 [ext_resource type="PackedScene" uid="uid://bnvdkitdn2cw" path="res://level/low_poly_map_assets/espinho_low_poly.tscn" id="7_pvbb1"]
+[ext_resource type="Material" uid="uid://byccfkxit0aba" path="res://0_materials_spatial/ambient_particles_mat.tres" id="10_dl7sy"]
 [ext_resource type="PackedScene" uid="uid://cn4ylkriiiien" path="res://ui/reward_screen.tscn" id="10_ouysc"]
 [ext_resource type="PackedScene" uid="uid://xy5xbxhkkgeh" path="res://entities/enemies/phantom_enemy.tscn" id="12_i07hj"]
 [ext_resource type="PackedScene" uid="uid://34re6cmm8c1w" path="res://entities/enemies/enemy_base.tscn" id="13_dl7sy"]
@@ -92,21 +93,6 @@ emission_energy_multiplier = 0.1
 material = SubResource("StandardMaterial3D_1ykrc")
 size = Vector3(50, 0.5, 50)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4od7l"]
-noise_type = 3
-fractal_type = 0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i07hj"]
-noise = SubResource("FastNoiseLite_4od7l")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dyurs"]
-render_priority = 0
-shader = ExtResource("5_7jmcm")
-shader_parameter/WindNoise = SubResource("NoiseTexture2D_i07hj")
-shader_parameter/BaseColor = Color(0.99320716, 0.60719055, 0.2240437, 1)
-shader_parameter/ColorParameter = Color(0.75632495, 0.3688494, 0.1201187, 1)
-
 [sub_resource type="MultiMesh" id="MultiMesh_2j5qn"]
 transform_format = 1
 instance_count = 7000
@@ -122,7 +108,7 @@ _limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2887538, 0.75605327), 5.6805906, 5.6805906, 0, 0, Vector2(0.32826746, 1.0084746), 0.0, 0.0, 0, 0, Vector2(0.67781156, 0.9927361), 0.0, 0.0, 0, 0, Vector2(0.71428573, 0.7639225), -5.556354, -5.556354, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 6
 
-[sub_resource type="CurveTexture" id="CurveTexture_dl7sy"]
+[sub_resource type="CurveTexture" id="CurveTexture_i07hj"]
 curve = SubResource("Curve_i07hj")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i07hj"]
@@ -135,24 +121,12 @@ initial_velocity_max = 2.0
 gravity = Vector3(0, 0, 0)
 linear_accel_min = -1.0000023
 linear_accel_max = 0.99999774
-alpha_curve = SubResource("CurveTexture_dl7sy")
+alpha_curve = SubResource("CurveTexture_i07hj")
 turbulence_enabled = true
 turbulence_noise_scale = 4.798
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dl7sy"]
-vertex_color_use_as_albedo = true
-albedo_color = Color(1.5720325, 1.5720325, 1.5720325, 1)
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 2.0
-disable_receive_shadows = true
-shadow_to_opacity = true
-billboard_mode = 1
-billboard_keep_scale = true
-point_size = 50.0
-
 [sub_resource type="SphereMesh" id="SphereMesh_3n5u0"]
-material = SubResource("StandardMaterial3D_dl7sy")
+material = ExtResource("10_dl7sy")
 radius = 0.1
 height = 0.2
 radial_segments = 4
@@ -301,35 +275,35 @@ skeleton = NodePath("../../..")
 [node name="GrassLessAmount" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.0470295, 0.3007537, 0.233307)
 layers = 2
-material_override = SubResource("ShaderMaterial_dyurs")
+material_override = ExtResource("5_i07hj")
 gi_mode = 0
 multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount5" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 54.122623, 0.3007537, 0.233307)
 layers = 2
-material_override = SubResource("ShaderMaterial_dyurs")
+material_override = ExtResource("5_i07hj")
 gi_mode = 0
 multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount4" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, -54.12444, 0.3007537, 0.233307)
 layers = 2
-material_override = SubResource("ShaderMaterial_dyurs")
+material_override = ExtResource("5_i07hj")
 gi_mode = 0
 multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount2" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.0470295, 0.3007537, 54.041557)
 layers = 2
-material_override = SubResource("ShaderMaterial_dyurs")
+material_override = ExtResource("5_i07hj")
 gi_mode = 0
 multimesh = SubResource("MultiMesh_2j5qn")
 
 [node name="GrassLessAmount3" parent="MainNavigationRegion/Ilha1" instance=ExtResource("17_fwegj")]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.0470295, 0.3007537, -52.20436)
 layers = 2
-material_override = SubResource("ShaderMaterial_dyurs")
+material_override = ExtResource("5_i07hj")
 gi_mode = 0
 multimesh = SubResource("MultiMesh_2j5qn")
 
@@ -693,7 +667,7 @@ directional_shadow_fade_start = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16595961, 0.97359455, 3.8806098)
 _jump_height = 4.0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Player"]
+[node name="AmbientGPUParticles3D" type="GPUParticles3D" parent="Player"]
 amount = 150
 lifetime = 4.0
 preprocess = 3.0

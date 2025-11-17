@@ -1,102 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://cngkucju6ei4f"]
+[gd_scene load_steps=8 format=3 uid="uid://cngkucju6ei4f"]
 
 [ext_resource type="Script" uid="uid://b4xkwcbtmsa3n" path="res://bullets/bullet.gd" id="1_1yf1b"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="2_plxcf"]
+[ext_resource type="Material" uid="uid://djlibice6wek6" path="res://0_materials_spatial/carniv_pistol_bullet.tres" id="3_cbh8i"]
+[ext_resource type="Material" uid="uid://d0ypnvk1kpte2" path="res://0_materials_spatial/carniv_pistol_bullet_trail.tres" id="4_vpdgy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qrgb1"]
 radius = 0.154288
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1yf1b"]
-albedo_color = Color(0.6, 0.060000017, 0, 1)
-emission = Color(0.4056674, 0.038034905, 0, 1)
-emission_energy_multiplier = 2.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_1yf1b"]
 radius = 0.4
 height = 0.8
 radial_segments = 8
 rings = 4
-
-[sub_resource type="Shader" id="Shader_1yf1b"]
-code = "shader_type spatial;
-
-render_mode unshaded, cull_disabled, depth_draw_never;
-
-/* ======================
-   CONFIGURAÇÕES EXPORTADAS
-   ====================== */
-
-uniform vec4 trail_color : source_color = vec4(1.0, 0.1, 0.0, 1.0);
-
-uniform int blend_mode : hint_enum(\"Add\", \"Alpha\", \"SoftAdd\", \"Multiply\") = 0;
-
-uniform float trail_length : hint_range(0.1, 4.0) = 1.4;
-uniform float trail_width  : hint_range(0.01, 2.0) = 0.28;
-
-uniform float fade_power : hint_range(0.1, 8.0) = 1.4;
-
-
-/* ======================
-   VÉRTICES
-   ====================== */
-
-void vertex() {
-	VERTEX.z *= trail_length;
-	VERTEX.x *= trail_width;
-}
-
-
-/* ======================
-   FRAGMENTO
-   ====================== */
-
-void fragment() {
-	float v = UV.y;
-	float u = UV.x;
-
-	float fade = pow(clamp(1.0 - v, 0.0, 1.0), fade_power);
-	float edge = smoothstep(0.0, 0.01, 1.0 - abs(u * 2.0 - 1.0));
-
-	vec3 base = trail_color.rgb;
-	float alpha = trail_color.a * fade * edge;
-
-	/* BLEND CUSTOMIZADO */
-	vec3 final_color = vec3(0.0);
-	float final_alpha = alpha;
-
-	if (blend_mode == 0) {
-		// ADD (padrão)
-		final_color = base;
-	}
-	else if (blend_mode == 1) {
-		// ALPHA BLEND
-		final_color = base;
-		final_alpha = alpha;
-	}
-	else if (blend_mode == 2) {
-		// SOFT ADD (aditivo mais suave)
-		final_color = base * 0.5;
-	}
-	else if (blend_mode == 3) {
-		// MULTIPLY — funciona muito bem em fundos claros
-		final_color = base * fade;
-	}
-
-	ALBEDO = final_color;
-	ALPHA = final_alpha;
-
-	EMISSION = final_color * fade;
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1yf1b"]
-render_priority = 0
-shader = SubResource("Shader_1yf1b")
-shader_parameter/trail_color = Color(0.9261076, 0.06528606, 0, 1)
-shader_parameter/blend_mode = 3
-shader_parameter/trail_length = 1.4
-shader_parameter/trail_width = 0.79100003687398
-shader_parameter/fade_power = 4.83500022640262
 
 [sub_resource type="QuadMesh" id="QuadMesh_52vbk"]
 size = Vector2(0.175, 1.2)
@@ -114,19 +30,19 @@ shape = SubResource("SphereShape3D_qrgb1")
 
 [node name="BulletBall" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_1yf1b")
+material_override = ExtResource("3_cbh8i")
 cast_shadow = 0
 mesh = SubResource("SphereMesh_1yf1b")
 skeleton = NodePath("")
 
 [node name="TrailMeshInstance3D4" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 7.1054274e-15, -5.9604645e-08, 5.9604645e-08, -4.3711392e-08, 1, -3.6301415e-22, -1, -4.371139e-08, 0, 0, 0.5979794)
-material_override = SubResource("ShaderMaterial_1yf1b")
+material_override = ExtResource("4_vpdgy")
 cast_shadow = 0
 mesh = SubResource("QuadMesh_52vbk")
 
 [node name="TrailMeshInstance3D5" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1.70299e-08, 4.37114e-08, -1.0000001, 1.0000001, 7.140015e-15, -1.70299e-08, -9.804741e-16, -1, -4.371139e-08, 0, 0, 0.5979794)
-material_override = SubResource("ShaderMaterial_1yf1b")
+material_override = ExtResource("4_vpdgy")
 cast_shadow = 0
 mesh = SubResource("QuadMesh_52vbk")
