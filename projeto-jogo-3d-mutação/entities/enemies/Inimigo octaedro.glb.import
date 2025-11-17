@@ -3,21 +3,23 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b7d4lneu575nj"
-path="res://.godot/imported/fantasmaLowPoly.glb-658abcdb446aeb9d23d0b6749a395588.scn"
+uid="uid://cnh4yl8c2m6i2"
+path="res://.godot/imported/Inimigo octaedro.glb-2a0797fdc035967c54f39ca860ec53b1.scn"
 
 [deps]
 
-source_file="res://fantasmaLowPoly.glb"
-dest_files=["res://.godot/imported/fantasmaLowPoly.glb-658abcdb446aeb9d23d0b6749a395588.scn"]
+source_file="res://entities/enemies/Inimigo octaedro.glb"
+dest_files=["res://.godot/imported/Inimigo octaedro.glb-2a0797fdc035967c54f39ca860ec53b1.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
+nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
@@ -32,6 +34,9 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
 _subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

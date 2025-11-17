@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cj02uiptxm4cm"]
+[gd_scene load_steps=6 format=3 uid="uid://cj02uiptxm4cm"]
 
 [ext_resource type="Script" uid="uid://bgm61vl6hmwwn" path="res://rotate_child.gd" id="1_b2sw7"]
 [ext_resource type="World3D" uid="uid://b1vkvr04jb1j5" path="res://weapons/3d_world_weapons_ui.tres" id="1_j8mwu"]
+[ext_resource type="Script" uid="uid://cg7gwkwa5dvb5" path="res://weapons/render_3d_into_2d_sprites.gd" id="2_f56lt"]
 [ext_resource type="PackedScene" uid="uid://u0882witysp7" path="res://weapons/smg_tech/smg_tech_model.tscn" id="2_j8mwu"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_b2sw7"]
@@ -17,10 +18,14 @@ texture = SubResource("ViewportTexture_b2sw7")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." node_paths=PackedStringArray("anchor_rotate_node", "model")]
 world_3d = ExtResource("1_j8mwu")
 transparent_bg = true
 msaa_3d = 2
+size = Vector2i(256, 256)
+script = ExtResource("2_f56lt")
+anchor_rotate_node = NodePath("Camera3D/RotateChildManager/Anchor")
+model = NodePath("Camera3D/RotateChildManager/Anchor/smgTecnologica")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
 process_mode = 3
@@ -31,20 +36,20 @@ current = true
 fov = 38.0
 size = 46.0
 
-[node name="RotateChild" type="Node3D" parent="SubViewport/Camera3D"]
+[node name="RotateChildManager" type="Node3D" parent="SubViewport/Camera3D"]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 0.981985, -0.188958, 0, 0.188958, 0.981985, 0, 0.369393, -65.8283)
+transform = Transform3D(0.9848078, -0.03281217, -0.1705197, 0, 0.981985, -0.188958, 0.17364797, 0.18608731, 0.96706647, 0, 0.369393, -65.8283)
 script = ExtResource("1_b2sw7")
 rotation_duration = 12.0
 
-[node name="Anchor" type="Node3D" parent="SubViewport/Camera3D/RotateChild"]
+[node name="Anchor" type="Node3D" parent="SubViewport/Camera3D/RotateChildManager"]
 process_mode = 3
-transform = Transform3D(0.964865, 0, -0.262744, 0, 1, 0, 0.262744, 0, 0.964865, 0, 0, 0)
+transform = Transform3D(0.99999946, 0, 0, 0, 1, 0, 0, 0, 0.99999946, 0, 0, 0)
 
-[node name="smgTecnologica" parent="SubViewport/Camera3D/RotateChild/Anchor" instance=ExtResource("2_j8mwu")]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 15.4679, -5.91802, 0.0618918)
+[node name="smgTecnologica" parent="SubViewport/Camera3D/RotateChildManager/Anchor" instance=ExtResource("2_j8mwu")]
+transform = Transform3D(49.24039, 0, -8.682399, 0, 50, 0, 8.682399, 0, 49.24039, 15.4679, -5.91802, 0.0618918)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/Camera3D/RotateChild/Anchor/smgTecnologica"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/Camera3D/RotateChildManager/Anchor/smgTecnologica"]
 process_mode = 3
 transform = Transform3D(0.0192973, 0, 0.00525488, 0, 0.02, 0, -0.00525488, 0, 0.0192973, -0.0649193, 0.199523, 0.0841802)
 light_color = Color(4.81308e-06, 0.876828, 0.781745, 1)

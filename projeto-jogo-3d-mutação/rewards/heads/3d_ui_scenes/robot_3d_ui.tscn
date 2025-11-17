@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=4 uid="uid://bc4srpmmbh8e4"]
+[gd_scene load_steps=12 format=4 uid="uid://bc4srpmmbh8e4"]
 
 [ext_resource type="World3D" uid="uid://b1vkvr04jb1j5" path="res://weapons/3d_world_weapons_ui.tres" id="1_7oudt"]
+[ext_resource type="Script" uid="uid://cg7gwkwa5dvb5" path="res://weapons/render_3d_into_2d_sprites.gd" id="2_lfh4m"]
 [ext_resource type="Script" uid="uid://bgm61vl6hmwwn" path="res://rotate_child.gd" id="2_vvhjv"]
 [ext_resource type="Texture2D" uid="uid://wkulpl8f0ino" path="res://rewards/heads/glb files/cabecaRobo01_Cabeça Color.png" id="3_rv2vb"]
 [ext_resource type="Texture2D" uid="uid://dm6haqcc7nkm6" path="res://rewards/heads/glb files/cabecaRobo01_Cabeça Emission Color.png" id="4_lfh4m"]
@@ -87,11 +88,15 @@ texture = SubResource("ViewportTexture_b2sw7")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." node_paths=PackedStringArray("anchor_rotate_node", "model")]
 own_world_3d = true
 world_3d = ExtResource("1_7oudt")
 transparent_bg = true
 msaa_3d = 2
+size = Vector2i(256, 256)
+script = ExtResource("2_lfh4m")
+anchor_rotate_node = NodePath("Camera3D/RotateChild/Anchor")
+model = NodePath("Camera3D/RotateChild/Anchor/cabeça_robo/RobotHead")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
 process_mode = 3
@@ -110,12 +115,12 @@ rotation_duration = 12.0
 
 [node name="Anchor" type="Node3D" parent="SubViewport/Camera3D/RotateChild"]
 process_mode = 3
-transform = Transform3D(0.352907, 0, 0.935658, 0, 1, 0, -0.935658, 0, 0.352907, 0, 0, 0)
+transform = Transform3D(0.9951843, 0, -0.09801721, 0, 1, 0, 0.09801721, 0, 0.9951843, 0, 0, 0)
 
 [node name="cabeça_robo" type="Node3D" parent="SubViewport/Camera3D/RotateChild/Anchor"]
 transform = Transform3D(10, 0, 4.768372e-07, 0, 9.999988, 0, -4.7683716e-07, 0, 10.000001, -0.8980031, -1.237703, 1.2349235)
 
-[node name="Cube" type="MeshInstance3D" parent="SubViewport/Camera3D/RotateChild/Anchor/cabeça_robo"]
+[node name="RobotHead" type="MeshInstance3D" parent="SubViewport/Camera3D/RotateChild/Anchor/cabeça_robo"]
 transform = Transform3D(0.6160531, 0, 0, 0, 0.5923858, 0, 0, 0, 0.5923858, 0, 0, 0)
 mesh = SubResource("ArrayMesh_c3sco")
 skeleton = NodePath("")

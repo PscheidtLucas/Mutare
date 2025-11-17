@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="HeadRewardConfig" load_steps=8 format=3 uid="uid://dhufbnjo4ie50"]
+[gd_resource type="Resource" script_class="HeadRewardConfig" load_steps=9 format=3 uid="uid://dhufbnjo4ie50"]
 
 [ext_resource type="Script" uid="uid://cjfuvhi515usr" path="res://entities/player/stat_buff.gd" id="1_jkddv"]
 [ext_resource type="Texture2D" uid="uid://bqoodhg3ab2r0" path="res://rewards/heads/engineer_image.png" id="2_1rn8c"]
 [ext_resource type="Script" uid="uid://b3jjmvq4w0nl6" path="res://rewards/head_reward_config.gd" id="2_utvc2"]
+[ext_resource type="SpriteFrames" uid="uid://bsmoq47akwafi" path="res://rewards/heads/sprite_frames/eng_frames.tres" id="4_1rn8c"]
 
 [sub_resource type="Resource" id="Resource_f6pdq"]
 resource_name = "max health"
@@ -44,6 +45,7 @@ ui_scene = "uid://cn1xd5qxv3iy0"
 array_of_buffs = Array[ExtResource("1_jkddv")]([SubResource("Resource_f6pdq"), SubResource("Resource_72rib"), SubResource("Resource_puonc"), SubResource("Resource_jkddv")])
 image = ExtResource("2_1rn8c")
 type = 2
+sprite_frames = ExtResource("4_1rn8c")
 perma_buff_percent_min = 0.02
 perma_buff_percent_max = 0.05
 metadata/_custom_type_script = "uid://b3jjmvq4w0nl6"

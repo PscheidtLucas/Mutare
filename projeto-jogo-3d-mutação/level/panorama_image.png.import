@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x6fmcpyio6jf"
-path.s3tc="res://.godot/imported/Screenshot 2025-10-22 134044.png-0c641e8fffb3c116964448fddf7dd243.s3tc.ctex"
+uid="uid://cwbv8vbx4qew1"
+path.bptc="res://.godot/imported/panorama_image.png-e70211e5fc9faad876c3d4cfff70c1a3.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,14 +11,16 @@ metadata={
 
 [deps]
 
-source_file="res://Screenshot 2025-10-22 134044.png"
-dest_files=["res://.godot/imported/Screenshot 2025-10-22 134044.png-0c641e8fffb3c116964448fddf7dd243.s3tc.ctex"]
+source_file="res://level/panorama_image.png"
+dest_files=["res://.godot/imported/panorama_image.png-e70211e5fc9faad876c3d4cfff70c1a3.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -26,6 +28,10 @@ mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

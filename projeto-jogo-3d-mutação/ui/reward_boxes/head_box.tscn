@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://oupsgwycr6a7"]
+[gd_scene load_steps=16 format=3 uid="uid://oupsgwycr6a7"]
 
 [ext_resource type="Script" uid="uid://creftg701swqm" path="res://ui/reward_boxes/head_box.gd" id="1_0lqmn"]
 [ext_resource type="Script" uid="uid://dlchmrb4ojqh3" path="res://ui/reward_boxes/name_of_weapon.gd" id="2_0lqmn"]
 [ext_resource type="Script" uid="uid://4xpdpxw1pve8" path="res://ui/reward_boxes/3dui.gd" id="2_qeakv"]
+[ext_resource type="SpriteFrames" uid="uid://bvlmd3wy1o682" path="res://weapons/smg_tech/smg_sprite_frames.tres" id="4_ldppm"]
 [ext_resource type="Script" uid="uid://b8k65vebo0fno" path="res://ui/reward_boxes/evo_margin_container_2.gd" id="5_4y6yc"]
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="6_l4c1i"]
 [ext_resource type="Theme" uid="uid://bb4dm22qo2rvc" path="res://ui/reward_boxes/select_button.tres" id="7_tr0oq"]
@@ -212,6 +213,14 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 script = ExtResource("2_qeakv")
 headbox = NodePath("../..")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Anchor3DImage/3DUI_MarginContainer"]
+unique_name_in_owner = true
+position = Vector2(80, 81)
+scale = Vector2(0.4453125, 0.4453125)
+sprite_frames = ExtResource("4_ldppm")
+autoplay = "default"
+frame_progress = 0.527765
 
 [node name="Anchor" type="Control" parent="."]
 layout_mode = 2

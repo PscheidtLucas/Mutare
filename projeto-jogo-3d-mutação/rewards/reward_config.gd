@@ -3,6 +3,8 @@ class_name RewardConfig extends Resource
 enum RewardType {LONG_RANGE, MELEE, HEAD, LEG}
 @export var type: RewardType
 
+@export var sprite_frames: SpriteFrames
+
 # Buff permanente que é concedido ao jogador ao transceder para um novo mapa, cada item terá um buff permanente gerado aleatório
 enum PermaBuffType {DAMAGE, FIRE_RATE, MOVE_SPEED, CRIT_CHANCE, CRIT_DAMAGE}
 @export var perma_buff_type: PermaBuffType

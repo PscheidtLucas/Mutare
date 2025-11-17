@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="HeadRewardConfig" load_steps=8 format=3 uid="uid://cbp2bamcj5q76"]
+[gd_resource type="Resource" script_class="HeadRewardConfig" load_steps=9 format=3 uid="uid://cbp2bamcj5q76"]
 
 [ext_resource type="Script" uid="uid://cjfuvhi515usr" path="res://entities/player/stat_buff.gd" id="1_fw15h"]
 [ext_resource type="Texture2D" uid="uid://b0ks7jfcckkc7" path="res://rewards/heads/robot_image.png" id="2_6rtub"]
 [ext_resource type="Script" uid="uid://b3jjmvq4w0nl6" path="res://rewards/head_reward_config.gd" id="2_mimky"]
+[ext_resource type="SpriteFrames" uid="uid://c4dvm2nnr1kd" path="res://rewards/heads/sprite_frames/robot_frames.tres" id="4_6rtub"]
 
 [sub_resource type="Resource" id="Resource_fw15h"]
 resource_name = "damage increase"
@@ -43,6 +44,7 @@ ui_scene = "uid://bc4srpmmbh8e4"
 array_of_buffs = Array[ExtResource("1_fw15h")]([SubResource("Resource_fw15h"), SubResource("Resource_mimky"), SubResource("Resource_6rtub"), SubResource("Resource_ef2ha")])
 image = ExtResource("2_6rtub")
 type = 2
+sprite_frames = ExtResource("4_6rtub")
 perma_buff_percent_min = 0.02
 perma_buff_percent_max = 0.05
 metadata/_custom_type_script = "uid://b3jjmvq4w0nl6"

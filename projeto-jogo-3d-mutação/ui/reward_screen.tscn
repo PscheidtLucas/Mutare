@@ -1,10 +1,9 @@
-[gd_scene load_steps=50 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=49 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
 [ext_resource type="PackedScene" uid="uid://cgodq53bkn7od" path="res://ui/reward_boxes/weapon_box.tscn" id="1_rwexk"]
 [ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="2_6bncb"]
-[ext_resource type="Texture2D" uid="uid://dfdy7gyvtyxem" path="res://prototipo_inv.jpeg" id="2_6ppac"]
 [ext_resource type="Resource" uid="uid://bpsmw37wyl1vp" path="res://level/game_manager_n_state/main_state.tres" id="2_vw3wg"]
 [ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://weapons/carnivorous_pistola/pistol_stats.tres" id="3_bw4i5"]
 [ext_resource type="Script" uid="uid://im65pyqq2khr" path="res://ui/inventory_manager.gd" id="4_vuu3q"]
@@ -26,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://cfufslelps5gm" path="res://ui/reward screen images/updated/Quadrado inventário - Braço.png" id="17_emeoy"]
 [ext_resource type="Texture2D" uid="uid://bdbnh2uyie1c8" path="res://ui/reward screen images/updated/Quadrado inventário - Perna.png" id="18_emeoy"]
 [ext_resource type="PackedScene" uid="uid://oupsgwycr6a7" path="res://ui/reward_boxes/head_box.tscn" id="18_hal1c"]
-[ext_resource type="Texture2D" uid="uid://dr40vjfyhg7t1" path="res://carnivorous_pistol.png" id="18_ucqqx"]
+[ext_resource type="Texture2D" uid="uid://dr40vjfyhg7t1" path="res://weapons/carnivorous_pistola/carnivorous_pistol.png" id="18_ucqqx"]
 [ext_resource type="Script" uid="uid://2ivusn8lp4x7" path="res://ui/evolve_button_manager.gd" id="20_lg4tu"]
 [ext_resource type="FontFile" uid="uid://ci0ch0j3lh3j3" path="res://ui/fonts/major_snafu/major.ttf" id="21_x8a5c"]
 [ext_resource type="Script" uid="uid://bce4s0diqnlkf" path="res://ui/value.gd" id="22_7pdxk"]
@@ -1794,13 +1793,6 @@ text = "REROLL 15$"
 position = Vector2(470, 619)
 scale = Vector2(0.355, 0.355)
 texture = ExtResource("16_cy6bo")
-
-[node name="PrototipoInv" type="Sprite2D" parent="."]
-visible = false
-z_index = -1
-position = Vector2(283, 323.99994)
-scale = Vector2(0.89057755, 0.93237424)
-texture = ExtResource("2_6ppac")
 
 [node name="Stats" type="Control" parent="."]
 anchors_preset = 0

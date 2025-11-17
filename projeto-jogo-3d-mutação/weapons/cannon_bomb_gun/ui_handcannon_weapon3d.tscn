@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0tcmmelme3mj"]
+[gd_scene load_steps=6 format=3 uid="uid://b0tcmmelme3mj"]
 
 [ext_resource type="World3D" uid="uid://b1vkvr04jb1j5" path="res://weapons/3d_world_weapons_ui.tres" id="1_ophdp"]
 [ext_resource type="Script" uid="uid://bgm61vl6hmwwn" path="res://rotate_child.gd" id="1_xfiat"]
+[ext_resource type="Script" uid="uid://cg7gwkwa5dvb5" path="res://weapons/render_3d_into_2d_sprites.gd" id="2_gqqqs"]
 [ext_resource type="PackedScene" uid="uid://d1d1t2fwd1kxf" path="res://weapons/cannon_bomb_gun/cannon_bomb_model.tscn" id="2_yt114"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_b2sw7"]
@@ -20,11 +21,15 @@ texture = SubResource("ViewportTexture_b2sw7")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." node_paths=PackedStringArray("anchor_rotate_node", "model")]
 own_world_3d = true
 world_3d = ExtResource("1_ophdp")
 transparent_bg = true
 msaa_3d = 2
+size = Vector2i(256, 256)
+script = ExtResource("2_gqqqs")
+anchor_rotate_node = NodePath("Camera3D/RotateChild/Anchor")
+model = NodePath("Camera3D/RotateChild/Anchor/Arma canhão na mão correto")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
 process_mode = 3
@@ -43,7 +48,7 @@ rotation_duration = 12.0
 
 [node name="Anchor" type="Node3D" parent="SubViewport/Camera3D/RotateChild"]
 process_mode = 3
-transform = Transform3D(-0.132612, 0, 0.991167, 0, 1, 0, -0.991168, 0, -0.132612, 0, -5.27748, 0)
+transform = Transform3D(0.9951847, 0, -0.09801715, 0, 1, 0, 0.098017246, 0, 0.9951837, 0, -5.27748, 0)
 
 [node name="Arma canhão na mão correto" parent="SubViewport/Camera3D/RotateChild/Anchor" instance=ExtResource("2_yt114")]
 transform = Transform3D(-1.39221e-07, 0, -3.185, 0, 3.185, 0, 3.185, 0, -1.39221e-07, 14.8716, -3.04979, 0)

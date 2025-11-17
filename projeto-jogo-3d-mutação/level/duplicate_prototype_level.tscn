@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://835lpg144rkm" path="res://level/props/purple_flower.tscn" id="7_7idds"]
 [ext_resource type="PackedScene" uid="uid://bsnwfdo6oc0m1" path="res://level/props/ponte_meio_desgaste.tscn" id="8_iv42b"]
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="9_jcy5x"]
-[ext_resource type="Texture2D" uid="uid://cwbv8vbx4qew1" path="res://panorama_image.png" id="10_ruuc2"]
+[ext_resource type="Texture2D" uid="uid://cwbv8vbx4qew1" path="res://level/panorama_image.png" id="10_ruuc2"]
 [ext_resource type="PackedScene" uid="uid://b5cd6sa8qq4vc" path="res://addons/maaacks_menus_template/examples/scenes/overlaid_menus/pause_menu.tscn" id="14_mf4sy"]
 [ext_resource type="Script" uid="uid://wvedouoyhons" path="res://ui/ui.gd" id="15_k1jt7"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="16_l6v5v"]

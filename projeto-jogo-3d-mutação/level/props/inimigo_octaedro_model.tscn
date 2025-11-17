@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=4 uid="uid://d1samahpnu2nm"]
 
-[ext_resource type="PackedScene" uid="uid://cnh4yl8c2m6i2" path="res://Inimigo octaedro.glb" id="1_q2fpm"]
+[ext_resource type="PackedScene" uid="uid://cnh4yl8c2m6i2" path="res://entities/enemies/Inimigo octaedro.glb" id="1_q2fpm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2fpm"]
 resource_name = "Material.001"

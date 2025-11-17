@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="RangedWeaponConfig" load_steps=4 format=3 uid="uid://dm4mcdqnn0agf"]
+[gd_resource type="Resource" script_class="RangedWeaponConfig" load_steps=5 format=3 uid="uid://dm4mcdqnn0agf"]
 
 [ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="1_i3igd"]
 [ext_resource type="PackedScene" uid="uid://bsgosomawtovf" path="res://bullets/bomb.tscn" id="1_ru61r"]
 [ext_resource type="Texture2D" uid="uid://5fjlj4ngfrp0" path="res://weapons/cannon_bomb_gun/image_2025-11-15_195100022-removebg-preview.png" id="2_ru61r"]
+[ext_resource type="SpriteFrames" uid="uid://bxk4x5r3by260" path="res://weapons/cannon_bomb_gun/cannon_frames.tres" id="4_wfs2m"]
 
 [resource]
 script = ExtResource("1_i3igd")
@@ -21,6 +22,7 @@ min_range = 5.0
 max_range = 10.0
 projectile_speed = 12.0
 bullet_scene = ExtResource("1_ru61r")
+sprite_frames = ExtResource("4_wfs2m")
 perma_buff_percent_min = 0.01
 perma_buff_percent_max = 0.03
 metadata/_custom_type_script = "uid://ccx1jk5ymt3pe"

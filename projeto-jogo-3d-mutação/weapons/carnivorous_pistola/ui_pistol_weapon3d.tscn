@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cppfoidptoola"]
+[gd_scene load_steps=6 format=3 uid="uid://cppfoidptoola"]
 
 [ext_resource type="World3D" uid="uid://b1vkvr04jb1j5" path="res://weapons/3d_world_weapons_ui.tres" id="1_oqapd"]
+[ext_resource type="Script" uid="uid://cg7gwkwa5dvb5" path="res://weapons/render_3d_into_2d_sprites.gd" id="2_gufso"]
 [ext_resource type="Script" uid="uid://bgm61vl6hmwwn" path="res://rotate_child.gd" id="2_pxshv"]
 [ext_resource type="PackedScene" uid="uid://dnlfg05jn7jjj" path="res://weapons/carnivorous_pistola/pistola_model.tscn" id="3_hm7mg"]
 
@@ -17,11 +18,15 @@ texture = SubResource("ViewportTexture_b2sw7")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." node_paths=PackedStringArray("anchor_rotate_node", "model")]
 own_world_3d = true
 world_3d = ExtResource("1_oqapd")
 transparent_bg = true
 msaa_3d = 2
+size = Vector2i(256, 256)
+script = ExtResource("2_gufso")
+anchor_rotate_node = NodePath("Camera3D/RotateChild/Anchor")
+model = NodePath("Camera3D/RotateChild/Anchor/pistola")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
 process_mode = 3
@@ -40,7 +45,7 @@ rotation_duration = 12.0
 
 [node name="Anchor" type="Node3D" parent="SubViewport/Camera3D/RotateChild"]
 process_mode = 3
-transform = Transform3D(0.352907, 0, 0.935658, 0, 1, 0, -0.935658, 0, 0.352907, 0, 0, 0)
+transform = Transform3D(0.9951843, 0, -0.09801721, 0, 1, 0, 0.09801721, 0, 0.9951843, 0, 0, 0)
 
 [node name="pistola" parent="SubViewport/Camera3D/RotateChild/Anchor" instance=ExtResource("3_hm7mg")]
 transform = Transform3D(625, 0, 0, 0, -2.45201e-05, 756.573, 0, -560.954, -3.30709e-05, -2.16841, 2.37817, -0.238055)

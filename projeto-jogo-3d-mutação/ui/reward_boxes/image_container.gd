@@ -2,21 +2,16 @@ extends MarginContainer
 
 @export var weapon_box: WeaponBox
 
-var weapon_ui_image: Node
+@onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
 
 func _ready() -> void:
-	GameEvents.weapon_selected.connect(func(weapon_config) -> void:
-		if weapon_ui_image != null:
-			weapon_ui_image.queue_free()
-		)
 	if weapon_box and not weapon_box.update_labels.is_connected(_on_update_weapon):
 		weapon_box.update_labels.connect(_on_update_weapon)
 
 func _on_update_weapon(weapon_config: RangedWeaponConfig) -> void:
-	var weapon_ui_scene_path : String = weapon_config.ui_scene_uid
-	
-	var packed := CacheUIScenes.get_scene(weapon_ui_scene_path)
-	var instance : Control = packed.instantiate()
-
-	add_child(instance)
-	weapon_ui_image = instance
+	var sprite_frames : SpriteFrames = weapon_config.sprite_frames
+	if sprite_frames == null:
+		return
+	animated_sprite_2d.sprite_frames = sprite_frames
+	animated_sprite_2d.sprite_frames.set_animation_speed("default", 14)
+	animated_sprite_2d.play()

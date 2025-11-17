@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8t7hgybqk1pn"]
+[gd_scene load_steps=7 format=3 uid="uid://b8t7hgybqk1pn"]
 
 [ext_resource type="Environment" uid="uid://cu7y41mjsa5su" path="res://weapons/enviroment_ui_3d.tres" id="1_4jxdh"]
 [ext_resource type="Script" uid="uid://bgm61vl6hmwwn" path="res://rotate_child.gd" id="1_vsquf"]
 [ext_resource type="PackedScene" uid="uid://do67apipqrr50" path="res://weapons/pulse_emitter/model.tscn" id="2_4jxdh"]
+[ext_resource type="Script" uid="uid://cg7gwkwa5dvb5" path="res://weapons/render_3d_into_2d_sprites.gd" id="2_v3nhe"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_2eka0"]
 viewport_path = NodePath("SubViewport")
@@ -22,11 +23,15 @@ texture = SubResource("ViewportTexture_2eka0")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." node_paths=PackedStringArray("anchor_rotate_node", "model")]
 world_3d = SubResource("World3D_15haq")
 transparent_bg = true
 handle_input_locally = false
 msaa_3d = 2
+size = Vector2i(256, 256)
+script = ExtResource("2_v3nhe")
+anchor_rotate_node = NodePath("Camera3D/RotateChild/Anchor")
+model = NodePath("Camera3D/RotateChild/Anchor/Arma tecnologica circulos energia")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
 process_mode = 4
@@ -45,7 +50,7 @@ rotation_duration = 12.0
 
 [node name="Anchor" type="Node3D" parent="SubViewport/Camera3D/RotateChild"]
 process_mode = 4
-transform = Transform3D(0.924675, 0, 0.380758, 0, 1, 0, -0.380758, 0, 0.924675, 0.042, -0.34, 0)
+transform = Transform3D(0.99518496, 0, -0.09801727, 0, 1, 0, 0.09801727, 0, 0.99518496, 0.042, -0.34, 0)
 
 [node name="Arma tecnologica circulos energia" parent="SubViewport/Camera3D/RotateChild/Anchor" instance=ExtResource("2_4jxdh")]
 process_mode = 4
