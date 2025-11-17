@@ -53,7 +53,6 @@ func _ready() -> void:
 		printerr("Array de armas do inimigo ", self, "está vazio!")
 	
 	player = PlayerManager.player
-	navigation_agent_3d.link_reached.connect(_on_link_reached)
 	navigation_agent_3d.max_speed = move_speed
 
 	chase_cooldown_timer = Timer.new()
@@ -250,22 +249,22 @@ func _on_chase_cooldown_timeout():
 		# Player saiu da mira, volta pro chase
 		current_state = State.CHASE
 
-func _on_link_reached(details: Dictionary) -> void:
-	current_state = State.JUMPING
-	navigation_agent_3d.set_velocity(Vector3.ZERO)
-	
-	jump_start_position = global_position
-	jump_target_position = details[&"link_exit_position"]
-	
-	await get_tree().create_timer(jump_pause).timeout
-	
-	var tween = create_tween()
-	tween.tween_property(self, "jump_progress", 1.0, jump_duration).set_trans(Tween.TRANS_LINEAR)
-	tween.finished.connect(_on_jump_finished)
-
-func _on_jump_finished() -> void:
-	jump_progress = 0.0
-	current_state = State.CHASE
+#func _on_link_reached(details: Dictionary) -> void:
+	#current_state = State.JUMPING
+	#navigation_agent_3d.set_velocity(Vector3.ZERO)
+	#
+	#jump_start_position = global_position
+	#jump_target_position = details[&"link_exit_position"]
+	#
+	#await get_tree().create_timer(jump_pause).timeout
+	#
+	#var tween = create_tween()
+	#tween.tween_property(self, "jump_progress", 1.0, jump_duration).set_trans(Tween.TRANS_LINEAR)
+	#tween.finished.connect(_on_jump_finished)
+#
+#func _on_jump_finished() -> void:
+	#jump_progress = 0.0
+	#current_state = State.CHASE
 
 func _look_at_player():
 	var to_player = player.global_position - global_position

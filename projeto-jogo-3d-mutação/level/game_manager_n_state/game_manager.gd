@@ -7,7 +7,7 @@ const MENU_MUTARE = preload("uid://cpm1ksmrdh5ca")
 @export var game_state: GameState
 
 var wave_timer : Timer
-var wave_starting_duration := 50.0
+var wave_starting_duration := 50.0 ## Ajustado na função calculate_total_wave_duration
 
 func _ready() -> void:
 	AudioManager.play_music(MENU_MUTARE)
@@ -20,25 +20,42 @@ func _ready() -> void:
 	GameEvents.wave_survived.connect(on_wave_survived)
 	GameEvents.player_died.connect(on_player_lost)
 	
+	get_tree().set_deferred("paused", true)
+
+func add_and_setup_wave_timer() -> void:
 	wave_timer = Timer.new()
-	wave_timer.wait_time = wave_starting_duration
+	wave_timer.wait_time = calculate_total_wave_duration()
 	wave_timer.one_shot = true
 	wave_timer.timeout.connect(on_level_timer_timeout)
 	add_child(wave_timer)
-	
-	get_tree().set_deferred("paused", true)
+
+func calculate_total_wave_duration() -> float:
+	match game_state.get_wave_in_cycle():
+		1: return 20
+		2: return 22.5
+		3: return 25
+		4: return 27.5
+		5: return 30
+		6: return 32.5
+		7: return 35
+		8: return 37.5
+		9: return 40
+		10: return 45
+	return 50
 
 
 func _process(_delta: float) -> void:
-	if wave_timer.is_stopped():
+	if wave_timer.is_stopped() or wave_timer == null:
 		return
 	game_state.time_left = int(get_time_left())
 	
 
 ## Jogador conseguiu sobreviver ao tempo total da wave, agora devemos ver se deve já ir para a próxima ou habilitar a tela de evolução com cycle_cleared (sinal presente no GameEvents)
 func on_level_timer_timeout() -> void:
+	wave_timer.queue_free()
 	if PlayerManager.player.is_alive():
 		check_if_cycle_ended()
+		
 	
 func check_if_cycle_ended() -> void:
 	AudioManager.play_music(MENU_MUTARE)
@@ -57,6 +74,7 @@ func check_if_cycle_ended() -> void:
 		
 
 func on_wave_started():
+	add_and_setup_wave_timer()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	wave_timer.start()
 	AudioManager.play_music(JOGO_MUTARE)
