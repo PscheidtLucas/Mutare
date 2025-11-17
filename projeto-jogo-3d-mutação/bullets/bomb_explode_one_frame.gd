@@ -8,5 +8,5 @@ func _ready() -> void:
 	debris.emitting = true
 	smoke.emitting = true
 	fire.emitting = true
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.6).timeout
 	queue_free()

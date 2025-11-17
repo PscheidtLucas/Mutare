@@ -1,5 +1,5 @@
 class_name MainMenu
-extends Control
+extends Node3D
 ## Base menu scene that links to a game scene, an options menu, and credits.
 
 signal sub_menu_opened
