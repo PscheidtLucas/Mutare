@@ -82,7 +82,7 @@ func _ready() -> void:
 		reset_player() )
 	
 	GameEvents.evolution_completed.connect(_on_evolution_completed)
-	
+	GameEvents.wave_started.connect(reset_flash_animation)
 	GameEvents.weapon_selected.connect(equip)
 	
 	stats.reset_all_stats()
@@ -103,6 +103,7 @@ func heal(amount: float) -> void:
 	stats.health += amount
 	
 func reset_player() -> void:
+	reset_flash_animation()
 	global_position = starting_global_pos
 	target_camera_y_angle = starting_target_camera_y
 	
@@ -201,3 +202,9 @@ func flash_animation() -> void:
 		0.0,  # valor final
 		0.2  # duração
 	)
+
+func reset_flash_animation() -> void: ## Chamado no wave_started
+	if flash_tween:
+		flash_tween.kill()
+	var mat: ShaderMaterial = player_mesh.material_overlay
+	mat.set_shader_parameter("hit_flash", 0.0)

@@ -57,8 +57,8 @@ func _init() -> void:
 	setup_stats.call_deferred()
 
 func setup_stats() -> void:
+	print("Setup stats")
 	recalculate_stats()
-	health = max_health
 
 ## Adiciona um buff temporário (removido com reset_stats)
 func add_buff(buff: StatBuff) -> void:
@@ -182,6 +182,7 @@ func recalculate_stats() -> void:
 
 ## Reseta apenas buffs TEMPORÁRIOS (mantém permanentes)
 func reset_temporary_buffs() -> void:
+	print("Reseting temporary buffs")
 	stat_buffs.clear()
 	recalculate_stats()
 	health = max_health
@@ -189,6 +190,7 @@ func reset_temporary_buffs() -> void:
 
 ## Reseta TUDO incluindo buffs permanentes (quando o jogador morre ou reinicia)
 func reset_all_stats() -> void:
+	print("Reseting all buffs")
 	stat_buffs.clear()
 	permanent_buffs.clear()
 	recalculate_stats.call_deferred()

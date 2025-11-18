@@ -93,6 +93,7 @@ _data = {
 [node name="PulseEmitter" type="Node3D"]
 script = ExtResource("1_7n4tm")
 config = ExtResource("2_gmggc")
+is_player_weapon = true
 
 [node name="Muzzle" type="Node3D" parent="."]
 unique_name_in_owner = true

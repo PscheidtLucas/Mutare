@@ -16,8 +16,7 @@ func _ready() -> void:
 	monitorable = false
 	monitoring = true
 	body_entered.connect(_on_body_entered)
-	if was_shot_from_player:
-		GameEvents.wave_survived.connect(_destroy)
+
 
 func reset() -> void:
 	velocity = Vector3.ZERO
@@ -48,6 +47,9 @@ func initialize(start_position: Vector3, direction: Vector3, config: RangedWeapo
 	
 	max_lifetime = config.range / config.projectile_speed
 	lifetime_timer = 0.0
+	
+	if was_shot_from_player:
+		GameEvents.wave_survived.connect(_destroy)
 
 var has_calculated_damage := false
 var final_damage := 0.0
@@ -96,12 +98,13 @@ func calc_final_damage_once() -> void:
 		else:
 			final_is_crit = false
 
-
 # === FUNÇÃO UNIFICADA DE DESTRUIÇÃO ===
 func _destroy() -> void:
+	
 	if is_pooled:
 		BulletPool.return_bullet(self)
 	else:
+		visible = false
 		queue_free()
 
 

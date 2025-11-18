@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=50 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -31,6 +31,7 @@
 [ext_resource type="Script" uid="uid://bce4s0diqnlkf" path="res://ui/value.gd" id="22_7pdxk"]
 [ext_resource type="Texture2D" uid="uid://cdjkj30trq8ga" path="res://rewards/heads/wood_plant_image.png" id="22_piogr"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="23_725ha"]
+[ext_resource type="Script" uid="uid://bt2ybcf61ne00" path="res://ui/current_hp_value.gd" id="30_y0g00"]
 
 [sub_resource type="Theme" id="Theme_vuu3q"]
 Label/constants/line_spacing = 0
@@ -1812,6 +1813,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_hal1c")
 theme_override_constants/separation = 4
+
+[node name="CurrentHealth" type="HBoxContainer" parent="Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatName" type="Label" parent="Stats/VBoxContainer/CurrentHealth"]
+layout_mode = 2
+text = "Current HP"
+
+[node name="CurrentHPValue" type="Label" parent="Stats/VBoxContainer/CurrentHealth"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "100.0"
+horizontal_alignment = 2
+script = ExtResource("30_y0g00")
+player_stats = ExtResource("23_725ha")
 
 [node name="MaxHealth" type="HBoxContainer" parent="Stats/VBoxContainer"]
 layout_mode = 2

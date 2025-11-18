@@ -38,7 +38,7 @@ func update_time_display() -> void:
 # Manages what happens with UI elements when player finishes a wave (wins)
 func on_wave_survived() -> void:
 	# Pausa toda a árvore de cenas
-	get_tree().paused = true
+	get_tree().set_deferred("paused", true)
 	time_left_label.hide()
 	for node in nodes_to_hide_in_start:
 		node.hide()
@@ -49,7 +49,7 @@ func on_wave_started() -> void:
 
 # Manages what happens with UI elements when player dies # TODO Nada disso acontece acredito eu, colocar pra 5 de vida pra testar
 func on_player_lost() -> void:
-	get_tree().paused = true
+	get_tree().set_deferred("paused", true)
 	
 	time_left_label.hide()
 	lose_label.show()

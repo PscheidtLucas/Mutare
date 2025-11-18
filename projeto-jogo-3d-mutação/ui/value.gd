@@ -66,7 +66,6 @@ func set_text_based_on_stat_type(head_config: HeadRewardConfig = null) -> void:
 			is_percentage = true
 			show_plus = true
 			decimal_places = 1
-		
 
 	# Converte para porcentagem se necessário
 	if is_percentage:

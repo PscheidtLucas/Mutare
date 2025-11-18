@@ -7,7 +7,6 @@
 
 [resource]
 script = ExtResource("1_aee7f")
-ui_scene_uid = "uid://cj02uiptxm4cm"
 scene_uid = "uid://bcnomuw5b7jsm"
 name = "Vex"
 image = ExtResource("2_yilro")

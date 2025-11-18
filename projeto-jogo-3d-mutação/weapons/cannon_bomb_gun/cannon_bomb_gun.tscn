@@ -44,6 +44,7 @@ _data = {
 [node name="CannonBombGun" type="Node3D"]
 script = ExtResource("2_rhmay")
 launch_angle_degrees = 30.0
+is_player_weapon = true
 
 [node name="WeaponAnim" type="AnimationPlayer" parent="." node_paths=PackedStringArray("weapon")]
 libraries = {

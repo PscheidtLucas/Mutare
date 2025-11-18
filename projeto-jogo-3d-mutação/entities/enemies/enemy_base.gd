@@ -67,7 +67,7 @@ func _ready() -> void:
 	
 	configure_weapon_stats()
 	enemy_count += 1
-	print("total enemies spawned: ", enemy_count)
+	#print("total enemies spawned: ", enemy_count)
 
 func create_and_configure_label(damage: float, is_crit: bool = false) -> void:
 	var label_3d := Label3D.new()
@@ -80,7 +80,9 @@ func create_and_configure_label(damage: float, is_crit: bool = false) -> void:
 		0.0,
 		radius * sin(rand_angle)
 	)
-
+	
+	
+	GameEvents.wave_survived.connect(label_3d.queue_free)
 	get_tree().current_scene.add_child(label_3d)
 
 	label_3d.text = str(int(damage))
@@ -120,7 +122,8 @@ func tween_in_then_out_label(label: Label3D) -> void:
 		.set_ease(Tween.EASE_IN)
 		
 	# limpa a label no final
-	t.finished.connect(label.queue_free)
+	t.finished.connect(func () -> void:
+		if label: label.queue_free())
 
 
 func configure_weapon_stats() -> void:
@@ -151,7 +154,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	manage_knockback(delta)
 
-func manage_knockback(delta: float) -> void:
+func manage_knockback(_delta: float) -> void:
 	var collision_count = get_slide_collision_count()
 	for i in range(collision_count):
 		var collision = get_slide_collision(i)
