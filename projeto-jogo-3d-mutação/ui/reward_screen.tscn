@@ -1974,15 +1974,21 @@ script = ExtResource("22_7pdxk")
 player_stats = ExtResource("23_725ha")
 stat_type = 3
 
-[node name="DNAContainer" parent="." instance=ExtResource("35_gq28r")]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
-offset_left = 409.0
-offset_top = 538.0
-offset_right = 508.0
-offset_bottom = 597.0
+offset_left = 368.0
+offset_top = 522.0
+offset_right = 554.0
+offset_bottom = 613.0
 
-[node name="MarginContainer" parent="DNAContainer" index="0"]
+[node name="DNAContainer" parent="CenterContainer" instance=ExtResource("35_gq28r")]
+layout_mode = 2
+
+[node name="MarginContainer" parent="CenterContainer/DNAContainer" index="0"]
 visible = false
+
+[node name="DnaAmountLabel" parent="CenterContainer/DNAContainer/HBoxContainer" index="0"]
+theme_override_font_sizes/font_size = 42
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/RerollButton" to="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/RerollButton" method="_on_pressed"]
 
@@ -1992,4 +1998,4 @@ visible = false
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/HeadBox"]
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/HeadBox2"]
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/HeadBox3"]
-[editable path="DNAContainer"]
+[editable path="CenterContainer/DNAContainer"]
