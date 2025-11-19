@@ -3,15 +3,7 @@ extends Label
 @export var player_stats: PlayerStats
 
 func _ready() -> void:
-	GameEvents.evolution_completed.connect(func() -> void:
-		on_evolution_completed.call_deferred())
-	
-	GameEvents.head_selected.connect(set_text_based_on_stat_type)
-	
-	set_text_based_on_stat_type.call_deferred()
-
-func on_evolution_completed() -> void:
-	set_text_based_on_stat_type()
+	player_stats.health_changed.connect(set_text_based_on_stat_type)
 
 func set_text_based_on_stat_type(head_config: HeadRewardConfig = null) -> void:
 	if not player_stats:

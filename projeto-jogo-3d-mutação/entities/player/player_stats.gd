@@ -103,6 +103,7 @@ func add_permanent_buff_from_reward(reward: RewardConfig) -> void:
 	add_permanent_buff(buff)
 
 func recalculate_stats() -> void:
+	var previous_max_health = max_health
 	# reseta current stats para os base
 	max_health = b_max_health
 	hp5 = b_hp5
@@ -179,7 +180,16 @@ func recalculate_stats() -> void:
 		set(cur_property_name, new_value)
 	
 	max_health = max(max_health, 1.0)
-
+	
+	## Lógica para aumentar a vida quando receber um buff de max_health
+	var max_health_difference : float = max_health - previous_max_health
+	if max_health_difference > 0:
+		health += max_health_difference
+	# Caso contrário (se perdeu max health), apenas garantimos que a vida atual
+	# não fique maior que o novo máximo chamando o setter
+	else:
+		health = health
+	
 ## Reseta apenas buffs TEMPORÁRIOS (mantém permanentes)
 func reset_temporary_buffs() -> void:
 	print("Reseting temporary buffs")
