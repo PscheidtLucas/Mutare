@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3mkfyho4mm03"]
+
+[ext_resource type="Script" uid="uid://bb2qyu2lr27po" path="res://dna/dna_money.gd" id="1_looip"]
+[ext_resource type="Script" uid="uid://c0vttq2wkijka" path="res://dna/anchor.gd" id="2_poega"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8e0rv"]
+bounce = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_looip"]
+radius = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_poega"]
+radius = 0.218
+height = 0.435
+radial_segments = 10
+rings = 5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tw7ey"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 1.0
+metallic_specular = 0.0
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.26716098, 0.20388913, 0.9760949, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8e0rv"]
+radius = 4.5
+
+[node name="DNAMoney" type="RigidBody3D"]
+collision_layer = 0
+physics_material_override = SubResource("PhysicsMaterial_8e0rv")
+angular_damp = 15.0
+script = ExtResource("1_looip")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_looip")
+
+[node name="Anchor" type="Node" parent="." node_paths=PackedStringArray("children", "parent")]
+script = ExtResource("2_poega")
+children = [NodePath("MeshInstance3D"), NodePath("DnaDetectionArea3D")]
+parent = NodePath("..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Anchor"]
+mesh = SubResource("SphereMesh_poega")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_tw7ey")
+
+[node name="DnaDetectionArea3D" type="Area3D" parent="Anchor"]
+unique_name_in_owner = true
+collision_layer = 128
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Anchor/DnaDetectionArea3D"]
+shape = SubResource("SphereShape3D_8e0rv")

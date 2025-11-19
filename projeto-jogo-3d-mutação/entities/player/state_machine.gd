@@ -107,6 +107,7 @@ func _on_dash_state_physics_processing(delta: float) -> void:
 	p.move_and_slide()
 
 func _on_dash_state_entered() -> void:
+	%CollisionShape3D.disabled = true
 	collision_shape_3d.position.y += 0.1
 	state_chart.set_expression_property("dash_cd_reseted", false)
 	dash_cooldown_timer.start()
@@ -126,6 +127,7 @@ func _on_dash_state_entered() -> void:
 	dash_timer.timeout.connect(state_chart.send_event.bind("dash_finished"))
 
 func _on_dash_state_exited() -> void:
+	%CollisionShape3D.disabled = false
 	collision_shape_3d.position.y -= 0.1
 
 func _on_none_state_entered() -> void:

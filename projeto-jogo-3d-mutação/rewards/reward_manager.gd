@@ -50,6 +50,7 @@ func _ready() -> void:
 	GameEvents.wave_survived.connect(on_wave_survived)
 	GameEvents.wave_started.connect(on_wave_started)
 	GameEvents.cycle_cleared.connect(on_cycle_cleared)
+	GameEvents.do_reroll.connect(on_do_reroll)
 	
 	call_deferred("wave_0_config")
 
@@ -75,6 +76,14 @@ func on_wave_survived() -> void:
 	choices_v_box.show()
 	evolve_manager.hide()
 	
+	_populate_rewards_ui()
+
+
+func on_do_reroll() -> void:
+	_populate_rewards_ui()
+
+
+func _populate_rewards_ui() -> void:
 	var reward_type := reward_type_based_on_wave()
 
 	match reward_type:
@@ -88,9 +97,12 @@ func on_wave_survived() -> void:
 					index += 1
 				elif child is HeadBox:
 					child.hide()
-			if !_using_mouse:
-				first_select_button.grab_focus()
+			
 			weapons_configured.emit()
+			
+			# Foca no botão correto se estiver no controle
+			if !_using_mouse and first_select_button.is_visible_in_tree():
+				first_select_button.grab_focus()
 
 		"head":
 			var generated_heads: Array = generate_rewards(RewardType.HEAD)
@@ -102,9 +114,12 @@ func on_wave_survived() -> void:
 					index += 1
 				elif child is WeaponBox:
 					child.hide()
-			if !_using_mouse:
-				first_select_head_button.grab_focus()
+			
 			heads_configured.emit()
+			
+			# Foca no botão correto se estiver no controle
+			if !_using_mouse and first_select_head_button.is_visible_in_tree():
+				first_select_head_button.grab_focus()
 
 
 func reward_type_based_on_wave() -> String:

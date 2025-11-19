@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://kbnmrp3um3jv"]
+
+[ext_resource type="Script" uid="uid://b1mhcrn3o2c4i" path="res://level/dna_container.gd" id="1_fycwy"]
+[ext_resource type="Texture2D" uid="uid://xv1bulwy60fr" path="res://dna/Caixa de Money.png" id="2_pihvs"]
+[ext_resource type="Texture2D" uid="uid://c7gvigenwhvfy" path="res://dna/Dna_white_3px.png" id="3_2wnwj"]
+
+[node name="DNAContainer" type="MarginContainer" node_paths=PackedStringArray("dna_amount_label")]
+offset_left = 9.0
+offset_top = 4.0
+offset_right = 108.0
+offset_bottom = 63.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 15
+script = ExtResource("1_fycwy")
+dna_amount_label = NodePath("HBoxContainer/DnaAmountLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = -25
+theme_override_constants/margin_top = -20
+theme_override_constants/margin_right = -20
+theme_override_constants/margin_bottom = -17
+
+[node name="FundoDna" type="TextureRect" parent="MarginContainer"]
+modulate = Color(1.3528494, 1.3528494, 1.3528494, 0.47058824)
+layout_mode = 2
+texture = ExtResource("2_pihvs")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="DnaAmountLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 8
+
+[node name="DnaTextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_2wnwj")
+expand_mode = 2

@@ -6,6 +6,7 @@ class_name UI extends CanvasLayer
 
 @onready var time_left_label: Label = %TimeLeftLabel
 @onready var reward_manager_screen: RewardManager = %RewardManagerScreen
+@onready var wave_number_container: MarginContainer = %WaveNumberContainer
 
 @onready var lose_label: Label = %LoseLabel
 @onready var restart_button: Button = %RestartButton
@@ -39,7 +40,7 @@ func update_time_display() -> void:
 func on_wave_survived() -> void:
 	# Pausa toda a árvore de cenas
 	get_tree().set_deferred("paused", true)
-	time_left_label.hide()
+
 	for node in nodes_to_hide_in_start:
 		node.hide()
 
@@ -51,6 +52,7 @@ func on_wave_started() -> void:
 func on_player_lost() -> void:
 	get_tree().set_deferred("paused", true)
 	
+	wave_number_container.hide()
 	time_left_label.hide()
 	lose_label.show()
 	restart_button.show()

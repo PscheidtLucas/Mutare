@@ -252,23 +252,6 @@ func _on_chase_cooldown_timeout():
 		# Player saiu da mira, volta pro chase
 		current_state = State.CHASE
 
-#func _on_link_reached(details: Dictionary) -> void:
-	#current_state = State.JUMPING
-	#navigation_agent_3d.set_velocity(Vector3.ZERO)
-	#
-	#jump_start_position = global_position
-	#jump_target_position = details[&"link_exit_position"]
-	#
-	#await get_tree().create_timer(jump_pause).timeout
-	#
-	#var tween = create_tween()
-	#tween.tween_property(self, "jump_progress", 1.0, jump_duration).set_trans(Tween.TRANS_LINEAR)
-	#tween.finished.connect(_on_jump_finished)
-#
-#func _on_jump_finished() -> void:
-	#jump_progress = 0.0
-	#current_state = State.CHASE
-
 func _look_at_player():
 	var to_player = player.global_position - global_position
 	to_player.y = 0
@@ -284,6 +267,7 @@ func take_damage(damage_data: Damage) -> void:
 		die()
 
 func die() -> void:
+	spawn_dna_drop()
 	queue_free()
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
@@ -298,9 +282,7 @@ func scale_stats_for_cycle(cycle_number: int) -> void:
 	var scale_level = cycle_number - 1
 	health = health * pow(CYCLE_HP_SCALE, scale_level)
 	
-
 var flash_tween: Tween = null
-
 func flash_animation() -> void:
 	# Garante o overlay
 	if not mesh_enemy.material_overlay:
@@ -320,3 +302,27 @@ func flash_animation() -> void:
 	mat.set_shader_parameter("hit_flash", 1.0)
 	# Sobe o flash rapidamente
 	flash_tween.tween_property(mat, "shader_parameter/hit_flash", 0.0, 0.15)
+
+@export_group("DNA")
+@export var dna_scene: PackedScene # Arraste a cena do DnaMoney.tscn para cá no Inspetor
+func spawn_dna_drop() -> void:
+	if dna_scene == null:
+		return
+
+	var dna_instance = dna_scene.instantiate() as RigidBody3D
+	
+	get_tree().current_scene.add_child(dna_instance)
+	dna_instance.global_position = global_position + Vector3(0, 1.5, 0)
+	
+	# Cálculo da direção
+	var random_angle := randf() * TAU
+	var throw_direction := Vector3(sin(random_angle), 0, cos(random_angle))
+	
+	# Forças
+	var horizontal_force := 6.0
+	var vertical_force := 6.0
+	
+	# Multiplicar pela massa garante que o empurrão funcione independente do peso configurado
+	var final_impulse = (throw_direction * horizontal_force) + (Vector3.UP * vertical_force)
+	dna_instance.apply_central_impulse(final_impulse * dna_instance.mass)
+	

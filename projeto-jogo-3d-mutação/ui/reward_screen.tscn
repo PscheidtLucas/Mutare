@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=53 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -31,7 +31,10 @@
 [ext_resource type="Script" uid="uid://bce4s0diqnlkf" path="res://ui/value.gd" id="22_7pdxk"]
 [ext_resource type="Texture2D" uid="uid://cdjkj30trq8ga" path="res://rewards/heads/wood_plant_image.png" id="22_piogr"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="23_725ha"]
+[ext_resource type="Script" uid="uid://bw3n3ppeutiho" path="res://ui/reroll_button.gd" id="29_ucqqx"]
 [ext_resource type="Script" uid="uid://bt2ybcf61ne00" path="res://ui/current_hp_value.gd" id="30_y0g00"]
+[ext_resource type="Texture2D" uid="uid://c7gvigenwhvfy" path="res://dna/Dna_white_3px.png" id="31_piogr"]
+[ext_resource type="PackedScene" uid="uid://kbnmrp3um3jv" path="res://dna/dna_container.tscn" id="35_gq28r"]
 
 [sub_resource type="Theme" id="Theme_vuu3q"]
 Label/constants/line_spacing = 0
@@ -190,7 +193,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer/Control/HeadSlot1:position")
+tracks/5/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer/Control/HeadSlot1:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -202,7 +205,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer/Control/HeadSlot1:scale")
+tracks/6/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer/Control/HeadSlot1:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -214,7 +217,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer/Control/HeadSlot1:modulate")
+tracks/7/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer/Control/HeadSlot1:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -226,7 +229,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer5/Control/HeadSlot5:position")
+tracks/8/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer5/Control/HeadSlot5:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -238,7 +241,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer5/Control/HeadSlot5:scale")
+tracks/9/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer5/Control/HeadSlot5:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -250,7 +253,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer5/Control/HeadSlot5:modulate")
+tracks/10/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer5/Control/HeadSlot5:modulate")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -262,7 +265,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer7/SlotAnchor/WeaponSlot1:position")
+tracks/11/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer7/SlotAnchor/WeaponSlot1:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -274,7 +277,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer7/SlotAnchor/WeaponSlot1:scale")
+tracks/12/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer7/SlotAnchor/WeaponSlot1:scale")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -286,7 +289,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer7/SlotAnchor/WeaponSlot1:modulate")
+tracks/13/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer7/SlotAnchor/WeaponSlot1:modulate")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -298,7 +301,7 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer3/Control/HeadSlot3:position")
+tracks/14/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer3/Control/HeadSlot3:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -310,7 +313,7 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer3/Control/HeadSlot3:scale")
+tracks/15/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer3/Control/HeadSlot3:scale")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -322,7 +325,7 @@ tracks/15/keys = {
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer3/Control/HeadSlot3:modulate")
+tracks/16/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer3/Control/HeadSlot3:modulate")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
@@ -334,7 +337,7 @@ tracks/16/keys = {
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer2/Control/HeadSlot2:position")
+tracks/17/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer2/Control/HeadSlot2:position")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -346,7 +349,7 @@ tracks/17/keys = {
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer2/Control/HeadSlot2:scale")
+tracks/18/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer2/Control/HeadSlot2:scale")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
@@ -358,7 +361,7 @@ tracks/18/keys = {
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer2/Control/HeadSlot2:modulate")
+tracks/19/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer2/Control/HeadSlot2:modulate")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
@@ -370,7 +373,7 @@ tracks/19/keys = {
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer6/Control/HeadSlot6:position")
+tracks/20/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer6/Control/HeadSlot6:position")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
@@ -382,7 +385,7 @@ tracks/20/keys = {
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer6/Control/HeadSlot6:scale")
+tracks/21/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer6/Control/HeadSlot6:scale")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
@@ -394,7 +397,7 @@ tracks/21/keys = {
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer6/Control/HeadSlot6:modulate")
+tracks/22/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer6/Control/HeadSlot6:modulate")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -406,7 +409,7 @@ tracks/22/keys = {
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer4/Control/HeadSlot4:position")
+tracks/23/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer4/Control/HeadSlot4:position")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
@@ -418,7 +421,7 @@ tracks/23/keys = {
 tracks/24/type = "value"
 tracks/24/imported = false
 tracks/24/enabled = true
-tracks/24/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer4/Control/HeadSlot4:scale")
+tracks/24/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer4/Control/HeadSlot4:scale")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
@@ -430,7 +433,7 @@ tracks/24/keys = {
 tracks/25/type = "value"
 tracks/25/imported = false
 tracks/25/enabled = true
-tracks/25/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer4/Control/HeadSlot4:modulate")
+tracks/25/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer4/Control/HeadSlot4:modulate")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/keys = {
@@ -442,7 +445,7 @@ tracks/25/keys = {
 tracks/26/type = "value"
 tracks/26/imported = false
 tracks/26/enabled = true
-tracks/26/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3:position")
+tracks/26/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3:position")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/keys = {
@@ -454,7 +457,7 @@ tracks/26/keys = {
 tracks/27/type = "value"
 tracks/27/imported = false
 tracks/27/enabled = true
-tracks/27/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3:scale")
+tracks/27/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3:scale")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/keys = {
@@ -466,7 +469,7 @@ tracks/27/keys = {
 tracks/28/type = "value"
 tracks/28/imported = false
 tracks/28/enabled = true
-tracks/28/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3:modulate")
+tracks/28/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3:modulate")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/keys = {
@@ -478,7 +481,7 @@ tracks/28/keys = {
 tracks/29/type = "value"
 tracks/29/imported = false
 tracks/29/enabled = true
-tracks/29/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2:position")
+tracks/29/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2:position")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/keys = {
@@ -490,7 +493,7 @@ tracks/29/keys = {
 tracks/30/type = "value"
 tracks/30/imported = false
 tracks/30/enabled = true
-tracks/30/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2:scale")
+tracks/30/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2:scale")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/keys = {
@@ -502,7 +505,7 @@ tracks/30/keys = {
 tracks/31/type = "value"
 tracks/31/imported = false
 tracks/31/enabled = true
-tracks/31/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2:modulate")
+tracks/31/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2:modulate")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/keys = {
@@ -514,7 +517,7 @@ tracks/31/keys = {
 tracks/32/type = "value"
 tracks/32/imported = false
 tracks/32/enabled = true
-tracks/32/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4:position")
+tracks/32/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4:position")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/keys = {
@@ -526,7 +529,7 @@ tracks/32/keys = {
 tracks/33/type = "value"
 tracks/33/imported = false
 tracks/33/enabled = true
-tracks/33/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4:scale")
+tracks/33/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4:scale")
 tracks/33/interp = 1
 tracks/33/loop_wrap = true
 tracks/33/keys = {
@@ -538,7 +541,7 @@ tracks/33/keys = {
 tracks/34/type = "value"
 tracks/34/imported = false
 tracks/34/enabled = true
-tracks/34/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4:modulate")
+tracks/34/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4:modulate")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = {
@@ -562,19 +565,19 @@ tracks/35/keys = {
 tracks/36/type = "value"
 tracks/36/imported = false
 tracks/36/enabled = true
-tracks/36/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:position")
+tracks/36/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:modulate")
 tracks/36/interp = 1
 tracks/36/loop_wrap = true
 tracks/36/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/37/type = "value"
 tracks/37/imported = false
 tracks/37/enabled = true
-tracks/37/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:scale")
+tracks/37/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:scale")
 tracks/37/interp = 1
 tracks/37/loop_wrap = true
 tracks/37/keys = {
@@ -586,14 +589,14 @@ tracks/37/keys = {
 tracks/38/type = "value"
 tracks/38/imported = false
 tracks/38/enabled = true
-tracks/38/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:modulate")
+tracks/38/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:position")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_lg4tu"]
@@ -662,7 +665,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer/Control/HeadSlot1:position")
+tracks/5/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer/Control/HeadSlot1:position")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -674,7 +677,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer/Control/HeadSlot1:scale")
+tracks/6/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer/Control/HeadSlot1:scale")
 tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -686,7 +689,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer/Control/HeadSlot1:modulate")
+tracks/7/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer/Control/HeadSlot1:modulate")
 tracks/7/interp = 2
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -698,7 +701,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer5/Control/HeadSlot5:position")
+tracks/8/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer5/Control/HeadSlot5:position")
 tracks/8/interp = 2
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -710,7 +713,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer5/Control/HeadSlot5:scale")
+tracks/9/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer5/Control/HeadSlot5:scale")
 tracks/9/interp = 2
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -722,7 +725,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer5/Control/HeadSlot5:modulate")
+tracks/10/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer5/Control/HeadSlot5:modulate")
 tracks/10/interp = 2
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -734,7 +737,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer7/SlotAnchor/WeaponSlot1:position")
+tracks/11/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer7/SlotAnchor/WeaponSlot1:position")
 tracks/11/interp = 2
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -746,7 +749,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer7/SlotAnchor/WeaponSlot1:scale")
+tracks/12/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer7/SlotAnchor/WeaponSlot1:scale")
 tracks/12/interp = 2
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -758,7 +761,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer7/SlotAnchor/WeaponSlot1:modulate")
+tracks/13/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer7/SlotAnchor/WeaponSlot1:modulate")
 tracks/13/interp = 2
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -770,7 +773,7 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer3/Control/HeadSlot3:position")
+tracks/14/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer3/Control/HeadSlot3:position")
 tracks/14/interp = 2
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -782,7 +785,7 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer3/Control/HeadSlot3:scale")
+tracks/15/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer3/Control/HeadSlot3:scale")
 tracks/15/interp = 2
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -794,7 +797,7 @@ tracks/15/keys = {
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer3/Control/HeadSlot3:modulate")
+tracks/16/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer3/Control/HeadSlot3:modulate")
 tracks/16/interp = 2
 tracks/16/loop_wrap = true
 tracks/16/keys = {
@@ -806,7 +809,7 @@ tracks/16/keys = {
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer2/Control/HeadSlot2:position")
+tracks/17/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer2/Control/HeadSlot2:position")
 tracks/17/interp = 2
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -818,7 +821,7 @@ tracks/17/keys = {
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer2/Control/HeadSlot2:scale")
+tracks/18/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer2/Control/HeadSlot2:scale")
 tracks/18/interp = 2
 tracks/18/loop_wrap = true
 tracks/18/keys = {
@@ -830,7 +833,7 @@ tracks/18/keys = {
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer2/Control/HeadSlot2:modulate")
+tracks/19/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer2/Control/HeadSlot2:modulate")
 tracks/19/interp = 2
 tracks/19/loop_wrap = true
 tracks/19/keys = {
@@ -842,7 +845,7 @@ tracks/19/keys = {
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer6/Control/HeadSlot6:position")
+tracks/20/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer6/Control/HeadSlot6:position")
 tracks/20/interp = 2
 tracks/20/loop_wrap = true
 tracks/20/keys = {
@@ -854,7 +857,7 @@ tracks/20/keys = {
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer6/Control/HeadSlot6:scale")
+tracks/21/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer6/Control/HeadSlot6:scale")
 tracks/21/interp = 2
 tracks/21/loop_wrap = true
 tracks/21/keys = {
@@ -866,7 +869,7 @@ tracks/21/keys = {
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer6/Control/HeadSlot6:modulate")
+tracks/22/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer6/Control/HeadSlot6:modulate")
 tracks/22/interp = 2
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -878,7 +881,7 @@ tracks/22/keys = {
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer4/Control/HeadSlot4:position")
+tracks/23/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer4/Control/HeadSlot4:position")
 tracks/23/interp = 2
 tracks/23/loop_wrap = true
 tracks/23/keys = {
@@ -890,7 +893,7 @@ tracks/23/keys = {
 tracks/24/type = "value"
 tracks/24/imported = false
 tracks/24/enabled = true
-tracks/24/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer4/Control/HeadSlot4:scale")
+tracks/24/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer4/Control/HeadSlot4:scale")
 tracks/24/interp = 2
 tracks/24/loop_wrap = true
 tracks/24/keys = {
@@ -902,7 +905,7 @@ tracks/24/keys = {
 tracks/25/type = "value"
 tracks/25/imported = false
 tracks/25/enabled = true
-tracks/25/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/HMarginContainer4/Control/HeadSlot4:modulate")
+tracks/25/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer4/Control/HeadSlot4:modulate")
 tracks/25/interp = 2
 tracks/25/loop_wrap = true
 tracks/25/keys = {
@@ -914,7 +917,7 @@ tracks/25/keys = {
 tracks/26/type = "value"
 tracks/26/imported = false
 tracks/26/enabled = true
-tracks/26/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3:position")
+tracks/26/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3:position")
 tracks/26/interp = 2
 tracks/26/loop_wrap = true
 tracks/26/keys = {
@@ -926,7 +929,7 @@ tracks/26/keys = {
 tracks/27/type = "value"
 tracks/27/imported = false
 tracks/27/enabled = true
-tracks/27/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3:scale")
+tracks/27/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3:scale")
 tracks/27/interp = 2
 tracks/27/loop_wrap = true
 tracks/27/keys = {
@@ -938,7 +941,7 @@ tracks/27/keys = {
 tracks/28/type = "value"
 tracks/28/imported = false
 tracks/28/enabled = true
-tracks/28/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3:modulate")
+tracks/28/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3:modulate")
 tracks/28/interp = 2
 tracks/28/loop_wrap = true
 tracks/28/keys = {
@@ -950,7 +953,7 @@ tracks/28/keys = {
 tracks/29/type = "value"
 tracks/29/imported = false
 tracks/29/enabled = true
-tracks/29/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2:position")
+tracks/29/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2:position")
 tracks/29/interp = 2
 tracks/29/loop_wrap = true
 tracks/29/keys = {
@@ -962,7 +965,7 @@ tracks/29/keys = {
 tracks/30/type = "value"
 tracks/30/imported = false
 tracks/30/enabled = true
-tracks/30/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2:scale")
+tracks/30/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2:scale")
 tracks/30/interp = 2
 tracks/30/loop_wrap = true
 tracks/30/keys = {
@@ -974,7 +977,7 @@ tracks/30/keys = {
 tracks/31/type = "value"
 tracks/31/imported = false
 tracks/31/enabled = true
-tracks/31/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2:modulate")
+tracks/31/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2:modulate")
 tracks/31/interp = 2
 tracks/31/loop_wrap = true
 tracks/31/keys = {
@@ -986,7 +989,7 @@ tracks/31/keys = {
 tracks/32/type = "value"
 tracks/32/imported = false
 tracks/32/enabled = true
-tracks/32/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4:position")
+tracks/32/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4:position")
 tracks/32/interp = 2
 tracks/32/loop_wrap = true
 tracks/32/keys = {
@@ -998,7 +1001,7 @@ tracks/32/keys = {
 tracks/33/type = "value"
 tracks/33/imported = false
 tracks/33/enabled = true
-tracks/33/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4:scale")
+tracks/33/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4:scale")
 tracks/33/interp = 2
 tracks/33/loop_wrap = true
 tracks/33/keys = {
@@ -1010,7 +1013,7 @@ tracks/33/keys = {
 tracks/34/type = "value"
 tracks/34/imported = false
 tracks/34/enabled = true
-tracks/34/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4:modulate")
+tracks/34/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4:modulate")
 tracks/34/interp = 2
 tracks/34/loop_wrap = true
 tracks/34/keys = {
@@ -1034,19 +1037,19 @@ tracks/35/keys = {
 tracks/36/type = "value"
 tracks/36/imported = false
 tracks/36/enabled = true
-tracks/36/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:position")
+tracks/36/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:modulate")
 tracks/36/interp = 2
 tracks/36/loop_wrap = true
 tracks/36/keys = {
-"times": PackedFloat32Array(0.33333334, 0.40000004, 0.5666667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.33333334, 0.5666667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, -182), Vector2(-19, -202)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/37/type = "value"
 tracks/37/imported = false
 tracks/37/enabled = true
-tracks/37/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:scale")
+tracks/37/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:scale")
 tracks/37/interp = 2
 tracks/37/loop_wrap = true
 tracks/37/keys = {
@@ -1058,14 +1061,14 @@ tracks/37/keys = {
 tracks/38/type = "value"
 tracks/38/imported = false
 tracks/38/enabled = true
-tracks/38/path = NodePath("../../LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:modulate")
+tracks/38/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:position")
 tracks/38/interp = 2
 tracks/38/loop_wrap = true
 tracks/38/keys = {
-"times": PackedFloat32Array(0.33333334, 0.5666667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.33333334, 0.40000004, 0.5666667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, -182), Vector2(-19, -202)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i80ks"]
@@ -1161,8 +1164,17 @@ theme_override_constants/margin_bottom = 40
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="InventoryManager" type="GridContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer" node_paths=PackedStringArray("weapon_slots", "head_slots")]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
+
+[node name="InventoryManager" type="GridContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control" node_paths=PackedStringArray("weapon_slots", "head_slots")]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 26.0
+offset_right = 316.0
+offset_bottom = 574.0
+size_flags_vertical = 3
 theme_override_constants/h_separation = 22
 theme_override_constants/v_separation = 22
 columns = 3
@@ -1170,14 +1182,14 @@ script = ExtResource("4_vuu3q")
 weapon_slots = [NodePath("WMarginContainer7/SlotAnchor/WeaponSlot1"), NodePath("WMarginContainer9/SlotAnchor/WeaponSlot2"), NodePath("WMarginContainer10/SlotAnchor/WeaponSlot3"), NodePath("WMarginContainer12/SlotAnchor/WeaponSlot4")]
 head_slots = [NodePath("HMarginContainer/Control/HeadSlot1"), NodePath("HMarginContainer2/Control/HeadSlot2"), NodePath("HMarginContainer3/Control/HeadSlot3"), NodePath("HMarginContainer4/Control/HeadSlot4"), NodePath("HMarginContainer5/Control/HeadSlot5"), NodePath("HMarginContainer6/Control/HeadSlot6")]
 
-[node name="HMarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="HMarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer/Control"]
+[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer/Control"]
 custom_minimum_size = Vector2(210, 120)
 layout_mode = 0
 offset_left = -65.0
@@ -1189,7 +1201,7 @@ mouse_filter = 2
 texture = ExtResource("13_3kma2")
 expand_mode = 1
 
-[node name="HeadSlot1" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer/Control" instance=ExtResource("14_x8a5c")]
+[node name="HeadSlot1" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer/Control" instance=ExtResource("14_x8a5c")]
 layout_mode = 0
 offset_left = -6.0
 offset_top = -5.0
@@ -1197,14 +1209,14 @@ offset_right = 94.00003
 offset_bottom = 95.00012
 texture = ExtResource("15_i80ks")
 
-[node name="HMarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="HMarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer2"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer2"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer2/Control"]
+[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer2/Control"]
 custom_minimum_size = Vector2(210, 120)
 layout_mode = 0
 offset_left = -65.0
@@ -1216,7 +1228,7 @@ mouse_filter = 2
 texture = ExtResource("13_3kma2")
 expand_mode = 1
 
-[node name="HeadSlot2" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer2/Control" instance=ExtResource("14_x8a5c")]
+[node name="HeadSlot2" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer2/Control" instance=ExtResource("14_x8a5c")]
 layout_mode = 0
 offset_left = -6.0
 offset_top = -5.0
@@ -1225,14 +1237,14 @@ offset_bottom = 95.0
 texture = ExtResource("15_i80ks")
 slot_number = 2
 
-[node name="HMarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="HMarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer3"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer3"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer3/Control"]
+[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer3/Control"]
 custom_minimum_size = Vector2(210, 120)
 layout_mode = 0
 offset_left = -65.0
@@ -1244,7 +1256,7 @@ mouse_filter = 2
 texture = ExtResource("13_3kma2")
 expand_mode = 1
 
-[node name="HeadSlot3" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer3/Control" instance=ExtResource("14_x8a5c")]
+[node name="HeadSlot3" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer3/Control" instance=ExtResource("14_x8a5c")]
 layout_mode = 0
 offset_left = -7.0
 offset_top = -5.0
@@ -1253,7 +1265,7 @@ offset_bottom = 95.00009
 texture = ExtResource("15_i80ks")
 slot_number = 3
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer3"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer3"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
@@ -1261,16 +1273,16 @@ mouse_filter = 2
 texture = ExtResource("1_lsdnj")
 expand_mode = 1
 
-[node name="HMarginContainer4" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="HMarginContainer4" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer4"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer4"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer4/Control"]
+[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer4/Control"]
 custom_minimum_size = Vector2(210, 120)
 layout_mode = 0
 offset_left = -65.0
@@ -1282,7 +1294,7 @@ mouse_filter = 2
 texture = ExtResource("13_3kma2")
 expand_mode = 1
 
-[node name="HeadSlot4" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer4/Control" instance=ExtResource("14_x8a5c")]
+[node name="HeadSlot4" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer4/Control" instance=ExtResource("14_x8a5c")]
 layout_mode = 0
 offset_left = -7.0
 offset_top = -5.0
@@ -1291,7 +1303,7 @@ offset_bottom = 95.000015
 texture = ExtResource("15_i80ks")
 slot_number = 4
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer4"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer4"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
@@ -1299,16 +1311,16 @@ mouse_filter = 2
 texture = ExtResource("1_lsdnj")
 expand_mode = 1
 
-[node name="HMarginContainer5" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="HMarginContainer5" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer5"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer5"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer5/Control"]
+[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer5/Control"]
 custom_minimum_size = Vector2(210, 120)
 layout_mode = 0
 offset_left = -65.0
@@ -1320,7 +1332,7 @@ mouse_filter = 2
 texture = ExtResource("13_3kma2")
 expand_mode = 1
 
-[node name="HeadSlot5" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer5/Control" instance=ExtResource("14_x8a5c")]
+[node name="HeadSlot5" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer5/Control" instance=ExtResource("14_x8a5c")]
 layout_mode = 0
 offset_left = -7.0
 offset_top = -5.0
@@ -1329,7 +1341,7 @@ offset_bottom = 95.000015
 texture = ExtResource("15_i80ks")
 slot_number = 5
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer5"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer5"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
@@ -1337,16 +1349,16 @@ mouse_filter = 2
 texture = ExtResource("1_lsdnj")
 expand_mode = 1
 
-[node name="HMarginContainer6" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="HMarginContainer6" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer6"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer6"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer6/Control"]
+[node name="HeadIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer6/Control"]
 custom_minimum_size = Vector2(210, 120)
 layout_mode = 0
 offset_left = -65.0
@@ -1358,7 +1370,7 @@ mouse_filter = 2
 texture = ExtResource("13_3kma2")
 expand_mode = 1
 
-[node name="HeadSlot6" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer6/Control" instance=ExtResource("14_x8a5c")]
+[node name="HeadSlot6" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer6/Control" instance=ExtResource("14_x8a5c")]
 layout_mode = 0
 offset_left = -7.0
 offset_top = -5.0
@@ -1367,7 +1379,7 @@ offset_bottom = 95.000046
 texture = ExtResource("15_i80ks")
 slot_number = 6
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/HMarginContainer6"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer6"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
@@ -1375,14 +1387,14 @@ mouse_filter = 2
 texture = ExtResource("1_lsdnj")
 expand_mode = 1
 
-[node name="WMarginContainer7" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="WMarginContainer7" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer7"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer7"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer7/Control"]
+[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer7/Control"]
 custom_minimum_size = Vector2(210, 120)
 layout_mode = 0
 offset_left = -65.0
@@ -1394,10 +1406,10 @@ mouse_filter = 2
 texture = ExtResource("17_emeoy")
 expand_mode = 1
 
-[node name="SlotAnchor" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer7"]
+[node name="SlotAnchor" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer7"]
 layout_mode = 2
 
-[node name="WeaponSlot1" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer7/SlotAnchor"]
+[node name="WeaponSlot1" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer7/SlotAnchor"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 0
 offset_right = 90.00021
@@ -1408,7 +1420,7 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("5_bw4i5")
 
-[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer7/SlotAnchor/WeaponSlot1" instance=ExtResource("7_klgxq")]
+[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer7/SlotAnchor/WeaponSlot1" instance=ExtResource("7_klgxq")]
 z_index = 1
 layout_mode = 0
 offset_left = 71.0
@@ -1416,19 +1428,21 @@ offset_top = 8.0
 offset_right = 275.0
 offset_bottom = 144.0
 
-[node name="Blank3" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="Blank3" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="WMarginContainer9" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="WMarginContainer9" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer9"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer9"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer9/Control"]
+[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer9/Control"]
 custom_minimum_size = Vector2(210, 120)
 layout_mode = 0
 offset_left = -65.0
@@ -1440,10 +1454,10 @@ mouse_filter = 2
 texture = ExtResource("17_emeoy")
 expand_mode = 1
 
-[node name="SlotAnchor" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer9"]
+[node name="SlotAnchor" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer9"]
 layout_mode = 2
 
-[node name="WeaponSlot2" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer9/SlotAnchor"]
+[node name="WeaponSlot2" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer9/SlotAnchor"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 0
 offset_right = 90.0
@@ -1455,7 +1469,7 @@ stretch_mode = 5
 script = ExtResource("5_bw4i5")
 slot_number = 2
 
-[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2" instance=ExtResource("7_klgxq")]
+[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2" instance=ExtResource("7_klgxq")]
 z_index = 1
 layout_mode = 0
 offset_left = 73.0
@@ -1463,15 +1477,16 @@ offset_top = 9.0
 offset_right = 271.0
 offset_bottom = 145.0
 
-[node name="WMarginContainer10" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="WMarginContainer10" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer10"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer10"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer10/Control"]
+[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer10/Control"]
 custom_minimum_size = Vector2(210, 120)
 layout_mode = 0
 offset_left = -65.0
@@ -1483,10 +1498,10 @@ mouse_filter = 2
 texture = ExtResource("17_emeoy")
 expand_mode = 1
 
-[node name="SlotAnchor" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer10"]
+[node name="SlotAnchor" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer10"]
 layout_mode = 2
 
-[node name="WeaponSlot3" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer10/SlotAnchor"]
+[node name="WeaponSlot3" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer10/SlotAnchor"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 0
 offset_right = 90.00015
@@ -1498,7 +1513,7 @@ stretch_mode = 5
 script = ExtResource("5_bw4i5")
 slot_number = 3
 
-[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3" instance=ExtResource("7_klgxq")]
+[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3" instance=ExtResource("7_klgxq")]
 z_index = 1
 layout_mode = 0
 offset_left = 71.0
@@ -1506,19 +1521,20 @@ offset_top = 0.0
 offset_right = 275.0
 offset_bottom = 136.0
 
-[node name="Blank2" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="Blank2" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 6
-size_flags_vertical = 4
+size_flags_vertical = 6
 
-[node name="WMarginContainer12" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="WMarginContainer12" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer12"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer12"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer12/Control"]
+[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer12/Control"]
 custom_minimum_size = Vector2(210, 120)
 layout_mode = 0
 offset_left = -65.0
@@ -1530,10 +1546,10 @@ mouse_filter = 2
 texture = ExtResource("17_emeoy")
 expand_mode = 1
 
-[node name="SlotAnchor" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer12"]
+[node name="SlotAnchor" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer12"]
 layout_mode = 2
 
-[node name="WeaponSlot4" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer12/SlotAnchor"]
+[node name="WeaponSlot4" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer12/SlotAnchor"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 0
 offset_right = 90.0
@@ -1545,7 +1561,7 @@ stretch_mode = 5
 script = ExtResource("5_bw4i5")
 slot_number = 4
 
-[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4" instance=ExtResource("7_klgxq")]
+[node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4" instance=ExtResource("7_klgxq")]
 z_index = 1
 layout_mode = 0
 offset_left = 73.0
@@ -1553,21 +1569,21 @@ offset_top = 0.0
 offset_right = 271.0
 offset_bottom = 136.0
 
-[node name="Blank" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="Blank" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="LMarginContainer14" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager"]
+[node name="LMarginContainer14" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LegControl" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14"]
+[node name="LegControl" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14"]
 visible = false
 layout_mode = 2
 mouse_filter = 2
 
-[node name="LegIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegControl"]
+[node name="LegIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegControl"]
 custom_minimum_size = Vector2(210, 120)
 layout_mode = 0
 offset_left = -65.0
@@ -1579,11 +1595,11 @@ mouse_filter = 2
 texture = ExtResource("18_emeoy")
 expand_mode = 1
 
-[node name="LegSlotAnchor" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14"]
+[node name="LegSlotAnchor" type="Control" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14"]
 visible = false
 layout_mode = 2
 
-[node name="LegSlot" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor"]
+[node name="LegSlot" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 0
 offset_right = 90.0
@@ -1593,7 +1609,7 @@ texture = ExtResource("22_piogr")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="LegTooltip" type="PanelContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot"]
+[node name="LegTooltip" type="PanelContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot"]
 visible = false
 z_index = 1
 layout_mode = 0
@@ -1604,7 +1620,7 @@ mouse_filter = 2
 theme = SubResource("Theme_vuu3q")
 theme_override_styles/panel = SubResource("StyleBoxFlat_klgxq")
 
-[node name="StatNames" type="Label" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot/LegTooltip"]
+[node name="StatNames" type="Label" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot/LegTooltip"]
 layout_mode = 2
 theme_override_constants/line_spacing = 4
 text = "Dmg:
@@ -1614,7 +1630,7 @@ Accuracy:
 Proj Speed:
 Range:"
 
-[node name="StatValues" type="Label" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot/LegTooltip"]
+[node name="StatValues" type="Label" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot/LegTooltip"]
 layout_mode = 2
 theme_override_constants/line_spacing = 4
 text = "100.2
@@ -1624,20 +1640,6 @@ text = "100.2
 5 m/s
 12 m"
 horizontal_alignment = 2
-
-[node name="StatsContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 25
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/StatsContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/StatsContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.2
 
 [node name="RightSide" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -1706,7 +1708,6 @@ speed_scale = 0.5
 
 [node name="ChoicesVBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightSide"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer"]
@@ -1779,18 +1780,51 @@ reward_screen = NodePath("../../../../../../../..")
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 6
-theme_override_constants/margin_right = 15
+mouse_filter = 2
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = -260
 
-[node name="RerollButton" type="Button" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin"]
-visible = false
-custom_minimum_size = Vector2(150, 40)
+[node name="RerollButton" type="TextureButton" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin" node_paths=PackedStringArray("reroll_price_label")]
+custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource("Theme_nowss")
-text = "REROLL 15$"
+texture_normal = ExtResource("16_cy6bo")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("29_ucqqx")
+reroll_price_label = NodePath("../MarginContainer/HBoxContainer/RerollPriceLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RerollPriceLabel" type="Label" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_bottom = 4
+
+[node name="DnaTextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/MarginContainer/HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("31_piogr")
+expand_mode = 1
 
 [node name="BotãoReroll" type="Sprite2D" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer"]
+visible = false
 position = Vector2(470, 619)
 scale = Vector2(0.355, 0.355)
 texture = ExtResource("16_cy6bo")
@@ -1940,9 +1974,22 @@ script = ExtResource("22_7pdxk")
 player_stats = ExtResource("23_725ha")
 stat_type = 3
 
+[node name="DNAContainer" parent="." instance=ExtResource("35_gq28r")]
+layout_mode = 0
+offset_left = 409.0
+offset_top = 538.0
+offset_right = 508.0
+offset_bottom = 597.0
+
+[node name="MarginContainer" parent="DNAContainer" index="0"]
+visible = false
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/RerollButton" to="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/RerollButton" method="_on_pressed"]
+
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox"]
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox2"]
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox3"]
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/HeadBox"]
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/HeadBox2"]
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/HeadBox3"]
+[editable path="DNAContainer"]

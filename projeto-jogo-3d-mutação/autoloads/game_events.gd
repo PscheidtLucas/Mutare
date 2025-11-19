@@ -9,3 +9,7 @@ signal player_died
 signal weapon_selected #emitido no weaponBox, usado no player para passar a arma equipada
 signal head_selected
 signal player_fell_off
+
+signal player_collected_dna
+signal dna_balance_changed
+signal do_reroll #emitido no rerollButton

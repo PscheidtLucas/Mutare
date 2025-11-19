@@ -1,9 +1,10 @@
-[gd_scene load_steps=59 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=62 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://cn7q1hmxe74tw" path="res://level/game_manager_n_state/game_manager.gd" id="1_ouysc"]
 [ext_resource type="PackedScene" uid="uid://00e2ay33hmnw" path="res://level/low_poly_map_assets/arvore_low_poly.tscn" id="2_1wlit"]
 [ext_resource type="Resource" uid="uid://bpsmw37wyl1vp" path="res://level/game_manager_n_state/main_state.tres" id="2_fwegj"]
+[ext_resource type="Script" uid="uid://cfaiqy02855kv" path="res://dna/dna_manager.gd" id="3_1gmhc"]
 [ext_resource type="Script" uid="uid://cm80rdk4fg0dm" path="res://level/spawner/spawn_area.gd" id="3_6lfjr"]
 [ext_resource type="Script" uid="uid://wvedouoyhons" path="res://ui/ui.gd" id="3_htrvu"]
 [ext_resource type="Material" uid="uid://dpe1i4e2tstgj" path="res://0_materials_spatial/grass_shader_material.tres" id="5_i07hj"]
@@ -13,16 +14,18 @@
 [ext_resource type="PackedScene" uid="uid://835lpg144rkm" path="res://level/props/purple_flower.tscn" id="7_dyurs"]
 [ext_resource type="Material" uid="uid://byccfkxit0aba" path="res://0_materials_spatial/ambient_particles_mat.tres" id="10_dl7sy"]
 [ext_resource type="PackedScene" uid="uid://cn4ylkriiiien" path="res://ui/reward_screen.tscn" id="10_ouysc"]
-[ext_resource type="PackedScene" uid="uid://xy5xbxhkkgeh" path="res://entities/enemies/phantom_enemy.tscn" id="12_i07hj"]
 [ext_resource type="PackedScene" uid="uid://34re6cmm8c1w" path="res://entities/enemies/enemy_base.tscn" id="13_dl7sy"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="15_3mfhf"]
 [ext_resource type="Texture2D" uid="uid://c3u7e4k3v03fy" path="res://ui/Vida.png" id="17_1gmhc"]
 [ext_resource type="PackedScene" uid="uid://bntkkgjp5chye" path="res://grass/multi_mesh_instance_3d.tscn" id="17_fwegj"]
 [ext_resource type="PackedScene" uid="uid://b5cd6sa8qq4vc" path="res://addons/maaacks_menus_template/examples/scenes/overlaid_menus/pause_menu.tscn" id="17_qwpgs"]
+[ext_resource type="Texture2D" uid="uid://dtf2k5v443fr2" path="res://Screenshot 2025-11-19 124155.png" id="18_3n5u0"]
 [ext_resource type="ArrayMesh" uid="uid://b0pkut5lqom7w" path="res://grass/v4/grass_v4.res" id="18_4od7l"]
 [ext_resource type="FontFile" uid="uid://ci0ch0j3lh3j3" path="res://ui/fonts/major_snafu/major.ttf" id="18_6s3sm"]
+[ext_resource type="Texture2D" uid="uid://xv1bulwy60fr" path="res://dna/Caixa de Money.png" id="18_dl7sy"]
 [ext_resource type="Script" uid="uid://c5ononq8u65k0" path="res://ui/wave_number.gd" id="18_t8p3i"]
 [ext_resource type="Script" uid="uid://db1iegjtuhxld" path="res://level/fps_label.gd" id="19_bwhkm"]
+[ext_resource type="PackedScene" uid="uid://kbnmrp3um3jv" path="res://dna/dna_container.tscn" id="20_dl7sy"]
 [ext_resource type="Shader" uid="uid://uhq6fsi2piyk" path="res://ui/vignette_shader.gdshader" id="21_i07hj"]
 [ext_resource type="PackedScene" uid="uid://bsnwfdo6oc0m1" path="res://level/props/ponte_meio_desgaste.tscn" id="24_dyurs"]
 [ext_resource type="ArrayMesh" uid="uid://ckqs34c8iwvpn" path="res://level/props/green_plant.res" id="25_0i6i1"]
@@ -174,6 +177,7 @@ glow_levels/3 = 1.5
 glow_levels/4 = 0.5
 glow_levels/6 = 1.0
 glow_intensity = 1.25
+glow_bloom = 0.05
 glow_blend_mode = 1
 glow_hdr_threshold = 0.95
 fog_light_color = Color(1, 1, 1, 1)
@@ -197,22 +201,26 @@ size = Vector3(48.2883, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qd0o6"]
 size = Vector3(1, 1, 44)
 
-[sub_resource type="Theme" id="Theme_6s3sm"]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dl7sy"]
 shader = ExtResource("21_i07hj")
-shader_parameter/intensity = 0.30000001425
-shader_parameter/radius = 0.70000003325
-shader_parameter/softness = 0.2000000095
+shader_parameter/intensity = 0.400000019
+shader_parameter/radius = 0.6000000285
+shader_parameter/softness = 0.25
+
+[sub_resource type="Theme" id="Theme_1gmhc"]
+default_font_size = 32
+
+[sub_resource type="Theme" id="Theme_6s3sm"]
+Label/constants/outline_size = 0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qd0o6"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7jmcm"]
-size = Vector3(15.0957, 1, 3.00781)
 
 [node name="GameManager" type="Node3D"]
 script = ExtResource("1_ouysc")
 game_state = ExtResource("2_fwegj")
+
+[node name="DnaManager" type="Node" parent="."]
+script = ExtResource("3_1gmhc")
 
 [node name="PhantomNavigationRegion" type="NavigationRegion3D" parent="."]
 visible = false
@@ -691,7 +699,7 @@ monitoring = false
 monitorable = false
 script = ExtResource("3_6lfjr")
 game_state = ExtResource("2_fwegj")
-array_of_enemy_types = Array[PackedScene]([ExtResource("13_dl7sy"), ExtResource("12_i07hj")])
+array_of_enemy_types = Array[PackedScene]([ExtResource("13_dl7sy")])
 spawn_time_curve = SubResource("Curve_3n5u0")
 enemies_per_wave_curve = SubResource("Curve_e14j2")
 
@@ -725,17 +733,122 @@ process_mode = 3
 script = ExtResource("3_htrvu")
 player_stats = ExtResource("15_3mfhf")
 game_state = ExtResource("2_fwegj")
-nodes_to_hide_in_start = [NodePath("TimerContainer/LevelTimerContainer/TimeLeftLabel"), NodePath("HPContainer")]
+nodes_to_hide_in_start = [NodePath("TimerContainer/LevelTimerContainer/TimeLeftLabel"), NodePath("HPContainer"), NodePath("WaveNumberContainer")]
+
+[node name="Screenshot20251119124155" type="TextureRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_3n5u0")
+expand_mode = 1
+
+[node name="VignetteShaderColorRect" type="ColorRect" parent="UI"]
+z_index = -100
+material = SubResource("ShaderMaterial_dl7sy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DNAContainer" parent="UI" instance=ExtResource("20_dl7sy")]
+
+[node name="TimerContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -323.0
+offset_right = 45.5
+offset_bottom = -248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/TimerContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = -25
+theme_override_constants/margin_top = -20
+theme_override_constants/margin_right = -20
+theme_override_constants/margin_bottom = -17
+
+[node name="FundoDna" type="TextureRect" parent="UI/TimerContainer/MarginContainer"]
+modulate = Color(1.3528494, 1.3528494, 1.3528494, 0.47058824)
+layout_mode = 2
+texture = ExtResource("18_dl7sy")
+expand_mode = 1
+
+[node name="LevelTimerContainer" type="CenterContainer" parent="UI/TimerContainer"]
+layout_mode = 2
+
+[node name="TimeLeftLabel" type="Label" parent="UI/TimerContainer/LevelTimerContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 48
+text = "60"
+
+[node name="WaveNumberContainer" type="MarginContainer" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -216.0
+offset_top = 5.0
+offset_right = -8.0
+offset_bottom = 64.0
+grow_horizontal = 0
+theme = SubResource("Theme_1gmhc")
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 28
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/WaveNumberContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -40
+theme_override_constants/margin_top = -20
+theme_override_constants/margin_right = -28
+theme_override_constants/margin_bottom = -17
+
+[node name="FundoDna" type="TextureRect" parent="UI/WaveNumberContainer/MarginContainer"]
+modulate = Color(1.3528494, 1.3528494, 1.3528494, 0.47058824)
+layout_mode = 2
+texture = ExtResource("18_dl7sy")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveNumberContainer"]
+layout_mode = 2
+theme = SubResource("Theme_6s3sm")
+
+[node name="Wave_" type="Label" parent="UI/WaveNumberContainer/HBoxContainer"]
+layout_mode = 2
+text = "Wave "
+
+[node name="WaveNumber" type="Label" parent="UI/WaveNumberContainer/HBoxContainer"]
+layout_mode = 2
+text = "5"
+script = ExtResource("18_t8p3i")
+game_state = ExtResource("2_fwegj")
 
 [node name="HPContainer" type="MarginContainer" parent="UI"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = -10.0
-grow_vertical = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -566.0
+offset_top = 311.0
+offset_right = -566.0
+offset_bottom = 311.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VidaAnchor" type="Control" parent="UI/HPContainer"]
 layout_mode = 2
@@ -765,8 +878,9 @@ theme_override_constants/separation = 0
 
 [node name="HealthUI" type="Label" parent="UI/HPContainer/VidaAnchor/HPMarginContainer/CenterContainer/HBoxContainer"]
 unique_name_in_owner = true
+modulate = Color(0.072842635, 0.072842635, 0.072842635, 1)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.15, 0.15, 0.15, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.04, 0.008000001, 0, 0.3137255)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
@@ -782,9 +896,10 @@ theme_override_constants/margin_bottom = 7
 
 [node name="HealthUI2" type="Label" parent="UI/HPContainer/VidaAnchor/HPMarginContainer/CenterContainer/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true
+modulate = Color(0.072842635, 0.072842635, 0.072842635, 1)
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_colors/font_color = Color(0.15, 0.15, 0.15, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.04, 0.008000001, 0, 0.3137255)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
@@ -792,26 +907,6 @@ theme_override_font_sizes/font_size = 12
 text = "%"
 horizontal_alignment = 1
 vertical_alignment = 2
-
-[node name="TimerContainer" type="MarginContainer" parent="UI"]
-z_index = -100
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -9.5
-offset_right = 9.5
-offset_bottom = 23.0
-grow_horizontal = 2
-theme_override_constants/margin_top = 6
-
-[node name="LevelTimerContainer" type="CenterContainer" parent="UI/TimerContainer"]
-layout_mode = 2
-
-[node name="TimeLeftLabel" type="Label" parent="UI/TimerContainer/LevelTimerContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "60"
 
 [node name="WinLoseContainer" type="CenterContainer" parent="UI"]
 anchors_preset = 8
@@ -833,7 +928,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 85
 text = "Game Over!"
 
-[node name="CenterContainer3" type="CenterContainer" parent="UI"]
+[node name="RestartCenterContainer" type="CenterContainer" parent="UI"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -846,52 +941,16 @@ offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RestartButton" type="Button" parent="UI/CenterContainer3"]
+[node name="RestartButton" type="Button" parent="UI/RestartCenterContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Restart"
 
-[node name="HealthContainer" type="CenterContainer" parent="UI"]
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="RewardManagerScreen" parent="UI" instance=ExtResource("10_ouysc")]
 unique_name_in_owner = true
+visible = false
 metadata/_edit_lock_ = true
-
-[node name="WaveNumberContainer" type="MarginContainer" parent="UI"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-theme_override_constants/margin_right = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveNumberContainer"]
-layout_mode = 2
-theme = SubResource("Theme_6s3sm")
-
-[node name="Wave_" type="Label" parent="UI/WaveNumberContainer/HBoxContainer"]
-layout_mode = 2
-text = "Wave: "
-
-[node name="WaveNumber" type="Label" parent="UI/WaveNumberContainer/HBoxContainer"]
-layout_mode = 2
-text = "5"
-script = ExtResource("18_t8p3i")
-game_state = ExtResource("2_fwegj")
-
-[node name="VignetteShaderColorRect" type="ColorRect" parent="UI"]
-material = SubResource("ShaderMaterial_dl7sy")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
 
 [node name="CheatCodeManager" type="Node" parent="."]
 process_mode = 3
@@ -906,17 +965,8 @@ script = ExtResource("6_i5e4g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.132, 0)
 shape = SubResource("WorldBoundaryShape3D_qd0o6")
 
-[node name="FallArea2" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.3148, 0)
-collision_layer = 64
-collision_mask = 2
-script = ExtResource("6_i5e4g")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FallArea2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.01338, -17.7051, 26.7144)
-shape = SubResource("BoxShape3D_7jmcm")
-
 [node name="FPSLabel" type="Label" parent="."]
+visible = false
 offset_top = 30.0
 offset_right = 131.0
 offset_bottom = 107.0
@@ -1001,6 +1051,5 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 22.2188, 1.44595, -71.1
 mesh = ExtResource("26_3mfhf")
 skeleton = NodePath("../..")
 
-[connection signal="pressed" from="UI/CenterContainer3/RestartButton" to="UI" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UI/RestartCenterContainer/RestartButton" to="UI" method="_on_restart_button_pressed"]
 [connection signal="body_entered" from="FallArea" to="FallArea" method="_on_body_entered"]
-[connection signal="body_entered" from="FallArea2" to="FallArea2" method="_on_body_entered"]

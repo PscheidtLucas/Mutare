@@ -170,6 +170,7 @@ locale/translations=PackedStringArray("res://addons/maaacks_menus_template/base/
 3d_physics/layer_5="player_bullet"
 3d_physics/layer_6="enemy_bullet"
 3d_physics/layer_7="spikes_and_obj_that_only_hurts_player"
+3d_physics/layer_8="player_collectables"
 
 [maaacks_menus_template]
 

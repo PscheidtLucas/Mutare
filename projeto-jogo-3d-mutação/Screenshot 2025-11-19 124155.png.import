@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5a07wiem0yx7"
-path="res://.godot/imported/Botão - Reroll.png-acacd777cf014d4eabfd185e57a441cd.ctex"
+uid="uid://dtf2k5v443fr2"
+path="res://.godot/imported/Screenshot 2025-11-19 124155.png-8a4dfec8ed442db4583857266eb9323a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/reward screen images/updated/Botão - Reroll.png"
-dest_files=["res://.godot/imported/Botão - Reroll.png-acacd777cf014d4eabfd185e57a441cd.ctex"]
+source_file="res://Screenshot 2025-11-19 124155.png"
+dest_files=["res://.godot/imported/Screenshot 2025-11-19 124155.png-8a4dfec8ed442db4583857266eb9323a.ctex"]
 
 [params]
 
