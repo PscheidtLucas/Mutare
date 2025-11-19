@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=54 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -35,6 +35,7 @@
 [ext_resource type="Script" uid="uid://bt2ybcf61ne00" path="res://ui/current_hp_value.gd" id="30_y0g00"]
 [ext_resource type="Texture2D" uid="uid://c7gvigenwhvfy" path="res://dna/Dna_white_3px.png" id="31_piogr"]
 [ext_resource type="PackedScene" uid="uid://kbnmrp3um3jv" path="res://dna/dna_container.tscn" id="35_gq28r"]
+[ext_resource type="Texture2D" uid="uid://l106gwa5i06f" path="res://dna/Dna_white_2.png" id="36_t7owo"]
 
 [sub_resource type="Theme" id="Theme_vuu3q"]
 Label/constants/line_spacing = 0
@@ -1989,6 +1990,9 @@ visible = false
 
 [node name="DnaAmountLabel" parent="CenterContainer/DNAContainer/HBoxContainer" index="0"]
 theme_override_font_sizes/font_size = 42
+
+[node name="DnaTextureRect" parent="CenterContainer/DNAContainer/HBoxContainer/MarginContainer" index="0"]
+texture = ExtResource("36_t7owo")
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/RerollButton" to="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/RerollButton" method="_on_pressed"]
 

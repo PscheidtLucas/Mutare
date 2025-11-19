@@ -12,6 +12,7 @@ var is_pooled: bool = false  # Flag para saber se veio do pool
 
 var original_scale: Vector3 = Vector3.ONE
 
+
 func _ready() -> void:
 	monitorable = false
 	monitoring = true
@@ -78,6 +79,8 @@ func _on_body_entered(body: Node3D) -> void:
 
 		if destroy_at_first:
 			_destroy()
+		else:
+			reduce_damage_for_next_target()
 		return
 
 	_destroy()
@@ -97,6 +100,25 @@ func calc_final_damage_once() -> void:
 			final_is_crit = true
 		else:
 			final_is_crit = false
+	
+	# Define o valor mínimo absoluto para essa bala específica
+	damage_floor_value = final_damage * min_damage_percent
+
+# Redução de 20% a cada hit (0.2)
+@export var pierce_reduction_percent: float = 0.2 
+# O dano nunca cairá abaixo de 20% do dano inicial (0.2)
+@export var min_damage_percent: float = 0.2
+var damage_floor_value: float = 0.0 # Variável interna para guardar o valor mínimo
+func reduce_damage_for_next_target() -> void:
+	# Reduz o dano atual pela porcentagem definida (ex: 100 * (1 - 0.2) = 80)
+	var new_damage = final_damage * (1.0 - pierce_reduction_percent)
+	
+	# Garante que não fique menor que o piso calculado
+	final_damage = max(new_damage, damage_floor_value)
+	
+	# Opcional: Debug para ver acontecendo
+	# print("Bullet pierced! New damage: ", final_damage)
+
 
 # === FUNÇÃO UNIFICADA DE DESTRUIÇÃO ===
 func _destroy() -> void:
