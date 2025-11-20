@@ -7,19 +7,18 @@
 
 [resource]
 script = ExtResource("3_jx7fr")
-ui_scene_uid = "uid://b8t7hgybqk1pn"
 scene_uid = "uid://booagc6yrqu5q"
 name = "Pulser"
 image = ExtResource("2_tk2y1")
-damage_min = 50.0
-damage_max = 80.0
+damage_min = 55.0
+damage_max = 75.0
 fire_rate_min = 0.7
-fire_rate_max = 1.2
-accuracy_min = 0.85
-accuracy_max = 0.95
+fire_rate_max = 1.0
+accuracy_min = 0.7
+accuracy_max = 0.99
 number_of_projectiles = 1
-min_range = 13.0
-max_range = 25.0
+min_range = 14.0
+max_range = 22.0
 projectile_speed = 14.0
 bullet_scene = ExtResource("1_tk2y1")
 sprite_frames = ExtResource("4_2kl73")

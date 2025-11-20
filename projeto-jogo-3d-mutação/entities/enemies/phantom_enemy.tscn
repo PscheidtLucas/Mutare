@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=4 uid="uid://xy5xbxhkkgeh"]
+[gd_scene load_steps=20 format=4 uid="uid://xy5xbxhkkgeh"]
 
 [ext_resource type="Script" uid="uid://ctw67c4vm5rbd" path="res://entities/enemies/phantom_enemy.gd" id="1_lc4ou"]
+[ext_resource type="PackedScene" uid="uid://c3mkfyho4mm03" path="res://dna/dna_money.tscn" id="2_lqov2"]
 [ext_resource type="Material" uid="uid://cnro01sayhaok" path="res://0_materials_spatial/p_enm_0.tres" id="2_om1kq"]
 [ext_resource type="Material" uid="uid://wotmk2lskvo1" path="res://0_materials_spatial/p_enm_1.tres" id="3_4jd51"]
 [ext_resource type="Resource" uid="uid://bxjpxdgbplrgt" path="res://weapons/carnivorous_pistola/enemy_pistol_stats.tres" id="3_fgb2s"]
@@ -221,8 +222,9 @@ node_to_float = NodePath("Inimigo octaedro")
 mesh_enemy = NodePath("Inimigo octaedro/Cube")
 speedy_distance = 40.0
 array_of_weapons_nodes = [NodePath("Pistol")]
-health = 45.0
+health = 50.0
 move_speed = 12.0
+dna_scene = ExtResource("2_lqov2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.0990105, 0)

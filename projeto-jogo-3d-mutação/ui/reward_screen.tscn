@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cgodq53bkn7od" path="res://ui/reward_boxes/weapon_box.tscn" id="1_rwexk"]
 [ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="2_6bncb"]
 [ext_resource type="Resource" uid="uid://bpsmw37wyl1vp" path="res://level/game_manager_n_state/main_state.tres" id="2_vw3wg"]
-[ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://weapons/carnivorous_pistola/pistol_stats.tres" id="3_bw4i5"]
+[ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://weapons/carnivorous_pistola/carniv_pistol_stats.tres" id="3_bw4i5"]
 [ext_resource type="Script" uid="uid://im65pyqq2khr" path="res://ui/inventory_manager.gd" id="4_vuu3q"]
 [ext_resource type="Resource" uid="uid://dm4mcdqnn0agf" path="res://weapons/cannon_bomb_gun/cannon_bomb.tres" id="4_w26xa"]
 [ext_resource type="Script" uid="uid://ciybg4bkxitjl" path="res://ui/weapon_slot_image.gd" id="5_bw4i5"]

@@ -7,18 +7,17 @@
 
 [resource]
 script = ExtResource("1_i3igd")
-ui_scene_uid = "uid://b0tcmmelme3mj"
 scene_uid = "uid://c6nltib5mbsd4"
 name = "H-Cannon"
 image = ExtResource("2_ru61r")
-damage_min = 35.0
-damage_max = 50.0
-fire_rate_min = 0.5
-fire_rate_max = 0.8
-accuracy_min = 0.65
+damage_min = 27.0
+damage_max = 35.0
+fire_rate_min = 0.6
+fire_rate_max = 0.85
+accuracy_min = 0.55
 accuracy_max = 0.8
 number_of_projectiles = 2
-min_range = 5.0
+min_range = 7.0
 max_range = 10.0
 projectile_speed = 12.0
 bullet_scene = ExtResource("1_ru61r")

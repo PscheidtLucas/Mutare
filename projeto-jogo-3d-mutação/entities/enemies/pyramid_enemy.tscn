@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=4 uid="uid://dbx8ciji7k512"]
+[gd_scene load_steps=15 format=4 uid="uid://dbx8ciji7k512"]
 
 [ext_resource type="Script" uid="uid://vj2fbybw5qg5" path="res://entities/enemies/pyramid_enemy.gd" id="1_nguwg"]
 [ext_resource type="PackedScene" uid="uid://dixgcc0l51wus" path="res://entities/enemies/piramide_model.tscn" id="2_kjox7"]
+[ext_resource type="PackedScene" uid="uid://c3mkfyho4mm03" path="res://dna/dna_money.tscn" id="2_nghti"]
 [ext_resource type="Script" uid="uid://brhviuov1v8u0" path="res://weapons/base_weapon.gd" id="3_vgua4"]
 [ext_resource type="Resource" uid="uid://bxjpxdgbplrgt" path="res://weapons/carnivorous_pistola/enemy_pistol_stats.tres" id="4_kopum"]
 [ext_resource type="PackedScene" uid="uid://dnlfg05jn7jjj" path="res://weapons/carnivorous_pistola/pistola_model.tscn" id="5_fqlxm"]
@@ -113,8 +114,10 @@ script = ExtResource("1_nguwg")
 model_anchor_node = NodePath("ModelAnchor")
 mesh_enemy = NodePath("ModelAnchor/Circle")
 array_of_weapons_nodes = [NodePath("ModelAnchor/Pistol"), NodePath("ModelAnchor/Pistol2"), NodePath("ModelAnchor/Pistol3")]
-health = 70.0
+health = 80.0
+move_speed = 5.0
 raycasts_arrray = [NodePath("ModelAnchor/Pistol/RayCast3D"), NodePath("ModelAnchor/Pistol2/RayCast3D"), NodePath("ModelAnchor/Pistol3/RayCast3D")]
+dna_scene = ExtResource("2_nghti")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.5701338, 0)

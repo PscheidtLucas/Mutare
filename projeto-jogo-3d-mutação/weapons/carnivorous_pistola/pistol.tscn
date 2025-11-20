@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b7jx3gi1kdegw"]
 
 [ext_resource type="Script" uid="uid://brhviuov1v8u0" path="res://weapons/base_weapon.gd" id="1_gxhwc"]
-[ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://weapons/carnivorous_pistola/pistol_stats.tres" id="2_l32t6"]
+[ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://weapons/carnivorous_pistola/carniv_pistol_stats.tres" id="2_l32t6"]
 [ext_resource type="PackedScene" uid="uid://dnlfg05jn7jjj" path="res://weapons/carnivorous_pistola/pistola_model.tscn" id="3_l32t6"]
 [ext_resource type="Script" uid="uid://c8vv03wj0fnos" path="res://weapons/weapon_anim.gd" id="4_3akql"]
 

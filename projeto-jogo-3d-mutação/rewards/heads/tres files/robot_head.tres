@@ -31,9 +31,10 @@ metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [sub_resource type="Resource" id="Resource_ef2ha"]
 script = ExtResource("1_fw15h")
-stat = 6
-min_buff_amount = -0.1
-max_buff_amount = -0.05
+stat = 1
+buff_type = 1
+min_buff_amount = 1.0
+max_buff_amount = 3.0
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [resource]
