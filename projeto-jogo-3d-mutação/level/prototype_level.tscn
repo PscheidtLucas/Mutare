@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://835lpg144rkm" path="res://level/props/purple_flower.tscn" id="7_dyurs"]
 [ext_resource type="Material" uid="uid://byccfkxit0aba" path="res://0_materials_spatial/ambient_particles_mat.tres" id="10_dl7sy"]
 [ext_resource type="PackedScene" uid="uid://cn4ylkriiiien" path="res://ui/reward_screen.tscn" id="10_ouysc"]
-[ext_resource type="PackedScene" uid="uid://34re6cmm8c1w" path="res://entities/enemies/enemy_base.tscn" id="13_dl7sy"]
+[ext_resource type="PackedScene" uid="uid://dbx8ciji7k512" path="res://entities/enemies/pyramid_enemy.tscn" id="14_e14j2"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="15_3mfhf"]
 [ext_resource type="Texture2D" uid="uid://c3u7e4k3v03fy" path="res://ui/Vida.png" id="17_1gmhc"]
 [ext_resource type="PackedScene" uid="uid://bntkkgjp5chye" path="res://grass/multi_mesh_instance_3d.tscn" id="17_fwegj"]
@@ -700,7 +700,7 @@ monitoring = false
 monitorable = false
 script = ExtResource("3_6lfjr")
 game_state = ExtResource("2_fwegj")
-array_of_enemy_types = Array[PackedScene]([ExtResource("13_dl7sy")])
+array_of_enemy_types = Array[PackedScene]([ExtResource("14_e14j2")])
 spawn_time_curve = SubResource("Curve_3n5u0")
 enemies_per_wave_curve = SubResource("Curve_e14j2")
 

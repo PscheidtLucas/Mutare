@@ -9,12 +9,16 @@ extends Node3D
 @export var is_player_weapon: bool = false
 
 # É importante ter um nó filho (Node3D) na ponta da arma para ser o Muzzle.
-@onready var muzzle: Node3D = %Muzzle
+@export var muzzle: Node3D  
 var cooldown_timer: Timer = null
 
 signal shot_emitted # Para animar armas
 
 func _ready() -> void:
+	if muzzle == null:
+		muzzle = get_node_or_null("%Muzzle")
+	if muzzle == null:
+		printerr("ALERTA: Arma '", name, "' (em ", get_parent().name, ") iniciou SEM MUZZLE configurado!")
 	call_deferred("check_config")
 	if is_player_weapon:
 		GameEvents.wave_started.connect(func():

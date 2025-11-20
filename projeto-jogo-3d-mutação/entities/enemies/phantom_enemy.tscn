@@ -249,13 +249,13 @@ cast_shadow = 0
 mesh = SubResource("ArrayMesh_sq7gh")
 skeleton = NodePath("")
 
-[node name="Pistol" type="Node3D" parent="."]
+[node name="Pistol" type="Node3D" parent="." node_paths=PackedStringArray("muzzle")]
 transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -0.0205765, 0.8171649, -0.934877)
 script = ExtResource("3_kxh71")
 config = ExtResource("3_fgb2s")
+muzzle = NodePath("Muzzle")
 
 [node name="Muzzle" type="Node3D" parent="Pistol"]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.319924, 0.0927379, 0)
 
 [node name="pistola" parent="Pistol" instance=ExtResource("5_8qdup")]

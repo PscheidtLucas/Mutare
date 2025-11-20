@@ -22,6 +22,7 @@ var chase_cooldown_timer: Timer # O Timer será criado e atribuído no _ready
 @export var move_speed: float = 3.0
 @export var knockback_force: float = 20.0
 @export var collision_damage: float = 10.0
+@export var raycasts_arrray: Array[RayCast3D] = []
 
 @export_group("Jump")
 @export var jump_duration: float = 0.8
@@ -29,7 +30,6 @@ var chase_cooldown_timer: Timer # O Timer será criado e atribuído no _ready
 @export var jump_pause: float = 0.5
 
 @onready var jump_progress: float = 0.0
-@onready var ray_cast_3d: RayCast3D = %RayCast3D
 
 var jump_start_position: Vector3
 var jump_target_position: Vector3
@@ -43,7 +43,12 @@ var path_update_offset: float = 0.0    # offset aleatório pra desincronizar upd
 var last_target_position: Vector3 = Vector3.INF
 
 func _ready() -> void:
-	#navigation_agent_3d.velocity_computed.connect(_on_navigation_agent_3d_velocity_computed)
+	if raycasts_arrray.is_empty():
+		var default_ray = get_node_or_null("%RayCast3D")
+		if default_ray:
+			raycasts_arrray.append(default_ray)
+	if raycasts_arrray.is_empty():
+		printerr("Avisa: Inimigo ", name, "não tem nenhum Raycast configurado!")
 	raycast_check_interval = 0.3 + 0.1 * randf()
 	set_max_slides(3)
 	path_update_offset = randf_range(0.0, PATH_UPDATE_INTERVAL)
@@ -183,6 +188,19 @@ func manage_knockback(_delta: float) -> void:
 func _idle_state():
 	velocity = Vector3.ZERO
 
+func can_see_player() -> bool:
+	if player == null: return false
+	
+	for ray in raycasts_arrray:
+		if not ray: continue
+		
+		ray.force_raycast_update()
+		if ray.is_colliding() and ray.get_collider() == player:
+			return true # Basta um ver para retornar verdadeiro
+			
+	return false
+
+
 var raycast_check_accum: float = 0.0
 var raycast_check_interval := 0.0 ## atualizado no ready
 
@@ -191,8 +209,8 @@ func _chase_state(delta: float):
 	raycast_check_accum += delta
 	if raycast_check_accum >= raycast_check_interval:
 		raycast_check_accum = 0.0
-		ray_cast_3d.force_raycast_update()
-		if ray_cast_3d.is_colliding() and ray_cast_3d.get_collider() == player:
+
+		if can_see_player():
 			current_state = State.IDLE
 			chase_cooldown_timer.start(2.0)
 			return
@@ -241,11 +259,8 @@ func _jumping_state():
 ## Funções de Navegação e Combate
 
 func _on_chase_cooldown_timeout():
-	# Força update do raycast antes de checar
-	ray_cast_3d.force_raycast_update()
-	
 	# Só fica IDLE se AINDA está vendo o player
-	if ray_cast_3d.is_colliding() and ray_cast_3d.get_collider() == player:
+	if can_see_player():
 		# Player ainda está na mira, reinicia timer
 		chase_cooldown_timer.start(2.0)
 	else:
