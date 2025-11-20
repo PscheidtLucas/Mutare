@@ -1,6 +1,9 @@
 class_name HeadBox
 extends MarginContainer
 
+const HOVER_MAIN_MENU_1 = preload("uid://c7kbf7cgampxm")
+const START_JINGLE = preload("uid://8r8dgcyjjqe3")
+
 signal update_labels
 
 var reward = null
@@ -26,6 +29,7 @@ func _on_heads_configured() -> void:
 	configure_stat_labels()
 
 func _on_select_button_pressed() -> void:
+	AudioManager.play_sfx(START_JINGLE, 10)
 	GameEvents.head_selected.emit(head_config_generated)
 	get_tree().paused = false
 	GameEvents.wave_started.emit()
@@ -100,3 +104,7 @@ func calculate_head_rating(buffs: Array[StatBuff]) -> int:
 	var rating := int(50.0 + avg_score * 40.0)
 	
 	return rating
+
+
+func _on_select_button_mouse_entered() -> void:
+	AudioManager.play_sfx(HOVER_MAIN_MENU_1)

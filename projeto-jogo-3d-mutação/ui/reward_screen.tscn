@@ -1787,14 +1787,15 @@ reward_screen = NodePath("../../../../../../../..")
 
 [node name="RerollMargin" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 0
 size_flags_vertical = 6
 mouse_filter = 2
-theme_override_constants/margin_right = 5
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = -260
 
 [node name="RerollButton" type="TextureButton" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin" node_paths=PackedStringArray("node_to_change_color", "reroll_price_label")]
-custom_minimum_size = Vector2(200, 70)
+custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -1817,6 +1818,7 @@ mouse_filter = 2
 
 [node name="RerollPriceLabel" type="Label" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/MarginContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "5"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/MarginContainer/HBoxContainer"]
@@ -1825,7 +1827,7 @@ mouse_filter = 2
 theme_override_constants/margin_bottom = 4
 
 [node name="DnaTextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/MarginContainer/HBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(20, 20)
+custom_minimum_size = Vector2(25, 27)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -2043,6 +2045,7 @@ theme_override_font_sizes/font_size = 42
 [node name="DnaTextureRect" parent="CenterContainer/DNAContainer/HBoxContainer/MarginContainer" index="0"]
 texture = ExtResource("36_t7owo")
 
+[connection signal="mouse_entered" from="MarginContainer/HBoxContainer/RightSide/EvolveButtonManager/EvolveButton" to="MarginContainer/HBoxContainer/RightSide/EvolveButtonManager" method="_on_evolve_button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/RerollButton" to="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/RerollButton" method="_on_pressed"]
 
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox"]

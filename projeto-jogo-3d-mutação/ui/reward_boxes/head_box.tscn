@@ -350,4 +350,5 @@ material = SubResource("ShaderMaterial_1gip4")
 position = Vector2(237.68115, 113.04348)
 texture = ExtResource("9_lkxrs")
 
+[connection signal="mouse_entered" from="Anchor/SelectButton" to="." method="_on_select_button_mouse_entered"]
 [connection signal="pressed" from="Anchor/SelectButton" to="." method="_on_select_button_pressed"]

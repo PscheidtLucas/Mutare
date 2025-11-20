@@ -7,6 +7,9 @@ signal sub_menu_closed
 signal game_started
 signal game_exited
 
+const HOVER_MAIN_MENU_1 = preload("uid://c7kbf7cgampxm")
+const MENU_CLICK = preload("uid://ygrjhjdvf7va")
+
 ## Defines the path to the game scene. Hides the play button if empty.
 ## Will attempt to read from AppConfig if left empty.
 @export_file("*.tscn") var game_scene_path : String
@@ -105,13 +108,27 @@ func _ready() -> void:
 	_hide_new_game_if_unset()
 
 func _on_new_game_button_pressed() -> void:
+	play_button_pressed_sound()
 	new_game()
 
 func _on_options_button_pressed() -> void:
+	play_button_pressed_sound()
 	_open_sub_menu(options_packed_scene)
 
 func _on_credits_button_pressed() -> void:
 	_open_sub_menu(credits_packed_scene)
+	
+func play_button_pressed_sound() -> void:
+	AudioManager.play_sfx(MENU_CLICK)
 
 func _on_exit_button_pressed() -> void:
 	exit_game()
+
+func _on_new_game_button_mouse_entered() -> void:
+	AudioManager.play_sfx(HOVER_MAIN_MENU_1)
+
+func _on_options_button_mouse_entered() -> void:
+	AudioManager.play_sfx(HOVER_MAIN_MENU_1)
+
+func _on_exit_button_mouse_entered() -> void:
+	AudioManager.play_sfx(HOVER_MAIN_MENU_1)

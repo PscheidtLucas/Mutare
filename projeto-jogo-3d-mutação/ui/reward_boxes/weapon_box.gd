@@ -1,5 +1,8 @@
 class_name WeaponBox extends MarginContainer
 
+const HOVER_MAIN_MENU_1 = preload("uid://c7kbf7cgampxm")
+const START_JINGLE = preload("uid://8r8dgcyjjqe3")
+
 var reward = null
 var weapon_config_generated : RewardConfig # passada pelo reward screen quando o sinal wave survived é emitido
 
@@ -26,6 +29,7 @@ func _on_weapons_configured() -> void:
 	update_labels.emit(weapon_config_generated)
 
 func _on_select_button_pressed() -> void:
+	AudioManager.play_sfx(START_JINGLE, 10)
 	GameEvents.weapon_selected.emit(weapon_config_generated)
 	get_tree().paused = false
 	
@@ -45,3 +49,6 @@ func calc_and_update_rating(weapon_config: RangedWeaponConfig) -> void:
 	
 	# exibe na label
 	rating_value.text = str(rating)
+
+func _on_select_button_mouse_entered() -> void:
+	AudioManager.play_sfx(HOVER_MAIN_MENU_1)

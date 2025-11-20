@@ -1,5 +1,7 @@
 class_name EvolveButtonManager extends Control
 
+const HOVER_MAIN_MENU_1 = preload("uid://c7kbf7cgampxm")
+
 @export var game_state: GameState
 
 @onready var evolve_button_bottom: Button = %EvolveButtonBottom
@@ -35,3 +37,7 @@ func _on_evolve_button_pressed() -> void:
 func animate_evolve_button() -> void:
 	if animation_player.is_playing() == false:
 		animation_player.play("evolve_pressed")
+
+
+func _on_evolve_button_mouse_entered() -> void:
+	AudioManager.play_sfx(HOVER_MAIN_MENU_1)

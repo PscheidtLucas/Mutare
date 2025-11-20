@@ -10,13 +10,14 @@ extends Node
 var _sfx_players: Array[AudioStreamPlayer] = []
 var _music_players: Array[AudioStreamPlayer] = []
 
-@export var fade_time := 0.3
+@export var fade_time := 1.2
 
 var current_music : AudioStream = null
 var music_player : AudioStreamPlayer = null
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_init_pools()
 	# Um único player de música, fácil de gerenciar
 	music_player = AudioStreamPlayer.new()
 	music_player.bus = "Music"
@@ -42,7 +43,7 @@ func play_sfx(
 		stream: AudioStream,
 		volume_db: float = 0.0,
 		pitch_scale: float = 1.0,
-		random_pitch: float = 0.0
+		random_pitch: float = 0.15
 ) -> void:
 	if stream == null:
 		return

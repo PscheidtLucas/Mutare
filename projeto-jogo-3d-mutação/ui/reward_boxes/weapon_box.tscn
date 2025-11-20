@@ -379,6 +379,8 @@ script = ExtResource("3_b334d")
 weapon_box = NodePath("../../../../../../../../../..")
 stat_type = 6
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PanelContainer"]
+
 [node name="Anchor" type="Control" parent="."]
 layout_mode = 2
 metadata/_edit_lock_ = true
@@ -514,4 +516,5 @@ position = Vector2(189.99998, 44)
 scale = Vector2(0.06296295, 0.06296296)
 texture = ExtResource("9_tc68k")
 
+[connection signal="mouse_entered" from="Anchor/SelectButton" to="." method="_on_select_button_mouse_entered"]
 [connection signal="pressed" from="Anchor/SelectButton" to="." method="_on_select_button_pressed"]
