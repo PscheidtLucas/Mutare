@@ -212,7 +212,7 @@ func reset_flash_animation() -> void: ## Chamado no wave_started
 ## Retorna o cooldown do dash calculado com base nos status atuais
 func get_real_dash_cooldown() -> float:
 	# Pega a redução (ex: 0.5 para 50%)
-	var reduction = stats.dash_cooldown_reduction
+	var reduction = stats.dash_recharge_speed
 	
 	# Limita a redução máxima a 90% (0.9) para o jogo não quebrar (dash infinito)
 	reduction = min(reduction, 0.9)

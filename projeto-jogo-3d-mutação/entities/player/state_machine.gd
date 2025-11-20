@@ -29,9 +29,7 @@ func _ready() -> void:
 	GameEvents.player_died.connect(_on_player_died)
 	initial_mesh_y = player_mesh.position.y
 	animate_cube_frame_walking()
-	await get_tree().process_frame
-	await get_tree().physics_frame
-	dash_cooldown_timer.wait_time = p.get_real_dash_cooldown()
+
 	
 #endregion
 
