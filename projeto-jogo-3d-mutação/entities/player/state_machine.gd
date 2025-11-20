@@ -58,7 +58,7 @@ func _on_movement_state_physics_processing(delta: float) -> void:
 		state_chart.send_event("stopped_moving")
 	
 	## Aplica movimento
-	var target_velocity = move_dir * p.max_speed * (1 + p.stats.speed_increase)
+	var target_velocity = move_dir * p.max_speed * (1 + p.stats.mov_speed_increase)
 
 	if target_velocity == Vector3.ZERO:
 		p.velocity.x = move_toward(p.velocity.x, 0, p.deceleration)

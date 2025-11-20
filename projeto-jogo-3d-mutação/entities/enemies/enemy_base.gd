@@ -22,7 +22,6 @@ var chase_cooldown_timer: Timer # O Timer será criado e atribuído no _ready
 @export var move_speed: float = 3.0
 @export var knockback_force: float = 20.0
 @export var collision_damage: float = 10.0
-@export var raycasts_arrray: Array[RayCast3D] = []
 
 @export_group("Jump")
 @export var jump_duration: float = 0.8
@@ -30,6 +29,7 @@ var chase_cooldown_timer: Timer # O Timer será criado e atribuído no _ready
 @export var jump_pause: float = 0.5
 
 @onready var jump_progress: float = 0.0
+@export var raycasts_arrray: Array[RayCast3D] = []
 
 var jump_start_position: Vector3
 var jump_target_position: Vector3

@@ -39,8 +39,8 @@ func set_text_based_on_stat_type(head_config: HeadRewardConfig = null) -> void:
 			show_plus = value != 0
 			decimal_places = 1
 		
-		PlayerStats.BuffableStats.SPEED_INCREASE:
-			value = player_stats.speed_increase
+		PlayerStats.BuffableStats.MOV_SPEED_INCREASE:
+			value = player_stats.mov_speed_increase
 			is_percentage = true
 			show_plus = value != 0
 			decimal_places = 1

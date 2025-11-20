@@ -14,7 +14,6 @@ collision_mask = 13
 script = ExtResource("1_eq3yr")
 player_stats = ExtResource("2_0bf37")
 destroy_at_first = false
-pierce_reduction_percent = 0.1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

@@ -9,16 +9,16 @@
 resource_name = "damage increase"
 script = ExtResource("1_fw15h")
 stat = 2
-min_buff_amount = 0.05
-max_buff_amount = 0.15
+min_buff_amount = 0.03
+max_buff_amount = 0.12
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [sub_resource type="Resource" id="Resource_mimky"]
 resource_name = "max health mult"
 script = ExtResource("1_fw15h")
-buff_type = 1
-min_buff_amount = 5.0
-max_buff_amount = 25.0
+stat = 4
+min_buff_amount = 0.03
+max_buff_amount = 0.12
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [sub_resource type="Resource" id="Resource_6rtub"]
@@ -33,8 +33,8 @@ metadata/_custom_type_script = "uid://cjfuvhi515usr"
 script = ExtResource("1_fw15h")
 stat = 1
 buff_type = 1
-min_buff_amount = 1.0
-max_buff_amount = 3.0
+min_buff_amount = 0.7
+max_buff_amount = 2.1
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [resource]

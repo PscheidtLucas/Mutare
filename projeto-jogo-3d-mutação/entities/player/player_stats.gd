@@ -5,7 +5,7 @@ enum BuffableStats {
 	MAX_HEALTH,
 	HP5,
 	DAMAGE_INCREASE,
-	SPEED_INCREASE,
+	MOV_SPEED_INCREASE,
 	CRIT_CHANCE,
 	CRIT_DAMAGE,
 	FIRE_RATE_INCREASE,
@@ -19,7 +19,7 @@ signal health_changed
 @export var b_max_health: float = 100.0
 @export var b_hp5: float = 0.0
 @export var b_damage_increase: float = 0.0
-@export var b_speed_increase: float = 0.0
+@export var b_mov_speed_increase: float = 0.0
 @export var b_crit_chance: float = 0.0
 @export var b_crit_damage: float = 1.0
 @export var b_fire_rate_increase: float = 0.0
@@ -33,7 +33,7 @@ signal health_changed
 var max_health: float = 100.0
 var hp5: float = 0.0
 var damage_increase: float = 0.0
-var speed_increase: float = 0.0
+var mov_speed_increase: float = 0.0
 var crit_chance: float = 0.0
 var crit_damage: float = 0.0 
 var fire_rate_increase: float = 0.0
@@ -93,7 +93,7 @@ func add_permanent_buff_from_reward(reward: RewardConfig) -> void:
 		RewardConfig.PermaBuffType.FIRE_RATE:
 			buff.stat = BuffableStats.FIRE_RATE_INCREASE
 		RewardConfig.PermaBuffType.MOVE_SPEED:
-			buff.stat = BuffableStats.SPEED_INCREASE
+			buff.stat = BuffableStats.MOV_SPEED_INCREASE
 		RewardConfig.PermaBuffType.CRIT_CHANCE:
 			buff.stat = BuffableStats.CRIT_CHANCE
 		RewardConfig.PermaBuffType.CRIT_DAMAGE:
@@ -113,7 +113,7 @@ func recalculate_stats() -> void:
 	max_health = b_max_health
 	hp5 = b_hp5
 	damage_increase = b_damage_increase
-	speed_increase = b_speed_increase
+	mov_speed_increase = b_mov_speed_increase
 	crit_chance = b_crit_chance
 	crit_damage = b_crit_damage
 	fire_rate_increase = b_fire_rate_increase
@@ -155,8 +155,8 @@ func recalculate_stats() -> void:
 				base_val = b_hp5
 			"DAMAGE_INCREASE":
 				base_val = b_damage_increase
-			"SPEED_INCREASE":
-				base_val = b_speed_increase
+			"MOV_SPEED_INCREASE":
+				base_val = b_mov_speed_increase
 			"CRIT_CHANCE":
 				base_val = b_crit_chance
 			"CRIT_DAMAGE":
