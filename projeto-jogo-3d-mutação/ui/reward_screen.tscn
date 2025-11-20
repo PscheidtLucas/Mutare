@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=56 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -34,8 +34,10 @@
 [ext_resource type="Script" uid="uid://bw3n3ppeutiho" path="res://ui/reroll_button.gd" id="29_ucqqx"]
 [ext_resource type="Script" uid="uid://bt2ybcf61ne00" path="res://ui/current_hp_value.gd" id="30_y0g00"]
 [ext_resource type="Texture2D" uid="uid://c7gvigenwhvfy" path="res://dna/Dna_white_3px.png" id="31_piogr"]
+[ext_resource type="Texture2D" uid="uid://6txfiltquqj8" path="res://ui/reward screen images/updated/Caixa de Status.png" id="33_hkoo2"]
 [ext_resource type="PackedScene" uid="uid://kbnmrp3um3jv" path="res://dna/dna_container.tscn" id="35_gq28r"]
 [ext_resource type="Texture2D" uid="uid://l106gwa5i06f" path="res://dna/Dna_white_2.png" id="36_t7owo"]
+[ext_resource type="Texture2D" uid="uid://g155jkqacu4k" path="res://ui/reward screen images/updated/Cubo do fundo do inventário.png" id="37_my3u6"]
 
 [sub_resource type="Theme" id="Theme_vuu3q"]
 Label/constants/line_spacing = 0
@@ -554,50 +556,50 @@ tracks/34/keys = {
 tracks/35/type = "value"
 tracks/35/imported = false
 tracks/35/enabled = true
-tracks/35/path = NodePath("../../../../LeftBackground:scale")
+tracks/35/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:modulate")
 tracks/35/interp = 1
 tracks/35/loop_wrap = true
 tracks/35/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/36/type = "value"
 tracks/36/imported = false
 tracks/36/enabled = true
-tracks/36/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:modulate")
+tracks/36/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:scale")
 tracks/36/interp = 1
 tracks/36/loop_wrap = true
 tracks/36/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector2(1, 1)]
 }
 tracks/37/type = "value"
 tracks/37/imported = false
 tracks/37/enabled = true
-tracks/37/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:scale")
+tracks/37/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:position")
 tracks/37/interp = 1
 tracks/37/loop_wrap = true
 tracks/37/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0, 0)]
 }
 tracks/38/type = "value"
 tracks/38/imported = false
 tracks/38/enabled = true
-tracks/38/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:position")
+tracks/38/path = NodePath("../../../../CenterContainer/DNAContainer/HBoxContainer/MarginContainer/CuboDoFundoDoInventário:scale")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0.7, 0.7)]
 }
 
 [sub_resource type="Animation" id="Animation_lg4tu"]
@@ -1026,50 +1028,50 @@ tracks/34/keys = {
 tracks/35/type = "value"
 tracks/35/imported = false
 tracks/35/enabled = true
-tracks/35/path = NodePath("../../../../LeftBackground:scale")
+tracks/35/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:modulate")
 tracks/35/interp = 2
 tracks/35/loop_wrap = true
 tracks/35/keys = {
-"times": PackedFloat32Array(0.53333336, 0.5666667, 0.6, 0.6333334, 0.6666667, 0.70000005, 0.73333335, 0.8000001, 0.8333334, 0.86666673, 0.90000004),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.33333334, 0.5666667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/36/type = "value"
 tracks/36/imported = false
 tracks/36/enabled = true
-tracks/36/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:modulate")
+tracks/36/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:scale")
 tracks/36/interp = 2
 tracks/36/loop_wrap = true
 tracks/36/keys = {
 "times": PackedFloat32Array(0.33333334, 0.5666667, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.5, 1.5)]
 }
 tracks/37/type = "value"
 tracks/37/imported = false
 tracks/37/enabled = true
-tracks/37/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:scale")
+tracks/37/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:position")
 tracks/37/interp = 2
 tracks/37/loop_wrap = true
 tracks/37/keys = {
-"times": PackedFloat32Array(0.33333334, 0.5666667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.5, 1.5)]
-}
-tracks/38/type = "value"
-tracks/38/imported = false
-tracks/38/enabled = true
-tracks/38/path = NodePath("../../LeftSide/HBoxContainer/Control/InventoryManager/LMarginContainer14/LegSlotAnchor/LegSlot:position")
-tracks/38/interp = 2
-tracks/38/loop_wrap = true
-tracks/38/keys = {
 "times": PackedFloat32Array(0.33333334, 0.40000004, 0.5666667, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, -182), Vector2(-19, -202)]
+}
+tracks/38/type = "value"
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/path = NodePath("../../../../CenterContainer/DNAContainer/HBoxContainer/MarginContainer/CuboDoFundoDoInventário:scale")
+tracks/38/interp = 1
+tracks/38/loop_wrap = true
+tracks/38/keys = {
+"times": PackedFloat32Array(0.5389714, 0.5732965, 0.61252517, 0.6468502, 0.69343424, 0.7277593, 0.754729, 0.78905404, 0.81602377, 0.85034883, 0.8846739),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(0.75, 0.75), Vector2(0.7, 0.7), Vector2(0.75, 0.75), Vector2(0.7, 0.7), Vector2(0.75, 0.75), Vector2(0.7, 0.7), Vector2(0.75, 0.75), Vector2(0.7, 0.7), Vector2(0.75, 0.75), Vector2(0.7, 0.7)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i80ks"]
@@ -1135,9 +1137,11 @@ heads_templates = Array[ExtResource("8_0p5y3")]([ExtResource("8_thu7a"), ExtReso
 options_container = NodePath("MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer")
 
 [node name="LeftBackground" type="TextureRect" parent="."]
+z_index = -2
 layout_mode = 0
 offset_right = 1077.0
 offset_bottom = 648.0
+scale = Vector2(1.0219903, 1.0219903)
 pivot_offset = Vector2(199, 383)
 texture = ExtResource("11_cnv0r")
 expand_mode = 1
@@ -1149,9 +1153,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="LeftSide" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -1160,6 +1166,7 @@ theme_override_constants/margin_left = 45
 theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 40
+metadata/_edit_lock_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftSide"]
 layout_mode = 2
@@ -1206,8 +1213,8 @@ expand_mode = 1
 layout_mode = 0
 offset_left = -6.0
 offset_top = -5.0
-offset_right = 94.00003
-offset_bottom = 95.00012
+offset_right = 94.0
+offset_bottom = 95.0
 texture = ExtResource("15_i80ks")
 
 [node name="HMarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
@@ -1234,7 +1241,7 @@ layout_mode = 0
 offset_left = -6.0
 offset_top = -5.0
 offset_right = 94.0
-offset_bottom = 95.0
+offset_bottom = 95.00021
 texture = ExtResource("15_i80ks")
 slot_number = 2
 
@@ -1262,7 +1269,7 @@ layout_mode = 0
 offset_left = -7.0
 offset_top = -5.0
 offset_right = 93.0
-offset_bottom = 95.00009
+offset_bottom = 95.00015
 texture = ExtResource("15_i80ks")
 slot_number = 3
 
@@ -1299,8 +1306,8 @@ expand_mode = 1
 layout_mode = 0
 offset_left = -7.0
 offset_top = -5.0
-offset_right = 93.00018
-offset_bottom = 95.000015
+offset_right = 93.000275
+offset_bottom = 95.00003
 texture = ExtResource("15_i80ks")
 slot_number = 4
 
@@ -1338,7 +1345,7 @@ layout_mode = 0
 offset_left = -7.0
 offset_top = -5.0
 offset_right = 93.0
-offset_bottom = 95.000015
+offset_bottom = 95.00003
 texture = ExtResource("15_i80ks")
 slot_number = 5
 
@@ -1376,7 +1383,7 @@ layout_mode = 0
 offset_left = -7.0
 offset_top = -5.0
 offset_right = 93.0
-offset_bottom = 95.000046
+offset_bottom = 95.00008
 texture = ExtResource("15_i80ks")
 slot_number = 6
 
@@ -1413,8 +1420,8 @@ layout_mode = 2
 [node name="WeaponSlot1" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer7/SlotAnchor"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 0
-offset_right = 90.00021
-offset_bottom = 90.00046
+offset_right = 90.00003
+offset_bottom = 90.0005
 mouse_filter = 0
 texture = ExtResource("18_ucqqx")
 expand_mode = 1
@@ -1462,7 +1469,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 0
 offset_right = 90.0
-offset_bottom = 90.0
+offset_bottom = 90.000015
 mouse_filter = 0
 texture = ExtResource("18_ucqqx")
 expand_mode = 1
@@ -1505,7 +1512,7 @@ layout_mode = 2
 [node name="WeaponSlot3" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer10/SlotAnchor"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 0
-offset_right = 90.00015
+offset_right = 90.00029
 offset_bottom = 90.0
 mouse_filter = 0
 texture = ExtResource("18_ucqqx")
@@ -1643,6 +1650,7 @@ text = "100.2
 horizontal_alignment = 2
 
 [node name="RightSide" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+z_index = -2
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -1679,7 +1687,7 @@ layout_mode = 0
 offset_left = 55.0
 offset_top = 230.0
 offset_right = 519.0
-offset_bottom = 418.00098
+offset_bottom = 418.00085
 theme = SubResource("Theme_y0g00")
 theme_override_colors/font_color = Color(0.37394443, 1, 0.9832812, 1)
 theme_override_colors/font_focus_color = Color(0.37254903, 1, 0.9843137, 1)
@@ -1777,7 +1785,7 @@ reward_screen = NodePath("../../../../../../../..")
 layout_mode = 2
 reward_screen = NodePath("../../../../../../../..")
 
-[node name="Margin" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer"]
+[node name="RerollMargin" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 6
@@ -1785,7 +1793,7 @@ mouse_filter = 2
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = -260
 
-[node name="RerollButton" type="TextureButton" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin" node_paths=PackedStringArray("reroll_price_label")]
+[node name="RerollButton" type="TextureButton" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin" node_paths=PackedStringArray("node_to_change_color", "reroll_price_label")]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1795,27 +1803,28 @@ texture_normal = ExtResource("16_cy6bo")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("29_ucqqx")
+node_to_change_color = NodePath("..")
 reroll_price_label = NodePath("../MarginContainer/HBoxContainer/RerollPriceLabel")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="RerollPriceLabel" type="Label" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/MarginContainer/HBoxContainer"]
+[node name="RerollPriceLabel" type="Label" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "5"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_bottom = 4
 
-[node name="DnaTextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/MarginContainer/HBoxContainer/MarginContainer"]
+[node name="DnaTextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/MarginContainer/HBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1847,7 +1856,13 @@ offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_hal1c")
-theme_override_constants/separation = 4
+theme_override_constants/separation = 8
+
+[node name="CaixaDeStatus" type="Sprite2D" parent="Stats/VBoxContainer"]
+z_index = -1
+position = Vector2(81, 72.99014)
+scale = Vector2(0.5789474, 0.26825848)
+texture = ExtResource("33_hkoo2")
 
 [node name="CurrentHealth" type="HBoxContainer" parent="Stats/VBoxContainer"]
 layout_mode = 2
@@ -1994,7 +2009,13 @@ theme_override_font_sizes/font_size = 42
 [node name="DnaTextureRect" parent="CenterContainer/DNAContainer/HBoxContainer/MarginContainer" index="0"]
 texture = ExtResource("36_t7owo")
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/RerollButton" to="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/Margin/RerollButton" method="_on_pressed"]
+[node name="CuboDoFundoDoInventário" type="Sprite2D" parent="CenterContainer/DNAContainer/HBoxContainer/MarginContainer" index="1"]
+z_index = -1
+position = Vector2(-270, -180)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("37_my3u6")
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/RerollButton" to="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/RerollButton" method="_on_pressed"]
 
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox"]
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox2"]
