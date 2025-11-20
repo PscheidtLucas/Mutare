@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dtkt1dciakqbg"]
+[gd_scene load_steps=31 format=4 uid="uid://dtkt1dciakqbg"]
 
 [ext_resource type="Script" uid="uid://ciuax0oqnamcq" path="res://entities/player/player.gd" id="1_oul6g"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="2_7thud"]
@@ -19,6 +19,7 @@
 [ext_resource type="Material" uid="uid://cy65jqmb0mxv7" path="res://0_materials_spatial/leg_p_1.tres" id="17_221hk"]
 [ext_resource type="Script" uid="uid://qc4130f6ftda" path="res://entities/player/after_image_emitter.gd" id="18_b2kln"]
 [ext_resource type="Material" uid="uid://bxdogjw28ljud" path="res://0_materials_spatial/leg_p_2.tres" id="18_ghoj8"]
+[ext_resource type="Script" uid="uid://1nhd5f8q63q1" path="res://entities/player/dash_cooldown_anchor.gd" id="20_mtric"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wvtmh"]
 radius = 0.6035156
@@ -137,6 +138,27 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_we0b7"]
+viewport_path = NodePath("DashCooldownAnchor/DashBarSprite/SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtric"]
+bg_color = Color(0, 0, 0, 0.39215687)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyb6c"]
+bg_color = Color(0.64841205, 0.99999994, 0.935772, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_221hk"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_mtric")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_eyb6c")
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("positions_for_weapons")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 collision_layer = 2
@@ -149,7 +171,8 @@ acc = 1.0
 deceleration = 1.0
 max_fall_speed = -18.0
 _jump_height = 8.0
-dash_duration = 0.2
+dash_duration = 0.23
+dash_cooldown = 2.0
 positions_for_weapons = [NodePath("CuboFrame/WeaponsManager/Position1"), NodePath("CuboFrame/WeaponsManager/Position4"), NodePath("CuboFrame/WeaponsManager/Position3"), NodePath("CuboFrame/WeaponsManager/Position2")]
 
 [node name="CameraAnchor" type="Node3D" parent="."]
@@ -388,6 +411,7 @@ metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
 [node name="DashCooldownTimer" type="Timer" parent="StateMachine"]
 wait_time = 999.0
+one_shot = true
 
 [node name="LegAnimacaoPerna" parent="." instance=ExtResource("16_yqrof")]
 transform = Transform3D(2.2000003, 0, 0, 0, 2.2000003, 0, 0, 0, 2.2000003, 0, 0.08853197, 0)
@@ -500,6 +524,29 @@ afterimage_count = 5
 afterimage_spacing = 0.02
 fade_duration = 0.35
 color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="DashCooldownAnchor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5113954, 0)
+script = ExtResource("20_mtric")
+
+[node name="DashBarSprite" type="Sprite3D" parent="DashCooldownAnchor"]
+transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2230184, 0)
+billboard = 2
+no_depth_test = true
+texture = SubResource("ViewportTexture_we0b7")
+
+[node name="SubViewport" type="SubViewport" parent="DashCooldownAnchor/DashBarSprite"]
+transparent_bg = true
+size = Vector2i(200, 30)
+render_target_update_mode = 3
+
+[node name="DashProgressBar" type="ProgressBar" parent="DashCooldownAnchor/DashBarSprite/SubViewport"]
+custom_minimum_size = Vector2(200, 30)
+offset_right = 4.0
+offset_bottom = 26.0
+theme = SubResource("Theme_221hk")
+value = 100.0
+show_percentage = false
 
 [connection signal="state_physics_processing" from="StateMachine/StateChart/ParallelState/Movement" to="StateMachine" method="_on_movement_state_physics_processing"]
 [connection signal="state_entered" from="StateMachine/StateChart/ParallelState/Movement/Ground" to="StateMachine" method="_on_ground_state_entered"]

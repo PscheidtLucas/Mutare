@@ -758,6 +758,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="DNAContainer" parent="UI" instance=ExtResource("20_dl7sy")]
+z_index = -2
 
 [node name="TimerContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 8
