@@ -51,6 +51,8 @@ func _on_reward_selected(reward_config: RewardConfig) -> void:
 			_set_bonus_words("CRIT", "CHNC")
 		RewardConfig.PermaBuffType.CRIT_DAMAGE:
 			_set_bonus_words("CRIT", "DMG")
+		RewardConfig.PermaBuffType.DASH_RECHARGE_SPEED:
+			_set_bonus_words("DASH", "CDR")
 		_:
 			_hide_all()
 
