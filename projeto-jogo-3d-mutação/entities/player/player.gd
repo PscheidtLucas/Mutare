@@ -36,7 +36,7 @@ var camera_rotation_speed := 10.0
 @export_category("Dash")
 @export var dash_speed: float = 20.0
 @export var dash_duration: float = 0.1
-@export var dash_cooldown: float = 0.5
+@export var dash_cooldown: float = 0.5 ## Valor base, é afetado pelo buff dash cooldown reduction
 
 @onready var jump_speed : float = _calculate_jump_speed(_jump_height, _jump_time_to_peak)
 @onready var jump_gravity : float = _calculate_jump_gravity(_jump_height, _jump_time_to_peak)
@@ -208,3 +208,15 @@ func reset_flash_animation() -> void: ## Chamado no wave_started
 		flash_tween.kill()
 	var mat: ShaderMaterial = player_mesh.material_overlay
 	mat.set_shader_parameter("hit_flash", 0.0)
+
+## Retorna o cooldown do dash calculado com base nos status atuais
+func get_real_dash_cooldown() -> float:
+	# Pega a redução (ex: 0.5 para 50%)
+	var reduction = stats.dash_cooldown_reduction
+	
+	# Limita a redução máxima a 90% (0.9) para o jogo não quebrar (dash infinito)
+	reduction = min(reduction, 0.9)
+	
+	# Calcula: Base * (1 - Redução)
+	# Exemplo: 3.0 * (1 - 0.5) = 1.5 segundos
+	return dash_cooldown * (1.0 - reduction)

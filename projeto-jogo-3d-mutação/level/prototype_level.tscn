@@ -761,6 +761,7 @@ color = Color(0, 0, 0, 1)
 z_index = -2
 
 [node name="TimerContainer" type="MarginContainer" parent="UI"]
+z_index = -5
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -800,6 +801,7 @@ text = "60"
 
 [node name="WaveNumberContainer" type="MarginContainer" parent="UI"]
 unique_name_in_owner = true
+z_index = -5
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -840,6 +842,7 @@ script = ExtResource("18_t8p3i")
 game_state = ExtResource("2_fwegj")
 
 [node name="HPContainer" type="MarginContainer" parent="UI"]
+z_index = -2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -954,7 +957,6 @@ text = "Restart"
 
 [node name="RewardManagerScreen" parent="UI" instance=ExtResource("10_ouysc")]
 unique_name_in_owner = true
-visible = false
 metadata/_edit_lock_ = true
 
 [node name="CheatCodeManager" type="Node" parent="."]

@@ -10,6 +10,7 @@ enum BuffableStats {
 	CRIT_DAMAGE,
 	FIRE_RATE_INCREASE,
 	COLLECT_AREA_INCREASE,
+	DASH_COOLDOWN_REDUCTION,
 }
 
 signal health_changed
@@ -26,6 +27,7 @@ signal health_changed
 @export var b_damage_reduction_perc := 0.0
 @export var b_range_increase: float = 0.0
 @export var b_accuracy_increase: float = 0.0
+@export var b_dash_cooldown_reduction: float = 0.0
 
 ## CURRENT STATS
 var max_health: float = 100.0
@@ -39,6 +41,7 @@ var collect_area_increase: float = 0.0
 var damage_reduction_perc := 0.0
 var range_increase: float = 0.0
 var accuracy_increase: float = 0.0
+var dash_cooldown_reduction: float = 0.0
 
 var health: float = 100.0 :
 	set(value):
@@ -95,6 +98,8 @@ func add_permanent_buff_from_reward(reward: RewardConfig) -> void:
 			buff.stat = BuffableStats.CRIT_CHANCE
 		RewardConfig.PermaBuffType.CRIT_DAMAGE:
 			buff.stat = BuffableStats.CRIT_DAMAGE
+		RewardConfig.PermaBuffType.DASH_COOLDOWN:
+			buff.stat = BuffableStats.DASH_COOLDOWN_REDUCTION
 	
 	# Usa MULTIPLY para buffs percentuais (0.1 = +10%)
 	buff.buff_type = StatBuff.BuffType.MULTIPLY
@@ -163,6 +168,8 @@ func recalculate_stats() -> void:
 				base_val = b_damage_reduction_perc
 			"ACCURACY_INCREASE":
 				base_val = b_accuracy_increase
+			"DASH_COOLDOWN_REDUCTION": 
+				base_val = b_dash_cooldown_reduction
 			_:
 				base_val = 0.0
 

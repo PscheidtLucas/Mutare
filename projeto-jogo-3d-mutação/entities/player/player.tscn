@@ -142,14 +142,20 @@ blend_shape_mode = 0
 viewport_path = NodePath("DashCooldownAnchor/DashBarSprite/SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtric"]
-bg_color = Color(0, 0, 0, 0.39215687)
+bg_color = Color(0, 0, 0, 0.47058824)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyb6c"]
-bg_color = Color(0.64841205, 0.99999994, 0.935772, 1)
+bg_color = Color(1.0736755, 0.45026863, 0, 1)
+border_width_left = 4
+border_width_top = 5
+border_width_right = 4
+border_width_bottom = 5
+border_color = Color(0.04, 0.04, 0.04, 0.0627451)
+border_blend = true
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -531,7 +537,7 @@ script = ExtResource("20_mtric")
 
 [node name="DashBarSprite" type="Sprite3D" parent="DashCooldownAnchor"]
 transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2230184, 0)
-billboard = 2
+billboard = 1
 no_depth_test = true
 texture = SubResource("ViewportTexture_we0b7")
 

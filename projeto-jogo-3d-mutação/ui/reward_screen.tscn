@@ -592,7 +592,7 @@ tracks/37/keys = {
 tracks/38/type = "value"
 tracks/38/imported = false
 tracks/38/enabled = true
-tracks/38/path = NodePath("../../../../CenterContainer/DNAContainer/HBoxContainer/MarginContainer/CuboDoFundoDoInventário:scale")
+tracks/38/path = NodePath("../../../../CuboDoFundoDoInventário:scale")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/keys = {
@@ -1064,7 +1064,7 @@ tracks/37/keys = {
 tracks/38/type = "value"
 tracks/38/imported = false
 tracks/38/enabled = true
-tracks/38/path = NodePath("../../../../CenterContainer/DNAContainer/HBoxContainer/MarginContainer/CuboDoFundoDoInventário:scale")
+tracks/38/path = NodePath("../../../../CuboDoFundoDoInventário:scale")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
 tracks/38/keys = {
@@ -1655,7 +1655,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="FundoAmareloEscolhas" type="Sprite2D" parent="MarginContainer/HBoxContainer/RightSide"]
-z_index = -100
+z_index = -3
 position = Vector2(-1, 325)
 scale = Vector2(0.61, 0.61)
 texture = ExtResource("13_1dgt3")
@@ -1990,6 +1990,12 @@ script = ExtResource("22_7pdxk")
 player_stats = ExtResource("23_725ha")
 stat_type = 3
 
+[node name="CuboDoFundoDoInventário" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(202, 366)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("37_my3u6")
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
 offset_left = 368.0
@@ -2008,12 +2014,6 @@ theme_override_font_sizes/font_size = 42
 
 [node name="DnaTextureRect" parent="CenterContainer/DNAContainer/HBoxContainer/MarginContainer" index="0"]
 texture = ExtResource("36_t7owo")
-
-[node name="CuboDoFundoDoInventário" type="Sprite2D" parent="CenterContainer/DNAContainer/HBoxContainer/MarginContainer" index="1"]
-z_index = -1
-position = Vector2(-270, -180)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("37_my3u6")
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/RerollButton" to="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/RerollButton" method="_on_pressed"]
 

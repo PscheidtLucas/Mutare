@@ -23,13 +23,15 @@ var move_dir: Vector3
 
 #region Built-in methods
 func _ready() -> void:
-	dash_cooldown_timer.wait_time = p.dash_cooldown
 	
 	state_chart.set_expression_property("player_alive", true) # usado em ToFall, ToGround, ToJump
 	state_chart.set_expression_property("dash_cd_reseted", true) # usado em ToDash
 	GameEvents.player_died.connect(_on_player_died)
 	initial_mesh_y = player_mesh.position.y
 	animate_cube_frame_walking()
+	await get_tree().process_frame
+	await get_tree().physics_frame
+	dash_cooldown_timer.wait_time = p.get_real_dash_cooldown()
 	
 #endregion
 
@@ -110,7 +112,7 @@ func _on_dash_state_entered() -> void:
 	%CollisionShape3D.disabled = true
 	collision_shape_3d.position.y += 0.1
 	state_chart.set_expression_property("dash_cd_reseted", false)
-	dash_cooldown_timer.start()
+	dash_cooldown_timer.start(p.get_real_dash_cooldown())
 	should_fall = false
 	
 	## Pega a direção do movimento atual
@@ -137,6 +139,7 @@ func _on_none_state_entered() -> void:
 
 
 func _on_dash_cooldown_timer_timeout() -> void:
+	print("Printando sobre dash no player state machine. Dash cooldown: ", p.get_real_dash_cooldown())
 	state_chart.set_expression_property("dash_cd_reseted", true)
 
 func _on_player_died() -> void:

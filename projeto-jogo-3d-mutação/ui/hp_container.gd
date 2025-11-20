@@ -5,7 +5,7 @@ class_name HpContainer extends MarginContainer
 @export var player_stats: PlayerStats
 
 # Cores para a animação
-const HEAL_COLOR: Color = Color(0.24, 1.0, 0.379) # Verde
+const HEAL_COLOR: Color = Color(1.195, 4.416, 1.786, 1.0) # Verde
 const DAMAGE_COLOR: Color = Color(1.366, 0.383, 0.383) # Vermelho
 const ORIGINAL_COLOR: Color = Color(1, 1, 1) # Cor original do seu TextureRect
 
