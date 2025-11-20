@@ -10,7 +10,7 @@ extends Node
 var _sfx_players: Array[AudioStreamPlayer] = []
 var _music_players: Array[AudioStreamPlayer] = []
 
-@export var fade_time := 0.5
+@export var fade_time := 0.3
 
 var current_music : AudioStream = null
 var music_player : AudioStreamPlayer = null
@@ -62,30 +62,28 @@ func play_sfx(
 #	Música: trocas mais controladas
 # -------------------------------------------------------------
 func play_music(stream : AudioStream) -> void:
-	# Evitar reiniciar a mesma música
 	if current_music == stream and music_player.playing:
-		return # Já está tocando essa música, não faz nada.
+		return
 
-	# Trocar de música (com fade)
 	var prev_player := music_player
-	var old_volume := prev_player.volume_db
 
-	# Fade-out da música atual, se houver
+	# Fade-out fixo
 	if prev_player.playing:
 		var t_out := create_tween()
 		t_out.tween_property(prev_player, "volume_db", -40.0, fade_time)
 		await t_out.finished
 		prev_player.stop()
 
-	# Agora toca a nova música
+	# Troca a música
 	current_music = stream
 	music_player.stream = current_music
 	music_player.volume_db = -40.0
 	music_player.play()
 
-	# Fade-in
+	# Fade-in com destino fixo (não mais "old_volume")
 	var t_in := create_tween()
-	t_in.tween_property(music_player, "volume_db", old_volume, fade_time)
+	t_in.tween_property(music_player, "volume_db", 0.0, fade_time)
+
 
 # -------------------------------------------------------------
 #	Utilidades
