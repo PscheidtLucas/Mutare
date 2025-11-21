@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="HeadRewardConfig" load_steps=9 format=3 uid="uid://1nxalfwwt0qq"]
+
+[ext_resource type="Script" uid="uid://cjfuvhi515usr" path="res://entities/player/stat_buff.gd" id="1_30lk8"]
+[ext_resource type="Texture2D" uid="uid://bq0m66mqc5s2r" path="res://rewards/heads/model pngs/cabecaTec03.png" id="2_30lk8"]
+[ext_resource type="Script" uid="uid://b3jjmvq4w0nl6" path="res://rewards/head_reward_config.gd" id="3_t2mb4"]
+[ext_resource type="SpriteFrames" uid="uid://1fbyo41t7j3c" path="res://rewards/heads/sprite_frames/red_knight_tech.tres" id="4_30lk8"]
+
+[sub_resource type="Resource" id="Resource_30lk8"]
+script = ExtResource("1_30lk8")
+stat = 2
+min_buff_amount = 0.05
+max_buff_amount = 0.15
+metadata/_custom_type_script = "uid://cjfuvhi515usr"
+
+[sub_resource type="Resource" id="Resource_4q4ab"]
+script = ExtResource("1_30lk8")
+stat = 5
+min_buff_amount = 0.1
+max_buff_amount = 0.25
+metadata/_custom_type_script = "uid://cjfuvhi515usr"
+
+[sub_resource type="Resource" id="Resource_t2mb4"]
+script = ExtResource("1_30lk8")
+buff_type = 1
+min_buff_amount = -10.0
+max_buff_amount = -25.0
+metadata/_custom_type_script = "uid://cjfuvhi515usr"
+
+[sub_resource type="Resource" id="Resource_vlh1j"]
+script = ExtResource("1_30lk8")
+stat = 3
+min_buff_amount = 0.05
+max_buff_amount = 0.1
+metadata/_custom_type_script = "uid://cjfuvhi515usr"
+
+[resource]
+script = ExtResource("3_t2mb4")
+name = "Red Knight"
+scene_uid = "uid://bblq18rjrguuu"
+array_of_buffs = Array[ExtResource("1_30lk8")]([SubResource("Resource_30lk8"), SubResource("Resource_4q4ab"), SubResource("Resource_t2mb4"), SubResource("Resource_vlh1j")])
+image = ExtResource("2_30lk8")
+type = 2
+sprite_frames = ExtResource("4_30lk8")
+perma_buff_percent_min = 0.02
+perma_buff_percent_max = 0.05
+metadata/_custom_type_script = "uid://b3jjmvq4w0nl6"

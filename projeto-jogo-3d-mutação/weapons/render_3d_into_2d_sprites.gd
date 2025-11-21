@@ -5,7 +5,8 @@ class_name Render3Dto2D extends SubViewport
 @export var columns: int = 8
 
 @export var anchor_rotate_node: Node3D
-@export var model : Node3D
+
+@export var png_name_file : String
 
 @export_tool_button("Generate Spritesheet")
 var generate_sprite = func():
@@ -20,4 +21,4 @@ var generate_sprite = func():
 			result.blit_rect(image, Rect2i(0, 0, size.x, size.y), Vector2i(size.x * c, size.y * r))
 			angle += TAU / (rows * columns)
 	
-	result.save_png("res://" + str(model.name) + ".png" )
+	result.save_png("res://" + png_name_file + ".png" )

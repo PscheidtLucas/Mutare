@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=60 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -15,12 +15,15 @@
 [ext_resource type="Script" uid="uid://b3jjmvq4w0nl6" path="res://rewards/head_reward_config.gd" id="8_0p5y3"]
 [ext_resource type="Resource" uid="uid://dhufbnjo4ie50" path="res://rewards/heads/tres files/engineer_head.tres" id="8_thu7a"]
 [ext_resource type="Resource" uid="uid://cbp2bamcj5q76" path="res://rewards/heads/tres files/robot_head.tres" id="10_hal1c"]
+[ext_resource type="Resource" uid="uid://u1copfroqj3w" path="res://rewards/heads/tres files/groot_head.tres" id="11_868pe"]
 [ext_resource type="Texture2D" uid="uid://cs0bc42878p2e" path="res://ui/reward screen images/updated/Fundo Inventário.png" id="11_cnv0r"]
 [ext_resource type="Texture2D" uid="uid://cvv7g2i3ro54s" path="res://ui/reward screen images/Título Choose 1 (1).png" id="12_02iek"]
+[ext_resource type="Resource" uid="uid://1nxalfwwt0qq" path="res://rewards/heads/tres files/red_knight_tech.tres" id="12_dtdhd"]
 [ext_resource type="Texture2D" uid="uid://cy6etnva02wps" path="res://ui/reward screen images/Fundo Escolhas.png" id="13_1dgt3"]
 [ext_resource type="Texture2D" uid="uid://cl46bwbhl5q7c" path="res://ui/reward screen images/updated/Quadrado inventário - Cabeça.png" id="13_3kma2"]
+[ext_resource type="Resource" uid="uid://djrx0yhtqha1g" path="res://rewards/heads/tres files/wood_plant.tres" id="13_8x6j8"]
 [ext_resource type="PackedScene" uid="uid://bcf55kljkn28u" path="res://ui/head_slot_1.tscn" id="14_x8a5c"]
-[ext_resource type="Texture2D" uid="uid://b0ks7jfcckkc7" path="res://rewards/heads/robot_image.png" id="15_i80ks"]
+[ext_resource type="Texture2D" uid="uid://b0ks7jfcckkc7" path="res://rewards/heads/model pngs/robot_image.png" id="15_i80ks"]
 [ext_resource type="Texture2D" uid="uid://cxj4gnibdil3g" path="res://ui/reward screen images/Botão - Reroll.png" id="16_cy6bo"]
 [ext_resource type="Texture2D" uid="uid://cfufslelps5gm" path="res://ui/reward screen images/updated/Quadrado inventário - Braço.png" id="17_emeoy"]
 [ext_resource type="Texture2D" uid="uid://bdbnh2uyie1c8" path="res://ui/reward screen images/updated/Quadrado inventário - Perna.png" id="18_emeoy"]
@@ -29,7 +32,7 @@
 [ext_resource type="Script" uid="uid://2ivusn8lp4x7" path="res://ui/evolve_button_manager.gd" id="20_lg4tu"]
 [ext_resource type="FontFile" uid="uid://ci0ch0j3lh3j3" path="res://ui/fonts/major_snafu/major.ttf" id="21_x8a5c"]
 [ext_resource type="Script" uid="uid://bce4s0diqnlkf" path="res://ui/value.gd" id="22_7pdxk"]
-[ext_resource type="Texture2D" uid="uid://cdjkj30trq8ga" path="res://rewards/heads/wood_plant_image.png" id="22_piogr"]
+[ext_resource type="Texture2D" uid="uid://cdjkj30trq8ga" path="res://rewards/heads/model pngs/wood_plant_image.png" id="22_piogr"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="23_725ha"]
 [ext_resource type="SpriteFrames" uid="uid://ekphl6whu8h7" path="res://weapons/mushroom_shotgun/mushroom_sprite_frames.tres" id="28_uci0r"]
 [ext_resource type="Script" uid="uid://bw3n3ppeutiho" path="res://ui/reroll_button.gd" id="29_ucqqx"]
@@ -1134,7 +1137,7 @@ choices_v_box = NodePath("MarginContainer/HBoxContainer/RightSide/ChoicesVBoxCon
 evolve_button = NodePath("MarginContainer/HBoxContainer/RightSide/EvolveButtonManager/EvolveButton")
 evolve_manager = NodePath("MarginContainer/HBoxContainer/RightSide/EvolveButtonManager")
 weapon_templates = Array[ExtResource("2_6bncb")]([ExtResource("3_bw4i5"), ExtResource("4_w26xa"), ExtResource("5_mur5e"), ExtResource("6_02iek")])
-heads_templates = Array[ExtResource("8_0p5y3")]([ExtResource("8_thu7a"), ExtResource("10_hal1c")])
+heads_templates = Array[ExtResource("8_0p5y3")]([ExtResource("8_thu7a"), ExtResource("10_hal1c"), ExtResource("11_868pe"), ExtResource("12_dtdhd"), ExtResource("13_8x6j8")])
 options_container = NodePath("MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer")
 
 [node name="LeftBackground" type="TextureRect" parent="."]
@@ -1434,7 +1437,7 @@ z_index = 1
 layout_mode = 0
 offset_left = 71.0
 offset_top = 8.0
-offset_right = 275.0
+offset_right = 331.0
 offset_bottom = 144.0
 
 [node name="Blank3" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
@@ -1483,7 +1486,7 @@ z_index = 1
 layout_mode = 0
 offset_left = 73.0
 offset_top = 9.0
-offset_right = 271.0
+offset_right = 333.0
 offset_bottom = 145.0
 
 [node name="WMarginContainer10" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
@@ -1527,7 +1530,7 @@ z_index = 1
 layout_mode = 0
 offset_left = 71.0
 offset_top = 0.0
-offset_right = 275.0
+offset_right = 331.0
 offset_bottom = 136.0
 
 [node name="Blank2" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
@@ -1575,7 +1578,7 @@ z_index = 1
 layout_mode = 0
 offset_left = 73.0
 offset_top = 0.0
-offset_right = 271.0
+offset_right = 334.0
 offset_bottom = 136.0
 
 [node name="Blank" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
@@ -2030,6 +2033,7 @@ z_index = -1
 position = Vector2(202, 366)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("37_my3u6")
+metadata/_edit_lock_ = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0

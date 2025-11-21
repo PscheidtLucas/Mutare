@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0ks7jfcckkc7"
-path="res://.godot/imported/robot_image.png-d289e5eabceed08f832056a40aa8116d.ctex"
+uid="uid://cssk08g37gddr"
+path="res://.godot/imported/cabecaOrg02.png-791f36240f32cc3b35c95f55623faa19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rewards/heads/robot_image.png"
-dest_files=["res://.godot/imported/robot_image.png-d289e5eabceed08f832056a40aa8116d.ctex"]
+source_file="res://rewards/heads/model pngs/cabecaOrg02.png"
+dest_files=["res://.godot/imported/cabecaOrg02.png-791f36240f32cc3b35c95f55623faa19.ctex"]
 
 [params]
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://r8kr8llnyy6t"]
+
+[ext_resource type="PackedScene" uid="uid://ducwgj8ilhplv" path="res://rewards/heads/glb files/cabecaPlanta01 (1).glb" id="1_d4jvd"]
+[ext_resource type="Script" uid="uid://ba4fvanc3vgh5" path="res://rewards/heads/head_general.gd" id="2_3lghe"]
+
+[node name="cabecaPlanta01 (1)" instance=ExtResource("1_d4jvd")]
+script = ExtResource("2_3lghe")
+
+[node name="cabeça" parent="." index="0"]
+transform = Transform3D(0.6160531, 0, 0, 0, 0.5923858, 0, 0, 0, 0.5923858, -0.01583508, 0.9561634, 0)

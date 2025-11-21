@@ -1,6 +1,7 @@
 class_name StatBuff
 extends Resource
 
+## Os nomes MULTIPLY e ADD estao bem errados, significam PERCENTUAL E NAO-PERCENTUAL (pra saber se mostra % ou nao na UI e como faz a conta, se multiplica por 100 ou nao...)
 enum BuffType {
 	MULTIPLY,
 	ADD,

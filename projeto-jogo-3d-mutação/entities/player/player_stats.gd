@@ -173,19 +173,42 @@ func recalculate_stats() -> void:
 				base_val = b_dash_recharge_speed
 			_:
 				base_val = 0.0
-
 		var mult: float = stat_multipliers[stat_name]
 		var add: float = stat_addends[stat_name]
 
 		var new_value: float = 0.0
-		if base_val <= 0.0001:
-			new_value = add
+		
+		# LISTA DE EXCEÇÃO: Stats que são percentuais por natureza.
+		# Para estes, "MULTIPLY" deve somar ao valor base (ex: 10% base + 20% buff = 30%)
+		# e não multiplicar (10% * 1.2 = 12%).
+		var is_rate_stat = stat_name in ["CRIT_CHANCE", "CRIT_DAMAGE", "ACCURACY_INCREASE", "DAMAGE_REDUCTION_PERC"]
+
+		# A lógica "base_val <= 0.0001" existia para tratar DamageIncrease começando em 0.
+		# Agora adicionamos "or is_rate_stat" para forçar Crit a entrar aqui também.
+		if base_val <= 0.0001 or is_rate_stat:
+			new_value = base_val + add # Soma o valor ADD (flat)
 			if mult != 1.0:
-				new_value += (mult - 1.0)
+				new_value += (mult - 1.0) # Soma a porcentagem do MULTIPLY
 		else:
+			# Lógica padrão para Vida, Speed, etc (Multiplicativa)
+			# Ex: 100 HP * 1.2 (buff) = 120 HP
 			new_value = base_val * mult + add
 
 		set(cur_property_name, new_value)
+	
+		#var mult: float = stat_multipliers[stat_name]
+		#var add: float = stat_addends[stat_name]
+#
+		#var new_value: float = 0.0
+		#
+		#if base_val <= 0.0001:
+			#new_value = add
+			#if mult != 1.0:
+				#new_value += (mult - 1.0)
+		#else:
+			#new_value = base_val * mult + add
+#
+		#set(cur_property_name, new_value)
 	
 	max_health = max(max_health, 1.0)
 	

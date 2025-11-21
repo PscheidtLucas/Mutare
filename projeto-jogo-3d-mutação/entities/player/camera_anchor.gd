@@ -35,7 +35,7 @@ func random_with_min(min_abs: float, max_abs: float) -> float:
 		v = sign(v) * min_abs
 	return v
 
-func shake_explosion(strength: float = 0.40, duration: float = 0.17):
+func shake_explosion(strength: float = 0.35, duration: float = 0.15):
 	shaking = true
 	original_pos = position
 	original_rot = rotation
