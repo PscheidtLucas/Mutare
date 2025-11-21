@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpygu7xncl3rs"]
+
+[ext_resource type="Environment" uid="uid://cu7y41mjsa5su" path="res://weapons/enviroment_ui_3d.tres" id="1_swyuu"]
+[ext_resource type="Script" uid="uid://cg7gwkwa5dvb5" path="res://weapons/render_3d_into_2d_sprites.gd" id="2_rbde7"]
+[ext_resource type="Script" uid="uid://bgm61vl6hmwwn" path="res://rotate_child.gd" id="3_ktx04"]
+[ext_resource type="PackedScene" uid="uid://do67apipqrr50" path="res://weapons/pulse_emitter/model.tscn" id="4_a0ave"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2eka0"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="World3D" id="World3D_15haq"]
+environment = ExtResource("1_swyuu")
+
+[node name="UI_Pulse" type="MarginContainer"]
+process_mode = 3
+offset_right = 50.0
+offset_bottom = 50.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+process_mode = 3
+layout_mode = 2
+texture = SubResource("ViewportTexture_2eka0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SubViewport" type="SubViewport" parent="." node_paths=PackedStringArray("anchor_rotate_node", "model")]
+world_3d = SubResource("World3D_15haq")
+transparent_bg = true
+handle_input_locally = false
+msaa_3d = 2
+size = Vector2i(256, 256)
+script = ExtResource("2_rbde7")
+anchor_rotate_node = NodePath("Camera3D/RotateChild/Anchor")
+model = NodePath("Camera3D/RotateChild/Anchor/Arma tecnologica circulos energia")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 0.981985, 0.188958, 0, -0.188958, 0.981985, 0, 10.5782, 64.7122)
+keep_aspect = 0
+projection = 1
+current = true
+fov = 38.0
+size = 5.0
+
+[node name="RotateChild" type="Node3D" parent="SubViewport/Camera3D"]
+process_mode = 2
+transform = Transform3D(1, 0, 0, 0, 0.981985, -0.188958, 0, 0.188958, 0.981985, 0, 0.369393, -65.8283)
+script = ExtResource("3_ktx04")
+rotation_duration = 12.0
+
+[node name="Anchor" type="Node3D" parent="SubViewport/Camera3D/RotateChild"]
+process_mode = 4
+transform = Transform3D(0.99518496, 0, -0.09801727, 0, 1, 0, 0.09801727, 0, 0.99518496, 0.042, -0.34, 0)
+
+[node name="Arma tecnologica circulos energia" parent="SubViewport/Camera3D/RotateChild/Anchor" instance=ExtResource("4_a0ave")]
+process_mode = 4
+transform = Transform3D(0.077179, 0, -0.0635878, 0, 0.1, 0, 0.0635878, 0, 0.077179, -0.990505, 0, 0.86735)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.5805, 0)
+light_color = Color(0.317375, 0.573685, 0.595887, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport"]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.67129, -1.31261, -11.1881)
+light_color = Color(4.81308e-06, 0.876828, 0.781745, 1)
+light_energy = 10.0
+omni_range = 18.8509

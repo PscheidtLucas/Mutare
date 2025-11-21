@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=71 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://cn7q1hmxe74tw" path="res://level/game_manager_n_state/game_manager.gd" id="1_ouysc"]
@@ -37,6 +37,12 @@
 [ext_resource type="ArrayMesh" uid="uid://djy5t6plu0g7q" path="res://level/props/mushromm.res" id="26_3mfhf"]
 [ext_resource type="ArrayMesh" uid="uid://bfymlottdx2i" path="res://level/props/pink_plant.res" id="27_t8p3i"]
 [ext_resource type="ArrayMesh" uid="uid://c0po7o7oqytih" path="res://level/props/pink_plant_leaf.res" id="28_1gmhc"]
+[ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="31_wtb6y"]
+[ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://weapons/carnivorous_pistola/carniv_pistol_stats.tres" id="32_xmdyd"]
+[ext_resource type="Resource" uid="uid://dm4mcdqnn0agf" path="res://weapons/cannon_bomb_gun/cannon_bomb.tres" id="33_xxbd7"]
+[ext_resource type="Resource" uid="uid://cbrwqqk5lhjg0" path="res://weapons/pulse_emitter/pulse_stats.tres" id="34_cotii"]
+[ext_resource type="Resource" uid="uid://bf80h3suneegk" path="res://weapons/smg_tech/smg_tech_stats.tres" id="35_4do6v"]
+[ext_resource type="Resource" uid="uid://dy1w2510h4sun" path="res://weapons/mushroom_shotgun/mushroom_shotgun.tres" id="36_u3qlo"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1gmhc"]
 vertices = PackedVector3Array(-34.096, 1, -36.2789, 34.154, 1, -36.2789, 34.154, 1, -77.0289, -34.096, 1, -77.0289, -34.346, 1, -34.2789, -36.096, 1, -34.2789, -36.096, 1, 33.9711, -34.346, 1, 33.9711, 34.154, 1, 34.2211, 36.154, 1, 33.9711, 36.154, 1, -34.2789, 34.154, 1, -34.5289, -34.096, 1, 35.9711, 34.154, 1, 35.9711, -77.596, 1, -34.2789, -77.596, 1, 33.9711, 77.654, 1, 33.9711, 77.654, 1, -34.2789, -34.096, 1, 78.2211, 34.154, 1, 78.2211)
@@ -953,6 +959,7 @@ text = "Restart"
 
 [node name="RewardManagerScreen" parent="UI" instance=ExtResource("10_ouysc")]
 unique_name_in_owner = true
+weapon_templates = Array[ExtResource("31_wtb6y")]([ExtResource("32_xmdyd"), ExtResource("33_xxbd7"), ExtResource("34_cotii"), ExtResource("35_4do6v"), ExtResource("36_u3qlo")])
 metadata/_edit_lock_ = true
 
 [node name="CheatCodeManager" type="Node" parent="."]

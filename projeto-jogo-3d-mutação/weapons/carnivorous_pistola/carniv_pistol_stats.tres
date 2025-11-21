@@ -23,5 +23,5 @@ projectile_speed = 20.0
 bullet_scene = ExtResource("1_vkw1m")
 sprite_frames = ExtResource("4_f50na")
 perma_buff_percent_min = 0.02
-perma_buff_percent_max = 0.04
+perma_buff_percent_max = 0.05
 metadata/_custom_type_script = "uid://ccx1jk5ymt3pe"

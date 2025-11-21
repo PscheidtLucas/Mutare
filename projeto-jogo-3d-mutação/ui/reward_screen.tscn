@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=57 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -31,6 +31,7 @@
 [ext_resource type="Script" uid="uid://bce4s0diqnlkf" path="res://ui/value.gd" id="22_7pdxk"]
 [ext_resource type="Texture2D" uid="uid://cdjkj30trq8ga" path="res://rewards/heads/wood_plant_image.png" id="22_piogr"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="23_725ha"]
+[ext_resource type="SpriteFrames" uid="uid://ekphl6whu8h7" path="res://weapons/mushroom_shotgun/mushroom_sprite_frames.tres" id="28_uci0r"]
 [ext_resource type="Script" uid="uid://bw3n3ppeutiho" path="res://ui/reroll_button.gd" id="29_ucqqx"]
 [ext_resource type="Script" uid="uid://bt2ybcf61ne00" path="res://ui/current_hp_value.gd" id="30_y0g00"]
 [ext_resource type="Texture2D" uid="uid://c7gvigenwhvfy" path="res://dna/Dna_white_3px.png" id="31_piogr"]
@@ -1755,6 +1756,10 @@ theme_override_constants/separation = 25
 [node name="WeaponBox" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer" node_paths=PackedStringArray("reward_screen") instance=ExtResource("1_rwexk")]
 layout_mode = 2
 reward_screen = NodePath("../../../../../../../..")
+
+[node name="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox/PanelContainer/MarginContainer/HBoxContainer/ImageContainer" index="0"]
+sprite_frames = ExtResource("28_uci0r")
+frame_progress = 0.0
 
 [node name="SelectButton" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/WeaponBox/Anchor" index="1"]
 focus_neighbor_bottom = NodePath("../../../WeaponBox2/Anchor/SelectButton")

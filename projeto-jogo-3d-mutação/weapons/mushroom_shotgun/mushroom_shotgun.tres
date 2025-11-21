@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="RangedWeaponConfig" load_steps=5 format=3 uid="uid://dy1w2510h4sun"]
+
+[ext_resource type="PackedScene" uid="uid://dar285evccu4m" path="res://bullets/Mushroom_Shotgun_Bullet.tscn" id="1_awcm1"]
+[ext_resource type="Texture2D" uid="uid://ba1p4b3kkbwqa" path="res://weapons/mushroom_shotgun/shotgun_mushroom_image.png" id="2_awcm1"]
+[ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="3_te3dl"]
+[ext_resource type="SpriteFrames" uid="uid://ekphl6whu8h7" path="res://weapons/mushroom_shotgun/mushroom_sprite_frames.tres" id="4_3eks0"]
+
+[resource]
+script = ExtResource("3_te3dl")
+scene_uid = "uid://c66mi1la26sx4"
+name = "Infectuz"
+image = ExtResource("2_awcm1")
+damage_min = 17.0
+damage_max = 20.0
+fire_rate_min = 1.05
+fire_rate_max = 1.55
+accuracy_min = 0.4
+accuracy_max = 0.65
+number_of_projectiles = 5
+min_range = 6.0
+max_range = 10.0
+projectile_speed = 16.0
+bullet_scene = ExtResource("1_awcm1")
+sprite_frames = ExtResource("4_3eks0")
+perma_buff_percent_min = 0.02
+perma_buff_percent_max = 0.05
+metadata/_custom_type_script = "uid://ccx1jk5ymt3pe"
