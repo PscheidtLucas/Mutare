@@ -63,7 +63,7 @@ func _animate_label(label: Label3D) -> void:
 	tween.set_parallel(true)
 	
 	# Sobe
-	tween.tween_property(label, "position:y", label.position.y + 1.5, 0.4)\
+	tween.tween_property(label, "position:y", label.position.y + 1.5, 0.3)\
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	
 	# Pop Effect (Escala)

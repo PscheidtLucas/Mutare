@@ -8,29 +8,29 @@
 [sub_resource type="Resource" id="Resource_30lk8"]
 script = ExtResource("1_30lk8")
 stat = 2
-min_buff_amount = 0.05
-max_buff_amount = 0.15
+min_buff_amount = 0.04
+max_buff_amount = 0.12
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [sub_resource type="Resource" id="Resource_4q4ab"]
 script = ExtResource("1_30lk8")
 stat = 5
-min_buff_amount = 0.1
-max_buff_amount = 0.25
+min_buff_amount = 0.8
+max_buff_amount = 0.16
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [sub_resource type="Resource" id="Resource_t2mb4"]
 script = ExtResource("1_30lk8")
-buff_type = 1
-min_buff_amount = -10.0
-max_buff_amount = -25.0
+stat = 3
+min_buff_amount = 0.05
+max_buff_amount = 0.12
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [sub_resource type="Resource" id="Resource_vlh1j"]
 script = ExtResource("1_30lk8")
-stat = 3
+stat = 8
 min_buff_amount = 0.05
-max_buff_amount = 0.1
+max_buff_amount = 0.12
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [resource]

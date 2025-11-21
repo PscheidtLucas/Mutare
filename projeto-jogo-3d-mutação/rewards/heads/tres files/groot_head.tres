@@ -5,12 +5,19 @@
 [ext_resource type="Script" uid="uid://b3jjmvq4w0nl6" path="res://rewards/head_reward_config.gd" id="3_7oqfi"]
 [ext_resource type="SpriteFrames" uid="uid://btyndhu5cmrlr" path="res://rewards/heads/sprite_frames/groot_head.tres" id="4_re2rr"]
 
+[sub_resource type="Resource" id="Resource_7oqfi"]
+script = ExtResource("1_hmr1j")
+stat = 2
+min_buff_amount = 0.08
+max_buff_amount = 0.15
+metadata/_custom_type_script = "uid://cjfuvhi515usr"
+
 [sub_resource type="Resource" id="Resource_hmr1j"]
 resource_name = "max health mult"
 script = ExtResource("1_hmr1j")
-buff_type = 1
-min_buff_amount = 10.0
-max_buff_amount = 30.0
+stat = 5
+min_buff_amount = 0.1
+max_buff_amount = 0.25
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [sub_resource type="Resource" id="Resource_re2rr"]
@@ -18,21 +25,14 @@ resource_name = "speed increase"
 script = ExtResource("1_hmr1j")
 stat = 1
 buff_type = 1
-min_buff_amount = 0.5
-max_buff_amount = 2.0
-metadata/_custom_type_script = "uid://cjfuvhi515usr"
-
-[sub_resource type="Resource" id="Resource_7oqfi"]
-script = ExtResource("1_hmr1j")
-stat = 5
-min_buff_amount = 0.1
-max_buff_amount = 0.25
+min_buff_amount = 1.5
+max_buff_amount = 3.5
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [sub_resource type="Resource" id="Resource_m3cwc"]
 script = ExtResource("1_hmr1j")
 stat = 3
-min_buff_amount = -0.1
+min_buff_amount = -0.12
 max_buff_amount = -0.03
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
@@ -40,7 +40,7 @@ metadata/_custom_type_script = "uid://cjfuvhi515usr"
 script = ExtResource("3_7oqfi")
 name = "Not Groot"
 scene_uid = "uid://w686uapxlme8"
-array_of_buffs = Array[ExtResource("1_hmr1j")]([SubResource("Resource_hmr1j"), SubResource("Resource_re2rr"), SubResource("Resource_7oqfi"), SubResource("Resource_m3cwc")])
+array_of_buffs = Array[ExtResource("1_hmr1j")]([SubResource("Resource_7oqfi"), SubResource("Resource_hmr1j"), SubResource("Resource_re2rr"), SubResource("Resource_m3cwc")])
 image = ExtResource("2_hmr1j")
 type = 2
 sprite_frames = ExtResource("4_re2rr")

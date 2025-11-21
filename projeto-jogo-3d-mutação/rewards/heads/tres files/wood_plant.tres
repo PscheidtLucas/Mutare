@@ -8,37 +8,37 @@
 [sub_resource type="Resource" id="Resource_me07o"]
 script = ExtResource("1_me07o")
 stat = 4
-min_buff_amount = 0.1
-max_buff_amount = 0.2
-metadata/_custom_type_script = "uid://cjfuvhi515usr"
-
-[sub_resource type="Resource" id="Resource_5y3a3"]
-script = ExtResource("1_me07o")
-stat = 8
-min_buff_amount = 0.1
-max_buff_amount = 0.2
-metadata/_custom_type_script = "uid://cjfuvhi515usr"
-
-[sub_resource type="Resource" id="Resource_cqm0w"]
-script = ExtResource("1_me07o")
-stat = 6
-buff_type = 1
-min_buff_amount = 0.05
-max_buff_amount = 0.15
+min_buff_amount = 0.04
+max_buff_amount = 0.12
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [sub_resource type="Resource" id="Resource_ufe0p"]
 script = ExtResource("1_me07o")
-stat = 3
-min_buff_amount = -0.15
-max_buff_amount = -0.05
+stat = 5
+min_buff_amount = 0.08
+max_buff_amount = 0.16
+metadata/_custom_type_script = "uid://cjfuvhi515usr"
+
+[sub_resource type="Resource" id="Resource_cqm0w"]
+script = ExtResource("1_me07o")
+buff_type = 1
+min_buff_amount = 15.0
+max_buff_amount = 25.0
+metadata/_custom_type_script = "uid://cjfuvhi515usr"
+
+[sub_resource type="Resource" id="Resource_5y3a3"]
+script = ExtResource("1_me07o")
+stat = 1
+buff_type = 1
+min_buff_amount = 0.5
+max_buff_amount = 2.5
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [resource]
 script = ExtResource("3_cqm0w")
 name = "Flora Guardian"
 scene_uid = "uid://r8kr8llnyy6t"
-array_of_buffs = Array[ExtResource("1_me07o")]([SubResource("Resource_me07o"), SubResource("Resource_5y3a3"), SubResource("Resource_cqm0w"), SubResource("Resource_ufe0p")])
+array_of_buffs = Array[ExtResource("1_me07o")]([SubResource("Resource_me07o"), SubResource("Resource_ufe0p"), SubResource("Resource_cqm0w"), SubResource("Resource_5y3a3")])
 image = ExtResource("2_me07o")
 type = 2
 sprite_frames = ExtResource("4_me07o")

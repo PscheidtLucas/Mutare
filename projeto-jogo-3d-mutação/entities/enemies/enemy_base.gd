@@ -101,7 +101,7 @@ func create_and_configure_label(damage: float, is_crit: bool = false) -> void:
 		label_3d.font_size = 150
 		label_3d.modulate = Color(1.0, 0.855, 0.13, 1.0)
 	else:
-		label_3d.font_size = 85
+		label_3d.font_size = 120
 	tween_in_then_out_label(label_3d)
 
 func tween_in_then_out_label(label: Label3D) -> void:

@@ -1852,9 +1852,9 @@ texture = ExtResource("16_cy6bo")
 [node name="Stats" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 402.0
-offset_top = 66.0
+offset_top = 127.0
 offset_right = 562.0
-offset_bottom = 585.0
+offset_bottom = 646.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Stats"]
 layout_mode = 1
@@ -2030,10 +2030,9 @@ texture = ExtResource("33_hkoo2")
 
 [node name="CuboDoFundoDoInventário" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(202, 366)
+position = Vector2(202, 377)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("37_my3u6")
-metadata/_edit_lock_ = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
