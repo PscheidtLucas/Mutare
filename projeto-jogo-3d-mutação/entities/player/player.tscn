@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dtkt1dciakqbg"]
+[gd_scene load_steps=33 format=4 uid="uid://dtkt1dciakqbg"]
 
 [ext_resource type="Script" uid="uid://ciuax0oqnamcq" path="res://entities/player/player.gd" id="1_oul6g"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="2_7thud"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://qc4130f6ftda" path="res://entities/player/after_image_emitter.gd" id="18_b2kln"]
 [ext_resource type="Material" uid="uid://bxdogjw28ljud" path="res://0_materials_spatial/leg_p_2.tres" id="18_ghoj8"]
 [ext_resource type="Script" uid="uid://1nhd5f8q63q1" path="res://entities/player/dash_cooldown_anchor.gd" id="20_mtric"]
+[ext_resource type="Script" uid="uid://d156pcpcx34tv" path="res://entities/player/floating_text_spawner.gd" id="22_221hk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wvtmh"]
 radius = 0.6035156
@@ -551,6 +552,10 @@ offset_bottom = 26.0
 theme = SubResource("Theme_221hk")
 value = 100.0
 show_percentage = false
+
+[node name="FloatingTextSpawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.031064, 0)
+script = ExtResource("22_221hk")
 
 [connection signal="state_physics_processing" from="StateMachine/StateChart/ParallelState/Movement" to="StateMachine" method="_on_movement_state_physics_processing"]
 [connection signal="state_entered" from="StateMachine/StateChart/ParallelState/Movement/Ground" to="StateMachine" method="_on_ground_state_entered"]

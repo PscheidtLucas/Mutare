@@ -48,6 +48,7 @@ var camera_rotation_speed := 10.0
 @onready var double_jump_fall_gravity := _calculate_fall_gravity(_double_jump_height, _double_jump_time_to_descent)
 @onready var collision_shape_3d: CollisionShape3D = %CollisionShape3D
 @onready var camera_anchor: Node3D = %CameraAnchor
+@onready var floating_text_spawner: Node3D = $FloatingTextSpawner
 
 @export var positions_for_weapons : Array[Marker3D]
 
@@ -98,9 +99,10 @@ func create_hp5_timer() -> void:
 func on_hp5_timer_timeout() -> void:
 	if stats.hp5 > 0.0 and stats.health < stats.max_health:
 		heal(stats.hp5)
-
+		
 func heal(amount: float) -> void:
 	stats.health += amount
+	floating_text_spawner.show_value(amount, true)
 	
 func reset_player() -> void:
 	reset_flash_animation()
@@ -150,7 +152,10 @@ func take_damage(damage_data : Damage) -> void:
 		
 	$CameraAnchor/CameraShake.shake()
 	flash_animation()
-	stats.health -= damage_data.amount * (1.0 - stats.damage_reduction_perc)
+	var damage_to_take = damage_data.amount * (1.0 - stats.damage_reduction_perc)
+	stats.health -= damage_to_take
+	
+	floating_text_spawner.show_value(damage_to_take, false, false)
 	if stats.health <= 0:
 		stats.health = 0
 		die()
