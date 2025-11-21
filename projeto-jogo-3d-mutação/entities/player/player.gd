@@ -155,10 +155,11 @@ func take_damage(damage_data : Damage) -> void:
 	var damage_to_take = damage_data.amount * (1.0 - stats.damage_reduction_perc)
 	stats.health -= damage_to_take
 	
-	floating_text_spawner.show_value(damage_to_take, false, false)
 	if stats.health <= 0:
 		stats.health = 0
 		die()
+	await get_tree().process_frame
+	floating_text_spawner.show_value(damage_to_take, false, false)
 	
 func die() -> void:
 	dead = true
@@ -200,14 +201,14 @@ func flash_animation() -> void:
 	# Cria tween novo
 	flash_tween = create_tween()
 	flash_tween.set_trans(Tween.TRANS_CUBIC)
-	flash_tween.set_ease(Tween.EASE_IN_OUT)
+	flash_tween.set_ease(Tween.EASE_IN)
 	mat.set_shader_parameter("hit_flash", 1.0)
 	# Sobe o flash rapidamente
 	flash_tween.tween_method(
 		func(value: float): mat.set_shader_parameter("hit_flash", value),
 		1.0,  # valor inicial
 		0.0,  # valor final
-		0.2  # duração
+		0.4  # duração
 	)
 
 func reset_flash_animation() -> void: ## Chamado no wave_started

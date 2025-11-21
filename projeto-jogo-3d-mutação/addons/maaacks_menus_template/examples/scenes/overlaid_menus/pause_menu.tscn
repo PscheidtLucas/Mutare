@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b5cd6sa8qq4vc"]
+[gd_scene load_steps=18 format=3 uid="uid://b5cd6sa8qq4vc"]
 
 [ext_resource type="Script" uid="uid://uidwhqh4fyhj" path="res://addons/maaacks_menus_template/examples/scenes/overlaid_menus/pause_menu.gd" id="2_0ln3r"]
 [ext_resource type="PackedScene" uid="uid://bdvdf5v87mmrr" path="res://addons/maaacks_menus_template/examples/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_4djcm"]
@@ -113,7 +113,21 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mslaq"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.25353464, 0.33439168, 0.38706288, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l22qf"]
+
+[sub_resource type="Theme" id="Theme_ahd11"]
+AcceptDialog/styles/panel = SubResource("StyleBoxFlat_mslaq")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_l22qf")
+
 [node name="PauseMenu" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -464,6 +478,10 @@ stretch_mode = 5
 [node name="ConfirmRestart" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true
 auto_translate_mode = 1
+oversampling_override = 1.0
+size = Vector2i(264, 100)
+borderless = true
+theme = SubResource("Theme_ahd11")
 dialog_text = "Restart the game?"
 
 [node name="ConfirmMainMenu" type="ConfirmationDialog" parent="."]

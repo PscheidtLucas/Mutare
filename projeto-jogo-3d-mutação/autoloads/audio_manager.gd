@@ -111,3 +111,30 @@ func stop_all_sfx() -> void:
 func stop_all_music() -> void:
 	for m in _music_players:
 		m.stop()
+
+var _stored_music_volume := 0.0
+var _is_music_paused := false
+func set_music_paused(paused: bool) -> void:
+	if music_player == null:
+		return
+
+	if paused:
+		if _is_music_paused:
+			return
+		_is_music_paused = true
+
+		# guarda o volume atual
+		_stored_music_volume = music_player.volume_db
+
+		# diminui até -15
+		var t := create_tween()
+		t.tween_property(music_player, "volume_db", -15.0, 0.3)
+
+	else:
+		if not _is_music_paused:
+			return
+		_is_music_paused = false
+
+		# restaura o volume anterior
+		var t := create_tween()
+		t.tween_property(music_player, "volume_db", _stored_music_volume, 0.3)

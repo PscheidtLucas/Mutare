@@ -26,17 +26,11 @@ func _ready() -> void:
 	# Conecta os sinais do mouse para o fade
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
-	
-	# Ao contrário do WeaponSlot, os nomes dos stats são dinâmicos,
-	# então não podemos preencher o stat_name_label aqui.
-	# Ambos os labels serão preenchidos no _update_tooltip_labels()
 
 # Esta é a função que seu Player/UI chama para equipar a cabeça
 func equip_head(head_cfg: HeadRewardConfig):
 	head_config = head_cfg
 	
-	# Assumindo que seu HeadRewardConfig (ou sua base RewardConfig)
-	# também tenha uma propriedade 'image'
 
 	texture = head_config.image
 	

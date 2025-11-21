@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://f1co62b0cehg"
+path="res://.godot/imported/ResumeSound.ogg-51ad8b48bf68c5ca5446b1dd7b2ed640.oggvorbisstr"
+
+[deps]
+
+source_file="res://ui/ui sound effects/ResumeSound.ogg"
+dest_files=["res://.godot/imported/ResumeSound.ogg-51ad8b48bf68c5ca5446b1dd7b2ed640.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

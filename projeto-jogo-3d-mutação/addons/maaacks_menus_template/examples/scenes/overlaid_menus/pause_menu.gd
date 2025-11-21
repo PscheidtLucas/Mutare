@@ -8,6 +8,9 @@ var _ignore_first_cancel : bool = false
 var _is_open : bool = false
 var _options_menu_instance : Node = null
 
+const PAUSE_SOUND = preload("uid://blg54fhime6pm")
+const RESUME_SOUND = preload("uid://f1co62b0cehg")
+
 func get_main_menu_scene_path() -> String:
 	if main_menu_scene_path.is_empty():
 		return AppConfig.main_menu_scene_path
@@ -80,6 +83,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func _open_menu() -> void:
+	AudioManager.set_music_paused(true)
+	AudioManager.play_sfx(PAUSE_SOUND, 5)
+	
 	show()
 	process_mode = PROCESS_MODE_ALWAYS
 	_scene_tree.paused = true
@@ -88,6 +94,9 @@ func _open_menu() -> void:
 	_is_open = true
 
 func close() -> void:
+	AudioManager.set_music_paused(false)
+	AudioManager.play_sfx(RESUME_SOUND, 10)
+	
 	_is_open = false
 	hide()
 	

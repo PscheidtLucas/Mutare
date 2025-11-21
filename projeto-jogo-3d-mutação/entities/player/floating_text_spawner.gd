@@ -3,8 +3,11 @@ extends Node3D
 
 @export var label_appear_radius: float = 1.5
 @export var label_height_offset: float = 0.0 # Ajuste isso baseando-se na posição do Nó na cena
-@export var font_size_normal: int = 140
+@export var font_size_normal: int = 170
 @export var font_size_crit: int = 150
+
+@export var color_red_insde: Color
+@export var color_green_insde: Color
 
 func show_value(amount: float, is_heal: bool, is_crit: bool = false) -> void:
 	if amount <= 0.0:
@@ -42,12 +45,12 @@ func show_value(amount: float, is_heal: bool, is_crit: bool = false) -> void:
 	# Configuração de Texto e Cor
 	if is_heal:
 		label_3d.text = "+" + text_value
-		label_3d.modulate = Color.GREEN
+		label_3d.modulate = color_green_insde
 		label_3d.outline_modulate = Color.DARK_GREEN
 		label_3d.font_size = font_size_normal
 	else:
 		label_3d.text = "-" + text_value
-		label_3d.modulate = Color.RED
+		label_3d.modulate = color_red_insde
 		label_3d.outline_modulate = Color.DARK_RED
 		
 		if is_crit:
@@ -63,14 +66,14 @@ func _animate_label(label: Label3D) -> void:
 	tween.set_parallel(true)
 	
 	# Sobe
-	tween.tween_property(label, "position:y", label.position.y + 1.5, 0.3)\
+	tween.tween_property(label, "position:y", label.position.y + 1.5, 0.2)\
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	
 	# Pop Effect (Escala)
 	label.scale = Vector3.ZERO
-	tween.tween_property(label, "scale", Vector3.ONE, 0.3)\
+	tween.tween_property(label, "scale", Vector3.ONE, 0.2)\
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	
 	# Fade Out e Delete
-	tween.chain().tween_property(label, "modulate:a", 0.0, 0.3).set_delay(0.3)
+	tween.chain().tween_property(label, "modulate:a", 0.0, 0.3).set_delay(0.5)
 	tween.chain().tween_callback(label.queue_free)
