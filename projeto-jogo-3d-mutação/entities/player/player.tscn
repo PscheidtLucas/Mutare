@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=4 uid="uid://dtkt1dciakqbg"]
+[gd_scene load_steps=32 format=4 uid="uid://dtkt1dciakqbg"]
 
 [ext_resource type="Script" uid="uid://ciuax0oqnamcq" path="res://entities/player/player.gd" id="1_oul6g"]
 [ext_resource type="Resource" uid="uid://vosbp6yjwbm1" path="res://entities/player/player_stats.tres" id="2_7thud"]
 [ext_resource type="Script" uid="uid://2oc2ernkbept" path="res://entities/player/state_machine.gd" id="2_g6k8r"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="2_qjkh3"]
+[ext_resource type="Script" uid="uid://ndc74qly2tvb" path="res://entities/player/camera_anchor.gd" id="3_eyb6c"]
 [ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="3_g6k8r"]
 [ext_resource type="Shader" uid="uid://bnpb3ajryxvro" path="res://entities/blink_shader.gdshader" id="3_gx6sm"]
 [ext_resource type="Script" uid="uid://b8irtqlwjodtx" path="res://entities/player/heads_inventory.gd" id="4_a1qjk"]
@@ -185,19 +186,15 @@ positions_for_weapons = [NodePath("CuboFrame/WeaponsManager/Position1"), NodePat
 [node name="CameraAnchor" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="MainCamera" type="Camera3D" parent="CameraAnchor"]
+[node name="CameraShake" type="Node3D" parent="CameraAnchor"]
+script = ExtResource("3_eyb6c")
+
+[node name="MainCamera" type="Camera3D" parent="CameraAnchor/CameraShake"]
 unique_name_in_owner = true
-transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 19, 25, 19)
+transform = Transform3D(0.47140455, -0.3333333, 0.33333343, 0, 0.47140464, 0.4714045, -0.47140455, -0.3333333, 0.33333343, 19, 25, 19)
 current = true
 fov = 45.0
 size = 22.5
-
-[node name="MainCameraCopy" type="Camera3D" parent="CameraAnchor"]
-unique_name_in_owner = true
-transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 23.2681, 33.6473, 23.2681)
-fov = 30.0
-size = 30.0
-near = 0.001
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true

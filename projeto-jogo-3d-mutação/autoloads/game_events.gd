@@ -13,3 +13,5 @@ signal player_fell_off
 signal player_collected_dna
 signal dna_balance_changed
 signal do_reroll #emitido no rerollButton
+
+signal explosion # emitido pela bomba para ativar screen shake do player

@@ -147,6 +147,8 @@ func take_damage(damage_data : Damage) -> void:
 		return
 	if is_cheating == true:
 		return
+		
+	$CameraAnchor/CameraShake.shake()
 	flash_animation()
 	stats.health -= damage_data.amount * (1.0 - stats.damage_reduction_perc)
 	if stats.health <= 0:

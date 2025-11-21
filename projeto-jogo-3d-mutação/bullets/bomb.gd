@@ -40,6 +40,7 @@ func on_contact(body: Node3D):
 	explode()
 
 func explode():
+	GameEvents.explosion.emit()
 	# (Opcional) Congela o corpo para que ele pare de se mover ao explodir
 	linear_velocity = Vector3.ZERO
 	freeze = true 
