@@ -90,9 +90,14 @@ func _on_jump_state_entered() -> void:
 	if walking_tween: walking_tween.pause()
 	
 func _on_jump_state_physics_processing(delta: float) -> void:
+	# ADICIONA ESSA CHECAGEM:
+	if not should_fall:  # Se está dashando, não aplica física de pulo
+		return
+		
 	p.velocity.y -= p.jump_gravity * delta
 	if p.velocity.y <= 0:
 		state_chart.send_event("started_falling")
+
 
 func _on_fall_state_physics_processing(delta: float) -> void:
 	if should_fall:
@@ -120,7 +125,8 @@ func _on_dash_state_entered() -> void:
 	state_chart.set_expression_property("dash_cd_reseted", false)
 	dash_cooldown_timer.start(p.get_real_dash_cooldown())
 	should_fall = false
-	
+	p.velocity.y = 0
+	state_chart.send_event("started_falling")
 	## Pega a direção do movimento atual
 	var dash_direction = move_dir
 	if dash_direction == Vector3.ZERO:
