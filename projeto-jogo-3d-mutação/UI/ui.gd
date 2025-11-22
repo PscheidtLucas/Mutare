@@ -1,5 +1,6 @@
 class_name UI extends CanvasLayer
 
+const MY_MAIN_MENU = preload("uid://c6k5nnpbypshi")
 
 @export var player_stats : PlayerStats
 @export var game_state: GameState
@@ -8,14 +9,14 @@ class_name UI extends CanvasLayer
 @onready var reward_manager_screen: RewardManager = %RewardManagerScreen
 @onready var wave_number_container: MarginContainer = %WaveNumberContainer
 
-@onready var lose_label: Label = %LoseLabel
-@onready var restart_button: Button = %RestartButton
+@onready var game_over_anchor: Control = %GameOverAnchor
 
 @onready var health_ui: Label = %HealthUI
 
 @export var nodes_to_hide_in_start: Array[Control]
 
 func _ready() -> void:
+	game_over_anchor.hide()
 	if player_stats:
 		health_ui.text = str("%0.0f" % (player_stats.health))
 	for node in nodes_to_hide_in_start:
@@ -54,8 +55,7 @@ func on_player_lost() -> void:
 	
 	wave_number_container.hide()
 	time_left_label.hide()
-	lose_label.show()
-	restart_button.show()
+	game_over_anchor.show()
 
 func _on_player_health_changed() -> void:
 	health_ui.text = str("%0.0f" % (player_stats.health)) 
@@ -63,3 +63,7 @@ func _on_player_health_changed() -> void:
 func _on_restart_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_packed(MY_MAIN_MENU)

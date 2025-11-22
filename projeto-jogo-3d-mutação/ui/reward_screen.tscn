@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=61 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -42,6 +42,7 @@
 [ext_resource type="PackedScene" uid="uid://kbnmrp3um3jv" path="res://dna/dna_container.tscn" id="35_gq28r"]
 [ext_resource type="Texture2D" uid="uid://l106gwa5i06f" path="res://dna/Dna_white_2.png" id="36_t7owo"]
 [ext_resource type="Texture2D" uid="uid://g155jkqacu4k" path="res://ui/reward screen images/updated/Cubo do fundo do inventário.png" id="37_my3u6"]
+[ext_resource type="Texture2D" uid="uid://m6fmlo3c5407" path="res://ui/pause/Fundo Pause (cinza escuro).png" id="43_dtdhd"]
 
 [sub_resource type="Theme" id="Theme_vuu3q"]
 Label/constants/line_spacing = 0
@@ -1155,6 +1156,7 @@ heads_templates = Array[ExtResource("8_0p5y3")]([ExtResource("8_thu7a"), ExtReso
 options_container = NodePath("MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer")
 
 [node name="LeftBackground" type="TextureRect" parent="."]
+visible = false
 z_index = -2
 layout_mode = 0
 offset_right = 1113.8813
@@ -1181,7 +1183,7 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 45
-theme_override_constants/margin_top = 60
+theme_override_constants/margin_top = 70
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 40
 metadata/_edit_lock_ = true
@@ -1680,9 +1682,10 @@ horizontal_alignment = 2
 z_index = -2
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_left = 17
 
 [node name="FundoAmareloEscolhas" type="Sprite2D" parent="MarginContainer/HBoxContainer/RightSide"]
-z_index = -3
+z_index = -60
 position = Vector2(-1, 325)
 scale = Vector2(0.61, 0.61)
 texture = ExtResource("13_1dgt3")
@@ -1744,12 +1747,12 @@ speed_scale = 0.5
 
 [node name="ChoicesVBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightSide"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_left = 2
 
 [node name="Anchor" type="Control" parent="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -2054,28 +2057,31 @@ texture = ExtResource("33_hkoo2")
 
 [node name="CuboDoFundoDoInventário" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(202, 377)
+position = Vector2(202, 406)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("37_my3u6")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="DNACenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
-offset_left = 395.0
-offset_top = 522.0
-offset_right = 581.0
-offset_bottom = 613.0
+offset_left = 383.0
+offset_top = 526.0
+offset_right = 569.0
+offset_bottom = 617.0
 
-[node name="DNAContainer" parent="CenterContainer" instance=ExtResource("35_gq28r")]
+[node name="DNAContainer" parent="DNACenterContainer" instance=ExtResource("35_gq28r")]
 layout_mode = 2
 
-[node name="MarginContainer" parent="CenterContainer/DNAContainer" index="0"]
-visible = false
-
-[node name="DnaAmountLabel" parent="CenterContainer/DNAContainer/HBoxContainer" index="0"]
+[node name="DnaAmountLabel" parent="DNACenterContainer/DNAContainer/HBoxContainer" index="0"]
 theme_override_font_sizes/font_size = 42
 
-[node name="DnaTextureRect" parent="CenterContainer/DNAContainer/HBoxContainer/MarginContainer" index="0"]
+[node name="DnaTextureRect" parent="DNACenterContainer/DNAContainer/HBoxContainer/MarginContainer" index="0"]
 texture = ExtResource("36_t7owo")
+
+[node name="FundoPause(cinzaEscuro)" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(65, 387)
+rotation = 1.5707941
+texture = ExtResource("43_dtdhd")
 
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer/RightSide/EvolveButtonManager/EvolveButton" to="MarginContainer/HBoxContainer/RightSide/EvolveButtonManager" method="_on_evolve_button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/RerollButton" to="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/RerollMargin/RerollButton" method="_on_pressed"]
@@ -2086,4 +2092,4 @@ texture = ExtResource("36_t7owo")
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/HeadBox"]
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/HeadBox2"]
 [editable path="MarginContainer/HBoxContainer/RightSide/ChoicesVBoxContainer/MarginContainer2/Anchor/OptionsContainer/HeadBox3"]
-[editable path="CenterContainer/DNAContainer"]
+[editable path="DNACenterContainer/DNAContainer"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=78 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://cn7q1hmxe74tw" path="res://level/game_manager_n_state/game_manager.gd" id="1_ouysc"]
@@ -22,7 +22,6 @@
 [ext_resource type="PackedScene" uid="uid://bntkkgjp5chye" path="res://grass/multi_mesh_instance_3d.tscn" id="17_fwegj"]
 [ext_resource type="Curve" uid="uid://dqxwbb0h4liqe" path="res://level/spawner/spawn_time_curve.tres" id="17_hwg48"]
 [ext_resource type="PackedScene" uid="uid://b5cd6sa8qq4vc" path="res://addons/maaacks_menus_template/examples/scenes/overlaid_menus/pause_menu.tscn" id="17_qwpgs"]
-[ext_resource type="Texture2D" uid="uid://dtf2k5v443fr2" path="res://Screenshot 2025-11-19 124155.png" id="18_3n5u0"]
 [ext_resource type="ArrayMesh" uid="uid://b0pkut5lqom7w" path="res://grass/v4/grass_v4.res" id="18_4od7l"]
 [ext_resource type="FontFile" uid="uid://ci0ch0j3lh3j3" path="res://ui/fonts/major_snafu/major.ttf" id="18_6s3sm"]
 [ext_resource type="Texture2D" uid="uid://xv1bulwy60fr" path="res://dna/Caixa de Money.png" id="18_dl7sy"]
@@ -37,12 +36,17 @@
 [ext_resource type="ArrayMesh" uid="uid://djy5t6plu0g7q" path="res://level/props/mushromm.res" id="26_3mfhf"]
 [ext_resource type="ArrayMesh" uid="uid://bfymlottdx2i" path="res://level/props/pink_plant.res" id="27_t8p3i"]
 [ext_resource type="ArrayMesh" uid="uid://c0po7o7oqytih" path="res://level/props/pink_plant_leaf.res" id="28_1gmhc"]
+[ext_resource type="Texture2D" uid="uid://dt867rwghe52h" path="res://ui/pause/artes_menu_pause_att/Pause botão (restart).png" id="29_xmdyd"]
+[ext_resource type="Texture2D" uid="uid://dkevo24ptftsr" path="res://ui/pause/artes_menu_pause_att/Pause botão (restart) [claro].png" id="30_xxbd7"]
 [ext_resource type="Script" uid="uid://ccx1jk5ymt3pe" path="res://weapons/resources/ranged_weapon_config.gd" id="31_wtb6y"]
 [ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://weapons/carnivorous_pistola/carniv_pistol_stats.tres" id="32_xmdyd"]
 [ext_resource type="Resource" uid="uid://dm4mcdqnn0agf" path="res://weapons/cannon_bomb_gun/cannon_bomb.tres" id="33_xxbd7"]
 [ext_resource type="Resource" uid="uid://cbrwqqk5lhjg0" path="res://weapons/pulse_emitter/pulse_stats.tres" id="34_cotii"]
 [ext_resource type="Resource" uid="uid://bf80h3suneegk" path="res://weapons/smg_tech/smg_tech_stats.tres" id="35_4do6v"]
+[ext_resource type="Script" uid="uid://cq50gkf0igsin" path="res://level/wave_high_score_number.gd" id="36_4do6v"]
 [ext_resource type="Resource" uid="uid://dy1w2510h4sun" path="res://weapons/mushroom_shotgun/mushroom_shotgun.tres" id="36_u3qlo"]
+[ext_resource type="Texture2D" uid="uid://b6yrl5ko3qme0" path="res://ui/pause/artes_menu_pause_att/Pause botão (main menu).png" id="38_cotii"]
+[ext_resource type="Texture2D" uid="uid://c5womwlnau3fe" path="res://ui/pause/artes_menu_pause_att/Pause botão (main menu) [claro].png" id="39_4do6v"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1gmhc"]
 vertices = PackedVector3Array(-34.096, 1, -36.2789, 34.154, 1, -36.2789, 34.154, 1, -77.0289, -34.096, 1, -77.0289, -34.346, 1, -34.2789, -36.096, 1, -34.2789, -36.096, 1, 33.9711, -34.346, 1, 33.9711, 34.154, 1, 34.2211, 36.154, 1, 33.9711, 36.154, 1, -34.2789, 34.154, 1, -34.5289, -34.096, 1, 35.9711, 34.154, 1, 35.9711, -77.596, 1, -34.2789, -77.596, 1, 33.9711, 77.654, 1, 33.9711, 77.654, 1, -34.2789, -34.096, 1, 78.2211, 34.154, 1, 78.2211)
@@ -214,6 +218,28 @@ shader_parameter/softness = 0.25
 default_font_size = 32
 
 [sub_resource type="Theme" id="Theme_6s3sm"]
+Label/constants/outline_size = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4do6v"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.022000004, 0.029799998, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_4do6v"]
+default_font_size = 25
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 0
+
+[sub_resource type="Theme" id="Theme_u3qlo"]
+default_font_size = 18
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/outline_size = 0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_qd0o6"]
@@ -731,25 +757,14 @@ layer = 2
 [node name="PauseMenu" parent="Pause" instance=ExtResource("17_qwpgs")]
 visible = false
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("nodes_to_hide_in_start")]
+[node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
 script = ExtResource("3_htrvu")
 player_stats = ExtResource("15_3mfhf")
 game_state = ExtResource("2_fwegj")
-nodes_to_hide_in_start = [NodePath("TimerContainer/LevelTimerContainer/TimeLeftLabel"), NodePath("HPContainer"), NodePath("WaveNumberContainer")]
-
-[node name="Screenshot20251119124155" type="TextureRect" parent="UI"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("18_3n5u0")
-expand_mode = 1
 
 [node name="VignetteShaderColorRect" type="ColorRect" parent="UI"]
-z_index = -100
+z_index = -999
 material = SubResource("ShaderMaterial_dl7sy")
 anchors_preset = 15
 anchor_right = 1.0
@@ -760,7 +775,11 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="DNAContainer" parent="UI" instance=ExtResource("20_dl7sy")]
-z_index = -2
+z_index = -4
+offset_left = 32.0
+offset_top = 11.0
+offset_right = 131.0
+offset_bottom = 70.0
 
 [node name="TimerContainer" type="MarginContainer" parent="UI"]
 z_index = -5
@@ -803,7 +822,7 @@ text = "60"
 
 [node name="WaveNumberContainer" type="MarginContainer" parent="UI"]
 unique_name_in_owner = true
-z_index = -5
+z_index = -200
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -844,7 +863,7 @@ script = ExtResource("18_t8p3i")
 game_state = ExtResource("2_fwegj")
 
 [node name="HPContainer" type="MarginContainer" parent="UI"]
-z_index = -2
+z_index = -200
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -918,49 +937,161 @@ text = "%"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="WinLoseContainer" type="CenterContainer" parent="UI"]
+[node name="RewardManagerScreen" parent="UI" instance=ExtResource("10_ouysc")]
+unique_name_in_owner = true
+visible = false
+weapon_templates = Array[ExtResource("31_wtb6y")]([ExtResource("32_xmdyd"), ExtResource("33_xxbd7"), ExtResource("34_cotii"), ExtResource("35_4do6v"), ExtResource("36_u3qlo")])
+metadata/_edit_lock_ = true
+
+[node name="GameOverAnchor" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="UI/GameOverAnchor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4do6v")
+
+[node name="WinLoseContainer" type="CenterContainer" parent="UI/GameOverAnchor"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -311.5
-offset_top = -95.0
-offset_right = 311.5
-offset_bottom = 21.0
+offset_left = -382.5
+offset_top = -148.0
+offset_right = 382.5
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="LoseLabel" type="Label" parent="UI/WinLoseContainer"]
-unique_name_in_owner = true
-visible = false
+[node name="LoseLabel" type="Label" parent="UI/GameOverAnchor/WinLoseContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 85
 text = "Game Over!"
 
-[node name="RestartCenterContainer" type="CenterContainer" parent="UI"]
+[node name="UntilCenterContainer" type="CenterContainer" parent="UI/GameOverAnchor"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = 72.0
-offset_right = 20.0
-offset_bottom = 112.0
+offset_left = -223.0
+offset_top = -45.0
+offset_right = 223.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="RestartButton" type="Button" parent="UI/RestartCenterContainer"]
-unique_name_in_owner = true
-visible = false
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/GameOverAnchor/UntilCenterContainer"]
 layout_mode = 2
-text = "Restart"
+mouse_filter = 2
+theme = SubResource("Theme_4do6v")
 
-[node name="RewardManagerScreen" parent="UI" instance=ExtResource("10_ouysc")]
-unique_name_in_owner = true
-weapon_templates = Array[ExtResource("31_wtb6y")]([ExtResource("32_xmdyd"), ExtResource("33_xxbd7"), ExtResource("34_cotii"), ExtResource("35_4do6v"), ExtResource("36_u3qlo")])
-metadata/_edit_lock_ = true
+[node name="Wave_" type="Label" parent="UI/GameOverAnchor/UntilCenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "Survived Until Wave "
+
+[node name="WaveNumber" type="Label" parent="UI/GameOverAnchor/UntilCenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "5"
+script = ExtResource("18_t8p3i")
+game_state = ExtResource("2_fwegj")
+
+[node name="BestCenterContainer2" type="CenterContainer" parent="UI/GameOverAnchor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = -10.0
+offset_right = 171.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/GameOverAnchor/BestCenterContainer2"]
+layout_mode = 2
+mouse_filter = 2
+theme = SubResource("Theme_u3qlo")
+
+[node name="Wave_" type="Label" parent="UI/GameOverAnchor/BestCenterContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Your best yet was wave "
+
+[node name="WaveHighScoreNumber" type="Label" parent="UI/GameOverAnchor/BestCenterContainer2/HBoxContainer"]
+layout_mode = 2
+text = "5"
+script = ExtResource("36_4do6v")
+
+[node name="RestartCenterContainer" type="CenterContainer" parent="UI/GameOverAnchor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = 12.0
+offset_right = 250.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="RestartButton" type="TextureButton" parent="UI/GameOverAnchor/RestartCenterContainer"]
+custom_minimum_size = Vector2(225, 67.5)
+layout_mode = 2
+texture_normal = ExtResource("29_xmdyd")
+texture_hover = ExtResource("30_xxbd7")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RestartCenterContainer2" type="CenterContainer" parent="UI/GameOverAnchor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = 75.0
+offset_right = 250.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="MainMenuButton" type="TextureButton" parent="UI/GameOverAnchor/RestartCenterContainer2"]
+custom_minimum_size = Vector2(225, 67.5)
+layout_mode = 2
+texture_normal = ExtResource("38_cotii")
+texture_hover = ExtResource("39_4do6v")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="CheatCodeManager" type="Node" parent="."]
 process_mode = 3
@@ -1061,5 +1192,6 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 22.2188, 1.44595, -71.1
 mesh = ExtResource("26_3mfhf")
 skeleton = NodePath("../..")
 
-[connection signal="pressed" from="UI/RestartCenterContainer/RestartButton" to="UI" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UI/GameOverAnchor/RestartCenterContainer/RestartButton" to="UI" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UI/GameOverAnchor/RestartCenterContainer2/MainMenuButton" to="UI" method="_on_main_menu_button_pressed"]
 [connection signal="body_entered" from="FallArea" to="FallArea" method="_on_body_entered"]

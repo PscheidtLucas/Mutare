@@ -30,6 +30,7 @@ ProjectUISoundController="*res://addons/maaacks_menus_template/base/nodes/autolo
 FullscreenManager="*res://autoloads/fullscreen_manager.gd"
 AudioManager="*res://autoloads/audio_manager.gd"
 BulletPool="*res://autoloads/bullet_pool.gd"
+SaveManager="*res://autoloads/save_manager.gd"
 
 [display]
 
