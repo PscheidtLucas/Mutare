@@ -65,53 +65,57 @@ var t_out: Tween
 var t_in: Tween
 
 func play_music(stream : AudioStream) -> void:
-	# 1. Verifica se já é a música DESEJADA (intenção atual)
+	# 1. Verifica se já é a música DESEJADA
 	if current_music == stream:
-		# Se já está tocando e tocando (ou em processo de tocar), sai.
 		if music_player.playing:
 			return
-		# Se estava pausada ou parada, deixamos continuar para dar play
 
-	# 2. Atualiza a intenção IMEDIATAMENTE
-	# Isso impede que uma chamada futura ache que a música antiga ainda é a vigente
+	# 2. Atualiza a intenção
 	current_music = stream
 
 	var prev_player := music_player
 	
-	# Mata tweens anteriores para evitar conflitos
-	if t_out:
-		t_out.kill()
-	if t_in:
-		t_in.kill()
+	if t_out: t_out.kill()
+	if t_in: t_in.kill()
 	
 	# Fade-out fixo
 	if prev_player.playing:
 		t_out = create_tween()
 		t_out.tween_property(prev_player, "volume_db", -40.0, fade_time)
 		
-		# Espera o fade acabar
+		# O código dorme aqui...
 		await t_out.finished
+		# ... E ACORDA AQUI. O mundo pode ter mudado (jogo pausado).
 		
-		# 3. CHECAGEM DE SEGURANÇA PÓS-AWAIT
-		# Se, durante esse tempo de espera (await), alguém chamou play_music de novo,
-		# a variável 'current_music' terá mudado. Se mudou, abortamos essa execução antiga.
 		if current_music != stream:
 			return 
 
 		prev_player.stop()
 
-	# 4. Checagem Dupla (caso o player não estivesse tocando, mas a música mudou rápido)
 	if current_music != stream:
 		return
 
-	# Toca a música nova
-	music_player.stream = stream # Usa a variável local ou current_music (que agora são iguais)
-	music_player.volume_db = -40.0
-	music_player.play()
+	music_player.stream = stream
+	
+	# --- CORREÇÃO DA LÓGICA DE PAUSE ---
+	if _is_music_paused:
+		# Se acordamos e o jogo está pausado, NÃO fazemos fade para 0.0.
+		# Vamos direto para o volume de pause (-15) e tocamos.
+		music_player.volume_db = -15.0
+		music_player.play()
+		
+		# TRUQUE: Forçamos o "volume salvo" a ser 0.0. 
+		# Assim, quando o jogador despausar, o set_music_paused(false)
+		# vai ler esse 0.0 e levar a música para o volume máximo correto.
+		_stored_music_volume = 0.0
+	else:
+		# Comportamento padrão (Fade In normal)
+		music_player.volume_db = -40.0
+		music_player.play()
 
-	# Fade-in com destino fixo
-	t_in = create_tween()
-	t_in.tween_property(music_player, "volume_db", 0.0, fade_time)
+		t_in = create_tween()
+		t_in.tween_property(music_player, "volume_db", 0.0, fade_time)
+	# -----------------------------------
 # -------------------------------------------------------------
 #	Utilidades
 # -------------------------------------------------------------
@@ -152,10 +156,20 @@ func set_music_paused(paused: bool) -> void:
 			return
 		_is_music_paused = true
 
-		# guarda o volume atual
-		_stored_music_volume = music_player.volume_db
+		# --- CORREÇÃO DO BUG ---
+		# Verificamos se o tween de Fade In (t_in) existe e está rodando.
+		if t_in and t_in.is_valid() and t_in.is_running():
+			# Se estamos no meio de uma transição de entrada, o volume atual está "incompleto".
+			# Então, matamos o fade-in...
+			t_in.kill()
+			# ...e forçamos o volume salvo a ser 0.0 (o volume normal cheio)
+			_stored_music_volume = 0.0
+		else:
+			# Se não tem fade rolando, aí sim podemos confiar no volume atual
+			_stored_music_volume = music_player.volume_db
+		# -----------------------
 
-		# diminui até -15
+		# diminui até -15 (Efeito abafado)
 		if t_v:
 			t_v.kill()
 		t_v = create_tween()
@@ -166,7 +180,7 @@ func set_music_paused(paused: bool) -> void:
 			return
 		_is_music_paused = false
 
-		# restaura o volume anterior
+		# restaura o volume anterior (que agora será 0.0 se interrompemos um fade, ou o original)
 		if t_v:
 			t_v.kill()
 		t_v = create_tween()
