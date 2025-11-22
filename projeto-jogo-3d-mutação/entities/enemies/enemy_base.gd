@@ -52,7 +52,7 @@ func _ready() -> void:
 	raycast_check_interval = 0.3 + 0.1 * randf()
 	set_max_slides(3)
 	path_update_offset = randf_range(0.0, PATH_UPDATE_INTERVAL)
-	GameEvents.wave_survived.connect(die)
+	GameEvents.wave_survived.connect(queue_free)
 	
 	if array_of_weapons_nodes.is_empty():
 		printerr("Array de armas do inimigo ", self, "está vazio!")
@@ -282,8 +282,28 @@ func take_damage(damage_data: Damage) -> void:
 		die()
 
 func die() -> void:
+	# Evita morrer duas vezes
+	if health <= -999: return 
+	health = -999 
+	
 	spawn_dna_drop()
-	queue_free()
+	
+	# Desliga a física e colisão para ninguém bater no inimigo morrendo
+	set_physics_process(false)
+	collision_layer = 0 
+	
+	# --- A SOLUÇÃO SIMPLES ---
+	var tween = create_tween()
+	
+	# Opcional: Um leve "inchadinha" antes de sumir pra dar impacto (0.05s)
+	#tween.tween_property(self, "scale", Vector3(1.2, 1.2, 1.2), 0.04)
+	
+	# Esmaga o inimigo até zero rapidinho (0.2s) usando uma curva elástica (TRANS_BACK)
+	tween.tween_property(self, "scale", Vector3.ZERO, 0.14)\
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	
+	# Deleta o objeto
+	tween.tween_callback(queue_free)
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	velocity = safe_velocity
