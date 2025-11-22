@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b5cd6sa8qq4vc"]
+[gd_scene load_steps=24 format=3 uid="uid://b5cd6sa8qq4vc"]
 
 [ext_resource type="Script" uid="uid://uidwhqh4fyhj" path="res://addons/maaacks_menus_template/examples/scenes/overlaid_menus/pause_menu.gd" id="2_0ln3r"]
 [ext_resource type="PackedScene" uid="uid://bdvdf5v87mmrr" path="res://addons/maaacks_menus_template/examples/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_4djcm"]
@@ -6,9 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://c30gpjeyxmeok" path="res://ui/pause/Pause Bordas DNA.png" id="5_uoetv"]
 [ext_resource type="Texture2D" uid="uid://bbsv2dngg2cia" path="res://ui/pause/Pause título.png" id="6_a80ph"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_menus_template/base/nodes/utilities/capture_focus.gd" id="6_mslaq"]
+[ext_resource type="Texture2D" uid="uid://5v2x082y2i8r" path="res://ui/pause/artes_menu_pause_att/Pause botão (continue).png" id="7_7sp0f"]
+[ext_resource type="Texture2D" uid="uid://cddblkpujjnyn" path="res://ui/pause/artes_menu_pause_att/Pause botão (continue) [claro].png" id="8_02mq3"]
 [ext_resource type="Texture2D" uid="uid://bu5npharhyetj" path="res://ui/pause/Pause botão (continue).png" id="8_l22qf"]
-[ext_resource type="Texture2D" uid="uid://bqxtwbeeh5oji" path="res://ui/pause/Pause botão (settings).png" id="9_ahd11"]
-[ext_resource type="Texture2D" uid="uid://5knpmvhlj6xn" path="res://ui/pause/Pause botão (exit).png" id="10_djdqm"]
+[ext_resource type="Texture2D" uid="uid://dt867rwghe52h" path="res://ui/pause/artes_menu_pause_att/Pause botão (restart).png" id="9_nfige"]
+[ext_resource type="Texture2D" uid="uid://dkevo24ptftsr" path="res://ui/pause/artes_menu_pause_att/Pause botão (restart) [claro].png" id="10_3p8rp"]
+[ext_resource type="Texture2D" uid="uid://b6yrl5ko3qme0" path="res://ui/pause/artes_menu_pause_att/Pause botão (main menu).png" id="11_4diat"]
+[ext_resource type="Texture2D" uid="uid://c5womwlnau3fe" path="res://ui/pause/artes_menu_pause_att/Pause botão (main menu) [claro].png" id="12_lxfsy"]
+[ext_resource type="Texture2D" uid="uid://i567b53kp2m2" path="res://ui/pause/artes_menu_pause_att/Pause botão (exit).png" id="13_dwkdj"]
+[ext_resource type="Texture2D" uid="uid://bt3b2b3a8b2l7" path="res://ui/pause/artes_menu_pause_att/Pause botão (exit) [claro].png" id="14_e5j6w"]
 
 [sub_resource type="Shader" id="Shader_a80ph"]
 code = "shader_type canvas_item;
@@ -127,7 +133,6 @@ AcceptDialog/styles/panel = SubResource("StyleBoxFlat_mslaq")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_l22qf")
 
 [node name="PauseMenu" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -263,11 +268,13 @@ theme_override_constants/margin_left = -120
 [node name="CloseButton" type="TextureButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-texture_normal = ExtResource("8_l22qf")
+texture_normal = ExtResource("7_7sp0f")
+texture_hover = ExtResource("8_02mq3")
 ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Panel" type="Panel" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer/CloseButton"]
+visible = false
 layout_mode = 0
 offset_left = 48.0
 offset_top = 10.0
@@ -315,11 +322,13 @@ theme_override_constants/margin_left = -40
 [node name="RestartButton" type="TextureButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer2"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-texture_normal = ExtResource("8_l22qf")
+texture_normal = ExtResource("9_nfige")
+texture_hover = ExtResource("10_3p8rp")
 ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Panel" type="Panel" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer2/RestartButton"]
+visible = false
 layout_mode = 0
 offset_left = 8.0
 offset_top = 10.0
@@ -368,11 +377,13 @@ theme_override_constants/margin_right = -40
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-texture_normal = ExtResource("9_ahd11")
+texture_normal = ExtResource("11_4diat")
+texture_hover = ExtResource("12_lxfsy")
 ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Panel" type="Panel" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer3/MainMenuButton"]
+visible = false
 layout_mode = 0
 offset_left = 8.0
 offset_top = 10.0
@@ -421,11 +432,13 @@ theme_override_constants/margin_right = -120
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-texture_normal = ExtResource("10_djdqm")
+texture_normal = ExtResource("13_dwkdj")
+texture_hover = ExtResource("14_e5j6w")
 ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Panel" type="Panel" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer4/ExitButton"]
+visible = false
 layout_mode = 0
 offset_left = 48.0
 offset_top = 12.0
