@@ -48,9 +48,7 @@ func load_game_scene() -> void:
 		SceneLoader.load_scene(get_game_scene_path())
 
 func new_game() -> void:
-
-
-	# Primeiro faz o fade-in do preto
+	## Primeiro faz o fade-in do preto
 	var t := create_tween()
 	t.tween_callback(func():
 		black_color_rect_fade_in_out.fade_in()

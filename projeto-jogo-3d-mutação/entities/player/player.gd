@@ -101,8 +101,12 @@ func on_hp5_timer_timeout() -> void:
 		heal(stats.hp5)
 		
 func heal(amount: float) -> void:
-	stats.health += amount
+	stats.health = min(stats.health + amount, stats.max_health)
 	floating_text_spawner.show_value(amount, true)
+
+	# emitir sinais
+	GameEvents.player_took_damage_or_healed.emit()
+	GameEvents.player_health_changed.emit(stats.health, stats.max_health)
 	
 func reset_player() -> void:
 	reset_flash_animation()
@@ -149,17 +153,24 @@ func take_damage(damage_data : Damage) -> void:
 		return
 	if is_cheating == true:
 		return
-		
+
 	$CameraAnchor/CameraShake.shake()
 	flash_animation()
+
 	var damage_to_take = damage_data.amount * (1.0 - stats.damage_reduction_perc)
 	stats.health -= damage_to_take
-	
+	stats.health = max(stats.health, 0)
+
+	# emitir sinais
+	GameEvents.player_took_damage_or_healed.emit()
+	GameEvents.player_health_changed.emit(stats.health, stats.max_health)
+
 	if stats.health <= 0:
-		stats.health = 0
 		die()
+
 	await get_tree().process_frame
 	floating_text_spawner.show_value(damage_to_take, false, false)
+
 	
 func die() -> void:
 	dead = true

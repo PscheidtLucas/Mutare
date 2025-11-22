@@ -17,3 +17,6 @@ signal do_reroll #emitido no rerollButton
 signal explosion # emitido pela bomba para ativar screen shake do player
 
 signal start_perma_buff_label_animation # emitido no rewardManager, via animation player, utilizado para ativar Head e Weapon slots
+
+signal player_health_changed(current_health, max_health)
+signal player_took_damage_or_healed # usado apenas para garantir update imediato

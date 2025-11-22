@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://4qldqg5yaw6t"]
+[gd_scene load_steps=79 format=3 uid="uid://4qldqg5yaw6t"]
 
 [ext_resource type="PackedScene" uid="uid://dtkt1dciakqbg" path="res://entities/player/player.tscn" id="1_1ykrc"]
 [ext_resource type="Script" uid="uid://cn7q1hmxe74tw" path="res://level/game_manager_n_state/game_manager.gd" id="1_ouysc"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://kbnmrp3um3jv" path="res://dna/dna_container.tscn" id="20_dl7sy"]
 [ext_resource type="Shader" uid="uid://uhq6fsi2piyk" path="res://ui/vignette_shader.gdshader" id="21_i07hj"]
 [ext_resource type="Script" uid="uid://b6cmgdrofo8jc" path="res://ui/hp_container.gd" id="23_3n5u0"]
+[ext_resource type="Script" uid="uid://c8p0m0bhe8ms8" path="res://ui/vignette_shader_color_rect.gd" id="23_u3qlo"]
 [ext_resource type="PackedScene" uid="uid://bsnwfdo6oc0m1" path="res://level/props/ponte_meio_desgaste.tscn" id="24_dyurs"]
 [ext_resource type="ArrayMesh" uid="uid://ckqs34c8iwvpn" path="res://level/props/green_plant.res" id="25_0i6i1"]
 [ext_resource type="ArrayMesh" uid="uid://djy5t6plu0g7q" path="res://level/props/mushromm.res" id="26_3mfhf"]
@@ -210,9 +211,9 @@ size = Vector3(1, 1, 44)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dl7sy"]
 shader = ExtResource("21_i07hj")
-shader_parameter/intensity = 0.400000019
+shader_parameter/intensity = 0.4
 shader_parameter/radius = 0.6000000285
-shader_parameter/softness = 0.25
+shader_parameter/softness = 0.4750000225625
 
 [sub_resource type="Theme" id="Theme_1gmhc"]
 default_font_size = 32
@@ -773,6 +774,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+script = ExtResource("23_u3qlo")
+max_intensity = 0.8
 
 [node name="DNAContainer" parent="UI" instance=ExtResource("20_dl7sy")]
 z_index = -4
