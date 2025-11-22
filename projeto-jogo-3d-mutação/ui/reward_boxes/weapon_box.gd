@@ -45,7 +45,7 @@ func calc_and_update_rating(weapon_config: RangedWeaponConfig) -> void:
 	var avg = (damage_n + accuracy_n + range_n + fire_rate_n) / 4.0
 
 	# converte para o intervalo 50–100
-	var rating = int(round(50 + (avg * 40)))
+	var rating = int(round(50 + (avg * 50)))
 	
 	# exibe na label
 	rating_value.text = str(rating)

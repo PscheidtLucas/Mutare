@@ -192,7 +192,7 @@ script = ExtResource("3_eyb6c")
 
 [node name="MainCamera" type="Camera3D" parent="CameraAnchor/CameraShake"]
 unique_name_in_owner = true
-transform = Transform3D(0.47140455, -0.3333333, 0.33333343, 0, 0.47140464, 0.4714045, -0.47140455, -0.3333333, 0.33333343, 19, 25, 19)
+transform = Transform3D(0.47140455, -0.3333333, 0.33333343, 0, 0.47140464, 0.4714045, -0.47140455, -0.3333333, 0.33333343, 19.054813, 28.446627, 19.054813)
 current = true
 fov = 45.0
 size = 22.5

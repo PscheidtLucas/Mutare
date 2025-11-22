@@ -101,7 +101,7 @@ func calculate_head_rating(buffs: Array[StatBuff]) -> int:
 	var avg_score := total_score / buffs.size()
 	
 	# Converte média para faixa 50–100
-	var rating := int(50.0 + avg_score * 40.0)
+	var rating := int(50.0 + avg_score * 50.0)
 	
 	return rating
 

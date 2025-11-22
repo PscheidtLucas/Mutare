@@ -25,4 +25,5 @@ func update_highest_wave() -> void:
 	var current_wave:= game_state.wave_number
 	if current_wave > high_score.highest_wave:
 		high_score.highest_wave = current_wave
+		high_score.emit_changed()
 		save()
