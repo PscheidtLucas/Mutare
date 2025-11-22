@@ -1,6 +1,6 @@
 class_name DnaManager extends Node
 
-static var current_dna: int = 999
+static var current_dna: int = 0
 
 func _ready() -> void:
 	GameEvents.player_collected_dna.connect(_on_dna_collected)

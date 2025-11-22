@@ -1096,6 +1096,7 @@ stretch_mode = 0
 [node name="CheatCodeManager" type="Node" parent="."]
 process_mode = 3
 script = ExtResource("5_qd0o6")
+should_run_only_in_editor = false
 
 [node name="FallArea" type="Area3D" parent="."]
 collision_layer = 64

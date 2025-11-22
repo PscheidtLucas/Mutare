@@ -77,6 +77,6 @@ shadow_mesh = SubResource("ArrayMesh_d05v0")
 script = ExtResource("1_wrhir")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.6160531, 0, 0, 0, 0.5872665, 0.07771137, 0, -0.07771137, 0.5872665, -0.01583508, 0.88150775, 0.31417346)
+transform = Transform3D(0.6160531, 0, 0, 0, 0.5872665, 0.07771137, 0, -0.07771137, 0.5872665, -0.01583508, 0.88150775, -0.036453307)
 mesh = SubResource("ArrayMesh_c3sco")
 skeleton = NodePath("")

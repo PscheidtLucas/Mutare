@@ -105,7 +105,7 @@ script = ExtResource("3_agchh")
 weapon = NodePath("..")
 
 [node name="Anchor" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26921198, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6714861, 0.12913904, 0)
 
 [node name="Muzzle" type="Node3D" parent="Anchor"]
 unique_name_in_owner = true
@@ -114,4 +114,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7127832, 0.0043399036, 0)
 [node name="Anchor" type="Node3D" parent="Anchor"]
 
 [node name="Espingarda orgãnica" parent="Anchor/Anchor" instance=ExtResource("5_ybokw")]
-transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, -1.4618378, 0, 0.021027118)
+transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, -1.4618378, 0, 0.021027118)
