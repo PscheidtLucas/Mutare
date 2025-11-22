@@ -20,7 +20,6 @@ var should_fall := true # usado para impedir que o personagem caia enquanto est�
 var input_dir: Vector2
 var move_dir: Vector3
 
-
 #region Built-in methods
 func _ready() -> void:
 	
@@ -34,6 +33,7 @@ func _ready() -> void:
 #endregion
 
 #region Movement State Machine
+var on_air:= false
 func _on_movement_state_physics_processing(delta: float) -> void:
 	## Input WASD
 	var dir_hor := Input.get_axis("move_left", "move_right")
@@ -57,8 +57,12 @@ func _on_movement_state_physics_processing(delta: float) -> void:
 	elif not is_moving and was_moving:
 		state_chart.send_event("stopped_moving")
 	
+	var target_velocity
 	## Aplica movimento
-	var target_velocity = move_dir * p.max_speed * (1 + p.stats.mov_speed_increase)
+	if on_air:
+		target_velocity = move_dir * p.max_speed * (1 + p.stats.mov_speed_increase) / 1.4
+	else:
+		target_velocity = move_dir * p.max_speed * (1 + p.stats.mov_speed_increase)
 
 	if target_velocity == Vector3.ZERO:
 		p.velocity.x = move_toward(p.velocity.x, 0, p.deceleration)
@@ -69,14 +73,18 @@ func _on_movement_state_physics_processing(delta: float) -> void:
 	
 	update_leg_rotation(delta)
 	p.move_and_slide()
-
+	
+@onready var jump_cooldown: Timer = %JumpCooldown
 func _on_ground_state_physics_processing(delta: float) -> void:
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and jump_cooldown.is_stopped():
+		jump_cooldown.start()
 		state_chart.send_event("jump_pressed")
 	if p.is_on_floor() == false:
 		state_chart.send_event("started_falling")
 
+
 func _on_jump_state_entered() -> void:
+	on_air = true
 	leg_player.play("Jump")
 	p.velocity.y += p.jump_speed
 	if walking_tween: walking_tween.pause()
@@ -201,3 +209,7 @@ func animate_cube_frame_walking() -> void:
 	walking_tween.tween_property(player_mesh, "position:y", initial_mesh_y, 0.15)
 	
 	walking_tween.pause() # Começa pausado para não animar parado
+
+
+func _on_jump_state_exited() -> void:
+	on_air = false

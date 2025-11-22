@@ -248,7 +248,7 @@ mesh_enemy = NodePath("InimigoCubo/Corpo")
 speedy_distance = 40.0
 array_of_weapons_nodes = [NodePath("Pistol")]
 health = 70.0
-move_speed = 8.0
+move_speed = 9.5
 dna_scene = ExtResource("2_c5bta")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

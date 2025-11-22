@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfjq54op7tnwd"]
+
+[ext_resource type="Script" uid="uid://bfi3h2sr7qest" path="res://ui/evo_popup_label.gd" id="1_1x46m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8x6j8"]
+font_color = Color(0.53999996, 1, 0.31, 1)
+outline_size = 10
+outline_color = Color(0, 0.18313146, 0, 1)
+
+[node name="EvoPopupLabel" type="Label"]
+process_mode = 3
+offset_left = -129.5
+offset_top = -8.5
+offset_right = 129.5
+offset_bottom = 16.5
+text = "DAMAGE +4.5%"
+label_settings = SubResource("LabelSettings_8x6j8")
+horizontal_alignment = 1
+script = ExtResource("1_1x46m")
+fade_duration = 4.0
+float_distance = 280.0
+spawn_delay_step = 0.3

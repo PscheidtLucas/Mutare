@@ -211,3 +211,8 @@ func _clear_focus() -> void:
 	var focused = get_viewport().gui_get_focus_owner()
 	if focused:
 		focused.release_focus()
+
+
+func emit_perma_buff_label_animation_signal() -> void: ## CHAMADA NO ANIMATION PLAYER
+	GameEvents.start_perma_buff_label_animation.emit()
+	

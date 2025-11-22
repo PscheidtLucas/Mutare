@@ -15,3 +15,5 @@ signal dna_balance_changed
 signal do_reroll #emitido no rerollButton
 
 signal explosion # emitido pela bomba para ativar screen shake do player
+
+signal start_perma_buff_label_animation # emitido no rewardManager, via animation player, utilizado para ativar Head e Weapon slots

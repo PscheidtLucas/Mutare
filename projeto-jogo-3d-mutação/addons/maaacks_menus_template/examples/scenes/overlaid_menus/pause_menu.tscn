@@ -487,11 +487,19 @@ dialog_text = "Restart the game?"
 [node name="ConfirmMainMenu" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true
 auto_translate_mode = 1
+oversampling_override = 1.0
+size = Vector2i(310, 100)
+borderless = true
+theme = SubResource("Theme_ahd11")
 dialog_text = "Go back to main menu?"
 
 [node name="ConfirmExit" type="ConfirmationDialog" parent="."]
 unique_name_in_owner = true
 auto_translate_mode = 1
+oversampling_override = 1.0
+size = Vector2i(210, 100)
+borderless = true
+theme = SubResource("Theme_ahd11")
 dialog_text = "Quit the game?"
 
 [connection signal="pressed" from="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MarginContainer/CloseButton" to="." method="_on_close_button_pressed"]

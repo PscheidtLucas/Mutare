@@ -1077,6 +1077,20 @@ tracks/38/keys = {
 "update": 0,
 "values": [Vector2(0.7, 0.7), Vector2(0.75, 0.75), Vector2(0.7, 0.7), Vector2(0.75, 0.75), Vector2(0.7, 0.7), Vector2(0.75, 0.75), Vector2(0.7, 0.7), Vector2(0.75, 0.75), Vector2(0.7, 0.7), Vector2(0.75, 0.75), Vector2(0.7, 0.7)]
 }
+tracks/39/type = "method"
+tracks/39/imported = false
+tracks/39/enabled = true
+tracks/39/path = NodePath("../../../..")
+tracks/39/interp = 1
+tracks/39/loop_wrap = true
+tracks/39/keys = {
+"times": PackedFloat32Array(0.56666666),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_perma_buff_label_animation_signal"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i80ks"]
 _data = {
@@ -1217,9 +1231,10 @@ expand_mode = 1
 layout_mode = 0
 offset_left = -6.0
 offset_top = -5.0
-offset_right = 94.0
-offset_bottom = 95.0
+offset_right = 94.00009
+offset_bottom = 95.00015
 texture = ExtResource("15_i80ks")
+delay = 1.2
 
 [node name="HMarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
@@ -1245,9 +1260,10 @@ layout_mode = 0
 offset_left = -6.0
 offset_top = -5.0
 offset_right = 94.0
-offset_bottom = 95.00021
+offset_bottom = 95.00013
 texture = ExtResource("15_i80ks")
 slot_number = 2
+delay = 1.5
 
 [node name="HMarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager"]
 layout_mode = 2
@@ -1276,6 +1292,7 @@ offset_right = 93.0
 offset_bottom = 95.00015
 texture = ExtResource("15_i80ks")
 slot_number = 3
+delay = 1.8
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer3"]
 modulate = Color(1, 1, 1, 0)
@@ -1310,10 +1327,11 @@ expand_mode = 1
 layout_mode = 0
 offset_left = -7.0
 offset_top = -5.0
-offset_right = 93.000275
-offset_bottom = 95.00003
+offset_right = 93.00036
+offset_bottom = 95.00007
 texture = ExtResource("15_i80ks")
 slot_number = 4
+delay = 2.1
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer4"]
 modulate = Color(1, 1, 1, 0)
@@ -1352,6 +1370,7 @@ offset_right = 93.0
 offset_bottom = 95.00003
 texture = ExtResource("15_i80ks")
 slot_number = 5
+delay = 2.4
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer5"]
 modulate = Color(1, 1, 1, 0)
@@ -1390,6 +1409,7 @@ offset_right = 93.0
 offset_bottom = 95.00008
 texture = ExtResource("15_i80ks")
 slot_number = 6
+delay = 2.7
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/HMarginContainer6"]
 modulate = Color(1, 1, 1, 0)
@@ -1424,7 +1444,7 @@ layout_mode = 2
 [node name="WeaponSlot1" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer7/SlotAnchor"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 0
-offset_right = 90.00003
+offset_right = 90.00004
 offset_bottom = 90.0005
 mouse_filter = 0
 texture = ExtResource("18_ucqqx")
@@ -1480,6 +1500,7 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("5_bw4i5")
 slot_number = 2
+delay = 0.3
 
 [node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer9/SlotAnchor/WeaponSlot2" instance=ExtResource("7_klgxq")]
 z_index = 1
@@ -1516,7 +1537,7 @@ layout_mode = 2
 [node name="WeaponSlot3" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer10/SlotAnchor"]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 0
-offset_right = 90.00029
+offset_right = 90.00032
 offset_bottom = 90.0
 mouse_filter = 0
 texture = ExtResource("18_ucqqx")
@@ -1524,6 +1545,7 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("5_bw4i5")
 slot_number = 3
+delay = 0.6
 
 [node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer10/SlotAnchor/WeaponSlot3" instance=ExtResource("7_klgxq")]
 z_index = 1
@@ -1572,6 +1594,7 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("5_bw4i5")
 slot_number = 4
+delay = 0.9
 
 [node name="WeaponTooltip" parent="MarginContainer/HBoxContainer/LeftSide/HBoxContainer/Control/InventoryManager/WMarginContainer12/SlotAnchor/WeaponSlot4" instance=ExtResource("7_klgxq")]
 z_index = 1

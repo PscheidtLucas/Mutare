@@ -4,8 +4,9 @@
 [ext_resource type="Material" uid="uid://cbjel28ww55by" path="res://0_materials_spatial/enemy_bullet_0.tres" id="2_2ey4b"]
 [ext_resource type="Material" uid="uid://c71lns42bvf16" path="res://0_materials_spatial/trail_shader_updt.tres" id="3_v5fu0"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_qrgb1"]
-radius = 0.154288
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2ey4b"]
+radius = 0.12597656
+height = 1.1171875
 
 [sub_resource type="SphereMesh" id="SphereMesh_1bqo5"]
 radius = 0.4
@@ -24,7 +25,7 @@ script = ExtResource("1_42d76")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-shape = SubResource("SphereShape3D_qrgb1")
+shape = SubResource("CapsuleShape3D_2ey4b")
 
 [node name="BulletBall" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)

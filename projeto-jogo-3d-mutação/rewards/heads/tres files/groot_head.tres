@@ -25,8 +25,8 @@ resource_name = "speed increase"
 script = ExtResource("1_hmr1j")
 stat = 1
 buff_type = 1
-min_buff_amount = 1.5
-max_buff_amount = 3.5
+min_buff_amount = 1.0
+max_buff_amount = 3.0
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [sub_resource type="Resource" id="Resource_m3cwc"]

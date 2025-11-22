@@ -21,8 +21,8 @@ var camera_rotation_speed := 10.0
 @export var max_fall_speed: float = 300.0
 
 @export_category("Jump")
-@export_range(0.5, 20.0) var _jump_height := 1.5
-@export_range(0.1, 1.5) var _jump_time_to_peak := 0.32
+@export_range(0.5, 20.0) var _jump_height := 1.2
+@export_range(0.1, 1.5) var _jump_time_to_peak := 0.28
 @export_range(0.1, 1.5) var _jump_time_to_descent := 0.24
 @export_range(0.5, 4.0) var _horiz_dist_jump := 2.0
 @export_range(1.0, 50.0) var _jump_cut_divider := 3.3

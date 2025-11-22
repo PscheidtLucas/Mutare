@@ -115,7 +115,7 @@ model_anchor_node = NodePath("ModelAnchor")
 mesh_enemy = NodePath("ModelAnchor/Circle")
 array_of_weapons_nodes = [NodePath("ModelAnchor/Pistol"), NodePath("ModelAnchor/Pistol2"), NodePath("ModelAnchor/Pistol3")]
 health = 80.0
-move_speed = 5.0
+move_speed = 7.5
 raycasts_arrray = [NodePath("ModelAnchor/Pistol/RayCast3D"), NodePath("ModelAnchor/Pistol2/RayCast3D"), NodePath("ModelAnchor/Pistol3/RayCast3D")]
 dna_scene = ExtResource("2_nghti")
 

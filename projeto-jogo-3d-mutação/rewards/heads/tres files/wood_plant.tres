@@ -31,7 +31,7 @@ script = ExtResource("1_me07o")
 stat = 1
 buff_type = 1
 min_buff_amount = 0.5
-max_buff_amount = 2.5
+max_buff_amount = 2.0
 metadata/_custom_type_script = "uid://cjfuvhi515usr"
 
 [resource]

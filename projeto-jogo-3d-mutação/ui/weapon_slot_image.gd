@@ -17,6 +17,7 @@ var fade_tween: Tween
 
 
 func _ready() -> void:
+	GameEvents.start_perma_buff_label_animation.connect(_spawn_evo_popup)
 	GameEvents.evolution_completed.connect(_on_evolution_completed)
 	texture = null
 	# Esconde o tooltip no início e o deixa totalmente transparente
@@ -134,3 +135,35 @@ func _on_evolution_completed() -> void:
 	# Limpa os textos do tooltip
 	stat_value_label.text = ""
 	# Como o stat_name_label é fixo, mantemos o texto padrão
+
+@export var delay: float = 0.0
+const EVO_POPUP_LABEL = preload("uid://cfjq54op7tnwd")
+@onready var reward_manager_screen: RewardManager = $"../../../../../../../../.."
+func _spawn_evo_popup() -> void:
+	print("--- DEBUG POPUP ---")
+	print("1. Função chamada no slot: ", name)
+	
+	# Verificação de segurança
+	if not weapon_config:
+		print("ERRO: weapon_config é null! O slot já foi limpo?")
+		return
+
+	var bonus_pct := weapon_config.perma_buff_amount * 100.0
+	var buff_name := _format_buff_name(weapon_config.perma_buff_type)
+	var text_to_show := "%s +%s%%" % [buff_name.to_upper(), _format_number(bonus_pct, 1)]
+	
+	print("2. Texto gerado: ", text_to_show)
+	
+	var popup = EVO_POPUP_LABEL.instantiate() as EvoPopupLabel
+	popup.z_index = 100
+
+	reward_manager_screen.add_child(popup)
+	
+	var spawn_pos = Vector2(196, 446)
+	
+	print("3. Popup instanciado na Posição Global: ", spawn_pos)
+	print("4. Z-Index do popup: ", popup.z_index)
+	
+	# Inicia
+	popup.setup_and_animate(spawn_pos, text_to_show, delay)
+	print("--- FIM DEBUG ---")

@@ -151,7 +151,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyb6c"]
-bg_color = Color(1.0736755, 0.45026863, 0, 1)
+bg_color = Color(1, 0.4166667, 0, 1)
 border_width_left = 4
 border_width_top = 5
 border_width_right = 4
@@ -418,6 +418,11 @@ metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 wait_time = 999.0
 one_shot = true
 
+[node name="JumpCooldown" type="Timer" parent="StateMachine"]
+unique_name_in_owner = true
+wait_time = 0.8
+one_shot = true
+
 [node name="LegAnimacaoPerna" parent="." instance=ExtResource("16_yqrof")]
 transform = Transform3D(2.2000003, 0, 0, 0, 2.2000003, 0, 0, 0, 2.2000003, 0, 0.08853197, 0)
 
@@ -567,6 +572,7 @@ color_green_insde = Color(0, 0.81338406, 0.38099688, 1)
 [connection signal="state_entered" from="StateMachine/StateChart/ParallelState/Movement/Air/Fall" to="StateMachine" method="_on_fall_state_entered"]
 [connection signal="state_physics_processing" from="StateMachine/StateChart/ParallelState/Movement/Air/Fall" to="StateMachine" method="_on_fall_state_physics_processing"]
 [connection signal="state_entered" from="StateMachine/StateChart/ParallelState/Movement/Air/Jump" to="StateMachine" method="_on_jump_state_entered"]
+[connection signal="state_exited" from="StateMachine/StateChart/ParallelState/Movement/Air/Jump" to="StateMachine" method="_on_jump_state_exited"]
 [connection signal="state_physics_processing" from="StateMachine/StateChart/ParallelState/Movement/Air/Jump" to="StateMachine" method="_on_jump_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateMachine/StateChart/ParallelState/Actions" to="StateMachine" method="_on_actions_state_physics_processing"]
 [connection signal="state_entered" from="StateMachine/StateChart/ParallelState/Actions/None" to="StateMachine" method="_on_none_state_entered"]
