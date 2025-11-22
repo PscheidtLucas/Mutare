@@ -10,6 +10,8 @@ signal game_exited
 const HOVER_MAIN_MENU_1 = preload("uid://c7kbf7cgampxm")
 const MENU_CLICK = preload("uid://ygrjhjdvf7va")
 
+const BLACK_LOADING_SCREEN = preload("uid://co14ubmimprxy")
+
 ## Defines the path to the game scene. Hides the play button if empty.
 ## Will attempt to read from AppConfig if left empty.
 @export_file("*.tscn") var game_scene_path : String
@@ -31,6 +33,7 @@ var sub_menu : Control
 @onready var options_button = %OptionsButton
 @onready var credits_button = %CreditsButton
 @onready var exit_button = %ExitButton
+@onready var black_color_rect_fade_in_out: FadeInOutBlack = %BlackColorRectFadeInOut
 
 func get_game_scene_path() -> String:
 	if game_scene_path.is_empty():
@@ -45,7 +48,21 @@ func load_game_scene() -> void:
 		SceneLoader.load_scene(get_game_scene_path())
 
 func new_game() -> void:
-	load_game_scene()
+
+
+	# Primeiro faz o fade-in do preto
+	var t := create_tween()
+	t.tween_callback(func():
+		black_color_rect_fade_in_out.fade_in()
+	)
+	t.tween_interval(1.0) # tempo 
+	t.tween_callback(func():
+		var loading := BLACK_LOADING_SCREEN.instantiate()
+		$CanvasLayer.add_child(loading))
+	# Depois que o fade terminar, carregamos a cena real
+	t.tween_callback(func():
+		load_game_scene()
+	).set_delay(0.3)
 
 func exit_game() -> void:
 	if OS.has_feature("web"):
