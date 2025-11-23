@@ -194,10 +194,26 @@ func _input(event: InputEvent) -> void:
 
 func _deferred_focus_first() -> void:
 	_pending_focus_request = false
-	if first_select_button and first_select_button.visible:
-		first_select_button.grab_focus()
-	elif first_select_head_button and first_select_head_button.visible:
-		first_select_head_button.grab_focus()
+	
+	# 1. Procura dentro do container de opções (VBox)
+	for child in options_container.get_children():
+		# Verifica se o FILHO (a WeaponBox ou HeadBox) está visível na árvore
+		# is_visible_in_tree() retorna false se o pai (a Box) estiver hide()
+		if child is Control and child.is_visible_in_tree():
+			
+			# 2. Duck Typing: Verifica se esse filho tem a variável 'select_button'
+			# Como tanto WeaponBox quanto HeadBox têm essa variável, funciona pros dois!
+			if "select_button" in child:
+				var btn: Button = child.select_button
+				
+				# 3. Segurança extra: só foca se o botão existir e NÃO estiver desabilitado (pela trava de tempo)
+				if btn and not btn.disabled:
+					btn.grab_focus()
+					return # Achamos o primeiro visível, encerra a função
+	
+	# 4. Fallback: Se nenhuma opção estiver visível, tenta o botão de evoluir
+	if evolve_manager.visible and evolve_button.visible and not evolve_button.disabled:
+		evolve_button.grab_focus()
 
 
 func _update_mouse_mode() -> void:

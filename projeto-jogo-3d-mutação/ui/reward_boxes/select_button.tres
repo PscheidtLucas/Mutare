@@ -1,18 +1,4 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bb4dm22qo2rvc"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5exlp"]
-bg_color = Color(0.151447, 0.124627, 0.0944336, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gip4"]
-bg_color = Color(0.99353176, 0, 0.15387839, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bb4dm22qo2rvc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21k42"]
 bg_color = Color(0.937787, 0.3424263, 0.072003655, 1)
@@ -20,6 +6,13 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gip4"]
+bg_color = Color(0.99353176, 0, 0.15387839, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5hyk"]
 bg_color = Color(1, 0.711264, 0.413666, 1)
@@ -30,7 +23,8 @@ corner_radius_bottom_left = 15
 
 [resource]
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
-Button/styles/disabled = SubResource("StyleBoxFlat_5exlp")
+Button/colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_21k42")
 Button/styles/focus = null
 Button/styles/hover = SubResource("StyleBoxFlat_1gip4")
 Button/styles/normal = SubResource("StyleBoxFlat_21k42")

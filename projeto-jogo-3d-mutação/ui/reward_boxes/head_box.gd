@@ -4,10 +4,14 @@ extends MarginContainer
 const HOVER_MAIN_MENU_1 = preload("uid://c7kbf7cgampxm")
 const START_JINGLE = preload("uid://8r8dgcyjjqe3")
 
+# --- NOVO: Tempo de trava individual ---
+@export var input_lock_time: float = .75
+# ---------------------------------------
+
 signal update_labels
 
 var reward = null
-var head_config_generated: HeadRewardConfig # passada pelo reward screen quando o sinal wave survived é emitido
+var head_config_generated: HeadRewardConfig 
 
 @export var select_button: Button
 @export var reward_screen: RewardManager
@@ -27,6 +31,29 @@ func _on_heads_configured() -> void:
 	if head_config_generated == null:
 		return
 	configure_stat_labels()
+	
+	# --- APLICA A TRAVA QUANDO OS DADOS CHEGAM ---
+	apply_input_lock()
+	# ---------------------------------------------
+
+# --- NOVA FUNÇÃO DE TRAVA ---
+func apply_input_lock() -> void:
+	# 1. Desabilita visualmente e funcionalmente
+	select_button.disabled = true
+	select_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	#modulate.a = 1.0 
+	
+	# 2. Espera
+	await get_tree().create_timer(input_lock_time).timeout
+	
+	# 3. Reabilita
+	if is_instance_valid(select_button):
+		select_button.disabled = false
+		select_button.mouse_filter = Control.MOUSE_FILTER_STOP
+		
+		#var tween = create_tween()
+		#tween.tween_property(self, "modulate:a", 1.0, 0.2)
+# ----------------------------
 
 func _on_select_button_pressed() -> void:
 	AudioManager.play_sfx(START_JINGLE, 10)
@@ -81,7 +108,6 @@ func configure_stat_labels() -> void:
 	rating_value.text = str(rating)
 	update_labels.emit(head_config_generated)
 
-
 func calculate_head_rating(buffs: Array[StatBuff]) -> int:
 	if buffs.is_empty():
 		return 60
@@ -92,19 +118,17 @@ func calculate_head_rating(buffs: Array[StatBuff]) -> int:
 		var min_val := buff.min_buff_amount
 		var max_val := buff.max_buff_amount
 		
-		# Normaliza o valor atual (entre min e max) para 0-1
 		var t : float = (buff.buff_amount - min_val) / max(0.0001, (max_val - min_val))
 		t = clamp(t, 0.0, 1.0)
 		
 		total_score += t
 	
 	var avg_score := total_score / buffs.size()
-	
-	# Converte média para faixa 50–100
 	var rating := int(50.0 + avg_score * 50.0)
 	
 	return rating
 
-
 func _on_select_button_mouse_entered() -> void:
-	AudioManager.play_sfx(HOVER_MAIN_MENU_1)
+	# Só toca o som se o botão não estiver travado
+	if not select_button.disabled:
+		AudioManager.play_sfx(HOVER_MAIN_MENU_1)

@@ -3,13 +3,17 @@ class_name WeaponBox extends MarginContainer
 const HOVER_MAIN_MENU_1 = preload("uid://c7kbf7cgampxm")
 const START_JINGLE = preload("uid://8r8dgcyjjqe3")
 
+# --- NOVO: Tempo de trava individual ---
+@export var input_lock_time: float = .75
+# ---------------------------------------
+
 var reward = null
-var weapon_config_generated : RewardConfig # passada pelo reward screen quando o sinal wave survived é emitido
+var weapon_config_generated : RewardConfig 
 
 @export var select_button: Button
 @export var reward_screen: RewardManager
 
-signal update_labels(weapon_config: RewardConfig) ## Emitido aqui para atualizar as weapon_stats_label e também as imagens das armas no ImageContainer
+signal update_labels(weapon_config: RewardConfig)
 
 @onready var rating_value: Label = %RatingValue
 
@@ -19,14 +23,38 @@ func _ready() -> void:
 		select_button.pressed.connect(_on_select_button_pressed)
 		
 	reward_screen.weapons_configured.connect(_on_weapons_configured)
-	## Quando esse sinal é chamado, weapon_config já foi settado, emitido no RewardScreen
 
 func _on_weapons_configured() -> void:
 	if weapon_config_generated == null:
 		push_warning("WeaponBox recebeu sinal de configuração, mas weapon_config_generated é null.")
 		return
+	
 	calc_and_update_rating(weapon_config_generated)
 	update_labels.emit(weapon_config_generated)
+	
+	# --- APLICA A TRAVA QUANDO OS DADOS CHEGAM ---
+	apply_input_lock()
+	# ---------------------------------------------
+
+# --- NOVA FUNÇÃO DE TRAVA ---
+func apply_input_lock() -> void:
+	# 1. Desabilita visualmente e funcionalmente
+	select_button.disabled = true
+	select_button.mouse_filter = Control.MOUSE_FILTER_IGNORE # Ignora o mouse (sem som de hover)
+	#modulate.a = 0.5 # Fica meio transparente (feedback visual importante)
+	
+	# 2. Espera o tempo seguro
+	await get_tree().create_timer(input_lock_time).timeout
+	
+	# 3. Reabilita (verifica se o botão ainda existe para evitar erros se a tela fechou)
+	if is_instance_valid(select_button):
+		select_button.disabled = false
+		select_button.mouse_filter = Control.MOUSE_FILTER_STOP # Volta a aceitar mouse
+		
+		# Animação suave voltando a cor normal
+		#var tween = create_tween()
+		#tween.tween_property(self, "modulate:a", 1.0, 0.2)
+# ----------------------------
 
 func _on_select_button_pressed() -> void:
 	AudioManager.play_sfx(START_JINGLE, 10)
@@ -41,14 +69,12 @@ func calc_and_update_rating(weapon_config: RangedWeaponConfig) -> void:
 	var range_n = (weapon_config.range - weapon_config.min_range) / float(weapon_config.max_range - weapon_config.min_range)
 	var fire_rate_n = (weapon_config.fire_rate - weapon_config.fire_rate_min) / float(weapon_config.fire_rate_max - weapon_config.fire_rate_min)
 	
-	# média simples dos valores normalizados
 	var avg = (damage_n + accuracy_n + range_n + fire_rate_n) / 4.0
-
-	# converte para o intervalo 50–100
 	var rating = int(round(50 + (avg * 50)))
 	
-	# exibe na label
 	rating_value.text = str(rating)
 
 func _on_select_button_mouse_entered() -> void:
-	AudioManager.play_sfx(HOVER_MAIN_MENU_1)
+	# Só toca o som se o botão não estiver travado/desabilitado
+	if not select_button.disabled:
+		AudioManager.play_sfx(HOVER_MAIN_MENU_1)

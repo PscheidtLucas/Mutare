@@ -14,13 +14,13 @@ func roll_stats(damage_scale: float = 1.0) -> void:
 	var tier_name: String = "NORMAL"
 	
 	# 2. Define o Tier (Sem o Tier "Ruim")
-	if luck_roll >= 0.99:
+	if luck_roll >= 0.995:
 		# [1%] PERFEITO
 		pct_min = 1.0
 		pct_max = 1.0
 		tier_name = "PERFECT (1%)"
 		
-	elif luck_roll >= 0.97:
+	elif luck_roll >= 0.98:
 		# [2%] LENDÁRIO
 		pct_min = 0.9
 		pct_max = 0.99
@@ -29,7 +29,7 @@ func roll_stats(damage_scale: float = 1.0) -> void:
 	elif luck_roll <= 0.01:
 		# [1%] LIXO
 		pct_min = 0.0
-		pct_max = 0.0
+		pct_max = 0.1
 		tier_name = "TRASH (1%)"
 		
 	else:

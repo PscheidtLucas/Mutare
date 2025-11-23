@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://cn4ylkriiiien"]
+[gd_scene load_steps=64 format=3 uid="uid://cn4ylkriiiien"]
 
 [ext_resource type="Texture2D" uid="uid://bcxd8qt26yoju" path="res://icon.svg" id="1_lsdnj"]
 [ext_resource type="Script" uid="uid://bk8sq0qfu3cxg" path="res://rewards/reward_manager.gd" id="1_lsmmt"]
@@ -38,8 +38,11 @@
 [ext_resource type="Script" uid="uid://bw3n3ppeutiho" path="res://ui/reroll_button.gd" id="29_ucqqx"]
 [ext_resource type="Script" uid="uid://bt2ybcf61ne00" path="res://ui/current_hp_value.gd" id="30_y0g00"]
 [ext_resource type="Texture2D" uid="uid://c7gvigenwhvfy" path="res://dna/Dna_white_3px.png" id="31_piogr"]
+[ext_resource type="Texture2D" uid="uid://brsgvvc7wlc7y" path="res://ui/reward screen images/reward_normal.png" id="33_5rvd2"]
 [ext_resource type="Texture2D" uid="uid://6txfiltquqj8" path="res://ui/reward screen images/updated/Caixa de Status.png" id="33_hkoo2"]
+[ext_resource type="Texture2D" uid="uid://b5sbsmja6f36g" path="res://ui/reward screen images/reward_hover.png" id="34_c858w"]
 [ext_resource type="PackedScene" uid="uid://kbnmrp3um3jv" path="res://dna/dna_container.tscn" id="35_gq28r"]
+[ext_resource type="Texture2D" uid="uid://wx7guxwisnaa" path="res://ui/reward screen images/reward_focus.png" id="35_s2may"]
 [ext_resource type="Texture2D" uid="uid://l106gwa5i06f" path="res://dna/Dna_white_2.png" id="36_t7owo"]
 [ext_resource type="Texture2D" uid="uid://g155jkqacu4k" path="res://ui/reward screen images/updated/Cubo do fundo do inventário.png" id="37_my3u6"]
 [ext_resource type="Texture2D" uid="uid://m6fmlo3c5407" path="res://ui/pause/Fundo Pause (cinza escuro).png" id="43_dtdhd"]
@@ -1835,7 +1838,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource("Theme_nowss")
-texture_normal = ExtResource("16_cy6bo")
+texture_normal = ExtResource("33_5rvd2")
+texture_hover = ExtResource("34_c858w")
+texture_focused = ExtResource("35_s2may")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("29_ucqqx")
