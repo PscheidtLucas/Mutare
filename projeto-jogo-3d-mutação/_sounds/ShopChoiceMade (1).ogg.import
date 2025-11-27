@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://jees6daed56n"
+path="res://.godot/imported/ShopChoiceMade (1).ogg-600afaef6ff26e53e45d5d0928dc9955.oggvorbisstr"
+
+[deps]
+
+source_file="res://_sounds/ShopChoiceMade (1).ogg"
+dest_files=["res://.godot/imported/ShopChoiceMade (1).ogg-600afaef6ff26e53e45d5d0928dc9955.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

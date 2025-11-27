@@ -4,7 +4,7 @@ extends Node3D
 
 # A única propriedade que precisamos. Todo o resto virá daqui.
 @export var config: RangedWeaponConfig
-
+@export var flash_particle: GPUParticles3D
 # A flag para dizer à bala quem é o "dono" da arma.
 @export var is_player_weapon: bool = false
 
@@ -27,11 +27,13 @@ func _ready() -> void:
 	else:
 		config_timer.call_deferred()
 	
+const PISTOL_E = preload("uid://dlrhjlekwwsew")
 
 func _fire() -> void:
 	if not config or not config.bullet_scene:
 		return
-	
+	if flash_particle:
+		flash_particle.restart()
 	var base_forward := -muzzle.global_transform.basis.x.normalized()
 	var num := config.number_of_projectiles
 	var spread_angles := _calculate_spread_angles(num, config.accuracy)
@@ -42,6 +44,7 @@ func _fire() -> void:
 		if is_player_weapon:
 			projectile = config.bullet_scene.instantiate() as Bullet
 		else:
+			AudioManager.play_sfx(PISTOL_E, -15, 0.7, 0.25)
 			projectile = BulletPool.get_bullet(config.bullet_scene)
 
 		# Garantir que não tenha parent antes de adicionar

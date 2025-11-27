@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://c66mi1la26sx4"]
 
-[ext_resource type="Script" uid="uid://brhviuov1v8u0" path="res://weapons/base_weapon.gd" id="1_7dxpw"]
-[ext_resource type="Resource" uid="uid://dy1w2510h4sun" path="res://weapons/mushroom_shotgun/mushroom_shotgun.tres" id="2_c2k26"]
+[ext_resource type="Script" uid="uid://dn2yl22nq6kh5" path="res://weapons/mushroom_shotgun/mushroom_shotgun.gd" id="1_khyq3"]
 [ext_resource type="Script" uid="uid://c8vv03wj0fnos" path="res://weapons/weapon_anim.gd" id="3_agchh"]
+[ext_resource type="PackedScene" uid="uid://b7xx828jp6uv7" path="res://weapons/flash_particle_gun.tscn" id="3_c2k26"]
 [ext_resource type="PackedScene" uid="uid://ocwudwcchh8s" path="res://weapons/mushroom_shotgun/shotgun_model.tscn" id="5_ybokw"]
 
 [sub_resource type="Animation" id="Animation_3akql"]
@@ -90,9 +90,9 @@ _data = {
 &"shoot": SubResource("Animation_l32t6")
 }
 
-[node name="MushroomShotgun" type="Node3D" node_paths=PackedStringArray("muzzle")]
-script = ExtResource("1_7dxpw")
-config = ExtResource("2_c2k26")
+[node name="MushroomShotgun" type="Node3D" node_paths=PackedStringArray("flash_particle", "muzzle")]
+script = ExtResource("1_khyq3")
+flash_particle = NodePath("Anchor/Muzzle/GPUParticles3D")
 is_player_weapon = true
 muzzle = NodePath("Anchor/Muzzle")
 
@@ -110,6 +110,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6714861, 0.12913904, 0)
 [node name="Muzzle" type="Node3D" parent="Anchor"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7127832, 0.0043399036, 0)
+
+[node name="GPUParticles3D" parent="Anchor/Muzzle" instance=ExtResource("3_c2k26")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.07562971, 0, 1.8626451e-09)
 
 [node name="Anchor" type="Node3D" parent="Anchor"]
 

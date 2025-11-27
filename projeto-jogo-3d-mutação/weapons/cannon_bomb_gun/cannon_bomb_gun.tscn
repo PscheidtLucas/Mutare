@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6nltib5mbsd4"]
+[gd_scene load_steps=8 format=3 uid="uid://c6nltib5mbsd4"]
 
 [ext_resource type="Script" uid="uid://3v0j07kf32d2" path="res://weapons/cannon_bomb_gun/cannon_bomb_gun.gd" id="2_rhmay"]
 [ext_resource type="Script" uid="uid://c8vv03wj0fnos" path="res://weapons/weapon_anim.gd" id="3_rhmay"]
 [ext_resource type="PackedScene" uid="uid://d1d1t2fwd1kxf" path="res://weapons/cannon_bomb_gun/cannon_bomb_model.tscn" id="3_wfqvf"]
+[ext_resource type="PackedScene" uid="uid://b7xx828jp6uv7" path="res://weapons/flash_particle_gun.tscn" id="4_wfqvf"]
 
 [sub_resource type="Animation" id="Animation_3mdeq"]
 length = 0.001
@@ -41,9 +42,10 @@ _data = {
 &"shoot": SubResource("Animation_wfqvf")
 }
 
-[node name="CannonBombGun" type="Node3D"]
+[node name="CannonBombGun" type="Node3D" node_paths=PackedStringArray("flash_particle")]
 script = ExtResource("2_rhmay")
 launch_angle_degrees = 30.0
+flash_particle = NodePath("Muzzle/GPUParticles3D")
 is_player_weapon = true
 
 [node name="WeaponAnim" type="AnimationPlayer" parent="." node_paths=PackedStringArray("weapon")]
@@ -60,3 +62,6 @@ transform = Transform3D(-5.4299846e-07, 0, -0.14999999, 0, 0.14999999, 0, 0.1499
 [node name="Muzzle" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.331941, 0.8979391, 0)
+
+[node name="GPUParticles3D" parent="Muzzle" instance=ExtResource("4_wfqvf")]
+transform = Transform3D(0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0, 1, 0, 0, 0)

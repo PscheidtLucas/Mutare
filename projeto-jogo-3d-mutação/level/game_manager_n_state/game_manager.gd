@@ -9,6 +9,8 @@ var wave_timer : Timer
 var wave_starting_duration := 50.0
 
 func _ready() -> void:
+	DnaManager.current_dna = 0
+	AudioManager.set_music_paused(false)
 	AudioManager.play_music(MENU_MUTARE)
 	game_state.cycle_number = 0
 	game_state.reset_wave_number()

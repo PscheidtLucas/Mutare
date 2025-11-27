@@ -1,5 +1,8 @@
 class_name Bomb extends RigidBody3D
 
+const EXPLOSION_SOUND = preload("uid://bm8sxy38604l7")
+
+
 # Variáveis para receber os stats da arma
 var config: RangedWeaponConfig
 var is_player_weapon: bool = false
@@ -40,6 +43,7 @@ func on_contact(body: Node3D):
 	explode()
 
 func explode():
+	AudioManager.play_sfx(EXPLOSION_SOUND, 0, 0.8, 0.3)
 	GameEvents.explosion.emit()
 	# (Opcional) Congela o corpo para que ele pare de se mover ao explodir
 	linear_velocity = Vector3.ZERO

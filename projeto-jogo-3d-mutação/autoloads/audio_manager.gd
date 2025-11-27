@@ -56,7 +56,9 @@ func play_sfx(
 	player.stop()
 	player.stream = stream
 	player.volume_db = volume_db
-	player.pitch_scale = pitch_scale + randf_range(-random_pitch, random_pitch)
+	var final_pitch := pitch_scale + randf_range(-random_pitch, random_pitch)
+	final_pitch = max(final_pitch, 0.05) # garante pitch válido
+	player.pitch_scale = final_pitch
 	player.play()
 # -------------------------------------------------------------
 #	Música: trocas mais controladas

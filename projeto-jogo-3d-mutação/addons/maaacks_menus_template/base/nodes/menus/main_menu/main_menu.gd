@@ -116,6 +116,7 @@ func _hide_credits_if_unset() -> void:
 		credits_button.hide()
 
 func _ready() -> void:
+	AudioManager.set_music_paused(false)
 	AudioManager.play_music(load("res://music/MenuMutare.ogg"))
 	_hide_exit_for_web()
 	_hide_options_if_unset()

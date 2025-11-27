@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bcnomuw5b7jsm"]
 
-[ext_resource type="Script" uid="uid://brhviuov1v8u0" path="res://weapons/base_weapon.gd" id="1_g085s"]
-[ext_resource type="Resource" uid="uid://bf80h3suneegk" path="res://weapons/smg_tech/smg_tech_stats.tres" id="2_bkfkd"]
+[ext_resource type="Script" uid="uid://cj6qb2dgstyc6" path="res://weapons/smg_tech/smg_tech.gd" id="1_7cuut"]
+[ext_resource type="PackedScene" uid="uid://b7xx828jp6uv7" path="res://weapons/flash_particle_gun.tscn" id="2_bkfkd"]
 [ext_resource type="Script" uid="uid://c8vv03wj0fnos" path="res://weapons/weapon_anim.gd" id="4_4ssrr"]
 [ext_resource type="PackedScene" uid="uid://u0882witysp7" path="res://weapons/smg_tech/smg_tech_model.tscn" id="4_bkfkd"]
 
@@ -91,15 +91,19 @@ _data = {
 &"shoot": SubResource("Animation_l32t6")
 }
 
-[node name="SmgTech" type="Node3D"]
+[node name="SmgTech" type="Node3D" node_paths=PackedStringArray("flash_particle", "muzzle")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
-script = ExtResource("1_g085s")
-config = ExtResource("2_bkfkd")
+script = ExtResource("1_7cuut")
+flash_particle = NodePath("Muzzle/GPUParticles3D")
 is_player_weapon = true
+muzzle = NodePath("Muzzle")
 
 [node name="Muzzle" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5770444, 0.0587938, 0)
+
+[node name="GPUParticles3D" parent="Muzzle" instance=ExtResource("2_bkfkd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018853307, 0, 0)
 
 [node name="WeaponAnim" type="AnimationPlayer" parent="." node_paths=PackedStringArray("weapon")]
 libraries = {

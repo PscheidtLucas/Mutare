@@ -28,12 +28,14 @@ func _ready() -> void:
 # O _process garante que o botão bloqueie/desbloqueie assim que o dinheiro mudar
 func _process(_delta: float) -> void:
 	_check_affordability()
-
+	
+const SHOP_CHOICE_MADE = preload("uid://ciq156850hqdc")
 func _on_pressed() -> void:
 	# O próprio botão disabled impede o click, mas checamos novamente por segurança
 	var can_buy := DnaManager.try_spend_dna(reroll_cost)
 	
 	if can_buy:
+		AudioManager.play_sfx(SHOP_CHOICE_MADE, -6, 1.5, 0.1)
 		increase_reroll_price()
 		GameEvents.do_reroll.emit()
 		
@@ -72,9 +74,12 @@ func _update_color() -> void:
 	# Prioridade 3: Estado normal
 	else:
 		node_to_change_color.modulate = COLOR_NORMAL
+		
+const HOVER_MAIN_MENU_1 = preload("uid://c7kbf7cgampxm")
 
 # Sinais do mouse apenas pedem para atualizar a cor baseada no estado atual
 func _on_mouse_entered() -> void:
+	AudioManager.play_sfx(HOVER_MAIN_MENU_1)
 	_is_hovering = true
 	_update_color()
 

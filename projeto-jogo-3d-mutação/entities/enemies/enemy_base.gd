@@ -2,6 +2,7 @@ class_name Enemy
 extends CharacterBody3D
 
 static var enemy_count := 0
+const ENEMY_HURT_SOUND = preload("uid://ccfcvnb6d431l")
 
 @export var mesh_enemy: MeshInstance3D
 @export var label_height := 3.9
@@ -274,20 +275,23 @@ func _look_at_player():
 		look_at(global_position + to_player, Vector3.UP)
 
 func take_damage(damage_data: Damage) -> void:
+	AudioManager.play_sfx(ENEMY_HURT_SOUND, 0, 1.0, 0.3)
 	health -= damage_data.amount
 	flash_animation()
 	create_and_configure_label(damage_data.amount, damage_data.is_crit)
 	
 	if health <= 0:
 		die()
-
+		
+		
+const COLLECT_SOUND = preload("uid://gd123b5nglri")
 func die() -> void:
 	# Evita morrer duas vezes
 	if health <= -999: return 
 	health = -999 
 	
 	spawn_dna_drop()
-	
+	AudioManager.play_sfx(COLLECT_SOUND, 0, 2.2, .25)
 	# Desliga a física e colisão para ninguém bater no inimigo morrendo
 	set_physics_process(false)
 	collision_layer = 0 

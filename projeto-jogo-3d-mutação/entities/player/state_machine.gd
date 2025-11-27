@@ -1,5 +1,7 @@
 extends Node
 
+const DASH_FINAL_3 = preload("uid://bowi2y0lrsj5o")
+
 @export var afterimage_emitter: AfterimageEmitter
 @export var leg_player: AnimationPlayer
 @export var player_mesh: Node3D
@@ -120,6 +122,7 @@ func _on_dash_state_physics_processing(delta: float) -> void:
 	p.move_and_slide()
 
 func _on_dash_state_entered() -> void:
+	AudioManager.play_sfx(DASH_FINAL_3, -5)
 	%CollisionShape3D.disabled = true
 	collision_shape_3d.position.y += 0.1
 	state_chart.set_expression_property("dash_cd_reseted", false)
@@ -149,9 +152,10 @@ func _on_none_state_entered() -> void:
 	
 #endregion
 
-
+const READY_DASH = preload("uid://bji1lfg1nosw4")
 func _on_dash_cooldown_timer_timeout() -> void:
 	print("Printando sobre dash no player state machine. Dash cooldown: ", p.get_real_dash_cooldown())
+	AudioManager.play_sfx(READY_DASH)
 	state_chart.set_expression_property("dash_cd_reseted", true)
 
 func _on_player_died() -> void:
@@ -219,3 +223,9 @@ func animate_cube_frame_walking() -> void:
 
 func _on_jump_state_exited() -> void:
 	on_air = false
+	
+const GRASS_STEP_SOUND = preload("uid://di5fgi3a6sw6s")
+func play_footstep():
+	if on_air:
+		return
+	AudioManager.play_sfx(GRASS_STEP_SOUND, -17.0, 1.5, 0.3)

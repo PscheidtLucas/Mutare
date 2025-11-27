@@ -55,8 +55,10 @@ func _process(delta: float) -> void:
 		
 		if distance < DISTANCE_TO_DISAPEAR:
 			collected()
-
+	
+const COLLECT_UP_SOUND = preload("uid://df6g5y8oert3e")
 func collected() -> void:
+	AudioManager.play_sfx(COLLECT_UP_SOUND, 0, 3.5, .3)
 	GameEvents.player_collected_dna.emit()
 	queue_free()
 

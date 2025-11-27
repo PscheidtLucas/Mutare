@@ -147,13 +147,15 @@ func equip(weapon_config: RangedWeaponConfig) -> void:
 		node.add_child(instance)
 		instance.config = weapon_config
 		break
-
+		
+const PLAYER_HURT_SOUND = preload("uid://bed2bn4ao0or4")
 func take_damage(damage_data : Damage) -> void:
 	if is_alive() == false:
 		return
 	if is_cheating == true:
 		return
-
+		
+	AudioManager.play_sfx(PLAYER_HURT_SOUND, 7, 1.5, 0.2)
 	$CameraAnchor/CameraShake.shake()
 	flash_animation()
 

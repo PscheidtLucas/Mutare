@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://u0882witysp7"]
+[gd_scene load_steps=10 format=4 uid="uid://u0882witysp7"]
 
 [ext_resource type="PackedScene" uid="uid://dxqj0j32orwby" path="res://weapons/smg_tech/smgTecnologica.glb" id="1_sr2wa"]
+[ext_resource type="Script" uid="uid://cj6qb2dgstyc6" path="res://weapons/smg_tech/smg_tech.gd" id="2_rfhkw"]
+[ext_resource type="Resource" uid="uid://bf80h3suneegk" path="res://weapons/smg_tech/smg_tech_stats.tres" id="3_yhu24"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gwyee"]
 resource_name = "cor base"
@@ -132,8 +134,16 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_rfhkw")
 
-[node name="smgTecnologica" instance=ExtResource("1_sr2wa")]
+[node name="smgTecnologica" node_paths=PackedStringArray("flash_particle", "muzzle") instance=ExtResource("1_sr2wa")]
+script = ExtResource("2_rfhkw")
+config = ExtResource("3_yhu24")
+flash_particle = NodePath("")
+is_player_weapon = true
+muzzle = NodePath("SMG/Muzzle")
 
 [node name="SMG" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.217702, 0.187652, 0)
 mesh = SubResource("ArrayMesh_yhu24")
+
+[node name="Muzzle" type="Node3D" parent="SMG" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48106137, 0, 0)

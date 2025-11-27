@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://booagc6yrqu5q"]
+[gd_scene load_steps=7 format=3 uid="uid://booagc6yrqu5q"]
 
-[ext_resource type="Script" uid="uid://brhviuov1v8u0" path="res://weapons/base_weapon.gd" id="1_7n4tm"]
-[ext_resource type="Resource" uid="uid://bxx6u0q678oib" path="res://weapons/carnivorous_pistola/carniv_pistol_stats.tres" id="2_gmggc"]
+[ext_resource type="Script" uid="uid://bnyhf7u0g6rqu" path="res://weapons/pulse_emitter/pulse_emitter.gd" id="1_43d6g"]
 [ext_resource type="PackedScene" uid="uid://do67apipqrr50" path="res://weapons/pulse_emitter/model.tscn" id="4_7n4tm"]
 [ext_resource type="Script" uid="uid://c8vv03wj0fnos" path="res://weapons/weapon_anim.gd" id="4_xonwo"]
 
@@ -90,10 +89,10 @@ _data = {
 &"shoot": SubResource("Animation_l32t6")
 }
 
-[node name="PulseEmitter" type="Node3D"]
-script = ExtResource("1_7n4tm")
-config = ExtResource("2_gmggc")
+[node name="PulseEmitter" type="Node3D" node_paths=PackedStringArray("muzzle")]
+script = ExtResource("1_43d6g")
 is_player_weapon = true
+muzzle = NodePath("Muzzle")
 
 [node name="Muzzle" type="Node3D" parent="."]
 unique_name_in_owner = true

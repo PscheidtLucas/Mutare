@@ -1,6 +1,8 @@
 class_name CannonBombGun
 extends BaseWeapon
 
+const CANNON_SOUND = preload("uid://bh8swvyrpaehf")
+
 @export_group("Cannon Stats")
 @export var launch_angle_degrees: float = 60.0 # Ângulo de lançamento em graus
 @export var initial_height: float = 1.59 # A altura inicial do canhão (pivot do jogador)
@@ -13,11 +15,12 @@ const MAX_SPREAD_ANGLE := 90.0
 
 # Sobrescrevemos completamente a função _fire.
 func _fire() -> void:
-	shot_emitted.emit()
-
 	if not config or not config.bullet_scene:
 		printerr("config para o cannon nao configurado!")
 		return
+	
+	shot_emitted.emit()
+	AudioManager.play_sfx(CANNON_SOUND, 0, 1.2, 0.22)
 
 	for count in range(config.number_of_projectiles):
 		var projectile := config.bullet_scene.instantiate()
