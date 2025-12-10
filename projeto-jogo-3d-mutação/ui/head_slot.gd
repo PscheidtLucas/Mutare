@@ -138,7 +138,6 @@ func _on_evolution_completed() -> void:
 	# Limpa o slot de cabeça completamente
 	head_config = null
 	texture = null
-	
 	# Esconde e reseta o tooltip
 	if fade_tween:
 		fade_tween.kill()

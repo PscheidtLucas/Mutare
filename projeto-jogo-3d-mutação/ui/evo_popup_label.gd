@@ -18,12 +18,12 @@ func setup_and_animate(pos: Vector2, text_content: String, delay: float = 0.0) -
 	# Delay inicial para spawn
 	if delay > 0.0:
 		await get_tree().create_timer(delay).timeout
-
+	
 	scale = Vector2.ZERO
 
 	reset_size()
 	await get_tree().process_frame
-
+	play_evolve_item_consumed_sound(delay)
 	# Centraliza
 	global_position = pos - (size / 2.0)
 
@@ -76,3 +76,8 @@ func setup_and_animate(pos: Vector2, text_content: String, delay: float = 0.0) -
 	t_out.tween_property(self, "modulate:a", 0.0, 1.5)
 
 	t_out.chain().tween_callback(queue_free)
+
+
+const ITEM_CONSUMED_SOUND = preload("uid://ooxompgevftk")
+func play_evolve_item_consumed_sound(delay: float) -> void:
+	AudioManager.play_sfx(ITEM_CONSUMED_SOUND, -10, 1.0 + (delay / 2))

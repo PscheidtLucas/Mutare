@@ -166,4 +166,5 @@ func _spawn_evo_popup() -> void:
 	
 	# Inicia
 	popup.setup_and_animate(spawn_pos, text_to_show, delay)
+	
 	print("--- FIM DEBUG ---")

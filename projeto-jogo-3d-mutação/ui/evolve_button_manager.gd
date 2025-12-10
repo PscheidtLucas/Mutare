@@ -26,10 +26,12 @@ func on_evolution_finished(anim_name: String) -> void:
 		evolve_was_pressed = false
 		animation_player.play("RESET")
 
-
+const EVOLVE_PRESSED_SOUND = preload("uid://cggjrjf0m1xip")
 func _on_evolve_button_pressed() -> void:
 	if evolve_was_pressed:
 		return
+	
+	AudioManager.play_sfx(EVOLVE_PRESSED_SOUND, -10)
 	evolve_was_pressed = true
 	animate_evolve_button() ## Anima o botão de evolução e envia o sinal "evolution_completed" quando a animação termina
 	
